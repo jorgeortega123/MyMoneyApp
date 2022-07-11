@@ -1,0 +1,21 @@
+{
+     "PieValues":[
+          {
+          "color": "#E38627",
+          "title": "Show 50%",
+          "value": 50
+          },
+          {
+          "color": "#C13C37",
+          "title": "Show 35%",
+          "value": 35
+          },
+          {
+          "color": "#6A2135",
+          "title": "Show 15%",
+          "value": 15
+          }
+        ]
+}
+     
+   
