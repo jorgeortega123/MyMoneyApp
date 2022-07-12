@@ -38,6 +38,6 @@ export function GlobalContextComponent({children}) {
  }
  console.log(globalData)
   return (
-    <GlobalContext.Provider value={{ data: globalData , update}}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={{ data: globalData , server, update }}>{children}</GlobalContext.Provider>
   );
 }

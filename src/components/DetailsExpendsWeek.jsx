@@ -18,7 +18,7 @@ export default function DetailsExpendsWeek(lang) {
     const aboutTo = () => {
       var perWeek = toWork.perWeek;
       var inicialNum = 0;
-      setsavings(toWork.savings[0]);
+      setsavings(toWork.savings[1]);
 
       ////////
       const sumDebst = toWork.debts.reduce((accumulator, object) => {
@@ -129,7 +129,7 @@ export default function DetailsExpendsWeek(lang) {
                 >
                   {langg.components.detailsWeek.savings[0]}
                 </th>
-                <td className="px-2 py-1">{savings.value} </td>
+                <td className="px-2 py-1">{savings.value.toFixed(2)} </td>
                 <td className="px-2 py-1">0 </td>
                 <td className="px-2 py-1">0</td>
               </tr>
@@ -140,7 +140,7 @@ export default function DetailsExpendsWeek(lang) {
                 >
                   {langg.components.detailsWeek.debts[0]}
                 </th>
-                <td className="px-2 py-1">{debstCount} </td>
+                <td className="px-2 py-1">{debstCount.toFixed(2)} </td>
                 <td className="px-2 py-1">0 </td>
                 <td className="px-2 py-1">0</td>
               </tr>

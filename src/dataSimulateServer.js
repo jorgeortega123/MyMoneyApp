@@ -132,7 +132,7 @@ export const lang = {
         infFirst: ["Aquí esta tu balance de cuenta"],
         AccountStats: ["Gestor de cuentas:: "],
         netWorth: ["Patrimonio"],
-        savings: ["Ahorros"],
+        savings: ["Ahorro"],
         debts: ["Deudas"],
         abilityToBorrow: ["Capacidad para endeudarse"],
       },

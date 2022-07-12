@@ -6,12 +6,14 @@ import axios from "axios";
 import useGlobalContext from "../context/useGlobalContext";
 import AddOptionAboutCost from "./subComponents/AddOptionAboutCost";
 import useMessageContext from "../context/Modal/useMessageContext";
-const server = "http://127.0.0.1:4000";
+
 
 export default function AddMoveCash(lang) {
+    const { context } = useGlobalContext();
+  const server = context.server
   const langg = lang.lang
   const { message } = useMessageContext();
-  const { context } = useGlobalContext();
+
   //console.log(context.update());
 
   const [clickedSelect, setclickedSelect] = useState(null);
@@ -65,13 +67,22 @@ export default function AddMoveCash(lang) {
       })
       .then((res) => {
         context.update();
-        if (res.data.extra === 102) {
+        /*if (res.data.extra === 102) {
           message({
             type: "error",
             title: langg.message.addMoveCash.excededLimit.title[0],
             description: langg.message.addMoveCash.excededLimit.body[0],
+          });*/
+          message({
+            type: res.data.message,
+            title: "Movimiento satisfactorio",
+            description: res.data.data ,
           });
-        }
+          setTimeout(() => {
+            document.getElementById("inputToPutNumber").value ="" 
+          }, 600);
+          settoPayValue("")
+          
         setcontentOfBotton(langg.buttons.add[0]);
       })
       .catch((err) => {
@@ -101,7 +112,7 @@ export default function AddMoveCash(lang) {
                   type="number"
                   onChange={(e) => settoPayValue(e.target.value)}
                   className=" grow  w-[55px] p-[2px] outline-none bg-transparent  "
-                  id=""
+                  id="inputToPutNumber"
                   required
                 />
               </div>

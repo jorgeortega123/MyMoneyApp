@@ -12,7 +12,7 @@ function Warning(props: any) {
          duration:1
        }}
        className="fixed z-40 top-20 flex right-0 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-       <div className="flex items-center justify-center w-12 bg-yellow-400">
+       <div className="flex items-center justify-center w-12 bg-yellow-500">
         <svg
           className="w-6 h-6 text-white fill-current"
           viewBox="0 0 40 40"
@@ -23,7 +23,7 @@ function Warning(props: any) {
       </div>
       <div className="px-4 py-2 -mx-3">
         <div className="mx-3">
-          <span className="font-semibold text-yellow-400 dark:text-yellow-300">
+          <span className="font-semibold text-yellow-600 dark:text-yellow-300">
             {props.title}
           </span>
           <p className="text-sm text-gray-600 dark:text-gray-200">

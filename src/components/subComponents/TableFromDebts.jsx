@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import useMessageContext from "../../context/Modal/useMessageContext";
 import axios from "axios";
 import useGlobalContext from "../../context/useGlobalContext";
-const server = "http://127.0.0.1:4000";
+
 export default function TableFromDebts(lang) {
   const langg = lang.lang
   const { message } = useMessageContext();
   const { context } = useGlobalContext();
+  const server = context.server;
   const [mountToAcredit, setmountToAcredit] = useState();
   const [accountToAcreadit, setaccountToAcreadit] = useState();
   const [contentOfBotton, setcontentOfBotton] = useState("Actualizar datos");
@@ -64,12 +65,12 @@ export default function TableFromDebts(lang) {
         val: Number(val),
         from: affect,
         to: destiny,
-        action: dicreaseOrIncrease,
+        action: document.getElementById("sumOrRes").value||dicreaseOrIncrease,
       })
       .then((res) => {
         message({
-          type: "success",
-          title: res.data.data,
+          type: res.data.message,
+          title: res.data.title,
           description: res.data.data,
         });
         context.update();
@@ -219,7 +220,7 @@ export default function TableFromDebts(lang) {
                 value="patrimonio"
                 className="capitalize"
                 onChange={(e) => setaccountToAcreadit(e.target.value)}
-                selected={true}
+                
               >
                 patrimonio
               </option>
