@@ -9,6 +9,7 @@ export default function AddIncomingCash(allResources) {
   const { message } = useMessageContext();
   const { context } = useGlobalContext();
   useEffect(() => {
+  
     const array = [];
     const data = () => {
       array.push({ title: "patrimonio", value: 0, cost: 0, max: 0 });

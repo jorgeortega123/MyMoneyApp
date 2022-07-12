@@ -1,16 +1,20 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { serverRes } from "../dataSimulateServer";
-export default function DetailsExpendsWeek(data) {
+import useGlobalContext from "../context/useGlobalContext";
+import { AnimatePresence, motion } from "framer-motion";
+export default function DetailsExpendsWeek(lang) {
+  const { context } = useGlobalContext();
   const [aboutAccount, setaboutAccount] = useState();
   const [savings, setsavings] = useState(0);
   const [debstCount, setdebstCount] = useState(0);
   const [totalFixedAndVariables, settotalFixedAndVariables] = useState();
   const [maxFixedAndVariables, setmaxFixedAndVariables] = useState();
-
+ console.log(lang) 
+ const langg = lang.lang
   useEffect(() => {
-    const toWork = data.data;
+  
+    const toWork = context.data;
     const aboutTo = () => {
       var perWeek = toWork.perWeek;
       var inicialNum = 0;
@@ -20,7 +24,7 @@ export default function DetailsExpendsWeek(data) {
       const sumDebst = toWork.debts.reduce((accumulator, object) => {
         return accumulator + object.mount;
       }, 0);
-      cons paid = toWork.debts.reduce((accumulator, object) => {
+      const paid = toWork.debts.reduce((accumulator, object) => {
         return accumulator + object.paid;
       }, 0);
 
@@ -56,10 +60,10 @@ export default function DetailsExpendsWeek(data) {
       setaboutAccount(totally);
     };
     aboutTo();
-  }, []);
+  }, [context.data]);
 
   const borrow = () => {
-    var p = data.data.perWeek;
+    var p = context.data.perWeek;
     console.log(totalFixedAndVariables, maxFixedAndVariables);
     var a = p - totalFixedAndVariables;
     var b = p - maxFixedAndVariables;
@@ -68,19 +72,27 @@ export default function DetailsExpendsWeek(data) {
   };
 
   return (
-    <div className="p-3 flex justify-left sm:justify-center items-start border rounded-xl bg-slate-100 ">
-      <div className="">
-        <div className="font-sans">
+    <div className="p-3 flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 ">
+      <motion.div
+                    initial={{ x: "100vh", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{
+                      duration: 1,
+                    }}
+                  > 
+                
+
+        <div className="font-sans p-0">
           <p>
-            Hi{" "}
-            <a className="underline decoration-sky-500">{serverRes[0].name}</a>{" "}
-            there's your account balance{" "}
+            {langg.components.detailsWeek.greeting[0]}{" "}
+            <a className="underline decoration-sky-500">{"sd"}</a>{" "}
+            {langg.components.detailsWeek.infFirst[0]}{" "}
           </p>
           <div className="text-center pt-1 sm:text-left sm:ml-1">
-            <p className="font-light">Account management: </p>
+            <p className="font-light">{langg.components.detailsWeek.AccountStats[0]} </p>
           </div>
         </div>
-        <div className="grow  pt-2 capitalize">
+        <div className="w-full pt-2 capitalize p2">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="hidden text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -104,7 +116,7 @@ export default function DetailsExpendsWeek(data) {
                   scope="row"
                   className="px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                 >
-                  net worth:
+                  {langg.components.detailsWeek.netWorth[0]}
                 </th>
                 <td className="px-2 py-1">{aboutAccount} </td>
                 <td className="px-2 py-1">0 </td>
@@ -115,7 +127,7 @@ export default function DetailsExpendsWeek(data) {
                   scope="row"
                   className="px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                 >
-                  savings:
+                  {langg.components.detailsWeek.savings[0]}
                 </th>
                 <td className="px-2 py-1">{savings.value} </td>
                 <td className="px-2 py-1">0 </td>
@@ -126,7 +138,7 @@ export default function DetailsExpendsWeek(data) {
                   scope="row"
                   className="px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                 >
-                  debts:
+                  {langg.components.detailsWeek.debts[0]}
                 </th>
                 <td className="px-2 py-1">{debstCount} </td>
                 <td className="px-2 py-1">0 </td>
@@ -137,7 +149,7 @@ export default function DetailsExpendsWeek(data) {
                   scope="row"
                   className="px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                 >
-                  ability to borrow:
+                  {langg.components.detailsWeek.abilityToBorrow[0]}
                 </th>
                 <td className="px-2 py-1">{borrow()[0].min.toFixed(2)} </td>
                 <td className="px-2 py-1">{borrow()[0].max.toFixed(2)} </td>
@@ -146,7 +158,8 @@ export default function DetailsExpendsWeek(data) {
             </tbody>
           </table>
         </div>
+        </motion.div>
       </div>
-    </div>
+
   );
 }

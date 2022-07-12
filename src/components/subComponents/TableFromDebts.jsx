@@ -3,7 +3,8 @@ import useMessageContext from "../../context/Modal/useMessageContext";
 import axios from "axios";
 import useGlobalContext from "../../context/useGlobalContext";
 const server = "http://127.0.0.1:4000";
-export default function TableFromDebts(debtsNames) {
+export default function TableFromDebts(lang) {
+  const langg = lang.lang
   const { message } = useMessageContext();
   const { context } = useGlobalContext();
   const [mountToAcredit, setmountToAcredit] = useState();
@@ -104,19 +105,19 @@ export default function TableFromDebts(debtsNames) {
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" className="px-3 py-1">
-              name
+              {langg.components.debts.name[0]}
             </th>
             <th scope="col" className="px-3 py-1">
-              relationship
+            {langg.components.debts.relationship[0]}
             </th>
             <th scope="col" className="px-3 py-1">
-              mount
+            {langg.components.debts.mountToPay[0]}
             </th>
             <th scope="col" className="px-3 py-1">
-              paid
+            {langg.components.debts.paid[0]} 
             </th>
             <th scope="col" className="px-3 py-1">
-              To pay
+            {langg.components.debts.cashLeft[0]} 
             </th>
           </tr>
         </thead>
@@ -149,8 +150,7 @@ export default function TableFromDebts(debtsNames) {
             setdicreaseOrIncrease("in");
             setTimeout(() => {
               window.scrollTo({
-                top: 400,
-                left: document.body.scrollHeight || document.documentElement.scrollHeight,
+                top: document.documentElement.scrollHeight,
                 behavior: "smooth",
               });
             }, 100);
@@ -167,8 +167,7 @@ export default function TableFromDebts(debtsNames) {
             
             setTimeout(() => {
               window.scrollTo({
-                top: 400,
-                left: document.body.scrollHeight || document.documentElement.scrollHeight,
+                top: document.documentElement.scrollHeight,
                 behavior: "smooth",
               });
             }, 100)

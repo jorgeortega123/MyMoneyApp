@@ -3,7 +3,10 @@ import useGlobalContext from "../context/useGlobalContext";
 //import { data } from "../dataSimulateServer";
 export default function PieDiagramTextInfo(dataToTransform) {
   //const { context } = useGlobalContext();
+
+  /// NO MODIFICAR ESTO PILAAAA
   const data = dataToTransform.dataToTransform
+  ///NO MODIFICAR ESTO PILAAAA
   
   return (
     <div className="ml-1 flex justify-center items-start flex-col h-full infoAndcolors list-inside mt-auto mb-auto ">

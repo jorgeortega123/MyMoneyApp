@@ -8,26 +8,27 @@ import AddOptionAboutCost from "./subComponents/AddOptionAboutCost";
 import useMessageContext from "../context/Modal/useMessageContext";
 const server = "http://127.0.0.1:4000";
 
-export default function AddMoveCash(dataServer) {
+export default function AddMoveCash(lang) {
+  const langg = lang.lang
   const { message } = useMessageContext();
   const { context } = useGlobalContext();
   //console.log(context.update());
 
   const [clickedSelect, setclickedSelect] = useState(null);
   const [toPayValue, settoPayValue] = useState();
-  const [contentOfBotton, setcontentOfBotton] = useState("Add");
+  const [contentOfBotton, setcontentOfBotton] = useState(langg.buttons.add[0]);
 
   const addMove = (e) => {
     e.preventDefault();
-    setcontentOfBotton("Sending...");
+    setcontentOfBotton(langg.buttons.sending[0]);
     //var clicked = clickedSelect || document.getElementById().value
     if (clickedSelect === null) {
       message({
         type: "error",
-        title: "Select an option",
-        description: "Select a category to send a mount",
+        title: langg.message.addMoveCash.noACategory.title[0],
+        description:  langg.message.addMoveCash.noACategory.body[0],
       });
-      setcontentOfBotton("Add");
+      setcontentOfBotton(langg.buttons.add[0]);
       return true;
     }
     var nameEdit = clickedSelect.target.value;
@@ -36,19 +37,19 @@ export default function AddMoveCash(dataServer) {
     if (!valueEdit) {
       message({
         type: "error",
-        title: "Number missing",
-        description: "You must have to put a number",
+        title: langg.message.addMoveCash.missingNumber.title[0],
+        description: langg.message.addMoveCash.missingNumber.body[0],
       });
-      setcontentOfBotton("Add");
+      setcontentOfBotton(langg.buttons.add[0]);
       return true;
     }
     if(Math.sign(valueEdit) === -1) {
       message({
         type: "error",
-        title: "Number are negative",
-        description: "Consider use Incoming Cash segment",
+        title: langg.message.addMoveCash.numberNegative.title[0],
+        description: langg.message.addMoveCash.numberNegative.body[0],
       });
-      setcontentOfBotton("Add");
+      setcontentOfBotton(langg.buttons.add[0]);
       return true;
     }
     var name = "jorge593";
@@ -67,15 +68,19 @@ export default function AddMoveCash(dataServer) {
         if (res.data.extra === 102) {
           message({
             type: "error",
-            title: "Max suppered",
-            description: "The number exceded the limite",
+            title: langg.message.addMoveCash.excededLimit.title[0],
+            description: langg.message.addMoveCash.excededLimit.body[0],
           });
         }
-        setcontentOfBotton("Add");
+        setcontentOfBotton(langg.buttons.add[0]);
       })
       .catch((err) => {
-        //context.update()
-        setcontentOfBotton("ERROR xd");
+        message({
+          type: "error",
+          title: "Internal server error",
+          description: "No se pudo contactar con el servidor",
+        });
+        setcontentOfBotton(langg.buttons.add[0]);
       });
     ///
   
@@ -87,7 +92,7 @@ export default function AddMoveCash(dataServer) {
         <form onSubmit={(e) => addMove(e)}>
           <div>
             <div className="capitalize">
-              <p className="blockAllSelect">add cost or expense </p>
+              <p className="blockAllSelect">{langg.components.moveCash[0]} </p>
             </div>
             <div className="flex p-1">
               <div className="mr-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
@@ -105,7 +110,7 @@ export default function AddMoveCash(dataServer) {
                 onChange={(e) => setclickedSelect(e)}
                 onClick={(e) => setclickedSelect(e)}
               >
-                {dataServer.dataServer.cost[0].fixed.map((e) => {
+                {context.data.cost[0].fixed.map((e) => {
                   return (
                     <option
                     key={e.title + "ASDASD"}
@@ -117,7 +122,7 @@ export default function AddMoveCash(dataServer) {
                     </option>
                   );
                 })}
-                {dataServer.dataServer.cost[0].variables.map((e) => {
+                {context.data.cost[0].variables.map((e) => {
                   return (
                     <option
                     key={e.title + "ASDASD"}
@@ -149,12 +154,12 @@ export default function AddMoveCash(dataServer) {
         <AddOptionAboutCost />
       </div>
       <div key="INCMING CASH">
-        <AddIncomingCash allResources={dataServer.dataServer} />
+        <AddIncomingCash lang={lang.lang} />
       </div>
       <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
         <div className="">
-          <p>About debts</p>
-          <TableFromDebts debtsNames={dataServer.dataServer} />
+          <p>{langg.components.debts.title[0]}</p>
+          <TableFromDebts lang={lang.lang} />
         </div>
       </div>
     </div>
