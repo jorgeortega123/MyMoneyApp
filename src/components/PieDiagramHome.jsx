@@ -33,7 +33,7 @@ export const PieDiagramHome = (dataPie) => {
       allArray.push({
         title: "Disponible",
         color: "#249d3d",
-        value: patrimonio + perWeek - sum - sum2,
+        value: patrimonio - sum - sum2,
         cost: 3,
         max: 4,
       });
@@ -67,7 +67,7 @@ export const PieDiagramHome = (dataPie) => {
             >
       <div className="p-2 flex justify-evenly items-center border rounded-xl bg-slate-100 ">
         <div className="relative flex justify-center items-center">
-          <div className="w-[200px] sm:w-[250px] before:md:w-[280px] md:p-3  items-center">
+          <div className="w-[150px] sm:w-[225px] before:md:w-[300x] md:p-3  items-center">
             <motion.div
               initial={{ opacity: 0, rotate: 360 }}
               animate={{opacity: 1, rotate: 0 }}

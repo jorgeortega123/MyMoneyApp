@@ -7,11 +7,10 @@ import useGlobalContext from "../context/useGlobalContext";
 import AddOptionAboutCost from "./subComponents/AddOptionAboutCost";
 import useMessageContext from "../context/Modal/useMessageContext";
 
-
 export default function AddMoveCash(lang) {
-    const { context } = useGlobalContext();
-  const server = context.server
-  const langg = lang.lang
+  const { context } = useGlobalContext();
+  const server = context.server;
+  const langg = lang.lang;
   const { message } = useMessageContext();
 
   //console.log(context.update());
@@ -28,7 +27,7 @@ export default function AddMoveCash(lang) {
       message({
         type: "error",
         title: langg.message.addMoveCash.noACategory.title[0],
-        description:  langg.message.addMoveCash.noACategory.body[0],
+        description: langg.message.addMoveCash.noACategory.body[0],
       });
       setcontentOfBotton(langg.buttons.add[0]);
       return true;
@@ -45,7 +44,7 @@ export default function AddMoveCash(lang) {
       setcontentOfBotton(langg.buttons.add[0]);
       return true;
     }
-    if(Math.sign(valueEdit) === -1) {
+    if (Math.sign(valueEdit) === -1) {
       message({
         type: "error",
         title: langg.message.addMoveCash.numberNegative.title[0],
@@ -73,16 +72,16 @@ export default function AddMoveCash(lang) {
             title: langg.message.addMoveCash.excededLimit.title[0],
             description: langg.message.addMoveCash.excededLimit.body[0],
           });*/
-          message({
-            type: res.data.message,
-            title: "Movimiento satisfactorio",
-            description: res.data.data ,
-          });
-          setTimeout(() => {
-            document.getElementById("inputToPutNumber").value ="" 
-          }, 600);
-          settoPayValue("")
-          
+        message({
+          type: res.data.message,
+          title: "Movimiento satisfactorio",
+          description: res.data.data,
+        });
+        setTimeout(() => {
+          document.getElementById("inputToPutNumber").value = "";
+        }, 600);
+        settoPayValue("");
+
         setcontentOfBotton(langg.buttons.add[0]);
       })
       .catch((err) => {
@@ -94,7 +93,6 @@ export default function AddMoveCash(lang) {
         setcontentOfBotton(langg.buttons.add[0]);
       });
     ///
-  
   };
 
   return (
@@ -124,7 +122,7 @@ export default function AddMoveCash(lang) {
                 {context.data.cost[0].fixed.map((e) => {
                   return (
                     <option
-                    key={e.title + "ASDASD"}
+                      key={e.title + "ASDASD"}
                       id={"fixed"}
                       value={e.title}
                       onSelect={() => alert(s)}
@@ -136,7 +134,7 @@ export default function AddMoveCash(lang) {
                 {context.data.cost[0].variables.map((e) => {
                   return (
                     <option
-                    key={e.title + "ASDASD"}
+                      key={e.title + "ASDASD"}
                       id={"variables"}
                       value={e.title}
                       onClick={() => console.log("variables")}
@@ -147,13 +145,13 @@ export default function AddMoveCash(lang) {
                 })}
               </select>
               <div className="flex items-center ">
-                <button className="h-8 w-6 ml-1 mr-1 font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                <button className="hidden h-8 w-6 ml-1 mr-1 font-medium text-gray-900 focus:outline-none bg-white rounded-md border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                   +
                 </button>
               </div>
             </div>
             <button
-              className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
               onClick={(e) => addMove(e)}
             >
               {contentOfBotton}
@@ -167,12 +165,13 @@ export default function AddMoveCash(lang) {
       <div key="INCMING CASH">
         <AddIncomingCash lang={lang.lang} />
       </div>
-      <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
-        <div className="">
-          <p>{langg.components.debts.title[0]}</p>
+      {context.data.debts.length === 0 ? (
+        <></>
+      ) : (
+        <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
           <TableFromDebts lang={lang.lang} />
         </div>
-      </div>
+      )}
     </div>
   );
 }

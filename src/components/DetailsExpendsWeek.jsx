@@ -10,7 +10,6 @@ export default function DetailsExpendsWeek(lang) {
   const [debstCount, setdebstCount] = useState(0);
   const [totalFixedAndVariables, settotalFixedAndVariables] = useState();
   const [maxFixedAndVariables, setmaxFixedAndVariables] = useState();
- console.log(lang) 
  const langg = lang.lang
   useEffect(() => {
   
@@ -64,28 +63,20 @@ export default function DetailsExpendsWeek(lang) {
 
   const borrow = () => {
     var p = context.data.perWeek;
-    console.log(totalFixedAndVariables, maxFixedAndVariables);
     var a = p - totalFixedAndVariables;
     var b = p - maxFixedAndVariables;
-    console.log(a, b);
     return [{ min: a, max: b }];
   };
 
   return (
     <div className="p-3 flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 ">
-      <motion.div
-                    initial={{ x: "100vh", opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{
-                      duration: 1,
-                    }}
-                  > 
+   
                 
 
         <div className="font-sans p-0">
-          <p>
+          <p className="">
             {langg.components.detailsWeek.greeting[0]}{" "}
-            <a className="underline decoration-sky-500">{"sd"}</a>{" "}
+            <a className="capitalize underline decoration-sky-500">{context.data.name}</a>{" "}
             {langg.components.detailsWeek.infFirst[0]}{" "}
           </p>
           <div className="text-center pt-1 sm:text-left sm:ml-1">
@@ -93,8 +84,8 @@ export default function DetailsExpendsWeek(lang) {
           </div>
         </div>
         <div className="w-full pt-2 capitalize p2">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="hidden text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table className="w-full text-sm text-left text-gray-500 ">
+            <thead className="hidden text-xs text-gray-700 uppercase bg-gray-50 ">
               <tr>
                 <th scope="col" className="px-3 py-1">
                   name
@@ -111,10 +102,10 @@ export default function DetailsExpendsWeek(lang) {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+              <tr className="border-b  odd:bg-white even:bg-gray-50 ">
                 <th
                   scope="row"
-                  className="px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                  className="px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
                 >
                   {langg.components.detailsWeek.netWorth[0]}
                 </th>
@@ -122,21 +113,21 @@ export default function DetailsExpendsWeek(lang) {
                 <td className="px-2 py-1">0 </td>
                 <td className="px-2 py-1">0</td>
               </tr>
-              <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+              <tr className="border-b  odd:bg-white even:bg-gray-50 ">
                 <th
                   scope="row"
-                  className="px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                  className="px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
                 >
                   {langg.components.detailsWeek.savings[0]}
                 </th>
-                <td className="px-2 py-1">{savings.value.toFixed(2)} </td>
+                <td className="px-2 py-1">{savings.value} </td>
                 <td className="px-2 py-1">0 </td>
                 <td className="px-2 py-1">0</td>
               </tr>
-              <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+              <tr className="border-b  odd:bg-white even:bg-gray-50 ">
                 <th
                   scope="row"
-                  className="px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                  className="px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
                 >
                   {langg.components.detailsWeek.debts[0]}
                 </th>
@@ -144,10 +135,10 @@ export default function DetailsExpendsWeek(lang) {
                 <td className="px-2 py-1">0 </td>
                 <td className="px-2 py-1">0</td>
               </tr>
-              <tr className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+              <tr className="border-b  odd:bg-white even:bg-gray-50 ">
                 <th
                   scope="row"
-                  className="px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                  className="px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
                 >
                   {langg.components.detailsWeek.abilityToBorrow[0]}
                 </th>
@@ -158,7 +149,7 @@ export default function DetailsExpendsWeek(lang) {
             </tbody>
           </table>
         </div>
-        </motion.div>
+
       </div>
 
   );

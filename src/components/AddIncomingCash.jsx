@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import useMessageContext from "../context/Modal/useMessageContext";
 import useGlobalContext from "../context/useGlobalContext";
 import axios from "axios";
-export default function AddIncomingCash(allResources) {
+export default function AddIncomingCash(lang) {
   const { context } = useGlobalContext();
   const server = context.server;
   const [resources, setresources] = useState([]);
@@ -19,7 +19,6 @@ export default function AddIncomingCash(allResources) {
       //context.data.cost[0].fixed.map((e) => array.push(e));
       //context.data.cost[0].variables.map((b) => array.push(b));
       array.push(context.data.savings[1]);
-      console.log(array);
       setresources(array);
       setpageLoad(true);
     };
@@ -45,13 +44,14 @@ export default function AddIncomingCash(allResources) {
         account: account,
     })
     .then((res) => {
+      console.log(res)
       context.update();
         message({
           type: "success",
           title: "somethig went well",
           description: res.data.data,
         });
-      setcontentOfBotton(langg.buttons.add[0]);
+      setcontentOfBotton(lang.lang.buttons.add[0]);
     }).catch((err) => {
       message({
         type: "error",
@@ -63,7 +63,7 @@ export default function AddIncomingCash(allResources) {
   return (
     <div className="p-3 border rounded-xl bg-slate-100 ">
      
-        <p>Add incoming cash</p>
+        <p>{lang.lang.components.incomingCash.title[0]}</p>
         <div className="flex items-center space-x-2 ">
           <div className="mr-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
             <p className="ml-1 text-green-600">$</p>
@@ -75,7 +75,7 @@ export default function AddIncomingCash(allResources) {
             />
           </div>
 
-          <p className="">Destiny to: </p>
+          <p className="">{lang.lang.components.incomingCash.destiny[0]}</p>
           <select name="" id="selectIncoming" className="grow">
             {pageLoad ? (
               resources.map((e) => {
@@ -97,8 +97,8 @@ export default function AddIncomingCash(allResources) {
 
         <button 
         onClick={()=> send()}
-        className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-          pay weekly
+        className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 ">
+          {lang.lang.buttons.update[0]}
         </button>
       
     </div>

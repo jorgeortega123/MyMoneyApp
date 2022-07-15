@@ -130,11 +130,11 @@ export const lang = {
         title: ["Detalles"],
         greeting: ["Hola"],
         infFirst: ["Aquí esta tu balance de cuenta"],
-        AccountStats: ["Gestor de cuentas:: "],
+        AccountStats: ["Rubros: "],
         netWorth: ["Patrimonio"],
         savings: ["Ahorro"],
         debts: ["Deudas"],
-        abilityToBorrow: ["Capacidad para endeudarse"],
+        abilityToBorrow: ["Borrow"],
       },
       debts: {
         title: ["Acerca de las deudas"],
@@ -143,6 +143,12 @@ export const lang = {
         mountToPay: ["Monto"],
         paid: ["Pagado"],
         cashLeft: ["A pagar"],
+        modify: ["Modificar deuda"], 
+        pay: ["Pagar"],
+        aum: ["Aumentar"],
+        inf: ["El dinero acredia, afectara a:"],
+        destiny: ["Destinar a:"],
+        everyone: ["A todos"]
       },
     },
     buttons: {
@@ -180,34 +186,36 @@ export const lang = {
     },
     components: {
       moveCash: ["Add cost or expense"],
-      incomingCash: 
-        {
-          title: ["Add incoming cash"],
-          destiny: ["Destiny to"],
-        },
-      
-      detailsWeek: 
-        {
-          title: ["Details"],
-          greeting: ["Hi"],
-          infFirst: ["there's your account balance"],
-          AccountStats: ["Account management: "],
-          netWorth: ["Net Worth"],
-          savings: ["Savings"],
-          debts: ["Debts"],
-          abilityToBorrow: ["Ability To Borrow"],
-        },
-      
-      debts: 
-        {
-          title: ["About debts"],
-          name: ["Name"],
-          relationship: ["Relationship"],
-          mountToPay: ["Mount to pay"],
-          paid: ["Paid"],
-          cashLeft: ["To pay"],
-        },
-      
+      incomingCash: {
+        title: ["Add incoming cash"],
+        destiny: ["Destiny to"],
+      },
+
+      detailsWeek: {
+        title: ["Details"],
+        greeting: ["Hi"],
+        infFirst: ["there's your account balance"],
+        AccountStats: ["Account management: "],
+        netWorth: ["Net Worth"],
+        savings: ["Savings"],
+        debts: ["Debts"],
+        abilityToBorrow: ["Ability To Borrow"],
+      },
+
+      debts: {
+        title: ["About debts"],
+        name: ["Name"],
+        relationship: ["Relationship"],
+        mountToPay: ["Mount"],
+        paid: ["Paid"],
+        cashLeft: ["To pay"],
+        modify: ["Modifiy debt"], 
+        pay: ["Pay"],
+        aum: ["Increase"],
+        inf: ["The money credited will affect:"],
+        destiny: ["Destiny to:"],
+        everyone: ["Everyone"]
+      },
     },
     buttons: {
       add: ["Add"],
@@ -216,7 +224,8 @@ export const lang = {
       decrease: ["Decrease"],
       update: ["Update inf"],
       sending: ["Sending data..."],
-    },message: {
+    },
+    message: {
       addMoveCash: {
         noACategory: {
           title: ["Missing arguments"],
@@ -237,4 +246,4 @@ export const lang = {
       },
     },
   },
-}
+};

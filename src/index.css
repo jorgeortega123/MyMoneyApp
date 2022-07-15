@@ -11,8 +11,6 @@
 .foo {
      
      display: flex;
-     width: 20px;
-     height: 20px;
      margin: 5px;
      border: 1px solid rgba(0, 0, 0, .2);
   }
@@ -47,4 +45,11 @@
   -moz-appearance: none;
   text-indent: 1px;
   text-overflow: '';
+}
+
+.hiddenDis { 
+  visibility: hidden;
+}
+.visibleDis {
+  visibility: visible;
 }

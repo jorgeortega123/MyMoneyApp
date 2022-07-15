@@ -15,11 +15,13 @@ export default function TableFromDebts(lang) {
   const [clickInputRadio, setclickInputRadio] = useState(false);
   const [dicreaseOrIncrease, setdicreaseOrIncrease] = useState();
   const [showMoreDetailDebts, setshowMoreDetailDebts] = useState(false);
+  const [thereAccountsToShow, setthereAccountsToShow] = useState(true)
   useEffect(() => {
     const toAcredit = () => {
       var a = [];
       var s = context.data.restOfLastWeek;
       var c = context.data.savings[1].values;
+      if (context.data.debts.length === 0 ) {setthereAccountsToShow(false)}
       a.push([{ name: "Patrimonio", value: s }]);
       a.push([{ name: "Ahorro", value: c }]);
       setallruberaccount(a);
@@ -68,6 +70,7 @@ export default function TableFromDebts(lang) {
         action: document.getElementById("sumOrRes").value||dicreaseOrIncrease,
       })
       .then((res) => {
+        console.log(res)
         message({
           type: res.data.message,
           title: res.data.title,
@@ -100,10 +103,14 @@ export default function TableFromDebts(lang) {
     var s = a - b;
     return s.toFixed(2);
   };
+  if (thereAccountsToShow===false) { 
+    return <></>
+  }
   return (
+    <><p>{langg.components.debts.title[0]}</p>
     <div className="p-2 relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table className="w-full text-sm text-left text-gray-500 ">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
           <tr>
             <th scope="col" className="px-3 py-1">
               {langg.components.debts.name[0]}
@@ -125,10 +132,10 @@ export default function TableFromDebts(lang) {
         <tbody>
           {debts.map((debtsAccounts) => {
             return (
-              <tr key={debtsAccounts.relationship + "key"} className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+              <tr key={debtsAccounts.relationship + "key"} className="border-b   odd:bg-white even:bg-gray-50 ">
                 <th
                   scope="row"
-                  className="capitalize px-3 py-2 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                  className="capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
                 >
                   {debtsAccounts.name}
                 </th>
@@ -145,7 +152,7 @@ export default function TableFromDebts(lang) {
       </table>
       <div className="flex capitalize">
         <button
-          className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 "
           onClick={() => {
             setshowMoreDetailDebts(true);
             setdicreaseOrIncrease("in");
@@ -158,10 +165,10 @@ export default function TableFromDebts(lang) {
             
           }}
         >
-          Increase
+          {lang.lang.buttons.increase[0]}
         </button>
         <button
-          className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900  "
           onClick={() => {
             setshowMoreDetailDebts(true);
             setdicreaseOrIncrease("de");
@@ -174,13 +181,13 @@ export default function TableFromDebts(lang) {
             }, 100)
           }}
         >
-          Decrease
+         {lang.lang.buttons.decrease[0]}
         </button>
       </div>
       {showMoreDetailDebts === true ? (
         <div className="flex-col">
           <div>
-            <p className="pb-1">Modificar deuda</p>
+            <p className="pb-1">{lang.lang.components.debts.modify[0]}</p>
             <div className="mr-1  flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
               <div className="removeArrowSelect">
                 <select
@@ -190,10 +197,10 @@ export default function TableFromDebts(lang) {
                   onChange={(e) => setdicreaseOrIncrease(e.target.value)}
                 >
                   <option value="in" className="text-green-700">
-                    pagar
+                  {lang.lang.components.debts.pay[0]}
                   </option>
                   <option value="de" className="text-orange-700">
-                    restar
+                  {lang.lang.components.debts.aum[0]}
                   </option>
                 </select>
               </div>
@@ -208,7 +215,7 @@ export default function TableFromDebts(lang) {
             </div>
           </div>
           <div className="flex pt-2 pb-1  ">
-            <p className="pt-1 pb-1 pr-1">El dinero acreditado, afectara a:</p>
+            <p className="pt-1 pb-1 pr-1">{lang.lang.components.debts.inf[0]}</p>
             <select
               name=""
               id="firstAccount"
@@ -234,7 +241,7 @@ export default function TableFromDebts(lang) {
             </select>
           </div>
           <div className="flex">
-            <p className="pr-1">Destinar a: </p>
+            <p className="pr-1">{lang.lang.components.debts.destiny[0]} </p>
             <select
               id="destinatario"
               className="grow removeAlloulines capitalize bg-slate-200 rounded-md"
@@ -275,7 +282,7 @@ export default function TableFromDebts(lang) {
           </div>
           <button
             onClick={() => UpdateDateDebts()}
-            className="mt-3 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            className="mt-3 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 "
           >
             {contentOfBotton}
           </button>
@@ -284,5 +291,6 @@ export default function TableFromDebts(lang) {
         <p></p>
       )}
     </div>
+    </>
   );
 }
