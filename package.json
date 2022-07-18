@@ -28,7 +28,7 @@
     "msw": "^0.44.1",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.4",
-    "vite": "^3.0.2"
+    "vite": "^3.0.0"
   },
   "description": "��#\u0000 \u0000M\u0000y\u0000M\u0000o\u0000n\u0000e\u0000y\u0000A\u0000p\u0000p\u0000\r\u0000 \u0000",
   "main": "postcss.config.js",
