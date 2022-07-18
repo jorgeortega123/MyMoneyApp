@@ -7,9 +7,10 @@ export default function () {
   const server = context.server;
   const { message } = useMessageContext();
   var securityCopy = () => {
+     console.log(context)
     axios
       .post(server + "/download", {
-        user: context.user,
+        user: context.data.user,
       })
       .then((res) => {
         message({

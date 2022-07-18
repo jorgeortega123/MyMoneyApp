@@ -33,7 +33,7 @@ export const PieDiagramHome = (dataPie) => {
       allArray.push({
         title: "Disponible",
         color: "#249d3d",
-        value: patrimonio - sum - sum2,
+        value: patrimonio,
         cost: 3,
         max: 4,
       });
