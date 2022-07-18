@@ -18,6 +18,7 @@ import { display } from "@mui/system";
 import { AnimatePresence, motion } from "framer-motion";
 import Login from "./components/Login";
 import CahrgingData from "./components/subComponents/CahrgingData";
+import ToDay from "./components/ToDay";
 const server = "https://mymone.azurewebsites.net";
 
 function App() {
@@ -60,7 +61,7 @@ function App() {
       return (
         <MessageContextComponent>
           <GlobalContextComponent>
-            <div className="blockAllSelect h-screen w-full absolute top-0 bg-white ">
+            <div className="blockAllSelect h-full w-full absolute top-0   ">
               <div className="relative h-[40px] text-3xl font-bold underline flex justify-center items-center border  bg-slate-200">
                 <p
                   onClick={() => {
@@ -121,16 +122,25 @@ function App() {
                       </>
                     )}
                     {endServerRes ? (
+                       <motion.div
+                       initial={{ opacity: 0, y: 20 }}
+                       animate={{opacity: 1, y: 0 }}
+                       transition={{
+                         duration: 1,
+                       }}
+                     >
+                      <ToDay />
                       <DetailsExpendsWeek lang={finalLang} />
+                      </motion.div>
                     ) : (
                       <p></p>
                     )}
                   </div>
-                  <div className=" p-3 flex justify-center w-full border-spacing-2 rounded sm:justify-left  ">
+                  <div className="pt-[2px] mt-0 pl-2 pr-2 flex justify-center w-full border-spacing-2 rounded sm:justify-left  ">
                     {endServerRes ? (
                       <div className="grow md:grow-0">
                         <motion.div
-                          initial={{ y: "100vh", opacity: 0 }}
+                          initial={{ y: 20, opacity: 0 }}
                           animate={{ y: 0, opacity: 1 }}
                           transition={{
                             duration: 2,

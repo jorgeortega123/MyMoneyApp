@@ -1,0 +1,112 @@
+/*.background { 
+     
+     background: linear-gradient(to bottom left, rgb(0, 0, 0), rgb(220, 38, 38));
+     animation: gradient 15s ease infinite;
+}*/
+@import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
+.background { 
+     overflow: hidden;
+height: 100vh;
+
+}
+.normal-back { 
+     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+
+background-size: 400% 400%;
+animation: gradient 12s ease reverse;
+}
+.black-enterrazi{ 
+     background: linear-gradient(-66deg, #ee7752, #000000, #302c2c, #000000);
+
+background-size: 400% 400%;
+animation: gradient 6s ease reverse;
+}
+
+
+
+.letterPerLetter {
+          font-family: 'Anton', sans-serif;
+          perspective: 1000px; 
+     }
+     
+.letterPerLetter span {
+          cursor: pointer;
+          display: inline-block;
+          font-size: 100px;
+          user-select: none;
+          line-height: .8;
+}
+
+.letterPerLetter span:nth-child(1).active {
+    /* transform: translate3d(42px, -62px, -135px);*/
+
+    animation: opacity 3s ease;
+}
+.letterPerLetter span:nth-child(2).active {
+     /* transform: translate3d(42px, -62px, -135px);*/
+     animation: rightToCenter 3s ease;
+ }
+ .letterPerLetter span:nth-child(3).active {
+     /* transform: translate3d(42px, -62px, -135px);*/
+     animation: rightToCenter 4s ease;
+ }
+ .letterPerLetter span:nth-child(4).active {
+     /* transform: translate3d(42px, -62px, -135px);*/
+     animation: rightToCenter 5s ease;
+ }
+
+.letterPerLetter span:nth-child(5).active {
+     /* transform: translate3d(42px, -62px, -135px);*/
+     animation: topToCenter 6s ease;
+ }
+ @keyframes rightToCenter{
+     0% { 
+          /*transform: translateY(100px);*/
+          transform: translate(calc(100vh - 200px),0px) scale(3);
+	}
+	100% {
+
+          transform: scale(1)
+	}
+}
+
+ @keyframes topToCenter{
+     0% { 
+          /*transform: translateY(100px);*/
+          transform: translate(0px, calc(100vh - 200px)) scale(1);
+	}
+	100% {
+
+          transform: scale(1)
+	}
+}
+
+@keyframes opacity {
+     0% { 
+          
+          /*transform: translateY(100px);*/
+          transform: translate(-200px, 50px) scale(7.3);
+	}
+     30%{ 
+          transform: translate(200px, 20px) scale(6.3);
+     }
+     60%{ 
+          color: rgb(207, 76, 15); 
+          
+     }
+	100% {
+
+          transform: scale(1)
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}}

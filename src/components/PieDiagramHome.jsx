@@ -62,7 +62,7 @@ export const PieDiagramHome = (dataPie) => {
               initial={{ opacity: 0, rotate: 0 }}
               animate={{opacity: 1, rotate: 0 }}
               transition={{
-                duration: 2,
+                duration: 1,
               }}
             >
       <div className="p-2 flex justify-evenly items-center border rounded-xl bg-slate-100 ">
@@ -72,7 +72,7 @@ export const PieDiagramHome = (dataPie) => {
               initial={{ opacity: 0, rotate: 360 }}
               animate={{opacity: 1, rotate: 0 }}
               transition={{
-                duration: 6,
+                duration: 2,
               }}
             >
               {followPage ? (

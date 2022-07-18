@@ -1,75 +1,101 @@
 import React, { useState } from "react";
 import useGlobalContext from "../context/useGlobalContext";
 import axios from "axios";
+import MainEvent from "./subComponents/event/MainEvent";
 export default function Login() {
   const [user, setuser] = useState();
   const [password, setpassword] = useState();
   const [textOfBotton, settextOfBotton] = useState("Sign in");
-  const [successLogin, setsuccessLogin] = useState(false)
-  const [messageAboutLogin, setmessageAboutLogin] = useState()
+  const [successLogin, setsuccessLogin] = useState(false);
+  const [messageAboutLogin, setmessageAboutLogin] = useState();
+  //// CHANGE TO FALSE
+  const [event, setEvent] = useState(false)
+
+  ////
   const { context } = useGlobalContext();
   const sendData = () => {
-    settextOfBotton("Sending data...")
+    settextOfBotton("Sending data...");
+    if (!user) {
+      setmessageAboutLogin("Invalid username");
+      settextOfBotton("Send");
+      return true
+    }
+    if (!password) {
+      setmessageAboutLogin("Missing password");
+      settextOfBotton("Send");
+      return true
+    }
+    if(password==="812"&& user==="Danna") {
+      setEvent(true)
+    }
+
     axios
       .post(context.server + "/login", {
         user: user,
         pass: password,
       })
       .then((res) => {
-        if (res.data.extra===205) { 
-        localStorage.setItem("token", res.data.token)
-        location.reload
-        location.href="/"
-      } 
-      setmessageAboutLogin(res.data.data)        
+        if (res.data.extra === 205) {
+          localStorage.setItem("token", res.data.token);
+          location.reload;
+          location.href = "/";
+        }
+        setmessageAboutLogin(res.data.data);
+        settextOfBotton("Send");
       })
       .catch((err) => {
-        console.log(err)
-        setmessageAboutLogin("Error: " + err.request.status)
-        settextOfBotton("Send")   
+        console.log(err);
+        setmessageAboutLogin("Error: " + err.request.status);
+        settextOfBotton("Send");
       });
   };
+  if (event) {
+    return <MainEvent />
+  }
   return (
-    <div className="h-screen flex justify-center items-center ">
-      <div className="p-3 border rounded-xl bg-slate-100">
-        <div className="w-full max-w-md p-8 space-y-3 rounded-xl ">
+    <div className="h-screen flex justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 ">
+      <div className="p-3 border rounded-xl bg-[rgba(255,255,255,.1)]">
+        <div className="w-full max-w-md p-8 space-y-3 rounded-xl  backdrop-blur-xl 	">
           <h1 className="text-2xl font-bold text-center">Login</h1>
 
-            <div className="space-y-1 text-sm">
-              <label for="username" className="block ">
-                Username
-              </label>
-              <input
-                onChange={(e) => setuser(e.target.value)}
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Username"
-                className="w-full px-4 py-3 rounded-md border-2 border-slate-300 hover:border-slate-400  "
-              />
+          <div className="space-y-1 text-sm">
+            <label for="username" className="block ">
+              Username
+            </label>
+            <input
+              onChange={(e) => setuser(e.target.value)}
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Username"
+              className="w-full px-4 py-3 removeOUTLINES rounded-md border-[1px] border-slate-800 hover:border-slate-600   "
+            />
+          </div>
+          <div className="space-y-1 text-sm">
+            <label for="password" className="block ">
+              Password
+            </label>
+            <input
+              onChange={(e) => setpassword(e.target.value)}
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              className="w-full px-4 py-3 removeOUTLINES  rounded-md border-[1px] border-slate-800 hover:border-slate-600 "
+            />
+            <div className="flex justify-end text-xs ">
+              <a rel="noopener noreferrer">Forgot Password?</a>
             </div>
-            <div className="space-y-1 text-sm">
-              <label for="password" className="block ">
-                Password
-              </label>
-              <input
-                onChange={(e) => setpassword(e.target.value)}
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="w-full px-4 py-3 rounded-md border-2 border-slate-300 hover:border-slate-400 "
-              />
-              <div className="flex justify-end text-xs ">
-                <a rel="noopener noreferrer">
-                  Forgot Password?
-                </a>
-              </div>
-              <p className=" text-red-700">{messageAboutLogin}</p>
+            <div className="h-3">
+              <p className=" text-red-200 p-0 m-0">{messageAboutLogin}</p>
             </div>
-            <button onClick={()=>sendData()} className="block w-full p-3 text-center  bg-slate-200 hover:bg-slate-300  border border-slate-500 hover:border-slate-700 rounded-full">
-             {textOfBotton}
-            </button>
+          </div>
+          <button
+            onClick={() => sendData()}
+            className="block w-full p-3 text-center  bg-slate-200 hover:bg-slate-300  border border-slate-500 hover:border-slate-700 rounded-full"
+          >
+            {textOfBotton}
+          </button>
 
           <div className="flex items-center pt-4 space-x-1">
             <div className="flex-1 h-px sm:w-16 "></div>
