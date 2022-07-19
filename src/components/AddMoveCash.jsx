@@ -54,6 +54,10 @@ export default function AddMoveCash(lang) {
       return true;
     }
     var name = "jorge593";
+    var d = new Date();
+    var dayName = d.toString().split(" ")[0];
+    var monthDay =  d.toString().split(" ")[1];
+    var numberDay = d.toString().split(" ")[2];
     ///
     axios
       .post(server + "/edit", {
@@ -62,6 +66,9 @@ export default function AddMoveCash(lang) {
           valueEdit: Number(valueEdit),
           typeCost: typeCost,
           nameEdit: nameEdit,
+          nameDay: dayName, 
+          numberDay: numberDay,
+          monthDay: monthDay 
         },
       })
       .then((res) => {
