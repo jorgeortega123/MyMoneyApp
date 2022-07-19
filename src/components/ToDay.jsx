@@ -10,6 +10,7 @@ export default function () {
   const { message } = useMessageContext();
   const toDayCosts = context.data.history.today;
   // format server
+  /*
   var formJsonDa = {
     day: dayName,
     id: numberDay + yearDay,
@@ -18,15 +19,15 @@ export default function () {
     costName: l[arrNumberFound].title,
     before: beforeCredits,
     after: beforeCredits - valueEdit,
-  };
+  };*/
   //
-  /*
+  
   var d = new Date();
   var dayName = d.toString().split(" ")[0];
   var monthDay =  d.toString().split(" ")[1];
   var numberDay = d.toString().split(" ")[2];
   var yearDay = d.toString().split(" ")[3];
-  var idOfCost = numberDay + yearDay + monthDay */
+  var idOfCost = numberDay + yearDay + monthDay 
   //numberDay + yearDay + monthDay 
   var countData = 0 
   toDayCosts.map((e)=> { 
