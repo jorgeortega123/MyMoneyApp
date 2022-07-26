@@ -73,3 +73,7 @@
 .visibleDis {
   visibility: visible;
 }
+
+.between { 
+  justify-content: space-between;
+}

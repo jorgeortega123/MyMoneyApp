@@ -3,7 +3,7 @@ import "./index.css";
 import "./data.json";
 import DetailsExpendsWeek from "./components/DetailsExpendsWeek";
 import ServerOut from "./components/subComponents/ServerOut";
-import {SpinnerInfinity} from "spinners-react";
+import { SpinnerInfinity } from "spinners-react";
 import Skeleton from "@mui/material/Skeleton";
 import { PieDiagramHome } from "./components/PieDiagramHome";
 //import PieDiagramTextInfo from "./components/PieDiagramTextInfo";
@@ -19,158 +19,200 @@ import { AnimatePresence, motion } from "framer-motion";
 import Login from "./components/Login";
 import CahrgingData from "./components/subComponents/CahrgingData";
 import ToDay from "./components/ToDay";
+//import useGlobalContext from "../context/useGlobalContext";
 const server = "https://mymone.azurewebsites.net";
 
 function App() {
+  const { context } = useGlobalContext();
   const [onErrorServerOut, setonErrorServerOut] = useState(false);
   const [serverResponsive, setserverResponsive] = useState();
   const [endServerRes, setendServerRes] = useState(false);
   const [finalLang, setfinalLang] = useState(lang.es);
   const [langByUser, setlangByUser] = useState("en");
   const [falsetrue, setfalsetrue] = useState(false);
-  const [langFromBotton, setlangFromBotton] = useState(lang.en)
+  const [langFromBotton, setlangFromBotton] = useState(lang.en);
   const [loginValidation, setloginValidation] = useState(false);
   ///////
   useEffect(() => {
-  
-    setloginValidation(localStorage.getItem("token"));
-    axios
-      .post(server + "/money", {
-        name: "jorge593",
-      })
-      .then((res) => {
-        setserverResponsive(res.data);
-        setTimeout(() => {
-          setendServerRes(true);
-        }, 1000);
+    console.log(context.data);
+    if (context.data != undefined) {
+      if (context.endServerRes === true) {
+        setloginValidation(localStorage.getItem("token"));
+        console.log(context.data.name);
 
-        //console.log(res.data);
-      })
-      .catch((err) => {
+        setendServerRes(true);
+
+        //setendServerRes(true)
+      }
+    }
+
+    // if(context.data) {setonErrorServerOut(true); }
+    /* if (context.endServerRes === false) {
+      if (!context.data) {
         setonErrorServerOut(true);
-      });
-  }, [falsetrue]);
+        
+      }
+      setendServerRes(true);
+      
+    }
+*/
+  }, [context.endServerRes]);
   const animate = () => {};
   //console.log(serverResponsive);
   //const { context } = useGlobalContext();
   //console.log(context);
+  const TopMymoney = () => {
+    return (
+      <>
+        <div className="relative h-[40px]  flex justify-center items-center border  bg-transparent pb-2 between overflow-hidden">
+          <div
+            onClick={() => {
+              if (langByUser === "en") {
+                setfinalLang(lang.es);
+                setlangByUser("es");
+              } else if (langByUser === "es") {
+                setfinalLang(lang.en);
+                setlangByUser("en");
+              }
+            }}
+            className=" text-xs pl-2 pt-2 "
+          >
+            Lang: <a className="text-lime-600">{langByUser} </a>
+          </div>
+          <div className="text-3xl font-bold underline">MyMoney</div>
+
+          <div className=" text-xs pr-2 pt-2 flex ">
+            {" "}
+            <div className="border border-gray-50 rounded-full hover:border-gray-200 active:bg-slate-400 ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                class="bi bi-three-dots fill-slate-800 active:fill-slate-50"
+                viewBox="0 0 16 16"
+              >
+                {" "}
+                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />{" "}
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className="hidden fixed w-full h-screen flex justify-center z-[3000] py-14 top-0">
+          <div className="overflow-auto flex justify-center p-4  w-[280px]  bg-tranparent backdrop-blur-xl ">
+            <p>si</p>
+          </div>
+        </div>
+      </>
+    );
+  };
 
   //////
-  if (setendServerRes) {
+  if (endServerRes === true) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
-          <GlobalContextComponent>
-            <div className="blockAllSelect h-full w-full absolute top-0   ">
-              <div className="relative h-[40px] text-3xl font-bold underline flex justify-center items-center border  bg-slate-200">
-                <p
-                  onClick={() => {
-                    if (langByUser === "en") {
-                      setfinalLang(lang.es)
-                      setlangByUser("es");
-
-                    } else if (langByUser === "es") {
-                      setfinalLang(lang.en)
-                      setlangByUser("en");
-                    }
-                    
-                  }}
-                  className="absolute left-3 text-xs"
-                >
-                  Lang: <a className="text-lime-600">{langByUser} </a>
-                </p>
-                <motion.p
-                  initial={{ x: "-100vh", opacity: 0, rotateX: 420 }}
-                  animate={{ x: 0, opacity: 5, rotateX: 0 }}
-                  exit={{ y: "-100vw", opacity: 0 }}
-                  transition={{
-                    type: "spring",
-                    duration: 1,
-                  }}
-                  className="absolute blockAllSelect underline mt-0 pt-0"
-                >
-                  MyMoney
-                </motion.p>
-                <div class="hidden pb-0 mx-auto flex flex-col w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div
-                    class="mb-0 bg-blue-600 h-0.5 rounded-full"
-                    style={{
-                      width: "60%",
-                      display: "none",
-                      scrollBehavior: "smooth",
-                    }}
-                  ></div>
-                </div>
-              </div>
-
-              {!onErrorServerOut ? (
-                <>
-                  <div className="p-2 w-full h-auto flex flex-col  sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
-                    {endServerRes ? (
-                      <>
-                    
+          <div className="blockAllSelect h-full w-full absolute top-0   ">
+            <TopMymoney />
+            {!onErrorServerOut ? (
+              <>
+                <div className="p-2 w-full h-auto flex flex-col  sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
+                  {endServerRes ? (
+                    <>
                       <PieDiagramHome lang={finalLang} />
-                      </>
-
-                    ) : (
-                      <>
+                    </>
+                  ) : (
+                    <>
                       <div className="pt-12 mr-auto ml-auto">
-                          <SpinnerInfinity size={100} thickness={50} сolor={"#191919"} secondaryColor='rgba(0,0,0,0.14)' speed={120}/>
-                       </div>   
-                          <CahrgingData />
-                      
-                      </>
-                    )}
-                    {endServerRes ? (
-                       <motion.div
-                       initial={{ opacity: 0, y: 20 }}
-                       animate={{opacity: 1, y: 0 }}
-                       transition={{
-                         duration: 1,
-                       }}
-                     >
+                        <SpinnerInfinity
+                          size={100}
+                          thickness={50}
+                          сolor={"#191919"}
+                          secondaryColor="rgba(0,0,0,0.14)"
+                          speed={120}
+                        />
+                      </div>
+                      <CahrgingData />
+                    </>
+                  )}
+                  {endServerRes ? (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 1,
+                      }}
+                    >
                       <ToDay />
                       <DetailsExpendsWeek lang={finalLang} />
+                    </motion.div>
+                  ) : (
+                    <p></p>
+                  )}
+                </div>
+                <div className="pt-[2px] mt-0 pl-2 pr-2 flex justify-center w-full border-spacing-2 rounded sm:justify-left  ">
+                  {endServerRes ? (
+                    <div className="grow md:grow-0">
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{
+                          duration: 2,
+                        }}
+                      >
+                        <AddMoveCash lang={finalLang} />
                       </motion.div>
-                    ) : (
-                      <p></p>
-                    )}
-                  </div>
-                  <div className="pt-[2px] mt-0 pl-2 pr-2 flex justify-center w-full border-spacing-2 rounded sm:justify-left  ">
-                    {endServerRes ? (
-                      <div className="grow md:grow-0">
-                        <motion.div
-                          initial={{ y: 20, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{
-                            duration: 2,
-                          }}
-                        >
-                          <AddMoveCash lang={finalLang} />
-                        </motion.div>
-                      </div>
-                    ) : (
-                      <p></p>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <ServerOut />
-              )}
-            </div>
-          </GlobalContextComponent>
+                    </div>
+                  ) : (
+                    <p></p>
+                  )}
+                </div>
+              </>
+            ) : (
+              <ServerOut />
+            )}
+          </div>
         </MessageContextComponent>
       );
-    } else { 
+    } else {
       return (
-        <GlobalContextComponent>
+        <>
           <Login />
-        </GlobalContextComponent>
-        );
-
-
-      
+        </>
+      );
     }
+  } else {
+    return (
+      <div className="flex items-center justify-center">
+        <div className="pt-12 mr-auto ml-auto animate-pulse">
+          <SpinnerInfinity
+            size={200}
+            thickness={50}
+            сolor={"#00ff89"}
+            secondaryColor="rgba(0,0,0,0.24)"
+            speed={120}
+          />
+          <div className="text-center">
+            <p className="pt-4 text-slate-600">Estableciendo conexión</p>
+            <div class="animate-pulse flex space-x-4 pt-3">
+              <div class="flex-1 space-y-6 py-1">
+                <div class="h-2 bg-slate-300 rounded"></div>
+                <div class="space-y-3">
+                  <div class="grid grid-cols-3 gap-4">
+                    <div class="h-2 bg-slate-300 rounded col-span-2"></div>
+
+                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                    <div class="h-2 bg-slate-300 rounded col-span-2"></div>
+                  </div>
+                  <div class="h-2 bg-slate-300 rounded"></div>
+                  <div class="h-2 bg-slate-300 rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

@@ -12,8 +12,9 @@ export default function DetailsExpendsWeek(lang) {
   const [maxFixedAndVariables, setmaxFixedAndVariables] = useState();
  const langg = lang.lang
   useEffect(() => {
-  
+    console.log(context)
     const toWork = context.data;
+
     const aboutTo = () => {
       var perWeek = toWork.perWeek;
       var inicialNum = 0;
@@ -59,10 +60,10 @@ export default function DetailsExpendsWeek(lang) {
       setaboutAccount(totally);
     };
     aboutTo();
-  }, [context.data]);
+  }, [context.data, context.endServerRes]);
 
   const borrow = () => {
-    var p = context.data.perWeek;
+    var p = context.data?.perWeek;
     var a = p - totalFixedAndVariables;
     var b = p - maxFixedAndVariables;
     return [{ min: a, max: b }];
@@ -75,7 +76,7 @@ export default function DetailsExpendsWeek(lang) {
         <div className="font-sans p-0">
           <p className="">
             {langg.components.detailsWeek.greeting[0]}{" "}
-            <a className="capitalize underline decoration-sky-500">{context.data.name}</a>{" "}
+            <a className="capitalize underline decoration-sky-500">{context.data?.name}</a>{" "}
             {langg.components.detailsWeek.infFirst[0]}{" "}
           </p>
           <div className="text-center pt-1 sm:text-left sm:ml-1">

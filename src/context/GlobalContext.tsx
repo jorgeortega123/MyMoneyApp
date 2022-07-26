@@ -1,43 +1,38 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 const server = "https://mymone.azurewebsites.net";
-export const GlobalContext = createContext({});
-export function GlobalContextComponent({children}) {
-  
-  const [globalData, setglobalData] = useState()
+//@ts-ignore
+export const GlobalContext = createContext();
+export function GlobalContextComponent({ children }) {
+  const [globalDataa, setglobalDataa] = useState();
   const [endServerRes, setendServerRes] = useState(false);
+  const [reconnect, setreconnect] = useState(false);
 
   useEffect(() => {
+    //localStorage.getItem("token")
     axios
       .post(server + "/money", {
-        name: "jorge593",
+        name: localStorage.getItem("token"),
       })
       .then((res) => {
-        setglobalData(res.data);
+        setglobalDataa(res.data);
         setendServerRes(true);
+        //console.log(globalData)
       })
       .catch((err) => {
-        console.log(err)
+        console.log("ERRIR EN EK SERVIDOR");
+        console.log(err);
       });
-  }, []);
- const update=()=>{
-  console.log("FUNCCCCCCCCCCCAKSDASKNDATION")
-  axios
-      .post(server + "/money", {
-        name: "jorge593",
-      })
-      .then((res) => {
-        setglobalData(res.data);
-        setendServerRes(true);
-        console.log("UPDATEE")
-      })
-      .catch((err) => {
-        console.log(err)
-      });
+  }, [reconnect, endServerRes]);
+  const update = () => {
+    setreconnect(true);
+  };
 
- }
- console.log(globalData)
   return (
-    <GlobalContext.Provider value={{ data: globalData , server, update }}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider
+      value={{ data: globalDataa, server, update, endServerRes }}
+    >
+      {children}
+    </GlobalContext.Provider>
   );
 }

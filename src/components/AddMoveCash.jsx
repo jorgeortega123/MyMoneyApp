@@ -9,6 +9,7 @@ import useMessageContext from "../context/Modal/useMessageContext";
 
 export default function AddMoveCash(lang) {
   const { context } = useGlobalContext();
+  console.log(context)
   const server = context.server;
   const langg = lang.lang;
   const { message } = useMessageContext();

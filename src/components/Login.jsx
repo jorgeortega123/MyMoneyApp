@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import useGlobalContext from "../context/useGlobalContext";
 import axios from "axios";
 import MainEvent from "./subComponents/event/MainEvent";
@@ -53,7 +54,35 @@ export default function Login() {
     return <MainEvent />
   }
   return (
+    <><div className="relative h-[40px] text-3xl font-bold underline flex justify-center items-center   bg-gradient-to-r from-sky-500 to-indigo-500 pb-2 space-x-4 overflow-hidden">
+    <div className="pt-0 mt-0">
+   
+     </div>
+     <motion.p
+       initial={{ x: "100vh", opacity: 0,  }}
+       animate={{ x: 0, opacity: 5, }}
+       exit={{ x: "-100vw", opacity: 0 }}
+       transition={{
+         type: "spring",
+         duration: 2,
+       }}
+       className="absolute blockAllSelect underline mt-0 pt-0"
+     >
+       MyMoney
+     </motion.p>
+     <div class="hidden pb-0 mx-auto flex flex-col w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+       <div
+         class="mb-0 bg-blue-600 h-0.5 rounded-full"
+         style={{
+           width: "60%",
+           display: "none",
+           scrollBehavior: "smooth",
+         }}
+       ></div>
+     </div>
+   </div>
     <div className="h-screen flex justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 ">
+      
       <div className="p-3 border rounded-xl bg-[rgba(255,255,255,.1)]">
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl  backdrop-blur-xl 	">
           <h1 className="text-2xl font-bold text-center">Login</h1>
@@ -139,6 +168,6 @@ export default function Login() {
           </p>
         </div>
       </div>
-    </div>
+    </div></>
   );
 }
