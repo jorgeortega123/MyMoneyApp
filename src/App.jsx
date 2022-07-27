@@ -97,9 +97,10 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="hidden fixed w-full h-screen flex justify-center z-[3000] py-14 top-0">
-          <div className="overflow-auto flex justify-center p-4  w-[280px]  bg-tranparent backdrop-blur-xl ">
-            <p>si</p>
+        <div className="fixed w-full h-screen flex justify-center z-[3000] py-14 top-0">
+          <div className="overflow-auto flex justify-center p-4  w-[280px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
+           <div><p>Configuración</p></div>
+           
           </div>
         </div>
       </>
@@ -175,9 +176,10 @@ function App() {
       );
     } else {
       return (
-        <>
+        <div className="overflow-hidden">
           <Login />
-        </>
+          </div>
+
       );
     }
   } else {
