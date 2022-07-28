@@ -10,7 +10,7 @@ export default function Login() {
   const [successLogin, setsuccessLogin] = useState(false);
   const [messageAboutLogin, setmessageAboutLogin] = useState();
   //// CHANGE TO FALSE
-  const [event, setEvent] = useState(true)
+  const [event, setEvent] = useState(false)
 
   ////
   const { context } = useGlobalContext();

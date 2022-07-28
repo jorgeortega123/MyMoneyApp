@@ -163,14 +163,14 @@ export default function Card() {
     recize_notes();
   };
   return (<motion.div
-        initial={{ opacity: 0, x: 360, y:213 }}
+        initial={{ opacity: 0,  y:200 }}
         animate={{ opacity: 1, x: 0, y:0 }}
         transition={{
-          duration: 2,
+          duration: 10,
         }}
-        className="overflow-hidden bg-black"
+        className="overflow-hidden bg-black  "
       >
-    <div className="scissors">
+    <div className="scissors w-auto">
       
       <div class="envelop">
         <div class="envelop__front-paper"></div>
@@ -186,8 +186,8 @@ export default function Card() {
         <div class="envelop__false-sticker"></div>
         <div class="envelop__content js-envelop-content">
           <div class="love-notes">
-            <div class="note js-note">
-              <div class="note__text">
+            <div class="note js-note ">
+              <div class="note__text ">
                 <p>
                   Hola amor, te quiero dar las gracias por todo, por las
                   alegrías, por las risas, por los lindos momentos pero, también

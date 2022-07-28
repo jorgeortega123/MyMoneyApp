@@ -6,6 +6,7 @@ import "./slideText.css";
 import { AnimatePresence, motion } from "framer-motion";
 import Neon from "./Neon";
 import Card from "./Card";
+import EarthPlanet from "./EarthPlanet";
 export default function MainEvent() {
   const [continuee, setcontinuee] = useState(false);
   const [loadingServer, setloadingServer] = useState(false);
@@ -38,9 +39,9 @@ export default function MainEvent() {
   setTimeout(() => {
     setfinalHearth(true);
   }, 15000);
-  console.log(16500)
+  console.log(17500);
   //}, 3600 * names.length + 2500 );
-  
+
   useEffect(() => {
     document.body.style.backgroundColor = "#000000";
     //const intervalID = setInterval(shuffle, 3500);
@@ -77,46 +78,47 @@ export default function MainEvent() {
   //document.getElementsByTagNameNS("body")[0].
 
   // SLIDE START
-  if (!continuee) {
+  if (continuee) {
     if (!finalHearth) {
-    var index = 1;
-    setInterval(function () {
-      let items = document.querySelectorAll(".item");
-      console.log(items.length);
-      if (index == 0) {
-        items[items.length - 1].classList.remove("active");
-      }
-      if (index > 0) {
-        items[index - 1].classList.remove("active");
-      }
-      items[index].classList.add("active");
-      index++;
-      if (index == items.length) {
-        index = 0;
-      }
-    }, 3000);  
+      var index = 1;
+      setInterval(function () {
+        let items = document.querySelectorAll(".item");
+        console.log(items.length);
+        if (index == 0) {
+          items[items.length - 1].classList.remove("active");
+        }
+        if (index > 0) {
+          items[index - 1].classList.remove("active");
+        }
+        items[index].classList.add("active");
+        index++;
+        if (index == items.length) {
+          index = 0;
+        }
+      }, 3000);
     }
-    
   }
 
   // SLIDE ENF
-
-  if (!continuee) {
+  
+  if (continuee) {
     return (
       <motion.div
         initial={{ opacity: 0, x: 0 }}
-        animate={{ opacity: 2, x: 0 }}
+        animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0 }}
         boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
         transition={{
           duration: 4,
         }}
-        className="overflow-hidden bg-black"
+        className="relative overflow-hidden bg-black w-full h-screen"
       >
         {finalHearth ? (
-          <div className="relative">
-            <div className="absolute w-screen h-screen flex items-center pt-16  justify-center">
+          <div className="absolute w-full h-full bottom-2 flex justify-center  ">
+            <div className="absolute w-[322px] h-auto bottom-0 mx-auto flex ">
+         
               <Card />
+        
             </div>
           </div>
         ) : (
@@ -135,22 +137,49 @@ export default function MainEvent() {
             </div>
           </div>
         )}
-        <Neon />
+        <AnimatePresence>
+          {!finalHearth && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 3,
+              }}
+            >
+              <Neon />
+              
+            </motion.div>
+          )}
+          </AnimatePresence>
+          <AnimatePresence>
+          {finalHearth && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 3,
+              }}
+              className="w-full h-full"
+            >
+              <EarthPlanet />
+            </motion.div>
+          )}
+          </AnimatePresence>
       </motion.div>
     );
   } else {
     return (
-      <div className="overflow-x-hidden">
-        <div class="back"></div>
-        <div className="flex mt-5 pt-12">
-          <div class="love"></div>
-          <div class="love-1"></div>
-          <div class="love-2"></div>
-        </div>
+      <div className="overflow-x-hidden w-full h-screen bg-slate-200 flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-900">
+        <p className="text-slate-900">Ajusta la pantalla</p>
+        <button
+              className="mt-2 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+              onClick={(e) => {setcontinuee(true); navigator.vibrate(300)}}
+            >
+              {"Hecho"}
+            </button>
 
-        <div>
-          <Card />
-        </div>
       </div>
     );
   }

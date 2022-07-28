@@ -1,11 +1,11 @@
 //Colors
-$bg: #000;
+$bg: rgba(0, 0, 0, 0);
 
-$tab-bg: #f9f9f9;
+$tab-bg: #803d9b;
 
-$f-color: #ba9872;
-$s-color: #967b5c;
-$t-color: #a38564;
+$f-color: #6b57b6;
+$s-color: #964cc7;
+$t-color: #a384649a;
 $fo-color: #f9f9f9;
 $fi-color: #e2e2e2;
 
@@ -29,32 +29,17 @@ $fi-color: #e2e2e2;
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
 
-body {
-  width: 100%;
-  background-color: $bg;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  @media (max-height: 500px) {
-    margin: 25% 0 25% 0;
-  }
-}
+
 
 //Styles
 .envelop {
   width: 15rem;
   height: 10rem;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
+
+
+
 
   @media (min-width: 400px) and (max-width: 600px) {
     width: 20rem;
@@ -157,8 +142,9 @@ body {
 
 .note {
   width: 95%;
-  height: 30%;
-  background-color: $tab-bg;
+  height: 32%;
+  background-color: rgba(255, 255, 255, 0.411);;
+  backdrop-filter: blur(5px);
   position: absolute;
   overflow: hidden;
   transition: height 0.5s, opacity 0.25s;
@@ -174,11 +160,18 @@ body {
 
   &:nth-child(3) {
     bottom: 20%;
-  }
 
+  }
+  &:nth-child(3):hover {
+    cursor: pointer;
+    height: 110%;
+  }
   &:hover {
     cursor: pointer;
-    height: 45%;
+    height: 100%;
+  }
+  &:active { 
+    height: 110%;
   }
 
   &__text {
