@@ -38,7 +38,7 @@ export default function MainEvent() {
   const iitems = document.querySelectorAll(".item");
   setTimeout(() => {
     setfinalHearth(true);
-  }, 15000);
+  }, 27500);
   console.log(17500);
   //}, 3600 * names.length + 2500 );
 
@@ -95,12 +95,12 @@ export default function MainEvent() {
         if (index == items.length) {
           index = 0;
         }
-      }, 3000);
+      }, 4600);
     }
   }
 
   // SLIDE ENF
-  
+
   if (continuee) {
     return (
       <motion.div
@@ -115,10 +115,8 @@ export default function MainEvent() {
       >
         {finalHearth ? (
           <div className="absolute w-full h-full bottom-2 flex justify-center  ">
-            <div className="absolute w-[322px] h-auto bottom-0 mx-auto flex ">
-         
+            <div className="absolute h-auto bottom-0 mx-auto flex ">
               <Card />
-        
             </div>
           </div>
         ) : (
@@ -126,11 +124,11 @@ export default function MainEvent() {
             <div className="absolute w-screen h-screen flex items-center  justify-center">
               <div className="mt-[-39px] text-[22px] sm:text-[30px] text-slate-50">
                 <span class="slide">
-                  <span class="item active">Hola</span>
-                  <span class="item">hice</span>
-                  <span class="item">esto</span>
-                  <span class="item">para</span>
-                  <span class="item">tu</span>
+                  <span class="item active">Sabes...</span>
+                  <span class="item">Jamas, pensé hacer algo asi</span>
+                  <span class="item">pero... tú</span>
+                  <span class="item">gracias por existir xd</span>
+                  <span class="item">te amo</span>
                   <b></b>
                 </span>
               </div>
@@ -148,11 +146,10 @@ export default function MainEvent() {
               }}
             >
               <Neon />
-              
             </motion.div>
           )}
-          </AnimatePresence>
-          <AnimatePresence>
+        </AnimatePresence>
+        <AnimatePresence>
           {finalHearth && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -166,7 +163,7 @@ export default function MainEvent() {
               <EarthPlanet />
             </motion.div>
           )}
-          </AnimatePresence>
+        </AnimatePresence>
       </motion.div>
     );
   } else {
@@ -174,12 +171,14 @@ export default function MainEvent() {
       <div className="overflow-x-hidden w-full h-screen bg-slate-200 flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-900">
         <p className="text-slate-900">Ajusta la pantalla</p>
         <button
-              className="mt-2 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
-              onClick={(e) => {setcontinuee(true); navigator.vibrate(300)}}
-            >
-              {"Hecho"}
-            </button>
-
+          className="mt-2 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+          onClick={(e) => {
+            setcontinuee(true);
+            navigator.vibrate(350);
+          }}
+        >
+          {"Hecho"}
+        </button>
       </div>
     );
   }
