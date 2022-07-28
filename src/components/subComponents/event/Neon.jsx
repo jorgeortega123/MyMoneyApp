@@ -14,7 +14,7 @@ export default function neon() {
      }
    
      //Time
-     var time = 0.0;
+     var time = 1.0;
    
      //************** Shader sources **************
    
@@ -179,11 +179,11 @@ export default function neon() {
      window.addEventListener("resize", onWindowResize, false);
    
      function onWindowResize() {
-       canvas.width = window.innerWidth;
-       canvas.height = window.innerHeight;
+       canvas.width = window.innerWidth *1.2;
+       canvas.height = window.innerHeight *1.2;
        gl.viewport(0, 0, canvas.width, canvas.height);
-       gl.uniform1f(widthHandle, window.innerWidth);
-       gl.uniform1f(heightHandle, window.innerHeight);
+       gl.uniform1f(widthHandle, window.innerWidth *1.2);
+       gl.uniform1f(heightHandle, window.innerHeight *1.2);
      }
    
      //Compile shader and combine with source
@@ -264,8 +264,8 @@ export default function neon() {
      var widthHandle = getUniformLocation(program, "width");
      var heightHandle = getUniformLocation(program, "height");
    
-     gl.uniform1f(widthHandle, window.innerWidth);
-     gl.uniform1f(heightHandle, window.innerHeight);
+     gl.uniform1f(widthHandle, window.innerWidth  *1.4 );
+     gl.uniform1f(heightHandle, window.innerHeight *1.4);
    
      var lastFrame = Date.now();
      var thisFrame;
@@ -296,8 +296,8 @@ export default function neon() {
  
 
   return (
-    <div className="neonCssNeed w-screen h-screen">
-      <canvas id="canvas" ref={ref} width={window.innerWidth} height={window.innerHeight}></canvas>
+    <div className="neonCssNeed w-screen h-screen flex justify-center items-center">
+      <canvas id="canvas" ref={ref} width={window.innerWidth *1.4  } height={window.innerHeight *1.4  }></canvas>
     </div>
   );
 }

@@ -2,13 +2,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./style.css";
 import "./hearth.css";
 import "./neon.css";
+import "./slideText.css";
 import { AnimatePresence, motion } from "framer-motion";
 import Neon from "./Neon";
+import Card from "./Card";
 export default function MainEvent() {
   const [continuee, setcontinuee] = useState(false);
   const [loadingServer, setloadingServer] = useState(false);
   const [textToShow, settextToShow] = useState("");
-  const [finalHearth, setfinalHearth] = useState(true);
+  const [finalHearth, setfinalHearth] = useState(false);
+  const [texttareaShow, settexttareaShow] = useState(false);
   // ANIMATIONS
   /*
   const spans = document.querySelectorAll(".letterPerLetter span");
@@ -30,21 +33,19 @@ export default function MainEvent() {
   }, 12000);*/
   //ANIMATIONS
   const [newName, setnewName] = useState("Hola");
-  const names = ["Nunca olvides que te amo", "He hecho esto para ti"];
+  //const names = document.querySelectorAll(".slide");
+  const iitems = document.querySelectorAll(".item");
   setTimeout(() => {
-    setfinalHearth(false)
-  }, 3600 );
+    setfinalHearth(true);
+  }, 15000);
+  console.log(16500)
   //}, 3600 * names.length + 2500 );
-  const shuffle = useCallback(() => {
-    const index = Math.floor(Math.random() * names.length);
-
-    setnewName(names[index]);
-  }, []);
-   
+  
   useEffect(() => {
-    const intervalID = setInterval(shuffle, 15500);
-    return () => clearInterval(intervalID);
-  }, [shuffle]);
+    document.body.style.backgroundColor = "#000000";
+    //const intervalID = setInterval(shuffle, 3500);
+    //return () => clearInterval(intervalID);
+  }, []);
 
   const Hearth = () => {
     return (
@@ -73,13 +74,36 @@ export default function MainEvent() {
       settextToShow(text[a])
     }, 3000);
    }*/
+  //document.getElementsByTagNameNS("body")[0].
 
-  //
+  // SLIDE START
+  if (!continuee) {
+    if (!finalHearth) {
+    var index = 1;
+    setInterval(function () {
+      let items = document.querySelectorAll(".item");
+      console.log(items.length);
+      if (index == 0) {
+        items[items.length - 1].classList.remove("active");
+      }
+      if (index > 0) {
+        items[index - 1].classList.remove("active");
+      }
+      items[index].classList.add("active");
+      index++;
+      if (index == items.length) {
+        index = 0;
+      }
+    }, 3000);  
+    }
+    
+  }
+
+  // SLIDE ENF
+
   if (!continuee) {
     return (
-      
-      finalHearth?(
-        <motion.div
+      <motion.div
         initial={{ opacity: 0, x: 0 }}
         animate={{ opacity: 2, x: 0 }}
         exit={{ opacity: 0 }}
@@ -87,33 +111,111 @@ export default function MainEvent() {
         transition={{
           duration: 4,
         }}
-        className="overflow-hidden"
+        className="overflow-hidden bg-black"
       >
-        <div className="relative">
-          <div className="absolute w-screen h-screen flex items-center  justify-center">
-            <div className="mt-[-39px]">{newName}</div>{" "}
+        {finalHearth ? (
+          <div className="relative">
+            <div className="absolute w-screen h-screen flex items-center pt-16  justify-center">
+              <Card />
+            </div>
           </div>
-          <Neon />
-        </div>
+        ) : (
+          <div className="relative">
+            <div className="absolute w-screen h-screen flex items-center  justify-center">
+              <div className="mt-[-39px] text-[22px] sm:text-[30px] text-slate-50">
+                <span class="slide">
+                  <span class="item active">Hola</span>
+                  <span class="item">hice</span>
+                  <span class="item">esto</span>
+                  <span class="item">para</span>
+                  <span class="item">tu</span>
+                  <b></b>
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+        <Neon />
       </motion.div>
-      ):(
-        <Hearth />
-      )
+    );
+  } else {
+    return (
+      <div className="overflow-x-hidden">
+        <div class="back"></div>
+        <div className="flex mt-5 pt-12">
+          <div class="love"></div>
+          <div class="love-1"></div>
+          <div class="love-2"></div>
+        </div>
 
-      
+        <div>
+          <Card />
+        </div>
+      </div>
     );
   }
+  /*
   return (
     <div id="mainBack" className="h-screen w-screen background normal-back">
       <div className="h-full w-full flex items-center justify-center">
         <div className="letterPerLetter font-mono">
-          <span>D</span>
-          <span>A</span>
-          <span>B</span>
-          <span>C</span>
-          <span>D</span>
+          <motion.span
+            initial={{ opacity: 0, x: -300, y:1, scale:(7) }}
+            animate={{ opacity: 2, x: 0, y:0, scale:(1) }}
+            exit={{ opacity: 0 }}
+            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
+            transition={{
+              duration: 4,
+            }}
+          >
+            D
+          </motion.span> 
+          <motion.span
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 2, x: 0 }}
+            exit={{ opacity: 0 }}
+            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
+            transition={{
+              duration: 4,
+            }}
+          >
+            B
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 2, x: 0 }}
+            exit={{ opacity: 0 }}
+            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
+            transition={{
+              duration: 4,
+            }}
+          >
+            C
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 2, x: 0 }}
+            exit={{ opacity: 0 }}
+            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
+            transition={{
+              duration: 4,
+            }}
+          >
+            D
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 2, x: 0 }}
+            exit={{ opacity: 0 }}
+            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
+            transition={{
+              duration: 4,
+            }}
+          >
+            A
+          </motion.span>
         </div>
       </div>
     </div>
-  );
+  );*/
 }

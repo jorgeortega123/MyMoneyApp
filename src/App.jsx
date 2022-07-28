@@ -19,6 +19,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Login from "./components/Login";
 import CahrgingData from "./components/subComponents/CahrgingData";
 import ToDay from "./components/ToDay";
+import Configurations from "./components/subComponents/Configurations";
 //import useGlobalContext from "../context/useGlobalContext";
 const server = "https://mymone.azurewebsites.net";
 
@@ -32,6 +33,7 @@ function App() {
   const [falsetrue, setfalsetrue] = useState(false);
   const [langFromBotton, setlangFromBotton] = useState(lang.en);
   const [loginValidation, setloginValidation] = useState(false);
+  const [showConfigg, setshowConfigg] = useState(false);
   ///////
   useEffect(() => {
     console.log(context.data);
@@ -61,59 +63,50 @@ function App() {
   //console.log(serverResponsive);
   //const { context } = useGlobalContext();
   //console.log(context);
-  const TopMymoney = () => {
-    return (
-      <>
-        <div className="relative h-[40px]  flex justify-center items-center border  bg-transparent pb-2 between overflow-hidden">
-          <div
-            onClick={() => {
-              if (langByUser === "en") {
-                setfinalLang(lang.es);
-                setlangByUser("es");
-              } else if (langByUser === "es") {
-                setfinalLang(lang.en);
-                setlangByUser("en");
-              }
-            }}
-            className=" text-xs pl-2 pt-2 "
-          >
-            Lang: <a className="text-lime-600">{langByUser} </a>
-          </div>
-          <div className="text-3xl font-bold underline">MyMoney</div>
-
-          <div className=" text-xs pr-2 pt-2 flex ">
-            {" "}
-            <div className="border border-gray-50 rounded-full hover:border-gray-200 active:bg-slate-400 ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                class="bi bi-three-dots fill-slate-800 active:fill-slate-50"
-                viewBox="0 0 16 16"
-              >
-                {" "}
-                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />{" "}
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div className="fixed w-full h-screen flex justify-center z-[3000] py-14 top-0">
-          <div className="overflow-auto flex justify-center p-4  w-[280px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
-           <div><p>Configuración</p></div>
-           
-          </div>
-        </div>
-      </>
-    );
-  };
-
+  console.log(context)
+  console.log(showConfigg);
   //////
   if (endServerRes === true) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
           <div className="blockAllSelect h-full w-full absolute top-0   ">
-            <TopMymoney />
+            <div className="relative h-[40px]  flex justify-center items-center border  bg-transparent pb-2 between overflow-hidden">
+              <div
+                onClick={() => {
+                  if (langByUser === "en") {
+                    setfinalLang(lang.es);
+                    setlangByUser("es");
+                  } else if (langByUser === "es") {
+                    setfinalLang(lang.en);
+                    setlangByUser("en");
+                  }
+                }}
+                className=" text-xs pl-2 pt-2 "
+              >
+                Lang: <a className="text-lime-600">{langByUser} </a>
+              </div>
+              <div className="text-3xl font-bold underline">MyMoney</div>
+
+              <div className=" text-xs pr-2 pt-2 flex ">
+                <div
+                  onClick={() => context.showConfiguration(true)}
+                  className="border border-gray-50 rounded-full hover:border-gray-200 active:bg-slate-400 "
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    class="bi bi-three-dots fill-slate-800 active:fill-slate-50"
+                    viewBox="0 0 16 16"
+                   
+                  >
+                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />{" "}
+                  </svg>
+                </div>
+              </div>
+            </div>
+            {context.ashowConfiguration && <Configurations data={showConfigg} />}
             {!onErrorServerOut ? (
               <>
                 <div className="p-2 w-full h-auto flex flex-col  sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
@@ -178,8 +171,7 @@ function App() {
       return (
         <div className="overflow-hidden">
           <Login />
-          </div>
-
+        </div>
       );
     }
   } else {

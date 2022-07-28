@@ -86,7 +86,7 @@ export default function Login() {
       <div className="p-3 border rounded-xl bg-[rgba(255,255,255,.1)]">
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl  backdrop-blur-xl 	">
           <h1 className="text-2xl font-bold text-center">Login</h1>
-
+       
           <div className="space-y-1 text-sm">
             <label for="username" className="block ">
               Username
@@ -119,6 +119,7 @@ export default function Login() {
               <p className=" text-red-200 p-0 m-0">{messageAboutLogin}</p>
             </div>
           </div>
+       
           <button
             onClick={() => sendData()}
             className="block w-full p-3 text-center  bg-slate-200 hover:bg-slate-300  border border-slate-500 hover:border-slate-700 rounded-full"

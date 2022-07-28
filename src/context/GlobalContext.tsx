@@ -7,7 +7,7 @@ export function GlobalContextComponent({ children }) {
   const [globalDataa, setglobalDataa] = useState();
   const [endServerRes, setendServerRes] = useState(false);
   const [reconnect, setreconnect] = useState(false);
-
+ const [ashowConfiguration, asetshowConfiguration] = useState(false)
   useEffect(() => {
     //localStorage.getItem("token")
     axios
@@ -27,10 +27,19 @@ export function GlobalContextComponent({ children }) {
   const update = () => {
     setreconnect(true);
   };
-
+const showConfiguration = (s:boolean) => { 
+  console.log(s)
+  if (s===true) { 
+    asetshowConfiguration(true)
+    return true
+  } else { 
+    asetshowConfiguration(false)
+    return false
+  }
+}
   return (
     <GlobalContext.Provider
-      value={{ data: globalDataa, server, update, endServerRes }}
+      value={{ data: globalDataa, server, update, endServerRes, showConfiguration, ashowConfiguration  }}
     >
       {children}
     </GlobalContext.Provider>
