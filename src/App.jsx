@@ -13,7 +13,8 @@ import axios from "axios";
 import useGlobalContext from "./context/useGlobalContext";
 import { GlobalContextComponent } from "./context/GlobalContext";
 import { MessageContextComponent } from "./context/Modal/MessageContext";
-import { lang } from "./dataSimulateServer";
+import { lang, phrases } from "./dataSimulateServer";
+
 import { display } from "@mui/system";
 import { AnimatePresence, motion } from "framer-motion";
 import Login from "./components/Login";
@@ -34,6 +35,7 @@ function App() {
   const [langFromBotton, setlangFromBotton] = useState(lang.en);
   const [loginValidation, setloginValidation] = useState(false);
   const [showConfigg, setshowConfigg] = useState(false);
+  const [frase, setfrase] = useState("...");
   ///////
   useEffect(() => {
     console.log(context.data);
@@ -41,36 +43,25 @@ function App() {
       if (context.endServerRes === true) {
         setloginValidation(localStorage.getItem("token"));
         console.log(context.data.name);
-
+        frases();
         setendServerRes(true);
-
-        //setendServerRes(true)
       }
     }
-
-    // if(context.data) {setonErrorServerOut(true); }
-    /* if (context.endServerRes === false) {
-      if (!context.data) {
-        setonErrorServerOut(true);
-        
-      }
-      setendServerRes(true);
-      
-    }
-*/
   }, [context.endServerRes]);
   const animate = () => {};
-  //console.log(serverResponsive);
-  //const { context } = useGlobalContext();
-  //console.log(context);
-  console.log(context)
-  console.log(showConfigg);
-  //////
+
+  const frases = () => {
+    var max = phrases.length;
+    var min = 0;
+    var arr = Math.floor(Math.random() * 21);
+    setfrase(phrases.es[arr]);
+  };
+
   if (endServerRes === true) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
-          <div className="blockAllSelect h-full w-full absolute top-0   ">
+          <div className="blockAllSelect  h-full w-full absolute top-0   ">
             <div className="relative h-[40px]  flex  items-center border  bg-transparent pb-2 justify-between overflow-hidden">
               <div
                 onClick={() => {
@@ -99,20 +90,24 @@ function App() {
                     height="24"
                     class="bi bi-three-dots fill-slate-800 active:fill-slate-50"
                     viewBox="0 0 16 16"
-                   
                   >
                     <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />{" "}
                   </svg>
                 </div>
               </div>
             </div>
-            {context.ashowConfiguration && <Configurations data={showConfigg} />}
+            {context.ashowConfiguration && (
+              <Configurations data={showConfigg} />
+            )}
             {!onErrorServerOut ? (
               <>
                 <div className="p-2 w-full h-auto flex flex-col  sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
                   {endServerRes ? (
                     <>
                       <PieDiagramHome lang={finalLang} />
+                      {
+                        //<p className="  absolute" onClick={()=>frases()}>{frase}</p>}
+                      }
                     </>
                   ) : (
                     <>

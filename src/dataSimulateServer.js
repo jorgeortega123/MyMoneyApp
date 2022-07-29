@@ -1,117 +1,31 @@
-export const datsa = [
-  {
-    user: "Jorge593",
-    name: "Jorge",
-    secondName: "Ortega",
-    actualDay: "Mon",
-    perWeek: 40,
-    perMonth: 160,
-    cost: [
-      {
-        fixed: [
-          {
-            title: "ortodoncia",
-            color: "#0070ff",
-            value: 0,
-            cost: 5,
-            max: 5,
-            monthly: 20,
-          },
-          {
-            title: "cooperativa",
-            color: "#D7FF00",
-            value: 0,
-            cost: 2.75,
-            max: 2.75,
-            monthly: 11,
-          },
-          {
-            title: "recargar",
-            color: "#a05195",
-            value: 0,
-            cost: 1.75,
-            max: 1.75,
-            monthly: 7,
-          },
-          { title: "comida", color: "#FFEC00", value: 0, cost: 5, max: 8 },
-          { title: "snacks", color: "#FF7300", value: 0, cost: 1.5, max: 4 },
-          { title: "pasaje", color: "#007ED6", value: 0, cost: 2.4, max: 3 },
-          { title: "ahorro", color: "#FF0000", value: 0, cost: 3, max: 4 },
-        ],
-        variables: [
-          { title: "girlfriend", color: "#FF45F9", value: 0, cost: 3, max: 6 },
-          { title: "extrafood", color: "#D7FF00", value: 0, cost: 1, max: 2 },
-          { title: "imprevisto", color: "#007ED6", value: 0, cost: 4, max: 8 },
-        ],
-      },
-    ],
-    debts: [
-      { name: "luis", relationship: "hermano", mount: 47.0, paid: 0 },
-      { name: "johanna", relationship: "mama", mount: 51.0, paid: 0 },
-    ],
-    dinnerMove: [{}],
-    totalBill: 0,
-    restOfLastWeek: 0,
-    savings: [{ title: "ahorros", value: 0, cost: 4, max: 8 }],
-  },
-];
-export const serverRes = [
-  {
-    user: "Jorge593",
-    name: "Jorge",
-    secondName: "Ortega",
-    actualDay: "Mon",
-    perWeek: 40,
-    perMonth: 160,
-    cost: [
-      {
-        fixed: [
-          {
-            title: "ortodoncia",
-            color: "#0070ff",
-            value: 0,
-            cost: 5,
-            max: 5,
-            monthly: 20,
-          },
-          {
-            title: "cooperativa",
-            color: "#D7FF00",
-            value: 0,
-            cost: 2.75,
-            max: 2.75,
-            monthly: 11,
-          },
-          {
-            title: "recargar",
-            color: "#a05195",
-            value: 0,
-            cost: 1.75,
-            max: 1.75,
-            monthly: 7,
-          },
-          { title: "comida", color: "#FFEC00", value: 0, cost: 5, max: 8 },
-          { title: "snacks", color: "#FF7300", value: 0, cost: 1.5, max: 4 },
-          { title: "pasaje", color: "#007ED6", value: 0, cost: 2.4, max: 3 },
-          { title: "ahorro", color: "#FF0000", value: 0, cost: 3, max: 4 },
-        ],
-        variables: [
-          { title: "girlfriend", color: "#FF45F9", value: 0, cost: 3, max: 6 },
-          { title: "extrafood", color: "#D7FF00", value: 0, cost: 1, max: 2 },
-          { title: "imprevisto", color: "#007ED6", value: 0, cost: 4, max: 8 },
-        ],
-      },
-    ],
-    debts: [
-      { name: "luis", relationship: "hermano", mount: 47.0, paid: 0 },
-      { name: "johanna", relationship: "mama", mount: 51.0, paid: 0 },
-    ],
-    dinnerMove: [{}],
-    totalBill: 0,
-    restOfLastWeek: 0,
-    savings: [{ title: "ahorros", value: 0, cost: 4, max: 8 }],
-  },
-];
+export const phrases = { 
+ es: [ 
+  "Va a pasar porque vas hacer que pase.",
+   "Si tu no haces que tus días sean mágicos, ¿quién lo hará?",
+   "El éxito depende más de la constancia que del talento.",
+   "No bajes la meta, aumenta el esfuerzo.",
+   "Algo maravilloso está a punto de sucederte.",
+   "¡Échale ganas!",
+   "Las cosas no serán como antes, serán mejor.",
+   "La vida es una colección de momentos.",
+   "Puedes llegar hasta el infinito.", 
+   "Lo que es para ti, te encuentra.",
+   "Cuando dejas de soñar, dejas de vivir.",
+   "La mejor forma de predecir el futuro es crearlo",
+   "Olvida el pasado pero recuerda la lección.", 
+   "Cuando hay ganas, todo es posible.",
+   "Sé como la luna y brilla aunque no estés llena.",
+   "Mantén siempre actualizada tu mejor versión.",
+   "Si te rodeas de luz, lo verás todo más claro.",
+   "Ignorar es responder con inteligencia.",
+   "Tú puedes hacerlo.",
+   "Gracias existir.",
+   "Si lo puedes imaginar, lo puedes programar.",
+   
+
+
+ ]
+}
 export const lang = {
   es: {
     server: {
