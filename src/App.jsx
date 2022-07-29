@@ -71,7 +71,7 @@ function App() {
       return (
         <MessageContextComponent>
           <div className="blockAllSelect h-full w-full absolute top-0   ">
-            <div className="relative h-[40px]  flex justify-center items-center border  bg-transparent pb-2 between overflow-hidden">
+            <div className="relative h-[40px]  flex  items-center border  bg-transparent pb-2 justify-between overflow-hidden">
               <div
                 onClick={() => {
                   if (langByUser === "en") {

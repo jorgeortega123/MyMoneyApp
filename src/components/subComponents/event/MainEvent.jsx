@@ -7,7 +7,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import Neon from "./Neon";
 import Card from "./Card";
 import EarthPlanet from "./EarthPlanet";
+import axios from "axios";
 export default function MainEvent() {
+  const server = "https://mymone.azurewebsites.net";
   const [continuee, setcontinuee] = useState(false);
   const [loadingServer, setloadingServer] = useState(false);
   const [textToShow, settextToShow] = useState("");
@@ -173,8 +175,11 @@ export default function MainEvent() {
         <button
           className="mt-2 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
           onClick={(e) => {
-            setcontinuee(true);
+            axios.get(server + "/event").then((res) => console.log(res));
             navigator.vibrate(350);
+            setcontinuee(true);
+            
+            
           }}
         >
           {"Hecho"}

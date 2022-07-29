@@ -92,7 +92,7 @@ export const PieDiagramHome = (dataPie) => {
                     fill: "#000",
                   }}
                   radius={50}
-                  rounded={1}
+                  rounded={0}
                   startAngle={120}
                   viewBoxSize={[100, 100]}
                 />

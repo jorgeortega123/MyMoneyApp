@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import useGlobalContext from "../context/useGlobalContext";
 import useMessageContext from "../context/Modal/useMessageContext";
 export default function () {
@@ -19,7 +19,7 @@ export default function () {
   var idOfCost = numberDay + yearDay + monthDay;
   useEffect(() => {
     settoDayCosts(context.data.history.today);
-setshowTable(true);
+    setshowTable(true);
     //settableData(context.data.history.today)
     var arr = context.data.history.today;
     console.log(context.data.history.today);
@@ -38,8 +38,6 @@ setshowTable(true);
           
       }
     }*/
-
-      
 
     //});
     /* if (countData >= 2 ) {
@@ -60,29 +58,8 @@ setshowTable(true);
   };*/
   //
 
-  var securityCopy = () => {
-    console.log(context);
-    axios
-      .post(server + "/download", {
-        user: context.data.user,
-      })
-      .then((res) => {
-        message({
-          type: res.data.message,
-          title: res.data.title,
-          description: res.data.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        message({
-          type: "error",
-          title: "Error desconocido",
-          description: "No se completo la copia de seguridad " + err.message,
-        });
-      });
-  };
   //
+  if (cashWasted===0) {return ;} 
   return (
     <div className="p-3 mb-0 flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 ">
       <p>
@@ -130,20 +107,15 @@ setshowTable(true);
                   );
                   //   settableData([...tableData, e])
                 }
-              } else {return <></>}
+              } else {
+                return <></>;
+              }
             })}
           </tbody>
         </table>
       ) : (
         <>Nada que mostrar</>
       )}
-
-      <button
-        className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
-        onClick={() => securityCopy()}
-      >
-        Hacer copia de seguridad de los datos
-      </button>
     </div>
   );
 }

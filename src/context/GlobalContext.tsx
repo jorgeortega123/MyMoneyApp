@@ -10,6 +10,9 @@ export function GlobalContextComponent({ children }) {
  const [ashowConfiguration, asetshowConfiguration] = useState(false)
   useEffect(() => {
     //localStorage.getItem("token")
+
+    
+    //
     axios
       .post(server + "/money", {
         name: localStorage.getItem("token"),

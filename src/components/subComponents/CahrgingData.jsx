@@ -5,7 +5,7 @@ export default function () {
     setTimeout(() => {
       setfirst("Comprobando Token...");
       setTimeout(() => {
-        setfirst("Recolectando datos...");
+        setfirst("Encendiendo el servidor...");
         setTimeout(() => {
           setfirst("Resolviendo logica interna...");
         }, 3000);

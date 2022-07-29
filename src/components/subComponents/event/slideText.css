@@ -14,7 +14,7 @@
 	animation: slideInOut 1.8s ease-in-out 0s 2 alternate both running;
 }
 .slide b {
-	border-left: 2px solid rgba(255, 255, 255, 0.651);
+	border-left: 0px solid rgba(255, 255, 255, 0.651);
 	vertical-align: top;
 }
 @keyframes slideInOut {
