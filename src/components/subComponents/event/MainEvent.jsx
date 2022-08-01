@@ -13,7 +13,7 @@ export default function MainEvent() {
   const [continuee, setcontinuee] = useState(false);
   const [loadingServer, setloadingServer] = useState(false);
   const [textToShow, settextToShow] = useState("");
-  const [finalHearth, setfinalHearth] = useState(false);
+  const [finalHearth, setfinalHearth] = useState(true);
   const [texttareaShow, settexttareaShow] = useState(false);
   // ANIMATIONS
   /*
@@ -38,10 +38,6 @@ export default function MainEvent() {
   const [newName, setnewName] = useState("Hola");
   //const names = document.querySelectorAll(".slide");
   const iitems = document.querySelectorAll(".item");
-  setTimeout(() => {
-    setfinalHearth(true);
-  }, 27500);
-  console.log(17500);
   //}, 3600 * names.length + 2500 );
 
   useEffect(() => {
@@ -81,23 +77,30 @@ export default function MainEvent() {
 
   // SLIDE START
   if (continuee) {
+    //
+    setTimeout(() => {
+      setfinalHearth(true);
+    }, 27500);
+    //
     if (!finalHearth) {
-      var index = 1;
-      setInterval(function () {
-        let items = document.querySelectorAll(".item");
-        console.log(items.length);
-        if (index == 0) {
-          items[items.length - 1].classList.remove("active");
-        }
-        if (index > 0) {
-          items[index - 1].classList.remove("active");
-        }
-        items[index].classList.add("active");
-        index++;
-        if (index == items.length) {
-          index = 0;
-        }
-      }, 4600);
+      setTimeout(() => {
+        var index = 1;
+        setInterval(function () {
+          let items = document.querySelectorAll(".item");
+          console.log(items.length);
+          if (index == 0) {
+            items[items.length - 1].classList.remove("active");
+          }
+          if (index > 0) {
+            items[index - 1].classList.remove("active");
+          }
+          items[index].classList.add("active");
+          index++;
+          if (index == items.length) {
+            index = 0;
+          }
+        }, 4600);
+      }, 1500);
     }
   }
 
@@ -117,7 +120,7 @@ export default function MainEvent() {
       >
         {finalHearth ? (
           <div className="absolute w-full h-full bottom-2 flex justify-center  ">
-            <div className="absolute h-auto bottom-0 mx-auto flex ">
+            <div className="absolute h-auto bottom-0 mx-auto flex blockAllSelect ">
               <Card />
             </div>
           </div>
@@ -126,7 +129,7 @@ export default function MainEvent() {
             <div className="absolute w-screen h-screen flex items-center  justify-center">
               <div className="mt-[-39px] text-[22px] sm:text-[30px] text-slate-50">
                 <span class="slide">
-                  <span class="item active">Sabes...</span>
+                  <span class="item active">ola</span>
                   <span class="item">Jamas, pensé hacer algo asi</span>
                   <span class="item">pero... tú</span>
                   <span class="item">gracias por existir xd</span>
@@ -170,16 +173,14 @@ export default function MainEvent() {
     );
   } else {
     return (
-      <div className="overflow-x-hidden w-full h-screen bg-slate-200 flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-900">
-        <p className="text-slate-900">Ajusta la pantalla</p>
+      <div className="overflow-x-hidden w-full h-screen bg-slate-900 flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-300">
+        <p className="text-slate-200">Ajusta la pantalla</p>
         <button
-          className="mt-2 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+          className="mt-2 w-max h-9  px-5 mb-2 font-medium text-gray-400 focus:outline-none bg-slate-700 rounded-full border border-gray-900 hover:bg-gray-900 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
           onClick={(e) => {
-            axios.get(server + "/event").then((res) => console.log(res));
+            axios.get(server + "/eventt").then((res) => console.log(res));
             navigator.vibrate(350);
             setcontinuee(true);
-            
-            
           }}
         >
           {"Hecho"}
@@ -187,68 +188,4 @@ export default function MainEvent() {
       </div>
     );
   }
-  /*
-  return (
-    <div id="mainBack" className="h-screen w-screen background normal-back">
-      <div className="h-full w-full flex items-center justify-center">
-        <div className="letterPerLetter font-mono">
-          <motion.span
-            initial={{ opacity: 0, x: -300, y:1, scale:(7) }}
-            animate={{ opacity: 2, x: 0, y:0, scale:(1) }}
-            exit={{ opacity: 0 }}
-            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
-            transition={{
-              duration: 4,
-            }}
-          >
-            D
-          </motion.span> 
-          <motion.span
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 2, x: 0 }}
-            exit={{ opacity: 0 }}
-            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
-            transition={{
-              duration: 4,
-            }}
-          >
-            B
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 2, x: 0 }}
-            exit={{ opacity: 0 }}
-            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
-            transition={{
-              duration: 4,
-            }}
-          >
-            C
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 2, x: 0 }}
-            exit={{ opacity: 0 }}
-            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
-            transition={{
-              duration: 4,
-            }}
-          >
-            D
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 2, x: 0 }}
-            exit={{ opacity: 0 }}
-            boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
-            transition={{
-              duration: 4,
-            }}
-          >
-            A
-          </motion.span>
-        </div>
-      </div>
-    </div>
-  );*/
 }

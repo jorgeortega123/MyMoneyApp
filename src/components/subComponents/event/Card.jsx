@@ -27,7 +27,7 @@ export default function Card() {
   function notes_ready() {
     gsap.to(".js-envelop-content", {
       height: "110%",
-      duration: 0.5,
+      duration: 1.0,
     });
 
     for (let i = 0; i < notes.length; i++) {
@@ -36,7 +36,7 @@ export default function Card() {
           if (this.classList.contains("active")) {
             this.classList.remove("active");
             gsap.set(this, {
-              height: "30%",
+              height: "40%",
               clearProps: "all",
             });
           } else {
@@ -44,7 +44,7 @@ export default function Card() {
               if (notes[i].classList.contains("active")) {
                 notes[i].classList.remove("active");
                 gsap.set(notes[i], {
-                  height: "30%",
+                  height: "40%",
                   clearProps: "all",
                 });
               }
@@ -58,7 +58,7 @@ export default function Card() {
           if (this.classList.contains("active")) {
             this.classList.remove("active");
             gsap.set(this, {
-              height: "30%",
+              height: "40%",
               clearProps: "all",
             });
           } else {
@@ -66,7 +66,7 @@ export default function Card() {
               if (notes[i].classList.contains("active")) {
                 notes[i].classList.remove("active");
                 gsap.set(notes[i], {
-                  height: "30%",
+                  height: "40%",
                   clearProps: "all",
                 });
               }
@@ -80,7 +80,7 @@ export default function Card() {
           if (this.classList.contains("active")) {
             this.classList.remove("active");
             gsap.set(this, {
-              height: "30%",
+              height: "40%",
               clearProps: "all",
             });
           } else {
@@ -88,7 +88,7 @@ export default function Card() {
               if (notes[i].classList.contains("active")) {
                 notes[i].classList.remove("active");
                 gsap.set(notes[i], {
-                  height: "30%",
+                  height: "40%",
                   clearProps: "all",
                 });
               }
@@ -132,7 +132,7 @@ export default function Card() {
   function envelop_transition() {
     gsap.to(".js-up-paper", {
       bottom: "1%",
-      duration: 0.25,
+      duration: 0.5,
       onComplete: set_up_paper,
     });
     document

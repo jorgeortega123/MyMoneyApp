@@ -29,7 +29,7 @@ $sky-gradient-end-color: #6B3DA0;
   left: 125px;
   top: 110px;
   border-radius: 50%;
-  box-shadow:0 0 15px white, 0 0 100px white;
+  box-shadow:0 0 15px rgb(163, 131, 131), 0 0 100px white;
   
   &-bg {
     opacity: 0.5;
@@ -128,9 +128,7 @@ $sky-gradient-end-color: #6B3DA0;
     width: 35px;
     left: 10px;
     bottom: 100px;
-    & path {
-      fill: #3C1872;
-    }
+  
   }
   
   &-2 {
@@ -138,9 +136,7 @@ $sky-gradient-end-color: #6B3DA0;
     width: 25px;
     left: 40px;
     bottom: 105px;
-    & path {
-      fill: #3C1872;
-    }
+ 
   }
   
   &-3 {
@@ -148,9 +144,6 @@ $sky-gradient-end-color: #6B3DA0;
     width: 60px;
     left: 50px;
     bottom: 15px;
-    & path {
-      fill: #140D35;
-    }
   }
   
   &-4 {
@@ -158,9 +151,7 @@ $sky-gradient-end-color: #6B3DA0;
     width: 90px;
     left: 100px;
     bottom: 0px;
-    & path {
-      fill: #140D35;
-    }
+ 
   }
   
   &-5 {
@@ -168,9 +159,7 @@ $sky-gradient-end-color: #6B3DA0;
     width: 90px;
     left: 165px;
     bottom: 8px;
-    & path {
-      fill: #140D35;
-    }
+  
   }
   
   &-6 {
@@ -178,9 +167,7 @@ $sky-gradient-end-color: #6B3DA0;
     width: 25px;
     right: 10px;
     bottom: 130px;
-    & path {
-      fill: #301763;
-    }
+  
   }
   
   &-7 {
@@ -188,9 +175,7 @@ $sky-gradient-end-color: #6B3DA0;
     width: 15px;
     right: 0px;
     bottom: 125px;
-    & path {
-      fill: #301763;
-    }
+   
   }
 }
 

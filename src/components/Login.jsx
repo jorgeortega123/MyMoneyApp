@@ -70,18 +70,9 @@ export default function Login() {
      >
        MyMoney
      </motion.p>
-     <div class="hidden pb-0 mx-auto flex flex-col w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-       <div
-         class="mb-0 bg-blue-600 h-0.5 rounded-full"
-         style={{
-           width: "60%",
-           display: "none",
-           scrollBehavior: "smooth",
-         }}
-       ></div>
-     </div>
+    
    </div>
-    <div className="h-screen flex justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 ">
+    <div className="h-screen flex mt-[-40px] justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 ">
       
       <div className="p-3 border rounded-xl bg-[rgba(255,255,255,.1)]">
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl  backdrop-blur-xl 	">
