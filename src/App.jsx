@@ -38,9 +38,19 @@ function App() {
   const [frase, setfrase] = useState("...");
   ///////
   useEffect(() => {
+    var d = new Date();
+    var dayName = d.toString().split(" ")[0];
+    var monthDay = d.toString().split(" ")[1];
+    var numberDay = d.toString().split(" ")[2];
+    var yearDay = d.toString().split(" ")[3];
     console.log(context.data);
     if (context.data != undefined) {
       if (context.endServerRes === true) {
+        if (dayName === "Sun") {
+          axios.post(context.server + "/newContabilitie", {
+            name: localStorage.getItem("token"), reset: true, 
+          });
+        }
         setloginValidation(localStorage.getItem("token"));
         console.log(context.data.name);
         frases();

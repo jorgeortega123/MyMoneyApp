@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useMessageContext from "../../context/Modal/useMessageContext";
 import axios from "axios";
 import useGlobalContext from "../../context/useGlobalContext";
+import ShowHistoryDebst from "./ShowHistoryDebst";
 
 export default function TableFromDebts(lang) {
   const langg = lang.lang
@@ -16,6 +17,7 @@ export default function TableFromDebts(lang) {
   const [dicreaseOrIncrease, setdicreaseOrIncrease] = useState();
   const [showMoreDetailDebts, setshowMoreDetailDebts] = useState(false);
   const [thereAccountsToShow, setthereAccountsToShow] = useState(true)
+  const [showHistoryTable, setshowHistoryTable] = useState(null)
   useEffect(() => {
     const toAcredit = () => {
       var a = [];
@@ -27,7 +29,7 @@ export default function TableFromDebts(lang) {
       setallruberaccount(a);
     };
     toAcredit();
-  }, [context.data]);
+  }, [context.data.debts]);
 
   const [allruberaccount, setallruberaccount] = useState([
     { name: "Patrimonio", value: 0 },
@@ -134,6 +136,7 @@ export default function TableFromDebts(lang) {
             return (
               <tr key={debtsAccounts.relationship + "key"} className="border-b   odd:bg-white even:bg-gray-50 ">
                 <th
+                onClick={()=>{setshowHistoryTable(debtsAccounts.name)}}
                   scope="row"
                   className="capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
                 >
@@ -290,6 +293,7 @@ export default function TableFromDebts(lang) {
       ) : (
         <p></p>
       )}
+      {showHistoryTable !=null && <ShowHistoryDebst nameUser={showHistoryTable}/>}
     </div>
     </>
   );
