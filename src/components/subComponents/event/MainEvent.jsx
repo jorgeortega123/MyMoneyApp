@@ -13,7 +13,7 @@ export default function MainEvent() {
   const [continuee, setcontinuee] = useState(false);
   const [loadingServer, setloadingServer] = useState(false);
   const [textToShow, settextToShow] = useState("");
-  const [finalHearth, setfinalHearth] = useState(true);
+  const [finalHearth, setfinalHearth] = useState(false);
   const [texttareaShow, settexttareaShow] = useState(false);
   // ANIMATIONS
   /*
