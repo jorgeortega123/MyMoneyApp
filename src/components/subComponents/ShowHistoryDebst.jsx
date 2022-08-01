@@ -11,9 +11,13 @@ export default function ShowHistoryDebst(nameUser) {
      if (history==={}) return <p>No hay nada que mostrar</p> 
      if (history===undefined) return <p>No hay nada que mostrar</p> 
     // if(history.nameUser===undefined) return <p>Nombre no encontrado</p>
-  return (
-    <div><table className="w-full text-sm text-left text-gray-500 ">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+    var twoDecimal = (a, b) => {
+     var s = a - b;
+     return s.toFixed(2);
+   };
+    return (
+    <div><table className="w-full text-sm text-left text-gray-500 mt-2 ">
+          <thead className="text-[12px]  text-gray-700 uppercase bg-gray-50 ">
             <tr>
               <th scope="col" className="px-3 py-1">
                 Deudor
@@ -31,7 +35,8 @@ export default function ShowHistoryDebst(nameUser) {
           </thead>
           <tbody>
             {history.map((d) => {
-              if (d.name === nameUser) {
+               console.log(d, nameUser.nameUser )
+              if (d.name === nameUser.nameUser) {
                   return (
                     <tr
                       key={d.incoming + "key"}
@@ -41,16 +46,25 @@ export default function ShowHistoryDebst(nameUser) {
                         scope="row"
                         className="capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
                       >
-                        {d.type}
-                      </th>
-                      <th
-                        scope="row"
-                        className="capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
-                      >
                         {d.name}
                       </th>
-                      <td className="px-2 py-1">{d.incoming}</td>
-                      <td className="px-2 py-1">{d.beforeDebst.toFixed(2)}</td>
+                      {d.type==="de"?<th
+                        scope="row"
+                        className=" capitalize px-3 py-2 font-normal text-red-900  whitespace-nowrap"
+                      >
+                        {"+" +d.incoming}
+                      </th>:<th
+                        scope="row"
+                        className="capitalize px-3 py-2 font-normal text-green-900  whitespace-nowrap"
+                      >
+                        {"-"+d.incoming}
+                      </th> }
+
+
+                      
+                      
+
+                      <td className="px-2 py-1">{twoDecimal(d.afterDebst, d.incoming)}</td>
                       <td className="px-2 py-1">{d.afterDebst.toFixed(2)}</td>
                     </tr>
                   );
