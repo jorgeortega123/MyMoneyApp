@@ -117,9 +117,7 @@ export default function TableFromDebts(lang) {
             <th scope="col" className="px-3 py-1">
               {langg.components.debts.name[0]}
             </th>
-            <th scope="col" className="px-3 py-1">
-            {langg.components.debts.relationship[0]}
-            </th>
+            
             <th scope="col" className="px-3 py-1">
             {langg.components.debts.mountToPay[0]}
             </th>
@@ -142,7 +140,7 @@ export default function TableFromDebts(lang) {
                 >
                   {debtsAccounts.name}
                 </th>
-                <td className="px-2 py-1">{debtsAccounts.relationship}</td>
+                
                 <td className="px-2 py-1">{debtsAccounts.mount.toFixed(2)}</td>
                 <td className="px-2 py-1">{debtsAccounts.paid.toFixed(2)}</td>
                 <td className="px-2 py-1">
