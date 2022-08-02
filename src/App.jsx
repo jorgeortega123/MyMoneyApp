@@ -68,7 +68,7 @@ function App() {
     setfrase(phrases.es[arr]);
   };
 
-  if (endServerRes === false) {
+  if (endServerRes === true) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
