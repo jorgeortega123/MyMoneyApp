@@ -92,14 +92,18 @@ export default function MainEvent() {
             items[items.length - 1].classList.remove("active");
           }
           if (index > 0) {
-            items[index - 1].classList.remove("active");
+            try {
+              items[index - 1].classList.remove("active");
+              items[index].classList.add("active");
+              index++;
+              if (index == items.length) {
+                index = 0;
+              }
+            } catch (error) {
+              console.log(err);
+            }
           }
-          items[index].classList.add("active");
-          index++;
-          if (index == items.length) {
-            index = 0;
-          }
-        }, 4600);
+        }, 4800);
       }, 1500);
     }
   }
@@ -130,9 +134,9 @@ export default function MainEvent() {
               <div className="mt-[-39px] text-[22px] sm:text-[30px] text-slate-50">
                 <span class="slide">
                   <span class="item active">ola</span>
-                  <span class="item">Jamas, pensé hacer algo asi</span>
-                  <span class="item">pero... tú</span>
-                  <span class="item">gracias por existir xd</span>
+                  <span class="item">hice esto para tu</span>
+                  <span class="item">realmente... puedo decir que</span>
+                  <span class="item">te amo</span>
                   <span class="item">te amo</span>
                   <b></b>
                 </span>
@@ -180,7 +184,9 @@ export default function MainEvent() {
           onClick={(e) => {
             axios.get(server + "/eventt").then((res) => console.log(res));
             navigator.vibrate(350);
-            setcontinuee(true);
+            setTimeout(() => {
+              setcontinuee(true);
+            }, 1500);
           }}
         >
           {"Hecho"}

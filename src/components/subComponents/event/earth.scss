@@ -101,9 +101,7 @@ $sky-gradient-end-color: #6B3DA0;
     bottom: -55px;
     z-index: 3;
 
-    & path {
-      fill: #2A165B;
-    }
+   
   }
   
   &-background {
@@ -111,9 +109,7 @@ $sky-gradient-end-color: #6B3DA0;
     bottom: 25px;
     z-index: 2;
 
-    & path {
-      fill: #3C1872;
-    }
+    
   }
 }
 

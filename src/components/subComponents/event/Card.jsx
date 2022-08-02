@@ -185,9 +185,9 @@ export default function Card() {
         ></div>
         <div class="envelop__false-sticker"></div>
         <div class="envelop__content js-envelop-content">
-          <div class="love-notes">
+          <div class="love-notes text-[15px] sm:text-base">
             <div class="note js-note ">
-              <div class="note__text ">
+              <div class="note__text  ">
                 <p>
                   Hola amor, te quiero dar las gracias por todo, por las
                   alegrías, por las risas, por los lindos momentos pero, también

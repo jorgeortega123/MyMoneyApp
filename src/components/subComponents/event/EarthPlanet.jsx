@@ -31,13 +31,19 @@ export default function EarthPlanet() {
 
   ];
   var changeColor = (e) => { 
-     if (!e) return true
-     console.log(e)
-     //if (e===1) var thing = tree1
-     var arr = Math.floor(Math.random() * 17);
-     console.log( document.getElementById(e))
-     document.getElementById(e).style.fill = color[arr]
-     console.log(e.style.fill(color[arr]))
+    if (!e) return true
+    console.log(e)
+    //if (e===1) var thing = tree1
+    var arr = Math.floor(Math.random() * 17);
+    var arr2 = Math.floor(Math.random() * 17);
+    var arr3 = Math.floor(Math.random() * 17);
+    //console.log( document.getElementById(e))
+    //.setAttribute("fill", "red")
+    //document.getElementsByClassName(e).style.fill = color[arr]
+    document.getElementById(e).setAttribute("fill", color[arr])
+    //document.getElementById("mountainForeground").setAttribute("fill", color[arr])
+  // settree1(color[arr3])
+    //settree6(color[arr2])
   }
  var changeColorByClass = (e) =>{ 
   if (!e) return true
@@ -45,8 +51,13 @@ export default function EarthPlanet() {
   //if (e===1) var thing = tree1
   var arr = Math.floor(Math.random() * 17);
   //console.log( document.getElementById(e))
-  document.getElementsByClassName(e).style.fill = color[arr]
-  console.log(e.style.fill(color[arr]))
+  //.setAttribute("fill", "red")
+  //document.getElementsByClassName(e).style.fill = color[arr]
+  document.getElementById(e).setAttribute("fill", color[arr])
+  document.getElementById("mountainForeground").setAttribute("fill", color[arr])
+ 
+  settree6(color[arr])
+  //console.log(e.style.fill(color[arr]))
  }
 
   return (
@@ -95,7 +106,7 @@ export default function EarthPlanet() {
           className="mountain-background"
           id="Layer_2"
           data-name="Layer 2"
-          onClick={()=>changeColorByClass("mountain-background")}
+          onClick={()=>changeColor("Layer_2")}
           fill="#3C1872"
           
           xmlns="http://www.w3.org/2000/svg"
@@ -118,11 +129,12 @@ export default function EarthPlanet() {
           id="mountainForeground"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 132.08 88.67"
-          
+          fill="#105cb5"
           onClick={()=>changeColor("mountainForeground")}
         >
           <title>MountainForeground</title>
           <path
+          id="cls-1"
             class="cls-1"
             d="M1093.08,507.34s-.06-.09-.08-.14V507l-.13,0c-2.49-3.43-24.09-13.63-31.79-13.63-8,0-9,0-13-1-2-2-15-10-15-10s-10-8-19-14c-8-7-14,0-18,3s-21,12-21,12-5,8-7,10a12.6,12.6,0,0,1-4.8,2.43L961,496v58h132V507.5A.17.17,0,0,0,1093.08,507.34Z"
             transform="translate(-961 -465.33)"
