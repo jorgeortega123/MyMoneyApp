@@ -74,9 +74,11 @@ export const PieDiagramHome = (dataPie) => {
               transition={{
                 duration: 2,
               }}
+             
             >
               {followPage ? (
                 <PieChart
+                className="piechartToEdit "
                   animation
                   animationDuration={1500}
                   animationEasing="ease-out"

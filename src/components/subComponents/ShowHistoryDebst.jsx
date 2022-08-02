@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import useMessageContext from "../../context/Modal/useMessageContext";
 import useGlobalContext from "../../context/useGlobalContext";
 export default function ShowHistoryDebst(nameUser) {
+  const { message } = useMessageContext();
+     const { context } = useGlobalContext();
+  const [history, sethistory] = useState(context.data.historyDebst)
+  useEffect(() => {
+    sethistory(context.data.historyDebst)
+    
+  }, [nameUser])
+  
      if (!nameUser) {return false} 
 
-     const { message } = useMessageContext();
-     const { context } = useGlobalContext();
-     const history= context.data.historyDebst
+     
+     //const history= context.data.historyDebst
      console.log(history)
      if (history==={}) return <p>No hay nada que mostrar</p> 
      if (history===undefined) return <p>No hay nada que mostrar</p> 
@@ -15,6 +22,12 @@ export default function ShowHistoryDebst(nameUser) {
      var s = a - b;
      return s.toFixed(2);
    };
+   setTimeout(() => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  }, 100);
     return (
     <div><table className="w-full text-sm text-left text-gray-500 mt-2 ">
           <thead className="text-[12px]  text-gray-700 uppercase bg-gray-50 ">

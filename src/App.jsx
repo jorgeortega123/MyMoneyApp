@@ -48,7 +48,8 @@ function App() {
       if (context.endServerRes === true) {
         if (dayName === "Sun") {
           axios.post(context.server + "/newContabilitie", {
-            name: localStorage.getItem("token"), reset: true, 
+            name: localStorage.getItem("token"),
+            reset: true,
           });
         }
         setloginValidation(localStorage.getItem("token"));
@@ -67,7 +68,7 @@ function App() {
     setfrase(phrases.es[arr]);
   };
 
-  if (endServerRes === true) {
+  if (endServerRes === false) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
@@ -181,7 +182,41 @@ function App() {
     }
   } else {
     return (
-      <div className="flex items-center justify-center">
+      <div className="w-scree h-screen flex flex-col justify-center items-center">
+        <div className="ml-3">Cargando datos...</div>
+      <div class="boxes">
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      </div>
+    );
+  }
+}
+
+/*
+<div className="flex items-center justify-center">
         <div className="pt-12 mr-auto ml-auto animate-pulse">
           <SpinnerInfinity
             size={200}
@@ -211,8 +246,7 @@ function App() {
           </div>
         </div>
       </div>
-    );
-  }
-}
+
+*/
 
 export default App;
