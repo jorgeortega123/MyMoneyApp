@@ -47,14 +47,16 @@ function App() {
     if (context.data != undefined) {
       if (context.endServerRes === true) {
         if (dayName === "Sun") {
-          axios.post(context.server + "/newContabilitie", {
+          if (context.isValueSunday===false ) {
+            axios.post(context.server + "/newContabilitie", {
             name: localStorage.getItem("token"),
             reset: true,
           });
+          } 
         }
         setloginValidation(localStorage.getItem("token"));
         console.log(context.data.name);
-        frases();
+        //frases();
         setendServerRes(true);
       }
     }

@@ -13,9 +13,14 @@ export function GlobalContextComponent({ children }) {
 
     
     //
+    var d = new Date();
+    var dayName = d.toString().split(" ")[0];
     axios
       .post(server + "/money", {
         name: localStorage.getItem("token"),
+        date: { 
+          day: dayName
+        }
       })
       .then((res) => {
         setglobalDataa(res.data);
