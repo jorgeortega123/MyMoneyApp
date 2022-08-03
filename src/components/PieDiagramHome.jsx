@@ -12,8 +12,8 @@ export const PieDiagramHome = (dataPie) => {
 
   //console.log(context.update());
   useEffect(() => {
-    console.log(context);
-    console.log(context.data);
+    //console.log(context);
+    //console.log(context.data);
     const principalRes = context.data;
     const perWeek = principalRes.perWeek;
     const sum = principalRes.cost[0].fixed.reduce((accumulator, object) => {

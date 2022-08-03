@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import AddIncomingCash from "./AddIncomingCash";
 import TableFromDebts from "./subComponents/TableFromDebts";
@@ -9,11 +9,18 @@ import useMessageContext from "../context/Modal/useMessageContext";
 
 export default function AddMoveCash(lang) {
   const { context } = useGlobalContext();
-  console.log(context)
+  //console.log(context)
   const server = context.server;
   const langg = lang.lang;
   const { message } = useMessageContext();
-
+  useEffect(() => {
+    message({
+      type: "success",
+      title: "Bienvenido de nuevo " + context.data.name ,
+      description: "Tus finanzas están actualizadas" 
+    });
+  }, [])
+  
   //console.log(context.update());
 
   const [clickedSelect, setclickedSelect] = useState(null);

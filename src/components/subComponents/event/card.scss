@@ -164,7 +164,8 @@ $fi-color: #e2e2e2;
   }
   &:nth-child(3):hover {
     cursor: pointer;
-    height: 140%;
+    bottom: 20%;
+    height: 180%;
   }
   &:hover {
     cursor: pointer;
@@ -195,5 +196,5 @@ $fi-color: #e2e2e2;
 }*/
 
 .cursor {
-  cursor: pointer;
+  cursor: active;
 }

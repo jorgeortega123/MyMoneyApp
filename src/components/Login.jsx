@@ -77,7 +77,10 @@ export default function Login() {
       <div className="p-3 border rounded-xl bg-[rgba(255,255,255,.1)]">
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl  backdrop-blur-xl 	">
           <h1 className="text-2xl font-bold text-center">Login</h1>
-       
+        <form onSubmit={(e)=>{ 
+          e.preventDefault()
+          sendData()
+        }}>
           <div className="space-y-1 text-sm">
             <label for="username" className="block ">
               Username
@@ -106,18 +109,18 @@ export default function Login() {
             <div className="flex justify-end text-xs ">
               <a rel="noopener noreferrer">Forgot Password?</a>
             </div>
-            <div className="h-3">
+            <div className="h-7">
               <p className=" text-red-200 p-0 m-0">{messageAboutLogin}</p>
             </div>
           </div>
        
           <button
             onClick={() => sendData()}
-            className="block w-full p-3 text-center  bg-slate-200 hover:bg-slate-300  border border-slate-500 hover:border-slate-700 rounded-full"
+            className=" block w-full p-3 text-center  bg-slate-200 hover:bg-slate-300  border border-slate-500 hover:border-slate-700 rounded-full"
           >
             {textOfBotton}
           </button>
-
+          </form>
           <div className="flex items-center pt-4 space-x-1">
             <div className="flex-1 h-px sm:w-16 "></div>
             <p className="px-3 text-sm ">Login with social accounts</p>

@@ -206,13 +206,13 @@ export default function Card() {
               </div>
             </div>
             <div class="note js-note">
-              <div class="note__text">
+              <div class="note__text ">
                 <p>
                   En verdad te amo y se que podemos lograrlo, y lo intentare
                   hasta que ya no este en mis manos, porque no estoy contigo por
                   necesidad ni por superficialidad, estoy contigo por elección.
                 </p>
-                <p>Te amo mensa &hearts;.</p>
+                <p>Te amo oe &hearts;.</p>
               </div>
             </div>
           </div>

@@ -12,7 +12,7 @@ export default function DetailsExpendsWeek(lang) {
   const [maxFixedAndVariables, setmaxFixedAndVariables] = useState();
   const langg = lang.lang;
   useEffect(() => {
-    console.log(context);
+    //console.log(context);
     const toWork = context.data;
 
     const aboutTo = () => {

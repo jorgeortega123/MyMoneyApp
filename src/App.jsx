@@ -30,7 +30,7 @@ function App() {
   const [serverResponsive, setserverResponsive] = useState();
   const [endServerRes, setendServerRes] = useState(false);
   const [finalLang, setfinalLang] = useState(lang.es);
-  const [langByUser, setlangByUser] = useState("en");
+  const [langByUser, setlangByUser] = useState("es");
   const [falsetrue, setfalsetrue] = useState(false);
   const [langFromBotton, setlangFromBotton] = useState(lang.en);
   const [loginValidation, setloginValidation] = useState(false);
@@ -38,12 +38,19 @@ function App() {
   const [frase, setfrase] = useState("...");
   ///////
   useEffect(() => {
+    if (langByUser === "en") {
+      setfinalLang(lang.es);
+      setlangByUser("es");
+    } else if (langByUser === "es") {
+      setfinalLang(lang.en);
+      setlangByUser("en");
+    }
     var d = new Date();
     var dayName = d.toString().split(" ")[0];
-    var monthDay = d.toString().split(" ")[1];
-    var numberDay = d.toString().split(" ")[2];
-    var yearDay = d.toString().split(" ")[3];
-    console.log(context.data);
+    //var monthDay = d.toString().split(" ")[1];
+    //var numberDay = d.toString().split(" ")[2];
+    //var yearDay = d.toString().split(" ")[3];
+    //console.log(context.data);
     if (context.data != undefined) {
       if (context.endServerRes === true) {
         if (dayName === "Sun") {
@@ -55,9 +62,13 @@ function App() {
           } 
         }
         setloginValidation(localStorage.getItem("token"));
-        console.log(context.data.name);
         //frases();
         setendServerRes(true);
+       /* message({
+          type: "success",
+          title: "Bienvenido de nuevo " + context.data.name ,
+          description: "Hoy dia estamos:  " + monthDay 
+        });*/
       }
     }
   }, [context.endServerRes]);
@@ -101,7 +112,7 @@ function App() {
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
-                    class="bi bi-three-dots fill-slate-800 active:fill-slate-50"
+                    className="bi bi-three-dots fill-slate-800 active:fill-slate-50"
                     viewBox="0 0 16 16"
                   >
                     <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />{" "}
@@ -184,70 +195,42 @@ function App() {
     }
   } else {
     return (
-      <div className="w-scree h-screen flex flex-col justify-center items-center">
-        <div className="ml-3">Cargando datos...</div>
-      <div class="boxes">
-        <div class="box">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="box">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="box">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="box">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-      </div>
-    );
-  }
-}
+      <div className="flex items-center justify-center">
+      <div className="pt-12 mr-auto ml-auto animate-pulse">
+        <SpinnerInfinity
+          size={200}
+          thickness={50}
+          сolor={"#a384649a"}
+          secondaryColor="rgba(0,0,0,0.24)"
+          speed={120}
+        />
+        <div className="text-center">
+          <p className="pt-4 text-slate-600">{"Procesando datos"}</p>
+          <div class="animate-pulse flex space-x-4 pt-3">
+            <div class="flex-1 space-y-6 py-1">
+              <div class="h-2 bg-slate-300 rounded"></div>
+              <div class="space-y-3">
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="h-2 bg-slate-300 rounded col-span-2"></div>
 
-/*
-<div className="flex items-center justify-center">
-        <div className="pt-12 mr-auto ml-auto animate-pulse">
-          <SpinnerInfinity
-            size={200}
-            thickness={50}
-            сolor={"#00ff89"}
-            secondaryColor="rgba(0,0,0,0.24)"
-            speed={120}
-          />
-          <div className="text-center">
-            <p className="pt-4 text-slate-600">Estableciendo conexión</p>
-            <div class="animate-pulse flex space-x-4 pt-3">
-              <div class="flex-1 space-y-6 py-1">
-                <div class="h-2 bg-slate-300 rounded"></div>
-                <div class="space-y-3">
-                  <div class="grid grid-cols-3 gap-4">
-                    <div class="h-2 bg-slate-300 rounded col-span-2"></div>
-
-                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
-                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
-                    <div class="h-2 bg-slate-300 rounded col-span-2"></div>
-                  </div>
-                  <div class="h-2 bg-slate-300 rounded"></div>
-                  <div class="h-2 bg-slate-300 rounded"></div>
+                  <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                  <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                  <div class="h-2 bg-slate-300 rounded col-span-2"></div>
                 </div>
+                <div class="h-2 bg-slate-300 rounded"></div>
+                <div class="h-2 bg-slate-300 rounded"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    );
+  }
+}
+
+/*
+
 
 */
 

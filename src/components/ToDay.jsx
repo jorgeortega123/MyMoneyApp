@@ -22,7 +22,7 @@ export default function () {
   useEffect(() => {
     settoDayCosts([]);
     setcashWasted(0);
-    console.log("a");
+    //console.log("a");
     context.data.history.today.map((e) => {
       if (e.day === dayName && e.id === idOfCost) {
         console.log(e);
