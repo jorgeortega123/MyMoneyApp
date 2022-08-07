@@ -1,0 +1,208 @@
+
+#draw {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: calc(100vh - 20px);
+  svg {
+    min-height: 100vh;
+  }
+  * {
+    transform-origin: center;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: 20s;
+  }
+
+  #land1 {
+    transform: translateY(-10%) scale(1.3);
+    animation-name: anim1;
+  }
+  #land2,
+  #whitesun {
+    transform: translateY(-8%) scale(1.2);
+    animation-name: anim2;
+  }
+  #land3 {
+    transform: translateY(-10%) scale(1.3);
+    animation-name: anim3;
+  }
+  #c-left1,
+  #c-left2,
+  #c-left3 {
+    transform: translateX(-20%) translateY(-10%) scale(1.5);
+    opacity: 0.01;
+    animation-name: anim4;
+  }
+  #c-right1,
+  #c-right2,
+  #c-right3 {
+    transform: translateX(20%) translateY(-10%) scale(1.5);
+    opacity: 0.01;
+    animation-name: anim5;
+  }
+  #baloons,
+  #birds-paradise {
+    transform: translateX(-5%) translateY(-5%) scale(1.2);
+    animation-name: anim6;
+  }
+  #birds {
+    transform: translateX(5%) translateY(-5%) scale(1.2);
+    animation-name: anim7;
+  }
+  #sky {
+    transform: translateY(30%);
+    animation-name: anim8;
+  }
+  #whitesun > path {
+    opacity: 0.5;
+    animation-name: anim9;
+  }
+
+  @keyframes anim1 {
+    from {
+      transform: translateY(-10%) scale(1.3);
+    }
+    to {
+      transform: translateX(0%) translateY(0%) scale(1);
+    }
+  }
+  @keyframes anim2 {
+    from {
+      transform: translateY(-8%) scale(1.2);
+    }
+    to {
+      transform: translateX(0%) translateY(0%) scale(1);
+    }
+  }
+  @keyframes anim3 {
+    from {
+      transform: translateY(-10%) scale(1.3);
+    }
+    to {
+      transform: translateX(0%) translateY(0%) scale(1);
+    }
+  }
+  @keyframes anim4 {
+    from {
+      transform: translateX(-20%) translateY(-10%) scale(1.5);
+      opacity: 0.01;
+    }
+    to {
+      transform: translateX(0%) translateY(0%) scale(1);
+      opacity: 0.15;
+    }
+  }
+  @keyframes anim5 {
+    from {
+      transform: translateX(20%) translateY(-10%) scale(1.5);
+      opacity: 0.01;
+    }
+    to {
+      transform: translateX(0%) translateY(0%) scale(1);
+      opacity: 0.15;
+    }
+  }
+  @keyframes anim6 {
+    from {
+      transform: translateX(-5%) translateY(-5%) scale(1.2);
+    }
+    to {
+      transform: translateX(0%) translateY(0%) scale(1);
+    }
+  }
+  @keyframes anim7 {
+    from {
+      transform: translateX(5%) translateY(-5%) scale(1.2);
+    }
+    to {
+      transform: translateX(0%) translateY(0%) scale(1);
+    }
+  }
+  @keyframes anim8 {
+    from {
+      transform: translateY(30%);
+    }
+    to {
+      transform: translateY(0%);
+    }
+  }
+  @keyframes anim9 {
+    from {
+      opacity: 0.2;
+    }
+    to {
+      opacity: 0.5;
+    }
+  }
+}
+
+
+ .circle,
+ .loader {
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   -ms-box-sizing: border-box;
+   box-sizing: border-box;
+ }
+ .container {
+   margin: 2em auto;
+ }
+ .circle {
+   width: 6.75em;
+   height: 6.75em;
+   border: 0.375em solid #b354bf;
+   border-radius: 50%;  
+   box-shadow: inset 1px 0 1px #a4a2a3;
+   margin: 0 auto;
+   position: relative;
+ }
+ .circle:after {
+   content: "";
+   width: 2.25em;
+   height: 2.25em;
+   border-radius: 50%;  
+   background: #ffffff;
+   position: absolute;
+   top:0; bottom:0; left: 50%;
+   margin: auto auto auto -1.125em;
+ }
+ .loader {
+   width: 5em;
+   height: 5em;
+   background: #85303000;
+   box-shadow: inset 1px 0 1px #a4a2a3;
+   border-radius: 50%;
+   position: absolute;
+   top:0; bottom:0; left: 50%;
+   margin: auto auto auto -2.5em;
+ }
+ .loader:after {
+   content: "";  
+   border: 2.5em solid rgb(191, 84, 155);
+   border-top: 2.5em solid rgba(0,0,0,0);
+   border-left: 2.5em solid rgba(0,0,0,0);
+   border-radius: 50%;
+   position: absolute;
+   top:0; bottom:0;
+   margin: auto;
+   animation: spinn .5s infinite linear;
+ }
+ @keyframes spinn {
+     0% {
+       transform: rotate(0deg);
+     }
+     100% {
+       transform: rotate(360deg);
+     }
+ }
+ .dribbble {
+   font: 0.75em/1.5em verdana,sans-serif;
+   color: #547dbf;
+   position: absolute;
+   bottom: 1.5em; right: 1.5em;
+ }
