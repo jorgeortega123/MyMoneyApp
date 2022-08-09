@@ -87,7 +87,7 @@ export default function MainEvent() {
         ///
         // function([string1, string2],target id,[color1,color2])
         consoleText(
-          ["Hello World.", "Console Text", "Made with Love."],
+          ["Ola", "Hice esto para ti", "Hecho con amor", "Te amo"],
           "text",
           ["tomato", "rebeccapurple", "lightblue"]
         );
@@ -155,7 +155,7 @@ export default function MainEvent() {
         exit={{ opacity: 0 }}
         boxShadow={"10px 10px 0 rgba(0, 0, 0, 0.2)"}
         transition={{
-          duration: 4,
+          duration: 2,
         }}
         className="relative overflow-hidden bg-black w-full h-screen"
       >
@@ -166,24 +166,22 @@ export default function MainEvent() {
             </div>
           </div>
         ) : (
-          <> 
-          <div className="relative bg-transparent">
-            <div className="absolute z-[1] w-screen h-screen flex items-center  justify-center  bg-transparent">
-              <div className=" text-[22px] sm:text-[30px] text-slate-50 bg-transparent">
-                <div class="console-container bg-transparent">
+          <>
+
+              <div className="relative w-screen h-screen flex items-center justify-center  bg-transparent">
+                 <div className="w-full h-full"><Neon /></div>
+                <div class="absolute console-container text-[22px] w-full  ml-[-22px] sm:text-[42px] text-slate-50 flex justify-center items-center  ">
                   <span
                     id="text"
-                    className="text-[40px] sm:text-[60px] bg-transparent "
+                    className="text-[40px] sm:text-[60px] bg-transparent items-center "
                   ></span>
                   <div class="console-underscore bg-transparent" id="console">
                     &#95;
                   </div>
                 </div>
               </div>
-            </div>
-            <Neon />
 
-          </div></>
+          </>
         )}
         <AnimatePresence>
           {!finalHearth && (
@@ -195,9 +193,7 @@ export default function MainEvent() {
                 duration: 3,
               }}
               className="bg-transparent"
-            >
-              <Neon />
-            </motion.div>
+            ></motion.div>
           )}
         </AnimatePresence>
         <AnimatePresence>
@@ -219,23 +215,24 @@ export default function MainEvent() {
     );
   } else {
     return (
-    <><Hearth />
-      <div className="absolute overflow-x-hidden w-full h-screen bg-[#1d151598] backdrop-blur-[2px] flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-300">
-
-        <p className="text-slate-50 ">Ajusta la pantalla</p>
-        <button
-          className="mt-4 w-max h-9  px-5 mb-2 font-medium text-gray-100 focus:outline-none bg-transparent rounded-full border border-gray-900 hover:bg-red-400 hover:text-blue-500 focus:z-10 focus:ring-1 focus:ring-gray-900    "
-          onClick={(e) => {
-            axios.get(server + "/eventt").then((res) => console.log(res));
-            navigator.vibrate(350);
-            setTimeout(() => {
-              setcontinuee(true);
-            }, 1500);
-          }}
-        >
-          {"Hecho"}
-        </button>
-      </div></>
+      <div className="relative overflow-x-hidden w-screen h-screen bg-[#1d151598] backdrop-blur-[2px] flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-300">
+        <Hearth />
+        <div className="absolute justify-center flex flex-col items-center">
+          <p className="text-slate-900 text-[20px]">Ajusta la pantalla</p>
+          <button
+            className="mt-4 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border border-gray-900  hover:text-blue-900 focus:z-10 focus:ring-[2px] focus:ring-gray-900    "
+            onClick={(e) => {
+              //axios.get(server + "/eventt").then((res) => console.log(res));
+              navigator.vibrate(350);
+              setTimeout(() => {
+                setcontinuee(true);
+              }, 1500);
+            }}
+          >
+            {"Hecho"}
+          </button>
+        </div>
+      </div>
     );
   }
 }
