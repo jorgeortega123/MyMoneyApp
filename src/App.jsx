@@ -84,6 +84,8 @@ function App() {
     setfrase(phrases.es[arr]);
   };
   const MainScreen = () => {
+  };
+  //<
     if (endServerRes === true) {
       if (loginValidation) {
         return (
@@ -233,10 +235,7 @@ function App() {
           </div>
         </div>
       );
-    }
-  };
-  //<
-  return (
+    }/*
     <Router>
       <Routes>
         <Route path="/" element={<MainScreen />}></Route>  
@@ -246,11 +245,11 @@ function App() {
           <Route path="blogs" element={<Blogs />} />
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} />
-            */}
+            }
         <Route path="/event" element={<Event />} />
       </Routes>
     </Router>
-  );
+  );*/
 }
 
 /*

@@ -1,36 +1,26 @@
-.slide {
-	white-space: nowrap;
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+
+.hidden {
+  opacity:0;
 }
-.slide .item {
-	position: relative;
-	display: none;
-	overflow: hidden;
-	white-space: nowrap;
-	vertical-align: bottom;
-     width: 100px;
+.console-container {
+  background: transparent;
+  font-family:Khula;
+  text-align:center;
+  height:200px;
+  width:600px;
+  display:block;
+  position:absolute;
+  color:rgb(255, 255, 255);
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
 }
-.slide .item.active {
-	display: inline-block;
-	animation: slideInOut 2.4s ease-in-out 0s 2 alternate both running;
+.console-underscore {
+   display:inline-block;
+  position:relative;
+  top:-0.14em;
+  left:10px;
 }
-.slide b {
-	border-left: 0px solid rgba(255, 255, 255, 0.651);
-	vertical-align: top;
-}
-@keyframes slideInOut {
-	from {
-		width: 0%;
-	}
-	to {
-		width: 100%;
-	}
-}
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,7 @@
 .neonCssNeed {
-     background-color: #000;    
+     position: absolute;
+     z-index: 0;
+     background-color: transparent;    
      margin: 0;
      overflow: hidden;
      background-repeat: no-repeat;

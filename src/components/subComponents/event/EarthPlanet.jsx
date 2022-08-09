@@ -129,7 +129,7 @@ export default function EarthPlanet() {
           id="mountainForeground"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 132.08 88.67"
-          fill="#105cb5"
+          fill="#2A165B"
           onClick={()=>changeColor("mountainForeground")}
         >
           <title>MountainForeground</title>

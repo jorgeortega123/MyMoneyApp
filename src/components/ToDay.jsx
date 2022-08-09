@@ -32,6 +32,7 @@ export default function () {
     });
     //setshowTable(true)
     //
+    console.log(toDayCosts)
   }, [context.data]);
 
   if (cashWasted === 0) {

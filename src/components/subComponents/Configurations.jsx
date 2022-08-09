@@ -39,15 +39,15 @@ export default function Configurations(data) {
       });
   };
   return (
-    <div className="fixed w-full h-screen flex justify-center z-[3000] py-14 top-0">
-      <div className="overflow-auto flex justify-center p-4  w-[280px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
+    <div className="fixed w-full h-screen flex justify-center z-[39] py-14 top-0">
+      <div className="overflow-auto flex justify-center p-4 sm:w-[280px] w-[250px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
         <div className="flex flex-col">
           <div className="flex justify-between ">
             <p className="text-[15px]">Configuración</p>
             <div>
             <button
               type="button"
-              class="ml-auto -mx-1.5 -my-1.5 bg-red-200 text-red-500 rounded-lg focus:ring-1 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 "
+              className="ml-auto -mx-1.5 -my-1.5 bg-red-200 text-red-500 rounded-lg focus:ring-1 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 "
               data-dismiss-target="#alert-1"
               aria-label="Close"
               onClick={()=>context.showConfiguration(false)}
@@ -83,7 +83,7 @@ export default function Configurations(data) {
                 {JSON.stringify(context.data)}
               </textarea>
               <button
-                className="mt-2 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+                className="mt-2 w-max h-9  px-5 mb-2 sm:font-medium font-[12px] text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
                 onClick={(e) =>
                   navigator.clipboard.writeText(JSON.stringify(context.data))
                 }
@@ -91,7 +91,7 @@ export default function Configurations(data) {
                 {"Copiar mis datos"}
               </button>
               <button
-                className="mt-2 w-full h-max  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+                className="mt-2 w-full h-max  px-5 mr-2 mb-2 sm:font-medium font-[10px] text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
                 onClick={() => securityCopy()}
               >
                 Hacer copia de seguridad de los datos

@@ -6,14 +6,14 @@ import MainEvent from "./subComponents/event/MainEvent";
 import { useNavigate } from "react-router-dom";
 import Wave from "../UI/Wave";
 export default function Login() {
-  let navigate = useNavigate()
+  //let navigate = useNavigate()
   const [user, setuser] = useState();
   const [password, setpassword] = useState();
   const [textOfBotton, settextOfBotton] = useState("Log in");
   const [successLogin, setsuccessLogin] = useState(false);
   const [messageAboutLogin, setmessageAboutLogin] = useState();
   //// CHANGE TO FALSE
-  const [event, setEvent] = useState(false);
+  const [event, setEvent] = useState(true);
 
   ////
   const { context } = useGlobalContext();
@@ -30,7 +30,8 @@ export default function Login() {
       return true;
     }
     if (password === "812" && user === "Danna") {
-      navigate("/event", { replace: true })
+      setEvent(true)
+      //navigate("/event", { replace: true })
     }
 
     axios

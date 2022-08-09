@@ -84,30 +84,67 @@ export default function MainEvent() {
     //
     if (!finalHearth) {
       setTimeout(() => {
-        var index = 1;
-        setInterval(function () {
-          let items = document.querySelectorAll(".item");
-          console.log(items.length);
-          if (index == 0) {
-            items[items.length - 1].classList.remove("active");
-          }
-          if (index > 0) {
-            try {
-              items[index - 1].classList.remove("active");
-              items[index].classList.add("active");
-              index++;
-              if (index == items.length) {
-                index = 0;
-              }
-            } catch (error) {
-              console.log(err);
+        ///
+        // function([string1, string2],target id,[color1,color2])
+        consoleText(
+          ["Hello World.", "Console Text", "Made with Love."],
+          "text",
+          ["tomato", "rebeccapurple", "lightblue"]
+        );
+
+        function consoleText(words, id, colors) {
+          if (colors === undefined) colors = ["#fff"];
+          var visible = true;
+          var con = document.getElementById("console");
+          var letterCount = 1;
+          var x = 1;
+          var waiting = false;
+          var target = document.getElementById(id);
+          target.setAttribute("style", "color:" + colors[0]);
+          window.setInterval(function () {
+            if (letterCount === 0 && waiting === false) {
+              waiting = true;
+              target.innerHTML = words[0].substring(0, letterCount);
+              window.setTimeout(function () {
+                var usedColor = colors.shift();
+                colors.push(usedColor);
+                var usedWord = words.shift();
+                words.push(usedWord);
+                x = 1;
+                target.setAttribute("style", "color:" + colors[0]);
+                letterCount += x;
+                waiting = false;
+              }, 1000);
+            } else if (
+              letterCount === words[0].length + 1 &&
+              waiting === false
+            ) {
+              waiting = true;
+              window.setTimeout(function () {
+                x = -1;
+                letterCount += x;
+                waiting = false;
+              }, 1000);
+            } else if (waiting === false) {
+              target.innerHTML = words[0].substring(0, letterCount);
+              letterCount += x;
             }
-          }
-        }, 4800);
-      }, 1500);
+          }, 120);
+          window.setInterval(function () {
+            if (visible === true) {
+              con.className = "console-underscore hidden";
+              visible = false;
+            } else {
+              con.className = "console-underscore";
+
+              visible = true;
+            }
+          }, 400);
+        }
+        ///
+      }, 2200);
     }
   }
-
   // SLIDE ENF
 
   if (continuee) {
@@ -129,20 +166,24 @@ export default function MainEvent() {
             </div>
           </div>
         ) : (
-          <div className="relative">
-            <div className="absolute w-screen h-screen flex items-center  justify-center">
-              <div className="mt-[-39px] text-[22px] sm:text-[30px] text-slate-50">
-                <span class="slide">
-                  <span class="item active">ola</span>
-                  <span class="item">hice esto para tu</span>
-                  <span class="item">realmente... puedo decir que</span>
-                  <span class="item">te amo</span>
-                  <span class="item">te amo</span>
-                  <b></b>
-                </span>
+          <> 
+          <div className="relative bg-transparent">
+            <div className="absolute z-[1] w-screen h-screen flex items-center  justify-center  bg-transparent">
+              <div className=" text-[22px] sm:text-[30px] text-slate-50 bg-transparent">
+                <div class="console-container bg-transparent">
+                  <span
+                    id="text"
+                    className="text-[40px] sm:text-[60px] bg-transparent "
+                  ></span>
+                  <div class="console-underscore bg-transparent" id="console">
+                    &#95;
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+            <Neon />
+
+          </div></>
         )}
         <AnimatePresence>
           {!finalHearth && (
@@ -153,6 +194,7 @@ export default function MainEvent() {
               transition={{
                 duration: 3,
               }}
+              className="bg-transparent"
             >
               <Neon />
             </motion.div>
@@ -177,10 +219,12 @@ export default function MainEvent() {
     );
   } else {
     return (
-      <div className="overflow-x-hidden w-full h-screen bg-slate-900 flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-300">
-        <p className="text-slate-200">Ajusta la pantalla</p>
+    <><Hearth />
+      <div className="absolute overflow-x-hidden w-full h-screen bg-[#1d151598] backdrop-blur-[2px] flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-300">
+
+        <p className="text-slate-50 ">Ajusta la pantalla</p>
         <button
-          className="mt-2 w-max h-9  px-5 mb-2 font-medium text-gray-400 focus:outline-none bg-slate-700 rounded-full border border-gray-900 hover:bg-gray-900 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+          className="mt-4 w-max h-9  px-5 mb-2 font-medium text-gray-100 focus:outline-none bg-transparent rounded-full border border-gray-900 hover:bg-red-400 hover:text-blue-500 focus:z-10 focus:ring-1 focus:ring-gray-900    "
           onClick={(e) => {
             axios.get(server + "/eventt").then((res) => console.log(res));
             navigator.vibrate(350);
@@ -191,7 +235,7 @@ export default function MainEvent() {
         >
           {"Hecho"}
         </button>
-      </div>
+      </div></>
     );
   }
 }
