@@ -130,3 +130,18 @@ animation: gradient 6s ease reverse;
             background-position: 100px 0px, 0px 116px, 0px 0px, 216px 150px;
           }
         }
+
+.eneableEffect {
+     position: absolute;
+     overflow: hidden;
+     animation: border-dancee 1.5s infinite linear;
+     background: #000000;
+}
+@keyframes border-dancee {
+     0% {
+       scale: 1.0;
+     }
+     100% {
+       scale: 12.0;
+     }
+   }

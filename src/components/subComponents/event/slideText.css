@@ -6,15 +6,11 @@
 .console-container {
   background: transparent;
   font-family:Khula;
-  height:200px;
-  width:600px;
-  position:absolute;
   color:rgb(255, 255, 255);
   top:0;
   bottom:0;
   left:0;
   right:0;
-  margin:auto;
 }
 .console-underscore {
    display:inline-block;

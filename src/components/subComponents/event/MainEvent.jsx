@@ -49,10 +49,10 @@ export default function MainEvent() {
   const Hearth = () => {
     return (
       <>
-        <div class="back"></div>
-        <div class="love"></div>
-        <div class="love-1"></div>
-        <div class="love-2"></div>
+        <div className="back overflow-hidden "></div>
+        <div className="love "></div>
+        <div className="love-1 "></div>
+        <div className="love-2"></div>
       </>
     );
   };
@@ -170,10 +170,10 @@ export default function MainEvent() {
 
               <div className="relative w-screen h-screen flex items-center justify-center  bg-transparent">
                  <div className="w-full h-full"><Neon /></div>
-                <div class="absolute console-container text-[22px] w-full  ml-[-22px] sm:text-[42px] text-slate-50 flex justify-center items-center  ">
+                <div class="absolute console-container text-[32px] w-full h-full sm:text-[62px] text-slate-50 flex justify-center items-center  text-center">
                   <span
                     id="text"
-                    className="text-[40px] sm:text-[60px] bg-transparent items-center "
+                    className="text-[32px] sm:text-[62px] bg-transparent  items-center "
                   ></span>
                   <div class="console-underscore bg-transparent" id="console">
                     &#95;
@@ -215,8 +215,8 @@ export default function MainEvent() {
     );
   } else {
     return (
-      <div className="relative overflow-x-hidden w-screen h-screen bg-[#1d151598] backdrop-blur-[2px] flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-300">
-        <Hearth />
+      <div className=" relative overflow-hidden w-screen h-screen bg-[#1d151598] backdrop-blur-[2px] flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-300">
+        <div id="asdasd" className="w-full h-full overflow-y-hidden"><Hearth /></div>
         <div className="absolute justify-center flex flex-col items-center">
           <p className="text-slate-900 text-[20px]">Ajusta la pantalla</p>
           <button
@@ -224,6 +224,7 @@ export default function MainEvent() {
             onClick={(e) => {
               //axios.get(server + "/eventt").then((res) => console.log(res));
               navigator.vibrate(350);
+              document.getElementById("asdasd").classList.add("eneableEffect")
               setTimeout(() => {
                 setcontinuee(true);
               }, 1500);
