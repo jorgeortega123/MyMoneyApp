@@ -80,7 +80,7 @@ export default function MainEvent() {
     //
     setTimeout(() => {
       setfinalHearth(true);
-    }, 20500);
+    }, 21500);
     //
     if (!finalHearth) {
       setTimeout(() => {
