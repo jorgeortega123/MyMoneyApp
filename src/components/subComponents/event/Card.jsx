@@ -212,7 +212,7 @@ export default function Card() {
                   hasta que ya no este en mis manos, porque no estoy contigo por
                   necesidad ni por superficialidad, estoy contigo por elección.
                 </p>
-                <p>Te amo oe &hearts;.</p>
+                <p>I &hearts; Danna</p>
               </div>
             </div>
           </div>

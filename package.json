@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.9.3",
     "@mui/material": "^5.8.7",
     "axios": "^0.27.2",
+    "canvasjs-react-charts": "^1.0.5",
     "framer-motion": "^6.4.3",
     "npm": "^8.13.2",
     "react": "^18.0.0",

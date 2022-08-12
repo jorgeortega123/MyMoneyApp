@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { React, useEffect, useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
+import {CanvasJSChart} from 'canvasjs-react-charts'
 import PieDiagramTextInfo from "./PieDiagramTextInfo";
 import { AnimatePresence, motion } from "framer-motion";
 import useGlobalContext from "../context/useGlobalContext";
@@ -41,6 +42,7 @@ export const PieDiagramHome = (dataPie) => {
         allArray.push(array);
       });
       //console.log(sum - perWeek)
+      console.log(dataBasic)
       setdataBasic(allArray);
     };
     model();
@@ -55,6 +57,32 @@ export const PieDiagramHome = (dataPie) => {
   //PARA EL TEXTO EN EL PIECHART
   //label={({ dataEntry }) =>
   // `${dataEntry."title"} ${Math.round(dataEntry.percentage)}%`
+  const options = {
+    exportEnabled: true,
+    animationEnabled: true,
+    title: {
+      text: "Website Traffic Sources"
+    },
+    data: [{
+      type: "pie",
+      startAngle: 75,
+      toolTipContent: "<b>{title}</b>: {value}%",
+      showInLegend: "true",
+      legendText: "{title}",
+      indexLabelFontSize: 16,
+      indexLabel: "{title} - {value}%",
+      dataPoints: [
+        dataBasic
+        /*
+        { y: 18, label: "Direct" },
+        { y: 49, label: "Organic Search" },
+        { y: 9, label: "Paid Search" },
+        { y: 5, label: "Referral" },
+        { y: 19, label: "Social" }
+      */
+      ]
+    }]
+  }
 
   return (
     <Fragment>

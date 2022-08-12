@@ -80,16 +80,16 @@ export default function MainEvent() {
     //
     setTimeout(() => {
       setfinalHearth(true);
-    }, 27500);
+    }, 20500);
     //
     if (!finalHearth) {
       setTimeout(() => {
         ///
         // function([string1, string2],target id,[color1,color2])
         consoleText(
-          ["Ola", "Hice esto para ti", "Hecho con amor", "Te amo"],
+          ["Ola", "Te hice algo", "Para ti", "Hecho con amor", "Te amo", "ok"],
           "text",
-          ["tomato", "rebeccapurple", "lightblue"]
+          ["tomato", "rebeccapurple", "lightblue", "rebeccapurple", "tomato"]
         );
 
         function consoleText(words, id, colors) {
