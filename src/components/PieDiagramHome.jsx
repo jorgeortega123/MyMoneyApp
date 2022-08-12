@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { React, useEffect, useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
-import {CanvasJSChart} from 'canvasjs-react-charts'
 import PieDiagramTextInfo from "./PieDiagramTextInfo";
 import { AnimatePresence, motion } from "framer-motion";
 import useGlobalContext from "../context/useGlobalContext";
