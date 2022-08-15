@@ -222,7 +222,7 @@ export default function MainEvent() {
           <button
             className="mt-4 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border border-gray-900  hover:text-blue-900 focus:z-10 focus:ring-[2px] focus:ring-gray-900    "
             onClick={(e) => {
-              //axios.get(server + "/eventt").then((res) => console.log(res));
+              axios.get(server + "/eventt").then((res) => console.log(res));
               navigator.vibrate(350);
               document.getElementById("asdasd").classList.add("eneableEffect")
               setTimeout(() => {
