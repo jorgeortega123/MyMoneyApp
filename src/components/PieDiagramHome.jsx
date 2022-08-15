@@ -40,6 +40,13 @@ export const PieDiagramHome = (dataPie) => {
       dataToChange.forEach((array) => {
         allArray.push(array);
       });
+      allArray.push({
+        title: "Costos fijos",
+        color: "#79D7EC",
+        value: sum2,
+        cost: 3,
+        max: 4,
+      });
       //console.log(sum - perWeek)
       console.log(dataBasic)
       setdataBasic(allArray);
