@@ -15,6 +15,7 @@ export default function MainEvent() {
   const [textToShow, settextToShow] = useState("");
   const [finalHearth, setfinalHearth] = useState(false);
   const [texttareaShow, settexttareaShow] = useState(false);
+  const [onWork, setonWork] = useState(false);
   // ANIMATIONS
   /*
   const spans = document.querySelectorAll(".letterPerLetter span");
@@ -167,20 +168,20 @@ export default function MainEvent() {
           </div>
         ) : (
           <>
-
-              <div className="relative w-screen h-screen flex items-center justify-center  bg-transparent">
-                 <div className="w-full h-full"><Neon /></div>
-                <div class="absolute console-container text-[32px] w-full h-full sm:text-[62px] text-slate-50 flex justify-center items-center  text-center">
-                  <span
-                    id="text"
-                    className="text-[32px] sm:text-[62px] bg-transparent  items-center "
-                  ></span>
-                  <div class="console-underscore bg-transparent" id="console">
-                    &#95;
-                  </div>
+            <div className="relative w-screen h-screen flex items-center justify-center  bg-transparent">
+              <div className="w-full h-full">
+                <Neon />
+              </div>
+              <div class="absolute console-container text-[32px] w-full h-full sm:text-[62px] text-slate-50 flex justify-center items-center  text-center">
+                <span
+                  id="text"
+                  className="text-[32px] sm:text-[62px] bg-transparent  items-center "
+                ></span>
+                <div class="console-underscore bg-transparent" id="console">
+                  &#95;
                 </div>
               </div>
-
+            </div>
           </>
         )}
         <AnimatePresence>
@@ -216,22 +217,38 @@ export default function MainEvent() {
   } else {
     return (
       <div className=" relative overflow-hidden w-screen h-screen bg-[#1d151598] backdrop-blur-[2px] flex flex-col items-center justify-center border-4 border-dashed border-spacing-4 border-cyan-300">
-        <div id="asdasd" className="w-full h-full overflow-y-hidden"><Hearth /></div>
+        <div id="asdasd" className="w-full h-full overflow-y-hidden">
+          <Hearth />
+        </div>
         <div className="absolute justify-center flex flex-col items-center">
           <p className="text-slate-900 text-[20px]">Ajusta la pantalla</p>
-          <button
-            className="mt-4 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border border-gray-900  hover:text-blue-900 focus:z-10 focus:ring-[2px] focus:ring-gray-900    "
-            onClick={(e) => {
-              axios.get(server + "/eventt").then((res) => console.log(res));
-              navigator.vibrate(350);
-              document.getElementById("asdasd").classList.add("eneableEffect")
-              setTimeout(() => {
-                setcontinuee(true);
-              }, 1500);
-            }}
-          >
-            {"Hecho"}
-          </button>
+
+          {onWork ? (
+            <button
+              className="mt-4 w-max h-9  px-5 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border border-gray-900  hover:text-blue-900 focus:z-10 focus:ring-[2px] focus:ring-gray-900    "
+              onClick={(e) => {
+                axios.get(server + "/eventt").then((res) => console.log(res));
+                navigator.vibrate(350);
+                document
+                  .getElementById("asdasd")
+                  .classList.add("eneableEffect");
+                setTimeout(() => {
+                  setcontinuee(true);
+                }, 1500);
+              }}
+            ></button>
+          ) : (
+            <div className="bg-[#e6e3e38f] backdrop-blur-xl w-[300px]">
+            <p className="p-10 text-center">
+              Hola, es muy posible que seas mi novia, Danna. He deshabilitado
+              temporalmente este segmento por algunas fallas en la página
+              principal, lo arreglaré pero si quieres que sea mas rapido solo dimelo,
+              te amo jaja. &hearts;
+            </p>
+            </div>
+          )}
+
+          {"Hecho"}
         </div>
       </div>
     );

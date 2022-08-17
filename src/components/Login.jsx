@@ -6,17 +6,15 @@ import MainEvent from "./subComponents/event/MainEvent";
 import { useNavigate } from "react-router-dom";
 import Wave from "../UI/Wave";
 export default function Login() {
-  //let navigate = useNavigate()
+  let navigate = useNavigate()
   const [user, setuser] = useState();
   const [password, setpassword] = useState();
   const [textOfBotton, settextOfBotton] = useState("Log in");
   const [successLogin, setsuccessLogin] = useState(false);
   const [messageAboutLogin, setmessageAboutLogin] = useState();
-  //// CHANGE TO FALSE
   const [event, setEvent] = useState(false);
-
-  ////
   const { context } = useGlobalContext();
+  //localStorage.removeItem("token")
   const sendData = () => {
     settextOfBotton("Sending data...");
     if (!user) {
@@ -30,8 +28,7 @@ export default function Login() {
       return true;
     }
     if (password === "812" && user === "Danna") {
-      setEvent(true)
-      //navigate("/event", { replace: true })
+      navigate("/event" + "?eventName=gfLover&name=danna&id=812", { replace: true })
     }
 
     axios
@@ -76,7 +73,7 @@ export default function Login() {
         </motion.p>
       </div>
       <div className="h-screen flex mt-[-40px] justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 ">
-        <div className="p-3 border rounded-xl bg-[#d65d5d1a]">
+        <div className="p-3 border border-green-500 rounded-xl bg-[#d65d5d1a]">
           <div className="w-full max-w-md p-8 space-y-3 rounded-xl  backdrop-blur-2xl 	">
             <h1 className="text-2xl font-bold text-center">Login</h1>
             <form
@@ -87,7 +84,7 @@ export default function Login() {
             >
               <div className="space-y-1 text-sm px-2">
                 <label for="username" className="block ">
-                  Username
+                  Nombre de usuario
                 </label>
                 <input
                   onChange={(e) => setuser(e.target.value)}
@@ -98,9 +95,9 @@ export default function Login() {
                   className="w-full px-4 py-3 removeOUTLINES rounded-md border-[1px] border-slate-800 hover:border-slate-600   "
                 />
               </div>
-              <div className="space-y-1 text-sm px-2">
+              <div className="space-y-1 text-sm px-2 pt-1">
                 <label for="password" className="block ">
-                  Password
+                 Contraseña
                 </label>
                 <input
                   onChange={(e) => setpassword(e.target.value)}
@@ -111,7 +108,7 @@ export default function Login() {
                   className="w-full px-4 py-3 removeOUTLINES  rounded-md border-[1px] border-slate-800 hover:border-slate-600 "
                 />
                 <div className="flex justify-end text-xs ">
-                  <a rel="noopener noreferrer">Forgot Password?</a>
+                  <a rel="noopener noreferrer">Olvidaste la contraseña?</a>
                 </div>
                 <div className="h-7">
                   <p className=" text-red-200 p-0 m-0">{messageAboutLogin}</p>
@@ -127,7 +124,7 @@ export default function Login() {
             </form>
             <div className="flex items-center pt-4 space-x-1">
               <div className="flex-1 h-px sm:w-16 "></div>
-              <p className="px-3 text-sm ">Login with social accounts</p>
+              <p className="px-3 text-sm ">O ingresa usando:</p>
               <div className="flex-1 h-px sm:w-16 "></div>
             </div>
             <div className="flex justify-center space-x-4">
@@ -169,9 +166,9 @@ export default function Login() {
               </button>
             </div>
             <p className="text-xs text-center sm:px-6 ">
-              Don't have an account?
+              No tienes un cuenta? {" "}
               <a rel="noopener noreferrer" className="underline ">
-                Sing in
+                Crear una
               </a>
             </p>
           </div>
