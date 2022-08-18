@@ -43,12 +43,24 @@ export default function MainPage() {
     var arr = Math.floor(Math.random() * 21);
     setfrase(phrases.es[arr]);
   };
+  
+  /*window.onwheel = e => {
+    if(e.deltaY >= 0){
+      // Scrolling Down with mouse
+      console.log('Scroll Down');
+    } else {
+      // Scrolling Up with mouse
+      console.log('Scroll Up');
+    }
+  }*/
+
+
   if (endServerRes === true) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
           <div className="blockAllSelect h-full w-full absolute top-0   ">
-            <div className="relative h-[40px]  flex  items-center border border-slate-600  bg-transparent pb-2 justify-between overflow-hidden">
+            <div id="topMenu" className="relative h-[40px]  flex  items-center border border-slate-600  bg-transparent pb-2 justify-between overflow-hidden">
               <div
                 onClick={() => {
                   if (langByUser === "en") {
@@ -96,31 +108,35 @@ export default function MainPage() {
                       transition={{
                         duration: 1,
                       }}
+                   
                     >
                       <ToDay />
                       <DetailsExpendsWeek lang={finalLang} />
                     </motion.div>
                   </div>
-                  <div className="pt-[2px] mt-0 pl-2 pr-2 flex justify-center sm:w-[50%] border-spacing-2 rounded sm:justify-left  ">
-                    <div className="grow md:grow-0">
+                  <div className="flex flex-col sm:flex-row space-y-2   justify-left sm:w-[50%] rounded  ">
+                    <div className="">
                       <motion.div
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{
                           duration: 2,
                         }}
+                        className="flex-col space-y-2  "
                       >
                         <AddMoveCash lang={finalLang} />
 
                         <AddIncomingCash lang={finalLang} />
-                        {context.data.debts.length === 0 ? (
-                          <></>
-                        ) : (
-                          <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
-                            <TableFromDebts lang={finalLang} />
-                          </div>
-                        )}
                       </motion.div>
+                    </div>
+                    <div>
+                      {context.data.debts.length === 0 ? (
+                        <></>
+                      ) : (
+                        <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
+                          <TableFromDebts lang={finalLang} />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -73,7 +73,8 @@ export default function Login() {
         </motion.p>
       </div>
       <div className="h-screen flex mt-[-40px] justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 ">
-        <div className="p-3 border border-green-500 rounded-xl bg-[#d65d5d1a]">
+      <Wave className="absolute w-[screen] bottom-0"  />
+        <div className="p-3 border border-green-500 border-b-4 border-green-400 rounded-xl bg-[#d65d5d1a]">
           <div className="w-full max-w-md p-8 space-y-3 rounded-xl  backdrop-blur-2xl 	">
             <h1 className="text-2xl font-bold text-center">Login</h1>
             <form

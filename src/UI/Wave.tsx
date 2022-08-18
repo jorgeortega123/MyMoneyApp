@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Wave({
-  fill = "#00cba9",
+  fill = "#171f96b9",
   ...props
 }: {
   fill?: string;

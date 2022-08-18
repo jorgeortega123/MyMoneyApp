@@ -99,7 +99,7 @@ export const PieDiagramHome = (dataPie) => {
                 duration: 1,
               }}
             >
-      <div className="p-2 border-b-4 border-indigo-500 flex justify-evenly items-center border rounded-xl bg-slate-100 ">
+      <div className="p-2 mb-2 border-b-4 border-indigo-500 flex justify-evenly items-center border rounded-xl bg-slate-100 ">
         <div className="relative flex justify-center items-center">
           <div className="w-[150px] sm:w-[225px] lg:w-[400px] md:p-3  items-center">
             <motion.div
