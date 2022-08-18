@@ -177,16 +177,8 @@ export default function AddMoveCash(lang) {
       <div className="hidden">
         <AddOptionAboutCost />
       </div>
-      <div key="INCMING CASH">
-        <AddIncomingCash lang={lang.lang} />
-      </div>
-      {context.data.debts.length === 0 ? (
-        <></>
-      ) : (
-        <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
-          <TableFromDebts lang={lang.lang} />
-        </div>
-      )}
+      
+     
     </div>
   );
 }

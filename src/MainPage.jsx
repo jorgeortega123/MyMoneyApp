@@ -14,6 +14,8 @@ import { lang, phrases } from "./dataSimulateServer";
 import { SpinnerInfinity } from "spinners-react";
 import ToDay from "./components/ToDay";
 import Configurations from "./components/subComponents/Configurations";
+import AddIncomingCash from "./components/AddIncomingCash";
+import TableFromDebts from "./components/subComponents/TableFromDebts";
 export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
@@ -21,31 +23,32 @@ export default function MainPage() {
   const [endServerRes, setendServerRes] = useState(false);
   const [loginValidation, setloginValidation] = useState(false);
   const [finalLang, setfinalLang] = useState(lang.es);
-  const [langByUser, setlangByUser] = useState("es");  
+  const [langByUser, setlangByUser] = useState("es");
   const [frase, setfrase] = useState("...");
   const [textLoading, settextLoading] = useState("Verificando...");
-  
+
   let navigate = useNavigate();
   useEffect(() => {
     const userName = localStorage.getItem("token");
-    if (!userName) {
-      navigate("/login", { replace: true });
-    } else {
-      setloginValidation(userName);
-      if (context.endServerRes === true) {setendServerRes(true)} 
-      
+    if (context.endServerRes === true) {
+      if (!userName) {
+        navigate("/login", { replace: true });
+      } else {
+        setloginValidation(userName);
+      }
+      setendServerRes(true);
     }
   }, [context.endServerRes]);
   const frases = () => {
-     var arr = Math.floor(Math.random() * 21);
-     setfrase(phrases.es[arr]);
-   };
+    var arr = Math.floor(Math.random() * 21);
+    setfrase(phrases.es[arr]);
+  };
   if (endServerRes === true) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
-          <div className="blockAllSelect  h-full w-full absolute top-0   ">
-            <div className="relative h-[40px]  flex  items-center border  bg-transparent pb-2 justify-between overflow-hidden">
+          <div className="blockAllSelect h-full w-full absolute top-0   ">
+            <div className="relative h-[40px]  flex  items-center border border-slate-600  bg-transparent pb-2 justify-between overflow-hidden">
               <div
                 onClick={() => {
                   if (langByUser === "en") {
@@ -84,29 +87,9 @@ export default function MainPage() {
             )}
             {!onErrorServerOut ? (
               <>
-                <div className="p-2 w-full h-auto flex flex-col  sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
-                  {endServerRes ? (
-                    <>
-                      <PieDiagramHome lang={finalLang} />
-                      {
-                        //<p className="  absolute" onClick={()=>frases()}>{frase}</p>}
-                      }
-                    </>
-                  ) : (
-                    <>
-                      <div className="pt-12 mr-auto ml-auto">
-                        <SpinnerInfinity
-                          size={100}
-                          thickness={50}
-                          сolor={"#191919"}
-                          secondaryColor="rgba(0,0,0,0.14)"
-                          speed={120}
-                        />
-                      </div>
-                      <CahrgingData />
-                    </>
-                  )}
-                  {endServerRes ? (
+                <div className="p-2 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
+                  <div className="sm:w-[50%]">
+                    <PieDiagramHome lang={finalLang} />
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -117,12 +100,8 @@ export default function MainPage() {
                       <ToDay />
                       <DetailsExpendsWeek lang={finalLang} />
                     </motion.div>
-                  ) : (
-                    <p></p>
-                  )}
-                </div>
-                <div className="pt-[2px] mt-0 pl-2 pr-2 flex justify-center w-full border-spacing-2 rounded sm:justify-left  ">
-                  {endServerRes ? (
+                  </div>
+                  <div className="pt-[2px] mt-0 pl-2 pr-2 flex justify-center sm:w-[50%] border-spacing-2 rounded sm:justify-left  ">
                     <div className="grow md:grow-0">
                       <motion.div
                         initial={{ y: 20, opacity: 0 }}
@@ -132,11 +111,18 @@ export default function MainPage() {
                         }}
                       >
                         <AddMoveCash lang={finalLang} />
+
+                        <AddIncomingCash lang={finalLang} />
+                        {context.data.debts.length === 0 ? (
+                          <></>
+                        ) : (
+                          <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
+                            <TableFromDebts lang={finalLang} />
+                          </div>
+                        )}
                       </motion.div>
                     </div>
-                  ) : (
-                    <p></p>
-                  )}
+                  </div>
                 </div>
               </>
             ) : (

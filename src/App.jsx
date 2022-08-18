@@ -57,7 +57,7 @@ function App() {
     //var monthDay = d.toString().split(" ")[1];
     //var numberDay = d.toString().split(" ")[2];
     //var yearDay = d.toString().split(" ")[3];
-    //console.log(context.data);
+    console.log(context.data);
     if (context.data != undefined) {
       if (context.endServerRes === true) {
         if (dayName === "Sun") {
@@ -70,20 +70,11 @@ function App() {
             });
           }
         }
-        //DEL- setloginValidation(localStorage.getItem("token"));
-        //DEL- setendServerRes(true);
-        frases();
       }
     }
   }, []);
 
-  const frases = () => {
-    var max = phrases.length;
-    var min = 0;
-    var arr = Math.floor(Math.random() * 21);
-    setfrase(phrases.es[arr]);
-    console.log(frase);
-  };
+
   setTimeout(() => {
     settextLoading("Buscando el servidor...");
     setTimeout(() => {
@@ -91,10 +82,7 @@ function App() {
     }, 4000);
   }, 7000);
   const MainScreen = () => {};
-  //<
-  /* if (endServerRes === true) {}
-
-   */
+ 
   return(
     <Router>
       <Routes>

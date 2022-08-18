@@ -39,8 +39,8 @@ export default function Configurations(data) {
       });
   };
   return (
-    <div className="fixed w-full h-screen flex justify-center z-[39] py-14 top-0">
-      <div className="overflow-auto flex justify-center p-4 sm:w-[280px] w-[250px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
+    <div className="fixed w-screen h-screen flex justify-center z-[39] py-14 top-0">
+      <div className="overflow-auto flex justify-center p-4 sm:w-[320px] w-[300px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
         <div className="flex flex-col">
           <div className="flex justify-between ">
             <p className="text-[15px]">Configuración</p>
@@ -79,7 +79,7 @@ export default function Configurations(data) {
               >
                 {"Cerrar sesión"}
               </button>
-              <textarea className="scrollSmall removeOUTLINES border-y-[1px] border-slate-300 " name="" id="" cols="30" rows="10" spellCheck={false}>
+              <textarea className="scrollSmall h-[100px] removeOUTLINES border-y-[1px] border-slate-300 " name="" id="" cols="30" rows="10" spellCheck={false}>
                 {JSON.stringify(context.data)}
               </textarea>
               <button

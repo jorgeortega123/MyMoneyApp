@@ -99,9 +99,9 @@ export const PieDiagramHome = (dataPie) => {
                 duration: 1,
               }}
             >
-      <div className="p-2 flex justify-evenly items-center border rounded-xl bg-slate-100 ">
+      <div className="p-2 border-b-4 border-indigo-500 flex justify-evenly items-center border rounded-xl bg-slate-100 ">
         <div className="relative flex justify-center items-center">
-          <div className="w-[150px] sm:w-[225px] before:md:w-[300x] md:p-3  items-center">
+          <div className="w-[150px] sm:w-[225px] lg:w-[400px] md:p-3  items-center">
             <motion.div
               initial={{ opacity: 0, rotate: 360 }}
               animate={{opacity: 1, rotate: 0 }}
