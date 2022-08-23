@@ -114,8 +114,8 @@ export default function MainPage() {
                       <DetailsExpendsWeek lang={finalLang} />
                     </motion.div>
                   </div>
-                  <div className="flex flex-col sm:flex-row space-y-2   justify-left sm:w-[50%] rounded  ">
-                    <div className="">
+                  <div className="flex flex-col sm:flex-row space-y-2  space-x-2   justify-left sm:w-[50%] rounded  ">
+                    <div className="p-2">
                       <motion.div
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
@@ -129,7 +129,7 @@ export default function MainPage() {
                         <AddIncomingCash lang={finalLang} />
                       </motion.div>
                     </div>
-                    <div>
+                    <div className="m-2 grow items-center md:pt-[30px]">
                       {context.data.debts.length === 0 ? (
                         <></>
                       ) : (

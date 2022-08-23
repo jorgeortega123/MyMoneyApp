@@ -16,11 +16,11 @@ export default function AddMoveCash(lang) {
   useEffect(() => {
     message({
       type: "success",
-      title: "Bienvenido de nuevo " + context.data.name ,
-      description: "Tus finanzas están actualizadas" 
+      title: "Bienvenido de nuevo " + context.data.name,
+      description: "Tus finanzas están actualizadas",
     });
-  }, [])
-  
+  }, []);
+
   //console.log(context.update());
 
   const [clickedSelect, setclickedSelect] = useState(null);
@@ -64,7 +64,7 @@ export default function AddMoveCash(lang) {
     var name = "jorge593";
     var d = new Date();
     var dayName = d.toString().split(" ")[0];
-    var monthDay =  d.toString().split(" ")[1];
+    var monthDay = d.toString().split(" ")[1];
     var numberDay = d.toString().split(" ")[2];
     ///
     axios
@@ -74,9 +74,9 @@ export default function AddMoveCash(lang) {
           valueEdit: Number(valueEdit),
           typeCost: typeCost,
           nameEdit: nameEdit,
-          nameDay: dayName, 
+          nameDay: dayName,
           numberDay: numberDay,
-          monthDay: monthDay 
+          monthDay: monthDay,
         },
       })
       .then((res) => {
@@ -111,9 +111,8 @@ export default function AddMoveCash(lang) {
   };
 
   return (
-          <div className="p-3 border rounded-xl bg-slate-100">
-    <div className=" grid gap-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 ">
-
+    <div className="p-3 border rounded-xl bg-slate-100">
+      <div className=" grid gap-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 ">
         <form onSubmit={(e) => addMove(e)}>
           <div>
             <div className="capitalize">
@@ -178,8 +177,6 @@ export default function AddMoveCash(lang) {
       <div className="hidden">
         <AddOptionAboutCost />
       </div>
-      
-     
     </div>
   );
 }

@@ -27,6 +27,7 @@ import Event from "./components/subComponents/event/Event";
 import { render } from "react-dom";
 import MainPage from "./MainPage";
 import MainEvent from "./components/subComponents/event/MainEvent";
+import AllTransactions from "./components/subComponents/AllTransactions";
 //import useGlobalContext from "../context/useGlobalContext";
 const server = "https://mymone.azurewebsites.net";
 
@@ -74,7 +75,6 @@ function App() {
     }
   }, []);
 
-
   setTimeout(() => {
     settextLoading("Buscando el servidor...");
     setTimeout(() => {
@@ -82,13 +82,14 @@ function App() {
     }, 4000);
   }, 7000);
   const MainScreen = () => {};
- 
-  return(
+
+  return (
     <Router>
       <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/login" element={<Login />} />
-        <Route path="/event" element={<MainEvent />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/event" element={<Event />} />
+        <Route path="/data/transitions/costs" element={<AllTransactions />} />
       </Routes>
     </Router>
   );

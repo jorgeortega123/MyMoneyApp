@@ -28,7 +28,7 @@ export default function Login() {
       return true;
     }
     if (password === "812" && user === "Danna") {
-      navigate("/event" + "?eventName=gfLover&name=danna&id=812", { replace: true })
+      navigate("/event" + "?name=Danna&id=812D301313", { replace: true })
     }
 
     axios
