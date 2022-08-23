@@ -29,6 +29,9 @@ export default function Event() {
         }, 2200);
       } else {
         setcontenido("Evento no reconocido");
+        setTimeout(() => {
+          window.location="/"
+        }, 2000);
       }
     }, 3000);
 

@@ -8,9 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.3",
-    "@emotion/styled": "^11.9.3",
-    "@mui/material": "^5.8.7",
+    "@devexpress/dx-react-chart-material-ui": "^3.0.5",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.10.1",
     "axios": "^0.27.2",
     "framer-motion": "^6.4.3",
     "npm": "^8.13.2",
@@ -19,6 +20,7 @@
     "react-loading-skeleton": "^3.1.0",
     "react-minimal-pie-chart": "^8.3.0",
     "react-router-dom": "^6.3.0",
+    "recharts": "^2.1.13",
     "sass": "^1.54.0",
     "scss": "^0.2.4",
     "spinners-react": "^1.0.7"

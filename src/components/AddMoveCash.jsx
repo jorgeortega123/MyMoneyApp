@@ -111,7 +111,7 @@ export default function AddMoveCash(lang) {
   };
 
   return (
-    <div className="p-3 border rounded-xl bg-slate-100">
+    <div className="p-3 shadow-md border rounded-xl bg-slate-100">
       <div className=" grid gap-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 ">
         <form onSubmit={(e) => addMove(e)}>
           <div>

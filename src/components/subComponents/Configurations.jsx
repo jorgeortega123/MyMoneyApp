@@ -39,8 +39,8 @@ export default function Configurations(data) {
       });
   };
   return (
-    <div className="fixed w-screen h-screen flex justify-center z-[39] py-14 top-0">
-      <div className="overflow-auto flex justify-center p-4 sm:w-[320px] w-[300px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
+    <div className="fixed w-screen h-screen bg-[#241f1f7a]  flex justify-center z-[39] py-14 top-0 ">
+      <div className="overflow-auto shadow-2xl bg-slate-200 shadow-slate-500 flex justify-center p-4 sm:w-[320px] w-[300px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
         <div className="flex flex-col">
           <div className="flex justify-between ">
             <p className="text-[15px]">Configuración</p>

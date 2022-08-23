@@ -16,6 +16,7 @@ import ToDay from "./components/ToDay";
 import Configurations from "./components/subComponents/Configurations";
 import AddIncomingCash from "./components/AddIncomingCash";
 import TableFromDebts from "./components/subComponents/TableFromDebts";
+import BarChart from "./components/subComponents/BarChart";
 export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
@@ -43,7 +44,7 @@ export default function MainPage() {
     var arr = Math.floor(Math.random() * 21);
     setfrase(phrases.es[arr]);
   };
-  
+
   /*window.onwheel = e => {
     if(e.deltaY >= 0){
       // Scrolling Down with mouse
@@ -54,13 +55,15 @@ export default function MainPage() {
     }
   }*/
 
-
   if (endServerRes === true) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
           <div className="blockAllSelect h-full w-full absolute top-0   ">
-            <div id="topMenu" className="relative h-[40px]  flex  items-center border border-slate-600  bg-transparent pb-2 justify-between overflow-hidden">
+            <div
+              id="topMenu"
+              className="relative h-[40px]  flex  items-center border border-slate-600  bg-transparent pb-2 justify-between overflow-hidden"
+            >
               <div
                 onClick={() => {
                   if (langByUser === "en") {
@@ -98,7 +101,7 @@ export default function MainPage() {
               <Configurations data={showConfigg} />
             )}
             {!onErrorServerOut ? (
-              <>
+              <div className="flex flex-col">
                 <div className="p-2 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
                   <div className="sm:w-[50%]">
                     <PieDiagramHome lang={finalLang} />
@@ -108,7 +111,6 @@ export default function MainPage() {
                       transition={{
                         duration: 1,
                       }}
-                   
                     >
                       <ToDay />
                       <DetailsExpendsWeek lang={finalLang} />
@@ -138,9 +140,14 @@ export default function MainPage() {
                         </div>
                       )}
                     </div>
+                    
                   </div>
+                 
                 </div>
-              </>
+                <div>
+                     <BarChart></BarChart>
+                  </div>
+              </div>
             ) : (
               <ServerOut />
             )}

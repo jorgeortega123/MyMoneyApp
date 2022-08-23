@@ -61,7 +61,7 @@ export default function AddIncomingCash(lang) {
   };
 
   return (
-    <div className="p-3 border rounded-xl bg-slate-100 ">
+    <div className="p-3 shadow-md border rounded-xl bg-slate-100 ">
      
         <p>{lang.lang.components.incomingCash.title[0]}</p>
         <div className="flex items-center space-x-2 ">
