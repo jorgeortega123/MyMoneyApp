@@ -42,7 +42,7 @@ export default function Event() {
           }, 2200);
         } else { 
           setcontenido(`El evento ${qs.id} esta deshabilitado`);
-         sethostsms(`Hola si eres Danna, esto no funciona, no intento arreglarlo porque considero que no estas interesada en esto, mil disculpas...`)
+         sethostsms(`Hola si eres Danna, estoy arreglando esto xd. Te amo`)
         }
       })
       .catch(() => {
