@@ -16,7 +16,7 @@ import ToDay from "./components/ToDay";
 import Configurations from "./components/subComponents/Configurations";
 import AddIncomingCash from "./components/AddIncomingCash";
 import TableFromDebts from "./components/subComponents/TableFromDebts";
-import BarChart from "./components/subComponents/BarChart";
+
 export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
@@ -145,7 +145,7 @@ export default function MainPage() {
                  
                 </div>
                 <div>
-                     <BarChart></BarChart>
+                    
                   </div>
               </div>
             ) : (

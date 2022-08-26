@@ -43,6 +43,7 @@ export default function MainEvent() {
 
   useEffect(() => {
     document.body.style.backgroundColor = "#000000";
+  
     //const intervalID = setInterval(shuffle, 3500);
     //return () => clearInterval(intervalID);
   }, []);
@@ -137,7 +138,6 @@ export default function MainEvent() {
               visible = false;
             } else {
               con.className = "console-underscore";
-
               visible = true;
             }
           }, 400);

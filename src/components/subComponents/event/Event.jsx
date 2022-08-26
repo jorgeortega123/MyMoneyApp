@@ -1,11 +1,16 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import useGlobalContext from "../../../context/useGlobalContext";
 import "./eventScreen.scss";
 import Landscape from "./Landscape";
 import MainEvent from "./MainEvent";
 
 export default function Event() {
+  const { context } = useGlobalContext();
+  const server = context.server;
   const [event, setEvent] = useState(false);
   const [contenido, setcontenido] = useState("Verificando evento...");
+  const [hostsms, sethostsms] = useState(null)
   const [querybar, setquerybar] = useState("");
   useEffect(() => {
     var qs = (function (a) {
@@ -21,19 +26,32 @@ export default function Event() {
       }
       return b;
     })(window.location.search.substr(1).split("&"));
-    setTimeout(() => {
-      if (qs.id === "812D301313") {
-        setcontenido("Preparando un espacio para ti...");
+
+    axios
+      .post(server + "/event", {
+        data: {
+          name: qs.name,
+          id: qs.id,
+        },
+      })
+      .then((res) => {
+        if (res.data.isValid === false) {
+          setcontenido("Preparando un espacio para ti...");
+          setTimeout(() => {
+            setEvent(true);
+          }, 2200);
+        } else { 
+          setcontenido(`El evento ${qs.id} esta deshabilitado`);
+         sethostsms(`Hola si eres Danna, esto no funciona, no intento arreglarlo porque considero que no estas interesada en esto, mil disculpas...`)
+        }
+      })
+      .catch(() => {
+        setcontenido("Error desconocido");
         setTimeout(() => {
-          setEvent(true);
-        }, 2200);
-      } else {
-        setcontenido("Evento no reconocido");
-        setTimeout(() => {
-          window.location="/"
-        }, 2000);
-      }
-    }, 3000);
+          window.location = "/";
+       }, 2200);
+    
+      });
 
     console.log(qs.id);
   }, []);
@@ -53,9 +71,10 @@ export default function Event() {
               <div class="loader"></div>
             </div>
           </div>
-          <div className="flex items-center justify-center w-full">
-            {" "}
-            <p className="z-[4000] w-max">{contenido}</p>
+          <div className="flex-col items-center justify-center w-full">
+          {" "}
+            <p className="z-[4000] w-[200px] text-center">{contenido}</p>
+             {hostsms !== null && <p className="p-3 z-[4000] w-[200px] text-center">{hostsms}</p>}
           </div>
         </div>
       </div>
