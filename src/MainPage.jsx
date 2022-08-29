@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddMoveCash from "./components/AddMoveCash";
 import DetailsExpendsWeek from "./components/DetailsExpendsWeek";
-import Login from "./components/Login";
+import Login from "./components/login";
 import CahrgingData from "./components/subComponents/CahrgingData";
 import ServerOut from "./components/subComponents/ServerOut";
 import useGlobalContext from "./context/useGlobalContext";
@@ -54,7 +54,9 @@ export default function MainPage() {
       console.log('Scroll Up');
     }
   }*/
-
+  window.onload = function () { 
+    frases()
+  }
   if (endServerRes === true) {
     if (loginValidation) {
       return (

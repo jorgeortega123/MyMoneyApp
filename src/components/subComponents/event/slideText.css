@@ -4,13 +4,20 @@
   opacity:0;
 }
 .console-container {
-  background: transparent;
+ 
   font-family:Khula;
-  color:rgb(255, 255, 255);
+  font-size:4em;
+  text-align:center;
+  height:200px;
+  width:600px;
+  display:block;
+  position:absolute;
+  color:white;
   top:0;
   bottom:0;
   left:0;
   right:0;
+  margin:auto;
 }
 .console-underscore {
    display:inline-block;

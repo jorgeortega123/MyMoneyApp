@@ -1,0 +1,37 @@
+.borderLogin{ 
+        border-radius: 10px,20px;
+        border: 2px solid;
+        border-color: #00000045;
+}
+.borderLogin2{ 
+        border-radius: 10px,20px;
+        border: 1px solid;
+        border-color: #19cbc592;
+}
+.buttonLogin { 
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(11, 175, 187, 0.339) 0%, rgba(50, 50, 183, 0.133) 42%, rgba(0,212,255,1) 100%);
+        &:hover{
+                 background: rgb(2,0,36);
+                background: linear-gradient(90deg, rgba(11, 20, 187, 0.339) 0%, rgba(50, 50, 183, 0.133) 42%, rgb(0, 110, 255) 100%);
+                
+        }
+}
+.backGroundImage {
+        background-image: url('../../assets/image/login/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover; 
+} 
+
+.inputLogin{ 
+        background: #7232994d;
+        color: aqua;
+}
+
+.inputLogin::placeholder { 
+
+        color: rgba(47, 206, 201, 0.745);
+}
+.loginText { 
+        color: rgb(20, 220, 197);
+}

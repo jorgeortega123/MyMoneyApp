@@ -1,10 +1,10 @@
+import "./index.scss";
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import useGlobalContext from "../context/useGlobalContext";
 import axios from "axios";
-import MainEvent from "./subComponents/event/MainEvent";
 import { useNavigate } from "react-router-dom";
-import Wave from "../UI/Wave";
+import useGlobalContext from '../../context/useGlobalContext';
+import Wave from '../../UI/Wave';
 export default function Login() {
   let navigate = useNavigate()
   const [user, setuser] = useState();
@@ -56,7 +56,7 @@ export default function Login() {
   }
   return (
     <>
-      <div className="relative h-[40px] text-3xl font-bold underline flex justify-center items-center   bg-gradient-to-r from-sky-500 to-indigo-500 pb-2 space-x-4 overflow-hidden">
+      <div className="relative h-[40px] text-3xl font-bold underline flex justify-center items-center  border-blue-500 border-b-[2px] pb-2 space-x-4 overflow-hidden">
       
         <div className="pt-0 mt-0"></div>
         <motion.p
@@ -72,18 +72,20 @@ export default function Login() {
           MyMoney
         </motion.p>
       </div>
-      <div className="h-screen flex mt-[-40px] justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 ">
-      <Wave className="absolute w-[screen] bottom-0"  />
-        <div className="p-3 border border-green-500 border-b-4 border-green-400 rounded-xl bg-[#d65d5d1a]">
-          <div className="w-full max-w-md p-8 space-y-3 rounded-xl  backdrop-blur-2xl 	">
-            <h1 className="text-2xl font-bold text-center">Login</h1>
+      <div className="backGroundImage h-screen flex mt-[-40px] justify-center items-center bg-gradient-to-r from-sky-500 to-indigo-500 ">
+      {
+        //<Wave className="absolute w-[screen] bottom-0"  />
+      }
+        <div className="borderLogin p-3 rounded-xl bg-[#d65d5d1a]">
+          <div className=" w-full max-w-md p-8 space-y-3 borderLogin2 rounded-xl  backdrop-blur-[15px] 	">
+            <h1 className="text-2xl font-bold text-center loginText">Login</h1>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 sendData();
               }}
             >
-              <div className="space-y-1 text-sm px-2">
+              <div className=" space-y-1 text-sm px-2">
                 <label for="username" className="block ">
                   Nombre de usuario
                 </label>
@@ -93,7 +95,7 @@ export default function Login() {
                   name="username"
                   id="username"
                   placeholder="Username"
-                  className="w-full px-4 py-3 removeOUTLINES rounded-md border-[1px] border-slate-800 hover:border-slate-600   "
+                  className="inputLogin w-full px-4 py-3 removeOUTLINES rounded-md border-[1px] border-slate-800 hover:border-slate-600   "
                 />
               </div>
               <div className="space-y-1 text-sm px-2 pt-1">
@@ -106,7 +108,7 @@ export default function Login() {
                   name="password"
                   id="password"
                   placeholder="Password"
-                  className="w-full px-4 py-3 removeOUTLINES  rounded-md border-[1px] border-slate-800 hover:border-slate-600 "
+                  className="inputLogin w-full px-4 py-3 removeOUTLINES  rounded-md border-[1px] border-slate-800 hover:border-slate-600 "
                 />
                 <div className="flex justify-end text-xs ">
                   <a rel="noopener noreferrer">Olvidaste la contraseña?</a>
@@ -115,20 +117,20 @@ export default function Login() {
                   <p className=" text-red-200 p-0 m-0">{messageAboutLogin}</p>
                 </div>
               </div>
-
+              
               <button
                 onClick={() => sendData()}
-                className=" block w-full p-3 text-center  bg-slate-200 hover:bg-slate-300  border border-slate-500 hover:border-slate-700 rounded-full"
+                className="buttonLogin text-indigo-900 block w-full p-3 text-center  bg-slate-200 border border-slate-500  rounded-full"
               >
                 {textOfBotton}
               </button>
             </form>
             <div className="flex items-center pt-4 space-x-1">
               <div className="flex-1 h-px sm:w-16 "></div>
-              <p className="px-3 text-sm ">O ingresa usando:</p>
+              <p className="text-slate-200 px-3 text-sm ">O ingresa usando:</p>
               <div className="flex-1 h-px sm:w-16 "></div>
             </div>
-            <div className="flex justify-center space-x-4">
+            <div className="flex justify-center space-x-4 text-slate-1\200">
               <button
                 aria-label="Log in with Google"
                 className="p-3 rounded-sm"
@@ -166,7 +168,7 @@ export default function Login() {
                 </svg>
               </button>
             </div>
-            <p className="text-xs text-center sm:px-6 ">
+            <p className="text-slate-300 text-xs text-center sm:px-6 ">
               No tienes un cuenta? {" "}
               <a rel="noopener noreferrer" className="underline ">
                 Crear una

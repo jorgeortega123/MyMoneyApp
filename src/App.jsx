@@ -17,7 +17,7 @@ import { lang, phrases } from "./dataSimulateServer";
 
 import { display } from "@mui/system";
 import { AnimatePresence, motion } from "framer-motion";
-import Login from "./components/Login";
+import Login from "./components/login";
 import CahrgingData from "./components/subComponents/CahrgingData";
 import ToDay from "./components/ToDay";
 import Configurations from "./components/subComponents/Configurations";
@@ -28,6 +28,7 @@ import { render } from "react-dom";
 import MainPage from "./MainPage";
 import MainEvent from "./components/subComponents/event/MainEvent";
 import AllTransactions from "./components/subComponents/AllTransactions";
+import CvMain from "./components/cv";
 //import useGlobalContext from "../context/useGlobalContext";
 const server = "https://mymone.azurewebsites.net";
 
@@ -90,6 +91,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/event" element={<Event />} />
         <Route path="/data/transitions/costs" element={<AllTransactions />} />
+        <Route path="/cv" element={<CvMain />} />
       </Routes>
     </Router>
   );

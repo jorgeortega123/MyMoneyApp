@@ -41,8 +41,11 @@ export default function Event() {
             setEvent(true);
           }, 2200);
         } else { 
-          setcontenido(`El evento ${qs.id} esta deshabilitado`);
-         sethostsms(`Hola si eres Danna, estoy arreglando esto xd. Te amo`)
+          setcontenido(`Te dirigire a otra pagina para que sigas con esto...`);
+         sethostsms(`JAJAJAJ perdon enserio no supe como arreglarlo`)
+         setTimeout(() => {
+          location.href = "https://1aa38f3e.mymoneyapp.pages.dev/"
+         }, 4500);
         }
       })
       .catch(() => {
@@ -65,16 +68,16 @@ export default function Event() {
         //<Landscape />
       }
       <div className="w-screen h-screen flex justify-center items-center relative ">
-        <div className="bg-transparent w-[300px] mt-[-400px] flex flex-col justify-center   z-[4000]  ">
+        <div className="bg-transparent w-[300px] mt-[-400px] flex flex-col justify-center   ">
           <div class="container">
             <div class="circle">
               <div class="loader"></div>
+              
             </div>
           </div>
-          <div className="flex-col items-center justify-center w-full">
-          {" "}
+          <div className="w-full items-center  flex justify-center items-center relative ">
             <p className="z-[4000] w-[200px] text-center">{contenido}</p>
-             {hostsms !== null && <p className="p-3 z-[4000] w-[200px] text-center">{hostsms}</p>}
+             {hostsms !== null && <p className="p-3 w-[200px] text-center items-center">{hostsms}</p>}
           </div>
         </div>
       </div>
