@@ -1,6 +1,8 @@
 import "./index.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import keyboardSvg from "./../../assets/svg/keyboard.svg";
+import ContainerProyects from "./ContainerProyects"
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
   ///
@@ -77,7 +79,7 @@ const CvMain = () => {
               setshowMenu(true);
             }
           }}
-         >
+        >
           <span className="line l1"></span>
           <span className="line l2"></span>
           <span className="line l3"></span>
@@ -114,24 +116,42 @@ const CvMain = () => {
         <div className="page-content">
           <div className="first-header">
             <div className="flex-col p-8">
-              <div className="w-full h-[50px] nameFontBold">Jorge Ortega</div>
-              <div>Developer</div>
+              <div className="pt-[20px] w-full h-[70px] nameFontBold">
+                Jorge Ortega
+              </div>
+              <div className="pt-[13px] text-[27px] flex">
+                <p className="pt-[3px]">Developer</p>
+                <img className="fill-slate-200 pl-1" src={keyboardSvg} alt="" />
+              </div>
             </div>
-            <div className="p-8">
-              <div className="p-2">IMG</div>
+            <div className="pt-8 pr-8">
+              <div className="cvImage p-2"></div>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <div className="console-container">
+          <div className="textWrote w-9/12 mx-auto">
+            <div className="console-containerr">
               <span id="text" className=" "></span>
-              <div class="console-underscore bg-transparent" id="console">
+              <div class="console-underscoree bg-transparent" id="console">
                 &#95;
               </div>
               Tecnologies
             </div>
-            <div>About</div> <div>Contact</div>
+            <div className="w-full">
+              <p className="titleText">About</p>
+              <p className="normalText">Hi there, I'm a frontend developer. Since I was kid (14 years old), I have been learning and practicing
+              programming form tutorials and docs. My principal lagnauges knowlegde are: Typescript, JavaScript and Python. 
+              </p>
+            </div>
+            <div>
+              <p className="titleText">Proyects</p>
+              <ContainerProyects />
+            </div>
+            <div>
+              <p className="titleText">Contact</p>
+              <p>If you want to contssage to: +593962716235</p>
+            </div>
+            
           </div>
-          <div>Proyects</div>
         </div>
       </div>
     </div>

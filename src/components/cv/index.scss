@@ -17,6 +17,7 @@
     color:rgb(255, 255, 255)
 }
 .menu-items {
+  user-select: none;
     text-align: left;
     padding-top: 20px;
     padding-left: 15px; 
@@ -24,8 +25,8 @@
     position: absolute;
     width: 200px;
     height: 100%;
-    background-color: rgba(240, 248, 255, 0.261);
-    backdrop-filter: 2px;
+    background-color: rgba(38, 41, 43, 0.961);
+    backdrop-filter: 10px;
     z-index: 1;
     margin-bottom: 1.2rem;
     font-size: 1.5rem;
@@ -43,7 +44,31 @@
 }
 .nameFontBold { 
     font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 32px ;
+    font-size: 40px ;
+}
+.titleText { 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px ;
+  font-weight: 700;
+  
+}
+.normalText { 
+  font-size: 22px ;
+  font-weight: 2px;
+}
+.textWrote { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+.cvImage { 
+  width: 150px;
+  height: 150px;
+  background-image: url('../../assets/image/cv/cv.jpg');
+  background-size: cover;
+  border-radius: 100px;
 }
 .nav {
   top: 0;
@@ -79,9 +104,9 @@
 .hidden {
     opacity:0;
   }
-  .console-container {
+  .console-containerr {
     background: transparent;
-    font-family:Khula;
+    /*font-family:Khula; */
     color:rgb(255, 255, 255);
     top:0;
     bottom:0;
@@ -89,7 +114,7 @@
     right:0;
     z-index: 0;
   }
-  .console-underscore {
+  .console-underscoree {
      display:inline-block;
     position:relative;
     top:-0.14em;
