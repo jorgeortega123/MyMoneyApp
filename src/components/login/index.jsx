@@ -72,12 +72,12 @@ export default function Login() {
           MyMoney
         </motion.p>
       </div>
-      <div className="backGroundImage h-screen flex mt-[-40px] justify-center items-centernpm ">
+      <div className="backGroundImage h-screen flex mt-[-40px] justify-center items-center ">
       {
         //<Wave className="absolute w-[screen] bottom-0"  />
       }
         <div className="borderLogin p-3 rounded-xl bg-[#d65d5d1a]">
-          <div className=" w-full max-w-md p-8 space-y-3 borderLogin2 rounded-xl  backdrop-blur-[15px] 	">
+          <div className=" w-full max-w-md p-8 space-y-3 borderLogin2 rounded-xl  backdrop-blur-[2px] 	">
             <h1 className="text-2xl font-bold text-center loginText">Login</h1>
             <form
               onSubmit={(e) => {

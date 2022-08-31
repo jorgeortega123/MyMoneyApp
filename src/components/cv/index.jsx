@@ -85,7 +85,7 @@ const CvMain = () => {
           <span className="line l3"></span>
         </div>
       </div>
-      <div className="main-page">
+      <div className="main-page mx-auto">
         <AnimatePresence>
           {showMenu && (
             <motion.div
@@ -96,24 +96,24 @@ const CvMain = () => {
               className="menu-items"
             >
               <li>
-                <a href="#">Home</a>
+                <a href="#home">Home</a>
               </li>
               <li>
-                <a href="#">about</a>
+                <a href="#about">about</a>
               </li>
               <li>
-                <a href="#">blogs</a>
+                <a href="#blogs">blogs</a>
               </li>
               <li>
-                <a href="#">portfolio</a>
+                <a href="#proyects">proyects</a>
               </li>
               <li>
-                <a href="#">contact</a>
+                <a href="#contact">contact</a>
               </li>
             </motion.div>
           )}
         </AnimatePresence>
-        <div className="page-content">
+        <div className="page-content w-[100%] md:w-[1000px]">
           <div className="first-header">
             <div className="flex-col p-8">
               <div className="pt-[20px] w-full h-[70px] nameFontBold">
@@ -128,7 +128,7 @@ const CvMain = () => {
               <div className="cvImage p-2"></div>
             </div>
           </div>
-          <div className="textWrote w-9/12 mx-auto">
+          <div className="textWrote w-10/12 mx-auto">
             <div className="console-containerr">
               <span id="text" className=" "></span>
               <div class="console-underscoree bg-transparent" id="console">
@@ -136,18 +136,20 @@ const CvMain = () => {
               </div>
               Tecnologies
             </div>
-            <div className="w-full">
+            <div id="about" className="w-full flex flex-col space-y-5 mb-5">
               <p className="titleText">About</p>
-              <p className="normalText">Hi there, I'm a frontend developer. Since I was kid (14 years old), I have been learning and practicing
+              <p className="normalText containerText">Hi there, I'm a frontend developer. Since I was kid (14 years old), I have been learning and practicing
               programming form tutorials and docs. My principal lagnauges knowlegde are: Typescript, JavaScript and Python. 
               </p>
             </div>
-            <div>
-              <p className="titleText">Proyects</p>
-              <ContainerProyects />
+            <div id="proyects">
+              <p className="titleText mb-5 mt-1 ">Proyects</p>
+              <div className="flex-col space-y-4">
+              <ContainerProyects title="My Money" about="Personal proyect, manage you incoming cash, see the history wich you spent your money"/>
+           </div>
             </div>
-            <div>
-              <p className="titleText">Contact</p>
+            <div id="contact">
+              <p className="titleText mt-5 mb-3">Contact</p>
               <p>If you want to contssage to: +593962716235</p>
             </div>
             

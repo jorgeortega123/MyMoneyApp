@@ -63,7 +63,7 @@ export default function Event() {
     return <MainEvent />;
   }
   return (
-    <div className="w-full h-screen overflow-x-hidden items-center">
+    <div className="backGroundImage -full h-screen overflow-x-hidden items-center">
       {
         //<Landscape />
       }
