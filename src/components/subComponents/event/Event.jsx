@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { SpinnerInfinity } from "spinners-react";
 import useGlobalContext from "../../../context/useGlobalContext";
 import "./eventScreen.scss";
 import Landscape from "./Landscape";
@@ -36,13 +37,11 @@ export default function Event() {
       })
       .then((res) => {
         if (res.data.isValid === false) {
-          setcontenido("Preparando un espacio para ti...");
-          setTimeout(() => {
-            setEvent(true);
-          }, 2200);
+          setcontenido("X No encontrado X");
+          sethostsms("Lo que buscas, no existe o no estas autorizado")
         } else { 
-          setcontenido(`Te dirigire a otra pagina para que sigas con esto...`);
-         sethostsms(`JAJAJAJ perdon enserio no supe como arreglarlo`)
+          setcontenido(`Hola Danna`);
+         sethostsms(`Recuerda que lo hice con amor, te amo ∞ `)
          setTimeout(() => {
           location.href = "https://1aa38f3e.mymoneyapp.pages.dev/"
          }, 4500);
@@ -63,24 +62,45 @@ export default function Event() {
     return <MainEvent />;
   }
   return (
-    <div className="backGroundImage -full h-screen overflow-x-hidden items-center">
-      {
-        //<Landscape />
-      }
-      <div className="w-screen h-screen flex justify-center items-center relative ">
-        <div className="bg-transparent w-[300px] mt-[-400px] flex flex-col justify-center   ">
-          <div class="container">
-            <div class="circle">
-              <div class="loader"></div>
-              
+    <div className="w-screen h-screen backGroundImage">
+    <div className="flex items-center justify-center">
+      <div className="pt-12 ">
+        <SpinnerInfinity
+          size={200}
+          thickness={60}
+          сolor={"#a384649a"}
+          secondaryColor="rgba(0,0,0,0.24)"
+          speed={190}
+          className="mr-auto ml-auto"
+        />
+        <div className="text-center">
+          <p className="pt-4 text-slate-600 text-slate-100 text-[20px] mb-[40px]">{contenido}</p>
+          <div class="animate-pulse flex space-x-4 pt-3 w-[300px]">
+            <div class="flex-1 space-y-6 py-1">
+              <div class="h-2 bg-slate-300 rounded"></div>
+              <div class="space-y-3">
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="h-2 bg-slate-300 rounded col-span-2"></div>
+
+                  <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                  <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                  <div class="h-2 bg-slate-300 rounded col-span-2"></div>
+                </div>
+                <div class="h-2 bg-slate-300 rounded"></div>
+                <div class="h-2 bg-slate-300 rounded"></div>
+              </div>
             </div>
           </div>
-          <div className="w-full items-center  flex justify-center items-center relative ">
-            <p className="z-[4000] w-[200px] text-center">{contenido}</p>
-             {hostsms !== null && <p className="p-3 w-[200px] text-center items-center">{hostsms}</p>}
-          </div>
+          <p
+            className="mt-[20px] w-[250px] text-slate-700 text-slate-200 text-center pt-4 text-[19px] mr-auto ml-auto"
+          
+          >
+            {hostsms}
+            
+          </p>
+    
         </div>
       </div>
-    </div>
+    </div></div>
   );
 }

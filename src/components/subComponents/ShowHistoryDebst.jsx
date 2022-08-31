@@ -8,10 +8,6 @@ export default function ShowHistoryDebst(nameUser) {
   useEffect(() => {
     sethistory(context.data.historyDebst);
      setTimeout(() => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
-    });
   }, 100);
   }, [nameUser]);
 
@@ -21,7 +17,6 @@ export default function ShowHistoryDebst(nameUser) {
 
   //const history= context.data.historyDebst
   //console.log(history);
-  if (history === {}) return <p>No hay nada que mostrar</p>;
   if (history === undefined) return <p>No hay nada que mostrar</p>;
   // if(history.nameUser===undefined) return <p>Nombre no encontrado</p>
   var twoDecimal = (a, b) => {

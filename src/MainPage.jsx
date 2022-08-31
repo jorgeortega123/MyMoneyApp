@@ -37,7 +37,13 @@ export default function MainPage() {
       } else {
         setloginValidation(userName);
       }
-      setendServerRes(true);
+  
+        setendServerRes(true);
+      
+ 
+          
+    
+    
     }
   }, [context.endServerRes]);
   const frases = () => {
@@ -57,11 +63,12 @@ export default function MainPage() {
   window.onload = function () { 
     frases()
   }
+ 
   if (endServerRes === true) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
-          <div className="blockAllSelect h-full w-full absolute top-0   ">
+          <div className="blockAllSelect  h-full w-full absolute top-0   ">
             <div
               id="topMenu"
               className="relative h-[40px]  flex  items-center border border-slate-600  bg-transparent pb-2 justify-between overflow-hidden"
@@ -165,18 +172,20 @@ export default function MainPage() {
     }
   } else {
     return (
+      <div className="w-screen h-screen backGroundImage">
       <div className="flex items-center justify-center">
-        <div className="pt-12 mr-auto ml-auto">
+        <div className="pt-12 ">
           <SpinnerInfinity
             size={200}
-            thickness={50}
+            thickness={60}
             сolor={"#a384649a"}
             secondaryColor="rgba(0,0,0,0.24)"
-            speed={120}
+            speed={190}
+            className="mr-auto ml-auto"
           />
           <div className="text-center">
-            <p className="pt-4 text-slate-600">{textLoading}</p>
-            <div class="animate-pulse flex space-x-4 pt-3">
+            <p className="pt-4 text-slate-600 text-slate-100 text-[20px] mb-[40px]">{textLoading}</p>
+            <div class="animate-pulse flex space-x-4 pt-3 w-[300px]">
               <div class="flex-1 space-y-6 py-1">
                 <div class="h-2 bg-slate-300 rounded"></div>
                 <div class="space-y-3">
@@ -193,7 +202,7 @@ export default function MainPage() {
               </div>
             </div>
             <p
-              className="w-[200px] text-slate-700 text-center pt-4 text-[12px] absolute"
+              className="mt-[20px] w-[250px] text-slate-700 text-slate-200 text-center pt-4 text-[19px] mr-auto ml-auto"
               onLoad={() => frases()}
               onClick={() => frases()}
             >
@@ -201,7 +210,7 @@ export default function MainPage() {
             </p>
           </div>
         </div>
-      </div>
+      </div></div>
     );
   }
 }

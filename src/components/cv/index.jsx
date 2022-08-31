@@ -115,7 +115,7 @@ const CvMain = () => {
         </AnimatePresence>
         <div className="page-content w-[100%] md:w-[1000px]">
           <div className="first-header">
-            <div className="flex-col p-8">
+            <div className="flex-col pl-8 pt-8 flex-wrap">
               <div className="pt-[20px] w-full h-[70px] nameFontBold">
                 Jorge Ortega
               </div>
@@ -124,8 +124,8 @@ const CvMain = () => {
                 <img className="fill-slate-200 pl-1" src={keyboardSvg} alt="" />
               </div>
             </div>
-            <div className="pt-8 pr-8">
-              <div className="cvImage p-2"></div>
+            <div className="pt-8 pr-6">
+              <div className="cvImage"></div>
             </div>
           </div>
           <div className="textWrote w-10/12 mx-auto">
