@@ -34,12 +34,12 @@ export default function ContainerProyects({
         }/>
       </div>
       <div className="flex-col sm:flex-row w-full">
-        <div className="grow w-full h-[170px] items-center flex justify-center">
-          FOTO
+        <div className="w-full items-center flex justify-center p-2">
+          <img src={img} className="imageExamples" alt="" />
         </div>
         <div className="h-full flex flex-col justify-end">
           <p className="text-[17px]">{about}</p>
-          <div className="flex flw-wrap mt-2 mb-2">
+          <div className="flex flex-wrap mt-2 mb-2">
           {langs.map((lan,index) => (
             <p key={lan + "Child" + index} className='tagsLanguajes'>
               {lan}

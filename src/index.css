@@ -53,7 +53,9 @@
 .blockAllSelect { 
   user-select:none;
 }
-
+.index0{ 
+  z-index: 1;
+}
 .removeAlloulines { 
   border: none;
   resize: none;

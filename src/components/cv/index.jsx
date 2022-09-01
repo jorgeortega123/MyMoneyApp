@@ -77,7 +77,7 @@ const CvMain = () => {
   ///
   return (
     <div className="main-container">
-      <div className="nav">
+      <div className="nav blockAllSelect">
         <div
           className="absolute button-nav"
           onClick={() => {
@@ -92,15 +92,16 @@ const CvMain = () => {
           <span className="line l2"></span>
           <span className="line l3"></span>
         </div>
-        <div className="flex">
+        <div className="flex blockAllSelect ">
           <img
             src={downloadSvg}
             title={"Download cv"}
             style={{ fill: "#FFFFFF" }}
             fill="red"
             stroke="green"
-            className="svgDefaultColor"
+            className="svgDefaultColor w-[30px] h-[30px] m-2"
             alt=""
+            
           />
           <div>
             <img
@@ -108,18 +109,18 @@ const CvMain = () => {
               title={"Translate"}
               fill="red"
               stroke="green"
-              className="svgDefaultColor"
+              className="svgDefaultColor w-[30px] h-[30px] m-2" 
               alt=""
               onClick={()=>{if (showMenuTranslate===false) {setshowMenuTranslate(true)}else {setshowMenuTranslate(false) }}}
             />
             <AnimatePresence>
               {showMenuTranslate && (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, y:-50 }}
+                  animate={{ opacity: 1, y:0 }}
+                  exit={{ opacity: 0, y:-50 }}
                   transition={{ type: "tween" }}
-                  className="absolute w-[30px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect"
+                  className="index0 absolute w-[30px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect"
                 >
   
                     <p className="hover:text-blue-400" onClick={()=>setdefaultLang(lang.es)}>ES</p>
@@ -174,13 +175,18 @@ const CvMain = () => {
               <div className="cvImage"></div>
             </div>
           </div>
-          <div id="about" className="textWrote w-9/12 mx-auto">
-            <div className="console-containerr flex">
+            <div className="console-containerr w-full flex justify-center">
+             {
+              //<span className="absolute rigth-[40px]">{">> "}</span>
+            
+             }  <div className="w-[200px] flex">
               <span id="text" className=" "></span>
-              <div class=" console-underscoree bg-transparent" id="console">
+              <div class="w-full console-underscoree bg-transparent" id="console">
                 &#95;
               </div>
+              </div>
             </div>
+          <div id="about" className="textWrote w-10/12 mx-auto">
             <div className="w-full flex flex-col space-y-5 mb-5">
               <p className="titleText">{dataText.headers.about}</p>
               <p className="normalText containerText">
@@ -193,9 +199,13 @@ const CvMain = () => {
             <div id="proyects">
               <p className="titleText mb-5 mt-1 ">Proyects</p>
               <div className="flex-col space-y-4">
+          
                 <ContainerProyects
                   title="My Money"
                   about="Personal proyect, manage you incoming cash, see the history wich you spent your money"
+                  img="'../../src/assets/cv/proyects/myMoney.jpg"
+                  web="https://mymoneyapp.pages.dev/app/myMoney"
+                  langs={["React", "Typescript", 'Express', 'TailwindCss', 'TelegramApi', 'GoogleApi']}
                 />
               </div>
             </div>

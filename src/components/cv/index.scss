@@ -134,20 +134,24 @@ html {
     opacity:0;
   }
   .console-containerr {
-    border: 1px wheat solid;
-    border-radius: 10px;
+    width: 100%;
+    //border: 1px wheat solid;
     padding-top: 5px;
     padding-bottom: 2px;
-    background: transparent;
+    background: #000000;
     /*font-family:Khula; */
-    color:rgb(255, 255, 255);
-    width: 200px;
-    height: 40px;
+    font-weight: 700;
+    color:rgba(255, 255, 255, 0.642);
+    height: 30px;
     top:0;
+    text-align: center;
+    align-items: center;
     bottom:0;
     left:0;
     right:0;
     z-index: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   .console-underscoree {
      display:inline-block;
@@ -180,4 +184,9 @@ html {
     }
 .rotate180  { 
   transform: rotate(180deg);
+}
+.imageExamples {
+  background-image: url('../../src/assets/cv/proyects/myMoney.jpg');
+  background-repeat: no-repeat;
+
 }
