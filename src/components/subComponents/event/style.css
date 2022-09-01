@@ -6,9 +6,13 @@
 @import url('https://fonts.googleapis.com/css?family=Anton|Roboto');
 .background { 
      overflow: hidden;
-height: 100vh;
+height: 100vh;}
+.backGrounEvent {
+     background-image: url('../../../assets/event/one.jpg');
+     background-repeat: no-repeat;
+     background-size: cover; 
+} 
 
-}
 .normal-back { 
      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 
@@ -144,4 +148,13 @@ animation: gradient 6s ease reverse;
      100% {
        scale: 12.0;
      }
+   }
+
+   .topLetterr { 
+     position: absolute; 
+  left: 10px; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 200px; 
    }

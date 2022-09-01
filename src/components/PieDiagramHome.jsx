@@ -113,7 +113,7 @@ export const PieDiagramHome = (dataPie) => {
               {followPage ? (
                 <PieChart
                 className="piechartToEdit  "
-                  animation
+                  animation={true}
                   animationDuration={1500}
                   animationEasing="ease-out"
                   center={[50, 50]}

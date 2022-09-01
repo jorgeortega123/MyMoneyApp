@@ -1,4 +1,4 @@
-.back {
+.backk {
     overflow: hidden;
      position: fixed;
      padding: 0;
@@ -8,12 +8,13 @@
      width: 100%;
      height: 100%;
      background: rgb(29, 5, 7);
-     animation-name: back;
-     animation-duration: 3s;
+     animation-name: backk;
+     animation-duration: 6s;
      animation-iteration-count: infinite;
+     animation-direction: alternate-reverse;
      }
 
- .love {
+ .lovee {
      position: absolute;
      background-color: rgb(207, 105, 112);
      width: 220px;
@@ -24,12 +25,13 @@
      bottom: 0;
      right: 0;
      transform: rotate(-45deg);
-     animation-name: love;
-     animation-duration: 3s;
+     animation-name: lovee;
+     animation-duration: 6s;
      animation-delay: 1s;
+
      animation-iteration-count: infinite;
  }
- .love::before {
+ .lovee::before {
      content: "";
      position: absolute;
      background-color: rgb(207, 105, 112);
@@ -39,7 +41,7 @@
      top: -125px;
      left: 0px;
  }
- .love::after {
+ .lovee::after {
      content: "";
      position: absolute;
      background-color: rgb(207, 105, 112);
@@ -50,18 +52,24 @@
      top: 0px;
  }
  
- @keyframes back {
-     50% {
-         background: rgb(99, 60, 63);
+ @keyframes backk {
+     20% {
+         background: rgb(145, 70, 114);
+     }
+     50% { 
+        background-color: rgb(207, 105, 112);
+     }
+     80% { 
+        background: rgb(227, 75, 88);
      }
  }
- @keyframes love {
+ @keyframes lovee {
      50% {
          transform: scale(0.3) rotate(-45deg);
      }
  }
  /*love-1*/
- .love-1 {
+ .love-11 {
      position: absolute;
      background-color: rgb(231, 132, 139);
      width: 125px;
@@ -72,12 +80,12 @@
      bottom: 0;
      right: 0;
      transform: rotate(-45deg);
-     animation-name: love-1;
+     animation-name: love-11;
      animation-duration: 2s;
      animation-delay: 1.7s;
      animation-iteration-count: infinite;
  }
- .love-1::before {
+ .love-11::before {
      content: "";
      position: absolute;
      background-color: rgb(231, 132, 139);
@@ -87,7 +95,7 @@
      top: -62.5px;
      left: 0px;
  }
- .love-1::after {
+ .love-11::after {
      content: "";
      position: absolute;
      background-color: rgb(231, 132, 139);
@@ -98,13 +106,13 @@
      top: 0px;
  }
  
- @keyframes love-1{
+ @keyframes love-11{
      50% {
          transform: scale(0.5) rotate(-45deg);
      }
  }
  /*love-2*/
- .love-2 {
+ .love-22 {
      position: absolute;
      background-color: pink;
      width: 62.5px;
@@ -115,12 +123,12 @@
      bottom: 0;
      right: 0;
      transform: rotate(-45deg);
-     animation-name: love-2;
+     animation-name: love-22;
      animation-duration: 1s;
      animation-delay: 1s;
      animation-iteration-count: infinite;
  }
- .love-2::before {
+ .love-22::before {
      content: "";
      position: absolute;
      background-color: pink;
@@ -130,7 +138,7 @@
      top: -31.25px;
      left: 0px;
  }
- .love-2::after {
+ .love-22::after {
      content: "";
      position: absolute;
      background-color: pink;
@@ -141,7 +149,7 @@
      top: 0px;
  }
  
- @keyframes love-2 {
+ @keyframes love-22{
      50% {
          transform: scale(1.25) rotate(-45deg);
      }

@@ -42,9 +42,10 @@ export default function Event() {
         } else { 
           setcontenido(`Hola Danna`);
          sethostsms(`Recuerda que lo hice con amor, te amo ∞ `)
-         setTimeout(() => {
+         setEvent(true)
+        /* setTimeout(() => {
           location.href = "https://1aa38f3e.mymoneyapp.pages.dev/"
-         }, 4500);
+         }, 4500); */
         }
       })
       .catch(() => {

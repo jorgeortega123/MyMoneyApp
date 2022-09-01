@@ -163,10 +163,10 @@ export default function Card() {
     recize_notes();
   };
   return (<motion.div
-        initial={{ opacity: 0,  y:200 }}
+        initial={{ opacity: 0,  y:0 }}
         animate={{ opacity: 1, x: 0, y:0 }}
         transition={{
-          duration: 10,
+          duration: 5,
         }}
         className="overflow-hidden bg-black  "
       >
