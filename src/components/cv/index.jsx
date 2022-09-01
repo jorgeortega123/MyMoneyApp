@@ -2,35 +2,27 @@ import "./index.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import keyboardSvg from "./../../assets/svg/keyboard.svg";
+import downloadSvg from "./../../assets/svg/download.svg";
+import langSvg from "./../../assets/svg/lang.svg";
 import ContainerProyects from "./ContainerProyects";
+import { lang } from "./langs";
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
+  const [showMenuTranslate, setshowMenuTranslate] = useState(false);
+  const [dataText, setdataText] = useState(lang.en)
+  const [defaultLang, setdefaultLang] = useState("en")
+
   ///
   useEffect(() => {
+ //setdataText(lang[defaultLang]) 
     setTimeout(() => {
       consoleText(
-        [
-          "React JS",
-          "Css",
-          "Javascript",
-          "Python",
-          "Google",
-          "Ok",
-        ],
+        ["React JS", "Css", "Javascript", "Python", "Google", "Ok"],
         "text",
-        [
-          "tomato",
-          "rebeccapurple",
-          "lightblue",
-          "rebeccapurple",
-          "cadetblue",
-        ]
-      )
+        ["tomato", "rebeccapurple", "lightblue", "rebeccapurple", "cadetblue"]
+      );
     }, 1500);
-  
-  
-  }, [])
-  
+  }, []);
 
   ///
   // function([string1, string2],target id,[color1,color2])
@@ -87,7 +79,7 @@ const CvMain = () => {
     <div className="main-container">
       <div className="nav">
         <div
-          className="button-nav"
+          className="absolute button-nav"
           onClick={() => {
             if (showMenu === true) {
               setshowMenu(false);
@@ -99,6 +91,44 @@ const CvMain = () => {
           <span className="line l1"></span>
           <span className="line l2"></span>
           <span className="line l3"></span>
+        </div>
+        <div className="flex">
+          <img
+            src={downloadSvg}
+            title={"Download cv"}
+            style={{ fill: "#FFFFFF" }}
+            fill="red"
+            stroke="green"
+            className="svgDefaultColor"
+            alt=""
+          />
+          <div>
+            <img
+              src={langSvg}
+              title={"Translate"}
+              fill="red"
+              stroke="green"
+              className="svgDefaultColor"
+              alt=""
+              onClick={()=>{if (showMenuTranslate===false) {setshowMenuTranslate(true)}else {setshowMenuTranslate(false) }}}
+            />
+            <AnimatePresence>
+              {showMenuTranslate && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ type: "tween" }}
+                  className="absolute w-[30px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect"
+                >
+  
+                    <p className="hover:text-blue-400" onClick={()=>setdefaultLang(lang.es)}>ES</p>
+                    <p className="hover:text-blue-400" onClick={()=>setdefaultLang(lang.en)}>EN</p>
+          
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
       <div className="main-page mx-auto">
@@ -144,19 +174,15 @@ const CvMain = () => {
               <div className="cvImage"></div>
             </div>
           </div>
-          <div className="textWrote w-10/12 mx-auto">
-            <div
-             
-              className="console-containerr"
-            >
+          <div id="about" className="textWrote w-9/12 mx-auto">
+            <div className="console-containerr flex">
               <span id="text" className=" "></span>
-              <div class="console-underscoree bg-transparent" id="console">
+              <div class=" console-underscoree bg-transparent" id="console">
                 &#95;
               </div>
-          
             </div>
-            <div id="about" className="w-full flex flex-col space-y-5 mb-5">
-              <p className="titleText">About</p>
+            <div className="w-full flex flex-col space-y-5 mb-5">
+              <p className="titleText">{dataText.headers.about}</p>
               <p className="normalText containerText">
                 Hi there, I'm a frontend developer. Since I was kid (14 years
                 old), I have been learning and practicing programming form
