@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { lang } from "../../dataSimulateServer";
+import { lang } from "../../../../dataSimulateServer";
 export default function ServerOut() {
   const [langstate, setlangstate] = useState({});
   const [continuePage, setcontinuePage] = useState(false)

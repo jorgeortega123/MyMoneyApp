@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useMessageContext from "../../context/Modal/useMessageContext";
-import useGlobalContext from "../../context/useGlobalContext";
+import useMessageContext from "../../../../context/Modal/useMessageContext";
+import useGlobalContext from "../../../../context/useGlobalContext";
 export default function ShowHistoryDebst(nameUser) {
   const { message } = useMessageContext();
   const { context } = useGlobalContext();

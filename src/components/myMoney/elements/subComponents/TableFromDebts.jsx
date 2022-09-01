@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import useMessageContext from "../../context/Modal/useMessageContext";
+import useMessageContext from "../../../../context/Modal/useMessageContext";
 import axios from "axios";
-import useGlobalContext from "../../context/useGlobalContext";
+//import useGlobalContext from "../../../../context/useGlobalContext";
+import useGlobalContext from "../../../../context/useGlobalContext";
 import ShowHistoryDebst from "./ShowHistoryDebst";
 
 export default function TableFromDebts(lang) {

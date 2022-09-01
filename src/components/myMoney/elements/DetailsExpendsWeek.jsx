@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import useGlobalContext from "../context/useGlobalContext";
+import useGlobalContext from "../../../context/useGlobalContext";
 import { AnimatePresence, motion } from "framer-motion";
 export default function DetailsExpendsWeek(lang) {
   const { context } = useGlobalContext();

@@ -1,5 +1,5 @@
 import "./index.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,10 @@ export default function Login() {
   const [event, setEvent] = useState(false);
   const { context } = useGlobalContext();
   //localStorage.removeItem("token")
+  useEffect(() => {
+    if (localStorage.getItem("token")) {navigate("/app" + "/myMoney", { replace: true })}
+  }, [])
+  
   const sendData = () => {
     settextOfBotton("Sending data...");
     if (!user) {
@@ -39,8 +43,7 @@ export default function Login() {
       .then((res) => {
         if (res.data.extra === 205) {
           localStorage.setItem("token", res.data.token);
-          location.reload;
-          location.href = "/";
+          navigate("/app" + "/myMoney", { replace: true })
         }
         setmessageAboutLogin(res.data.data);
         settextOfBotton("Log in");
@@ -77,7 +80,7 @@ export default function Login() {
         //<Wave className="absolute w-[screen] bottom-0"  />
       }
         <div className="borderLogin p-3 rounded-xl bg-[#d65d5d1a]">
-          <div className=" w-full max-w-md p-8 space-y-3 borderLogin2 rounded-xl  backdrop-blur-[2px] 	">
+          <div className=" w-full max-w-md p-8 space-y-3 borderLogin2 rounded-xl  backdrop-blur-[1px] 	">
             <h1 className="text-2xl font-bold text-center loginText">Login</h1>
             <form
               onSubmit={(e) => {

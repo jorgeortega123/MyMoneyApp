@@ -9,6 +9,8 @@
         border-color: #19cbc592;
 }
 .buttonLogin { 
+        font-weight: 500;
+        color: antiquewhite;
         background: rgb(2,0,36);
         background: linear-gradient(90deg, rgba(11, 175, 187, 0.339) 0%, rgba(50, 50, 183, 0.133) 42%, rgba(0,212,255,1) 100%);
         &:hover{
@@ -34,4 +36,5 @@
 }
 .loginText { 
         color: rgb(20, 220, 197);
+        
 }

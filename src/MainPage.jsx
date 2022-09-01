@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import AddMoveCash from "./components/AddMoveCash";
-import DetailsExpendsWeek from "./components/DetailsExpendsWeek";
+import AddMoveCash from "./components/myMoney/elements/AddMoveCash.jsx";
+//src/components/myMoney/elements/AddMoveCash.jsx
+import DetailsExpendsWeek from "./components/myMoney/elements/DetailsExpendsWeek";
 import Login from "./components/login";
-import CahrgingData from "./components/subComponents/CahrgingData";
-import ServerOut from "./components/subComponents/ServerOut";
+import CahrgingData from "./components/myMoney/elements/subComponents/CahrgingData";
+import ServerOut from "./components/myMoney/elements/subComponents/ServerOut";
 import useGlobalContext from "./context/useGlobalContext";
-import { PieDiagramHome } from "./components/PieDiagramHome";
+import { PieDiagramHome } from "./components/myMoney/elements/PieDiagramHome";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageContextComponent } from "./context/Modal/MessageContext";
 import { useNavigate } from "react-router-dom";
 import { lang, phrases } from "./dataSimulateServer";
-
 import { SpinnerInfinity } from "spinners-react";
-import ToDay from "./components/ToDay";
-import Configurations from "./components/subComponents/Configurations";
-import AddIncomingCash from "./components/AddIncomingCash";
-import TableFromDebts from "./components/subComponents/TableFromDebts";
+import ToDay from "./components/myMoney/elements/ToDay";
+import Configurations from "./components/myMoney/elements/subComponents/Configurations";
+import AddIncomingCash from "./components/myMoney/elements/AddIncomingCash";
+import TableFromDebts from "./components/myMoney/elements/subComponents/TableFromDebts";
 
 export default function MainPage() {
   const { context } = useGlobalContext();
@@ -37,13 +37,28 @@ export default function MainPage() {
       } else {
         setloginValidation(userName);
       }
+      setendServerRes(true);
+    }
+    var d = new Date();
+    var dayName = d.toString().split(" ")[0];
+    //var monthDay = d.toString().split(" ")[1];
+    //var numberDay = d.toString().split(" ")[2];
+    //var yearDay = d.toString().split(" ")[3];
+    console.log(context.data);
   
-        setendServerRes(true);
-      
- 
-          
-    
-    
+    if (context.data != undefined) {
+      if (context.endServerRes === true) {
+        if (dayName === "Sun") {
+          //console.log(context.data.isValueSunday)
+          if (context.data.isValueSunday === false) {
+            console.log("si x2");
+            axios.post(context.server + "/newContabilitie", {
+              name: localStorage.getItem("token"),
+              reset: true,
+            });
+          }
+        }
+      }
     }
   }, [context.endServerRes]);
   const frases = () => {
@@ -60,10 +75,10 @@ export default function MainPage() {
       console.log('Scroll Up');
     }
   }*/
-  window.onload = function () { 
-    frases()
-  }
- 
+  window.onload = function () {
+    frases();
+  };
+
   if (endServerRes === true) {
     if (loginValidation) {
       return (
@@ -149,13 +164,9 @@ export default function MainPage() {
                         </div>
                       )}
                     </div>
-                    
                   </div>
-                 
                 </div>
-                <div>
-                    
-                  </div>
+                <div></div>
               </div>
             ) : (
               <ServerOut />
@@ -173,44 +184,47 @@ export default function MainPage() {
   } else {
     return (
       <div className="w-screen h-screen backGroundImage">
-      <div className="flex items-center justify-center">
-        <div className="pt-12 ">
-          <SpinnerInfinity
-            size={200}
-            thickness={60}
-            сolor={"#a384649a"}
-            secondaryColor="rgba(0,0,0,0.24)"
-            speed={190}
-            className="mr-auto ml-auto"
-          />
-          <div className="text-center">
-            <p className="pt-4 text-slate-600 text-slate-100 text-[20px] mb-[40px]">{textLoading}</p>
-            <div class="animate-pulse flex space-x-4 pt-3 w-[300px]">
-              <div class="flex-1 space-y-6 py-1">
-                <div class="h-2 bg-slate-300 rounded"></div>
-                <div class="space-y-3">
-                  <div class="grid grid-cols-3 gap-4">
-                    <div class="h-2 bg-slate-300 rounded col-span-2"></div>
+        <div className="flex items-center justify-center">
+          <div className="pt-12 ">
+            <SpinnerInfinity
+              size={200}
+              thickness={60}
+              сolor={"#a384649a"}
+              secondaryColor="rgba(0,0,0,0.24)"
+              speed={190}
+              className="mr-auto ml-auto"
+            />
+            <div className="text-center">
+              <p className="pt-4 text-slate-600 text-slate-100 text-[20px] mb-[40px]">
+                {textLoading}
+              </p>
+              <div class="animate-pulse flex space-x-4 pt-3 w-[300px]">
+                <div class="flex-1 space-y-6 py-1">
+                  <div class="h-2 bg-slate-300 rounded"></div>
+                  <div class="space-y-3">
+                    <div class="grid grid-cols-3 gap-4">
+                      <div class="h-2 bg-slate-300 rounded col-span-2"></div>
 
-                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
-                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
-                    <div class="h-2 bg-slate-300 rounded col-span-2"></div>
+                      <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                      <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                      <div class="h-2 bg-slate-300 rounded col-span-2"></div>
+                    </div>
+                    <div class="h-2 bg-slate-300 rounded"></div>
+                    <div class="h-2 bg-slate-300 rounded"></div>
                   </div>
-                  <div class="h-2 bg-slate-300 rounded"></div>
-                  <div class="h-2 bg-slate-300 rounded"></div>
                 </div>
               </div>
+              <p
+                className="mt-[20px] w-[250px] text-slate-700 text-slate-200 text-center pt-4 text-[19px] mr-auto ml-auto"
+                onLoad={() => frases()}
+                onClick={() => frases()}
+              >
+                {frase}
+              </p>
             </div>
-            <p
-              className="mt-[20px] w-[250px] text-slate-700 text-slate-200 text-center pt-4 text-[19px] mr-auto ml-auto"
-              onLoad={() => frases()}
-              onClick={() => frases()}
-            >
-              {frase}
-            </p>
           </div>
         </div>
-      </div></div>
+      </div>
     );
   }
 }

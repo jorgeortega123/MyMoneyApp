@@ -8,7 +8,7 @@
      overflow: hidden;
 height: 100vh;}
 .backGrounEvent {
-     background-image: url('../../../assets/event/one.jpg');
+     background-image: url('../../assets/event/one.jpg');
      background-repeat: no-repeat;
      background-size: cover; 
 } 

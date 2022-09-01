@@ -3,9 +3,9 @@ import { useState } from "react";
 import AddIncomingCash from "./AddIncomingCash";
 import TableFromDebts from "./subComponents/TableFromDebts";
 import axios from "axios";
-import useGlobalContext from "../context/useGlobalContext";
+import useGlobalContext from "../../../context/useGlobalContext";
 import AddOptionAboutCost from "./subComponents/AddOptionAboutCost";
-import useMessageContext from "../context/Modal/useMessageContext";
+import useMessageContext from "../../../context/Modal/useMessageContext";
 
 export default function AddMoveCash(lang) {
   const { context } = useGlobalContext();

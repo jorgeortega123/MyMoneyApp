@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import useGlobalContext from "../../context/useGlobalContext";
+import useGlobalContext from "../../../../context/useGlobalContext";
 import axios from "axios";
-import useMessageContext from "../../context/Modal/useMessageContext";
+import useMessageContext from "../../../../context/Modal/useMessageContext";
 
 export default function Configurations(data) {
   const [showSioNo, setshowSioNo] = useState(false);

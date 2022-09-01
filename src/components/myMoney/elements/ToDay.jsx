@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import useGlobalContext from "../context/useGlobalContext";
-import useMessageContext from "../context/Modal/useMessageContext";
+import useGlobalContext from "../../../context/useGlobalContext";
+import useMessageContext from "../../../context/Modal/useMessageContext";
 export default function () {
   const { context } = useGlobalContext();
   const { message } = useMessageContext();

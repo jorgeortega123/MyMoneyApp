@@ -3,7 +3,7 @@ import { React, useEffect, useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import PieDiagramTextInfo from "./PieDiagramTextInfo";
 import { AnimatePresence, motion } from "framer-motion";
-import useGlobalContext from "../context/useGlobalContext";
+import useGlobalContext from "../../../context/useGlobalContext";
 //import { data, serverRes } from "../dataSimulateServer";
 export const PieDiagramHome = (dataPie) => {
   const { context } = useGlobalContext();

@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import useMessageContext from "../context/Modal/useMessageContext";
-import useGlobalContext from "../context/useGlobalContext";
+import useMessageContext from "../../../context/Modal/useMessageContext";
+import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
 export default function AddIncomingCash(lang) {
   const { context } = useGlobalContext();

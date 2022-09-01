@@ -21,7 +21,6 @@ export const phrases = {
    "Tú puedes hacerlo.",
    "Gracias existir.",
    "Si lo puedes imaginar, lo puedes programar.",
-   
 
 
  ]

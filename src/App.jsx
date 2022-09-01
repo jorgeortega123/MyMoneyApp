@@ -1,33 +1,14 @@
 import { useEffect, useState } from "react";
 import "./index.css";
-import "./data.json";
-import DetailsExpendsWeek from "./components/DetailsExpendsWeek";
-import ServerOut from "./components/subComponents/ServerOut";
-import { SpinnerInfinity } from "spinners-react";
-import Skeleton from "@mui/material/Skeleton";
-import { PieDiagramHome } from "./components/PieDiagramHome";
-//import PieDiagramTextInfo from "./components/PieDiagramTextInfo";
-import AddMoveCash from "./components/AddMoveCash";
 //import { data, serverRes } from "./dataSimulateServer";
 import axios from "axios";
 import useGlobalContext from "./context/useGlobalContext";
-import { GlobalContextComponent } from "./context/GlobalContext";
-import { MessageContextComponent } from "./context/Modal/MessageContext";
 import { lang, phrases } from "./dataSimulateServer";
-
-import { display } from "@mui/system";
-import { AnimatePresence, motion } from "framer-motion";
 import Login from "./components/login";
-import CahrgingData from "./components/subComponents/CahrgingData";
-import ToDay from "./components/ToDay";
-import Configurations from "./components/subComponents/Configurations";
-import Wave from "./UI/Wave";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import Event from "./components/subComponents/event/Event";
-import { render } from "react-dom";
+//import Event from "./components/subComponents/event/Event";
 import MainPage from "./MainPage";
-import MainEvent from "./components/subComponents/event/MainEvent";
-import AllTransactions from "./components/subComponents/AllTransactions";
+//import AllTransactions from "./components/myMoney/subComponents/AllTransactions";
 import CvMain from "./components/cv";
 //import useGlobalContext from "../context/useGlobalContext";
 const server = "https://mymone.azurewebsites.net";
@@ -54,26 +35,6 @@ function App() {
       setfinalLang(lang.en);
       setlangByUser("en");
     }
-    var d = new Date();
-    var dayName = d.toString().split(" ")[0];
-    //var monthDay = d.toString().split(" ")[1];
-    //var numberDay = d.toString().split(" ")[2];
-    //var yearDay = d.toString().split(" ")[3];
-    console.log(context.data);
-    if (context.data != undefined) {
-      if (context.endServerRes === true) {
-        if (dayName === "Sun") {
-          //console.log(context.data.isValueSunday)
-          if (context.data.isValueSunday === false) {
-            console.log("si x2");
-            axios.post(context.server + "/newContabilitie", {
-              name: localStorage.getItem("token"),
-              reset: true,
-            });
-          }
-        }
-      }
-    }
   }, []);
 
   setTimeout(() => {
@@ -82,15 +43,18 @@ function App() {
       settextLoading("Ten paciencia...");
     }, 4000);
   }, 7000);
-  const MainScreen = () => {};
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/app/myMoney" element={<MainPage />} >
+         {
+          //<Route path="/data/transitions/costs" element={<AllTransactions />} />
+         } 
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/event" element={<Event />} />
-        <Route path="/data/transitions/costs" element={<AllTransactions />} />
         <Route path="/cv" element={<CvMain />} />
       </Routes>
     </Router>

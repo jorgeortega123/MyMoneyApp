@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useGlobalContext from "../context/useGlobalContext";
+import useGlobalContext from "../../../context/useGlobalContext";
 import { AnimatePresence, motion } from "framer-motion";
 //import { data } from "../dataSimulateServer";
 export default function PieDiagramTextInfo(dataToTransform) {
