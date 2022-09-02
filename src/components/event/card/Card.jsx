@@ -141,12 +141,11 @@ export default function Card() {
     document.querySelector(".js-up-paper").classList.remove("cursor");
   }
 
-  //-> Function that allows cut the sticker.
-  console.log(document.querySelector(".js-s-ticker"));
+  //-> Function that allows cut the sticker.console.log(document.querySelector(".js-s-ticker"));
   //document.querySelector(".js-s-ticker").addEventListener("click", sticker);
 
   function sticker() {
-    console.log("ola");
+
     gsap.set(".js-s-ticker", { width: "20%", left: "-80%" });
     document.body.classList.remove("scissors");
     document.querySelector(".js-s-ticker").addEventListener("click", sticker);
@@ -189,7 +188,7 @@ export default function Card() {
             <div class="note js-note ">
               <div class="note__text  ">
                 <p>
-                  Hola amor, te quiero dar las gracias por todo, por las
+                  Ola, te quiero dar las gracias por todo, por las
                   alegrías, por las risas, por los lindos momentos pero, también
                   por los malos, porque aunque haya malos momentos...
                 </p>
@@ -201,7 +200,7 @@ export default function Card() {
                   quiero pasarlos contigo, luchar y superarlos juntos. La verdad
                   eres muy importante para mi, amo lo que tenemos juntos y sé
                   que podemos mejorar y mantenerlo si los dos queremos y créeme
-                  que yo quiero.
+                  que yo si quiero.
                 </p>
               </div>
             </div>
@@ -212,7 +211,7 @@ export default function Card() {
                   hasta que ya no este en mis manos, porque no estoy contigo por
                   necesidad ni por superficialidad, estoy contigo por elección.
                 </p>
-                <p>I &hearts; Danna</p>
+                <p>Te amo infinito Danna &hearts;</p>
               </div>
             </div>
           </div>

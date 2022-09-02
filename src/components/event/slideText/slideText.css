@@ -3,7 +3,7 @@
 .hidden {
   opacity:0;
 }
-.console-container {
+.console-container2 {
  
   font-family:Khula;
   font-size:30px;
@@ -16,7 +16,7 @@
   right:0;
   margin:auto;
 }
-.console-underscore {
+.console-underscore2 {
    display:inline-block;
   position:relative;
   top:-0.14em;

@@ -120,11 +120,11 @@ const CvMain = () => {
                   animate={{ opacity: 1, x:0 }}
                   exit={{ opacity: 0, x:-50 }}
                   transition={{ type: "tween" }}
-                  className="z-0 absolute w-[30px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect"
+                  className="z-0 absolute pl-3 w-[60px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect "
                 >
   
-                    <p className="hover:text-blue-400" onClick={()=>{setdataText(lang.es); setshowMenuTranslate(false)}}>ES</p>
-                    <p className="hover:text-blue-400" onClick={()=>{setdataText(lang.en); setshowMenuTranslate(false)}}>EN</p>
+                    <p className="pb-1 pt-1 hover:text-blue-400" onClick={()=>{setdataText(lang.es); setshowMenuTranslate(false)}}>ES</p>
+                    <p className="pb-1 hover:text-blue-400" onClick={()=>{setdataText(lang.en); setshowMenuTranslate(false)}}>EN</p>
           
                 </motion.div>
               )}
@@ -181,7 +181,7 @@ const CvMain = () => {
             
              }  <div className="w-[200px] flex">
               <span id="text" className=" "></span>
-              <div class="w-full console-underscoree bg-transparent" id="console">
+              <div className="w-full console-underscoree bg-transparent" id="console">
                 &#95;
               </div>
               </div>

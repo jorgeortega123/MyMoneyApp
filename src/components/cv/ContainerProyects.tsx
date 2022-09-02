@@ -30,7 +30,7 @@ export default function ContainerProyects({
     },
     {
       b: "#E94560",
-      t: "#16213E",
+      t: "#FFFFFF",
     },
     {
       b: "#FECD70",
