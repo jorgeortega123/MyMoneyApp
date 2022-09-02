@@ -116,15 +116,15 @@ const CvMain = () => {
             <AnimatePresence>
               {showMenuTranslate && (
                 <motion.div
-                  initial={{ opacity: 0, y:-50 }}
-                  animate={{ opacity: 1, y:0 }}
-                  exit={{ opacity: 0, y:-50 }}
+                  initial={{ opacity: 0, x:-50 }}
+                  animate={{ opacity: 1, x:0 }}
+                  exit={{ opacity: 0, x:-50 }}
                   transition={{ type: "tween" }}
-                  className="index0 absolute w-[30px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect"
+                  className="z-0 absolute w-[30px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect"
                 >
   
-                    <p className="hover:text-blue-400" onClick={()=>setdefaultLang(lang.es)}>ES</p>
-                    <p className="hover:text-blue-400" onClick={()=>setdefaultLang(lang.en)}>EN</p>
+                    <p className="hover:text-blue-400" onClick={()=>{setdataText(lang.es); setshowMenuTranslate(false)}}>ES</p>
+                    <p className="hover:text-blue-400" onClick={()=>{setdataText(lang.en); setshowMenuTranslate(false)}}>EN</p>
           
                 </motion.div>
               )}
@@ -162,16 +162,16 @@ const CvMain = () => {
         </AnimatePresence>
         <div className="page-content w-[100%] md:w-[1000px]">
           <div className="first-header">
-            <div className="flex-col pl-8 pt-8 flex-wrap">
-              <div className="pt-[20px] w-full h-[70px] nameFontBold">
+            <div className="flex-col pl-6 pt-6">
+              <div className=" w-max h-max nameFontBold">
                 Jorge Ortega
               </div>
-              <div className="pt-[13px] text-[27px] flex">
-                <p className="pt-[3px]">Developer</p>
+              <div className="pt-[13px] pb-[13px] text-[27px] flex">
+                <p className="pt-[3px] ">Developer</p>
                 <img className="fill-slate-200 pl-1" src={keyboardSvg} alt="" />
               </div>
             </div>
-            <div className="pt-8 pr-6">
+            <div className="pt-6 pr-5 pl-1">
               <div className="cvImage"></div>
             </div>
           </div>
@@ -190,10 +190,7 @@ const CvMain = () => {
             <div className="w-full flex flex-col space-y-5 mb-5">
               <p className="titleText">{dataText.headers.about}</p>
               <p className="normalText containerText">
-                Hi there, I'm a frontend developer. Since I was kid (14 years
-                old), I have been learning and practicing programming form
-                tutorials and docs. My principal lagnauges knowlegde are:
-                Typescript, JavaScript and Python.
+               {dataText.headers.aboutInfo}
               </p>
             </div>
             <div id="proyects">
@@ -203,7 +200,7 @@ const CvMain = () => {
                 <ContainerProyects
                   title="My Money"
                   about="Personal proyect, manage you incoming cash, see the history wich you spent your money"
-                  img="'../../src/assets/cv/proyects/myMoney.jpg"
+                  img="https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png"
                   web="https://mymoneyapp.pages.dev/app/myMoney"
                   langs={["React", "Typescript", 'Express', 'TailwindCss', 'TelegramApi', 'GoogleApi']}
                 />
