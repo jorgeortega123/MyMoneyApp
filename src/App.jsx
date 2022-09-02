@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import MainPage from "./MainPage";
 //import AllTransactions from "./components/myMoney/subComponents/AllTransactions";
 import CvMain from "./components/cv";
+import EventMain from "./components/event/Event";
 //import useGlobalContext from "../context/useGlobalContext";
 const server = "https://mymone.azurewebsites.net";
 
@@ -54,7 +55,7 @@ function App() {
          } 
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/event" element={<Event />} />
+        <Route path="/event" element={<EventMain />} />
         <Route path="/cv" element={<CvMain />} />
       </Routes>
     </Router>

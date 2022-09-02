@@ -95,10 +95,9 @@ export default function MainEvent() {
               transition={{
                 duration: 3,
               }}
-              className=" "
+              className="w-full flex items-center justify-center"
             >
                <p className="absolute text-[14px] left-1 text-slate-100 top-0">Evento creado exclusivamente para Danna<span className="text-red-800"> ❤️</span> </p>
-              <p></p>
               <TextSlide />
             </motion.div>
           )}

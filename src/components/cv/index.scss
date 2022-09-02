@@ -11,7 +11,7 @@ html {
   background-color: rgb(19, 45, 83);
 }
 .main-page { 
-    width: 100%;
+  max-width: 600px;
     height: 100vh;
     position: relative;
     z-index: 0;

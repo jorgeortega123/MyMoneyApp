@@ -34,14 +34,14 @@ export default function TextSlide() {
           target.setAttribute("style", "color:" + colors[0]);
           letterCount += x;
           waiting = false;
-        }, 1000);
+        }, 800);
       } else if (letterCount === words[0].length + 1 && waiting === false) {
         waiting = true;
         window.setTimeout(function () {
           x = -1;
           letterCount += x;
           waiting = false;
-        }, 1000);
+        }, 300);
       } else if (waiting === false) {
         target.innerHTML = words[0].substring(0, letterCount);
         letterCount += x;
@@ -60,7 +60,7 @@ export default function TextSlide() {
   }
 
   return (
-    <div class=" console-container w-[250px] flex flex-wrap">
+    <div class="absolute left-[100px] console-container w-full flex flex-wrap">
       <span id="text"></span>
       <div class="console-underscore" id="console">
         &#95;
