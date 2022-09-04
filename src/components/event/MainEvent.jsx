@@ -21,7 +21,7 @@ export default function MainEvent() {
   const retroCount = () => {
     setTimeout(() => {
       setfinalHearth(true)
-    }, 29000);
+    }, 30200);
   };
   //if (isAccepted === false) {
     if (continuee=== false) {

@@ -3,13 +3,13 @@ import "./slideText.css";
 export default function TextSlide() {
   useEffect(() => {
     setTimeout(() => {
-      consoleText(["Te amo", "Eres una persona muy especial para mi", "Sigamos o no, arreglé esto", "Para que sepas", "Lo que realmente signficas para mi"], "text", [
+      consoleText(["Te amo", "Eres una persona muy especial", "Sigamos o no, arreglé esto", "Para que sepas", "Lo que realmente signficas para mi"], "text", [
         "pink",
         "rebeccapurple",
         "lightblue",
         "burlywood"
       ])
-    }, 2300);
+    }, 1600);
   }, []);
 
   function consoleText(words, id, colors) {

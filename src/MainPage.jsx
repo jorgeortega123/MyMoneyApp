@@ -60,6 +60,14 @@ export default function MainPage() {
         }
       }
     }
+    
+      if (document.readyState === "complete") {
+        frases()
+      } else {
+          window.addEventListener('load', ()=>  frases())
+        return () => document.removeEventListener('load', ()=>  frases())
+      }
+  
   }, [context.endServerRes]);
   const frases = () => {
     var arr = Math.floor(Math.random() * 21);
@@ -75,9 +83,9 @@ export default function MainPage() {
       console.log('Scroll Up');
     }
   }*/
-  window.onload = function () {
-    frases();
-  };
+
+   
+  
 
   if (endServerRes === true) {
     if (loginValidation) {

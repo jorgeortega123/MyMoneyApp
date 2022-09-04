@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 //@ts-ignore
 import newWindow from "../../assets/svg/newWindow.svg";
 export default function ContainerProyects({
@@ -15,6 +15,25 @@ export default function ContainerProyects({
   langs: string[];
   web: string;
 }) {
+  const elemets = () => {
+    langs.map((lan, index) => {
+      var elementCreate = document.createElement("p");
+      elementCreate.textContent = lan;
+      elementCreate.classList.add("tagsLanguajes", "num" + index);
+      elementCreate.style.color = colors[index].t;
+      elementCreate.style.backgroundColor = colors[index].b;
+      document.getElementById("appendp")?.append(elementCreate);
+    });
+  };
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      elemets();
+    } else {
+      window.addEventListener("load", () => elemets());
+      return () => document.removeEventListener("load", () => elemets());
+    }
+  }, []);
+
   const colors = [
     {
       b: "#D36B00",
@@ -70,17 +89,7 @@ export default function ContainerProyects({
             })}
 */
 
-  const elemets = () => {
-    langs.map((lan, index) => {
-      var elementCreate = document.createElement("p");
-      elementCreate.textContent = lan
-      elementCreate.classList.add("tagsLanguajes", "num" + index);
-      elementCreate.style.color = colors[index].t
-      elementCreate.style.backgroundColor = colors[index].b
-      document.getElementById("appendp")?.append(elementCreate);
-    });
-  };
-  window.addEventListener('load', ()=> elemets())
+  //window.addEventListener('load', ()=> elemets())
   return (
     <div className="w-full border pl-2 pr-2">
       <div className="items-center flex justify-center">
@@ -108,9 +117,7 @@ export default function ContainerProyects({
         </div>
         <div className="h-full flex flex-col justify-end">
           <p className="text-[17px]">{about}</p>
-          <div id="appendp" className="flex flex-wrap mt-2 mb-2">
-
-          </div>
+          <div id="appendp" className="flex flex-wrap mt-2 mb-2"></div>
         </div>
       </div>
     </div>
