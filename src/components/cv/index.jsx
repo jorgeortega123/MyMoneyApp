@@ -9,12 +9,12 @@ import { lang } from "./langs";
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
   const [showMenuTranslate, setshowMenuTranslate] = useState(false);
-  const [dataText, setdataText] = useState(lang.en)
-  const [defaultLang, setdefaultLang] = useState("en")
+  const [dataText, setdataText] = useState(lang.en);
+  const [defaultLang, setdefaultLang] = useState("en");
 
   ///
   useEffect(() => {
- //setdataText(lang[defaultLang]) 
+    //setdataText(lang[defaultLang])
     setTimeout(() => {
       consoleText(
         ["React JS", "Css", "Javascript", "Python", "Google", "Ok"],
@@ -101,7 +101,6 @@ const CvMain = () => {
             stroke="green"
             className="svgDefaultColor w-[30px] h-[30px] m-2"
             alt=""
-            
           />
           <div>
             <img
@@ -109,23 +108,43 @@ const CvMain = () => {
               title={"Translate"}
               fill="red"
               stroke="green"
-              className="svgDefaultColor w-[30px] h-[30px] m-2" 
+              className="svgDefaultColor w-[30px] h-[30px] m-2"
               alt=""
-              onClick={()=>{if (showMenuTranslate===false) {setshowMenuTranslate(true)}else {setshowMenuTranslate(false) }}}
+              onClick={() => {
+                if (showMenuTranslate === false) {
+                  setshowMenuTranslate(true);
+                } else {
+                  setshowMenuTranslate(false);
+                }
+              }}
             />
             <AnimatePresence>
               {showMenuTranslate && (
                 <motion.div
-                  initial={{ opacity: 0, x:-50 }}
-                  animate={{ opacity: 1, x:0 }}
-                  exit={{ opacity: 0, x:-50 }}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
                   transition={{ type: "tween" }}
                   className="z-0 absolute pl-3 w-[60px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect "
                 >
-  
-                    <p className="pb-1 pt-1 hover:text-blue-400" onClick={()=>{setdataText(lang.es); setshowMenuTranslate(false)}}>ES</p>
-                    <p className="pb-1 hover:text-blue-400" onClick={()=>{setdataText(lang.en); setshowMenuTranslate(false)}}>EN</p>
-          
+                  <p
+                    className="pb-1 pt-1 hover:text-blue-400"
+                    onClick={() => {
+                      setdataText(lang.es);
+                      setshowMenuTranslate(false);
+                    }}
+                  >
+                    ES
+                  </p>
+                  <p
+                    className="pb-1 hover:text-blue-400"
+                    onClick={() => {
+                      setdataText(lang.en);
+                      setshowMenuTranslate(false);
+                    }}
+                  >
+                    EN
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -163,9 +182,7 @@ const CvMain = () => {
         <div className="page-content w-[100%] md:w-[1000px]">
           <div className="first-header">
             <div className="flex-col pl-6 pt-6">
-              <div className=" w-max h-max nameFontBold">
-                Jorge Ortega
-              </div>
+              <div className=" w-max h-max nameFontBold">Jorge Ortega</div>
               <div className="pt-[13px] pb-[13px] text-[27px] flex">
                 <p className="pt-[3px] ">Developer</p>
                 <img className="fill-slate-200 pl-1" src={keyboardSvg} alt="" />
@@ -175,40 +192,47 @@ const CvMain = () => {
               <div className="cvImage"></div>
             </div>
           </div>
-            <div className="console-containerr w-full flex justify-center">
-             {
+          <div className="console-containerr w-full flex justify-center">
+            {
               //<span className="absolute rigth-[40px]">{">> "}</span>
-            
-             }  <div className="w-[200px] flex">
+            }{" "}
+            <div className="w-[200px] flex justify-center">
               <span id="text" className=" "></span>
-              <div className="w-full console-underscoree bg-transparent" id="console">
+              <div
+                className="w-full console-underscoree bg-transparent"
+                id="console"
+              >
                 &#95;
               </div>
-              </div>
-            </div>
+            </div> 
+          </div>
           <div id="about" className="textWrote w-10/12 mx-auto">
             <div className="w-full flex flex-col space-y-5 mb-5">
               <p className="titleText">{dataText.headers.about}</p>
               <p className="normalText containerText">
-               {dataText.headers.aboutInfo}
+                {dataText.headers.aboutInfo}
               </p>
             </div>
             <div id="proyects">
               <p className="titleText mb-5 mt-1 ">Proyects</p>
               <div className="flex-col space-y-4">
-          
-                <ContainerProyects
-                  title="My Money"
-                  about="Personal proyect, manage you incoming cash, see the history wich you spent your money"
-                  img="https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png"
-                  web="https://mymoneyapp.pages.dev/app/myMoney"
-                  langs={["React", "Typescript", 'Express', 'TailwindCss', 'TelegramApi', 'GoogleApi']}
-                />
+                {dataText.proyects.map((e, n) => {
+                  return (
+                    <ContainerProyects
+                      index={n}
+                      title={e.title}
+                      about={e.about}
+                      img={e.img}
+                      web={e.web}
+                      langs={e.tags}
+                    />
+                  );
+                })}
               </div>
             </div>
             <div id="contact">
               <p className="titleText mt-5 mb-3">Contact</p>
-              <p>If you want to contssage to: +593962716235</p>
+              <p>{dataText.contact.about}</p>
             </div>
           </div>
         </div>

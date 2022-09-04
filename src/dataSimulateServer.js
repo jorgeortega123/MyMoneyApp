@@ -19,8 +19,9 @@ export const phrases = {
    "Si te rodeas de luz, lo verás todo más claro.",
    "Ignorar es responder con inteligencia.",
    "Tú puedes hacerlo.",
-   "Gracias existir.",
    "Si lo puedes imaginar, lo puedes programar.",
+   "Todo lo bueno no es facil.",
+   "Gracias por usar el servicio Web"
 
 
  ]

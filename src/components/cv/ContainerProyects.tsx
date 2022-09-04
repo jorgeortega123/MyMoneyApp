@@ -7,6 +7,7 @@ export default function ContainerProyects({
   about = "Trata acerca de dos cosas que sulen sesr importante el uno del otro para convivir de mejor manera siuuuu",
   langs = ["Javascript", "Python"],
   web = "https://www.example.com",
+  index = 0,
   ...props
 }: {
   title: string;
@@ -14,26 +15,8 @@ export default function ContainerProyects({
   about: string;
   langs: string[];
   web: string;
+  index: number
 }) {
-  const elemets = () => {
-    langs.map((lan, index) => {
-      var elementCreate = document.createElement("p");
-      elementCreate.textContent = lan;
-      elementCreate.classList.add("tagsLanguajes", "num" + index);
-      elementCreate.style.color = colors[index].t;
-      elementCreate.style.backgroundColor = colors[index].b;
-      document.getElementById("appendp")?.append(elementCreate);
-    });
-  };
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      elemets();
-    } else {
-      window.addEventListener("load", () => elemets());
-      return () => document.removeEventListener("load", () => elemets());
-    }
-  }, []);
-
   const colors = [
     {
       b: "#D36B00",
@@ -72,6 +55,26 @@ export default function ContainerProyects({
       t: "#874C62",
     },
   ];
+  const elemets = () => {
+    langs.map((lan, indexNumber) => {
+      var elementCreate = document.createElement("p");
+      elementCreate.textContent = lan;
+      elementCreate.classList.add("tagsLanguajes", "num" + indexNumber);
+      elementCreate.style.color = colors[indexNumber].t;
+      elementCreate.style.backgroundColor = colors[indexNumber].b;
+      document.getElementById("appendp" + index)?.append(elementCreate);
+    });
+  };
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      elemets();
+    } else {
+      window.addEventListener("load", () => elemets());
+      return () => document.removeEventListener("load", () => elemets());
+    }
+  }, []);
+
+ 
   /*
       {langs.map((lan, index) => {
               console.log(index)
@@ -117,7 +120,7 @@ export default function ContainerProyects({
         </div>
         <div className="h-full flex flex-col justify-end">
           <p className="text-[17px]">{about}</p>
-          <div id="appendp" className="flex flex-wrap mt-2 mb-2"></div>
+          <div id={"appendp" + index } className="flex flex-wrap mt-2 mb-2"></div>
         </div>
       </div>
     </div>

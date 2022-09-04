@@ -48,7 +48,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/app/myMoney" element={<MainPage />} >
          {
           //<Route path="/data/transitions/costs" element={<AllTransactions />} />

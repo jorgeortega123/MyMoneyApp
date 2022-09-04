@@ -70,7 +70,7 @@ export default function MainPage() {
   
   }, [context.endServerRes]);
   const frases = () => {
-    var arr = Math.floor(Math.random() * 21);
+    var arr = Math.floor(Math.random() * phrases.es.length);
     setfrase(phrases.es[arr]);
   };
 
@@ -184,9 +184,9 @@ export default function MainPage() {
       );
     } else {
       return (
-        <div className="overflow-hidden w-screen">
-          <Login />
-        </div>
+         <Login />
+         
+
       );
     }
   } else {

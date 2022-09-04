@@ -31,9 +31,16 @@ export const lang = {
             {
                 title: 'My Money',
                 about: 'A digital wallet that allows the user-s personal expenses to be managed in a given time. Stores in the history all user transactions through fixed and variable costs and expenses that allow data science to be done with the information obtained',
-                tags: ["React", "Typescript", 'Express', 'TailwindCss', 'TelegramApi', 'GoogleApi'],
+                tags: ["React", "Typescript", 'NextJS', 'RealmDatabase','TelegramApi', 'GoogleApi' ],
                 img:"https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png",
                 web: "https://mymoneyapp.pages.dev/app/myMoney"
+             },
+             {
+                title: 'LLK',
+                about: 'A digital wallet that allows the user-s personal expenses to be managed in a given time. Stores in the history all user transactions through fixed and variable costs and expenses that allow data science to be done with the information obtained',
+                tags: ["React", "Typescript", 'Express', 'TailwindCss', 'MongoDB', 'GoogleApi'],
+                img:"https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
+                web: "https://www.llampukaq.com"
              }
             ]
         
