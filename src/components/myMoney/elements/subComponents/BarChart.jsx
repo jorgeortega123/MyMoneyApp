@@ -1,21 +1,21 @@
 import React from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
-import useGlobalContext from "../../context/useGlobalContext";
+import useGlobalContext from "../../../../context/useGlobalContext";
 
 export default function BarChart() {
      const { context } = useGlobalContext();
      //console.log(context.data.history.today.length);
      var totalLength = context.data.history.today.length
      var arr = context.data.history.today
-     var data = [ arr[totalLength], arr[totalLength -1 ],  arr[totalLength -2 ],  arr[totalLength -3],  arr[totalLength -4]  ]
+     var data = [ arr[1], arr[totalLength +1 ],  arr[totalLength +2 ],  arr[totalLength -3],  arr[totalLength -4]  ]
+     console.log(data)
   //
   return (
-     <div className="hidden">
+     <div className="">
     <LineChart  width={600} height={300} data={data}>
-      <Line type="monotone" dataKey="before" stroke="#8884d8" />
-      <CartesianGrid stroke="#ccc" />
+      <Line type="monotone" dataKey="value" stroke="#8884d8" />
       <XAxis dataKey="costName" />
-      <YAxis dataKey="amt" />
+      <YAxis dataKey="value" />
     </LineChart></div>
   );
 }

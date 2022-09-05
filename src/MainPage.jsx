@@ -16,7 +16,8 @@ import ToDay from "./components/myMoney/elements/ToDay";
 import Configurations from "./components/myMoney/elements/subComponents/Configurations";
 import AddIncomingCash from "./components/myMoney/elements/AddIncomingCash";
 import TableFromDebts from "./components/myMoney/elements/subComponents/TableFromDebts";
-
+import axios from "axios";
+import BarChart from "./components/myMoney/elements/subComponents/BarChart.jsx";
 export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
@@ -45,7 +46,7 @@ export default function MainPage() {
     //var numberDay = d.toString().split(" ")[2];
     //var yearDay = d.toString().split(" ")[3];
     console.log(context.data);
-  
+
     if (context.data != undefined) {
       if (context.endServerRes === true) {
         if (dayName === "Sun") {
@@ -60,14 +61,13 @@ export default function MainPage() {
         }
       }
     }
-    
-      if (document.readyState === "complete") {
-        frases()
-      } else {
-          window.addEventListener('load', ()=>  frases())
-        return () => document.removeEventListener('load', ()=>  frases())
-      }
-  
+
+    if (document.readyState === "complete") {
+      frases();
+    } else {
+      window.addEventListener("load", () => frases());
+      return () => document.removeEventListener("load", () => frases());
+    }
   }, [context.endServerRes]);
   const frases = () => {
     var arr = Math.floor(Math.random() * phrases.es.length);
@@ -83,9 +83,6 @@ export default function MainPage() {
       console.log('Scroll Up');
     }
   }*/
-
-   
-  
 
   if (endServerRes === true) {
     if (loginValidation) {
@@ -149,7 +146,7 @@ export default function MainPage() {
                     </motion.div>
                   </div>
                   <div className="flex flex-col sm:flex-row space-y-2  space-x-2   justify-left sm:w-[50%] rounded  ">
-                    <div className="p-2">
+                    <div className="p-2 flex-row">
                       <motion.div
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
@@ -162,16 +159,17 @@ export default function MainPage() {
 
                         <AddIncomingCash lang={finalLang} />
                       </motion.div>
+                      <div className="m-2 items-center md:pt-[30px]">
+                        {context.data.debts.length === 0 ? (
+                          <></>
+                        ) : (
+                          <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
+                            <TableFromDebts lang={finalLang} />
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <div className="m-2 grow items-center md:pt-[30px]">
-                      {context.data.debts.length === 0 ? (
-                        <></>
-                      ) : (
-                        <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
-                          <TableFromDebts lang={finalLang} />
-                        </div>
-                      )}
-                    </div>
+                    <BarChart />
                   </div>
                 </div>
                 <div></div>
@@ -183,11 +181,7 @@ export default function MainPage() {
         </MessageContextComponent>
       );
     } else {
-      return (
-         <Login />
-         
-
-      );
+      return <Login />;
     }
   } else {
     return (

@@ -11,6 +11,7 @@ import MainPage from "./MainPage";
 //import AllTransactions from "./components/myMoney/subComponents/AllTransactions";
 import CvMain from "./components/cv";
 import EventMain from "./components/event/Event";
+import Form from "./components/myMoney/Form";
 //import useGlobalContext from "../context/useGlobalContext";
 const server = "https://mymone.azurewebsites.net";
 
@@ -49,11 +50,12 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/app/myMoney" element={<MainPage />} >
+        <Route path="/app/myMoney" element={<MainPage />} ></Route>
+        <Route path="/app/myMoney/form" element={<Form />} />
          {
           //<Route path="/data/transitions/costs" element={<AllTransactions />} />
          } 
-        </Route>
+        
         <Route path="/login" element={<Login />} />
         <Route path="/event" element={<EventMain />} />
         <Route path="/cv" element={<CvMain />} />
