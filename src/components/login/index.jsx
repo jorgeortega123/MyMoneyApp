@@ -75,7 +75,7 @@ export default function Login() {
           MyMoney
         </motion.p>
       </div>
-      <div className="backGroundImage h-screen flex mt-[-40px] justify-center items-center ">
+      <div className="bg-blue-300  backGroundImage h-screen flex mt-[-40px] justify-center items-center ">
       {
         //<Wave className="absolute w-[screen] bottom-0"  />
       }

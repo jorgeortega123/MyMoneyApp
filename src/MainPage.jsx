@@ -38,6 +38,7 @@ export default function MainPage() {
       } else {
         setloginValidation(userName);
       }
+
       setendServerRes(true);
     }
     var d = new Date();
@@ -91,7 +92,7 @@ export default function MainPage() {
           <div className="blockAllSelect  h-full w-full absolute top-0   ">
             <div
               id="topMenu"
-              className="relative h-[40px]  flex  items-center border border-slate-600  bg-transparent pb-2 justify-between overflow-hidden"
+              className="relative h-[40px]  flex  items-center border border-slate-600 dark:border-slate-900 bg-slate-100 dark:bg-slate-700 pb-2 justify-between overflow-hidden"
             >
               <div
                 onClick={() => {
@@ -185,7 +186,7 @@ export default function MainPage() {
     }
   } else {
     return (
-      <div className="w-screen h-screen backGroundImage">
+      <div className="w-screen h-screen bg-blue-300 backGroundImage" id="image">
         <div className="flex items-center justify-center">
           <div className="pt-12 ">
             <SpinnerInfinity

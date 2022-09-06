@@ -94,11 +94,11 @@ export default function () {
             </tr>
           </thead>
           <tbody>
-            {toDayCosts.map((d) => {
+            {toDayCosts.map((d, index) => {
               if (d.id === idOfCost) {
                 return (
                   <tr
-                    key={d.day + "key"}
+                    key={d.day + "key" + index}
                     className="border-b   odd:bg-white even:bg-gray-50 "
                   >
                     <th

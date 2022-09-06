@@ -230,9 +230,10 @@ const CvMain = () => {
                 })}
               </div>
             </div>
-            <div id="contact">
+            <div id="contact" className="mb-[60px]">
               <p className="titleText mt-5 mb-3">Contact</p>
-              <p>{dataText.contact.about}</p>
+              <p>{dataText.contact.about} <span>{dataText.contact.number}</span></p>
+               
             </div>
           </div>
         </div>
