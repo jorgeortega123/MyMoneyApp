@@ -32,12 +32,7 @@ export default function BarChart() {
         maxLimit = s;
       }
     }
-    //change 3 for maxLimit
-    //          33             33 mayor que (31)   33-2 ]
-    console.log(arr.length)
     for (let i = arr.length -1; i > arr.length - maxLimit ; i--) {
-      console.log(i)
-      console.log(arr[32])
       let entry = arr[i].id;
       if (alreadyExplored.includes(entry)) {
         maxLimit = -1;

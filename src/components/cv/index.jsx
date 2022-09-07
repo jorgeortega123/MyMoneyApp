@@ -1,14 +1,19 @@
 import "./index.scss";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { lang } from "./langs";
+import ContainerProyects from "./ContainerProyects";
+import SocialNetworks from "./SocialNetworks";
 import keyboardSvg from "./../../assets/svg/keyboard.svg";
 import downloadSvg from "./../../assets/svg/download.svg";
 import langSvg from "./../../assets/svg/lang.svg";
-import ContainerProyects from "./ContainerProyects";
-import { lang } from "./langs";
+import instagramSGV from "./../../assets/svg/instagram.svg";
+import facebookSVG from "./../../assets/svg/facebook.svg";
+import githubSVG from "./../../assets/svg/github.svg";
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
   const [showMenuTranslate, setshowMenuTranslate] = useState(false);
+  const [showDownload, setshowDownload] = useState(false)
   const [dataText, setdataText] = useState(lang.en);
   const [defaultLang, setdefaultLang] = useState("en");
 
@@ -73,7 +78,11 @@ const CvMain = () => {
     }, 400);
   }
   ///
-
+ const downloadCv = () => { 
+  setTimeout(() => {
+    setshowDownload(false)
+  }, 1500);
+ }
   ///
   return (
     <div className="main-container">
@@ -93,6 +102,7 @@ const CvMain = () => {
           <span className="line l3"></span>
         </div>
         <div className="flex blockAllSelect ">
+          <div>
           <img
             src={downloadSvg}
             title={"Download cv"}
@@ -101,7 +111,30 @@ const CvMain = () => {
             stroke="green"
             className="svgDefaultColor w-[30px] h-[30px] m-2"
             alt=""
-          />
+            onClick={() => {
+              downloadCv()
+              if (showDownload === false) {
+                setshowDownload(true);
+              } else {
+                setshowDownload(false);
+              }
+            }}
+          /> <AnimatePresence>
+          {showDownload && (
+            <motion.div
+              initial={{ opacity: 0, }}
+              animate={{ opacity: 1, }}
+              exit={{ opacity: 0,  }}
+              transition={{ type: "tween" }}
+              className="z-0 absolute pl-0 w-[120px] ml-3 text-slate-100 blockAllSelect "
+            >
+              <p className="text-[12px]">
+               Downloading cv...
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+          </div>
           <div>
             <img
               src={langSvg}
@@ -188,8 +221,16 @@ const CvMain = () => {
                 <img className="fill-slate-200 pl-1" src={keyboardSvg} alt="" />
               </div>
             </div>
-            <div className="pt-6 pr-5 pl-1">
-              <div className="cvImage"></div>
+            <div className="pt-6 pr-5 pl-1 w-full">
+              <div className="flex w-full">
+                <div className="flex-col ml-[60px]">
+                <SocialNetworks url={'https://www.instagram.com/jorgeandresyts/'} img={instagramSGV} classNamee={'ml-2'}></SocialNetworks>
+                <SocialNetworks url={'https://www.facebook.com/mateo.garrido.5268'}  img={facebookSVG} classNamee={'ml-[-10px]'}></SocialNetworks>
+                <SocialNetworks url={'https://github.com/jorgeortega123'} img={githubSVG} classNamee={'ml-2'}></SocialNetworks>
+                </div>
+                <div className="cvImage"></div>
+
+              </div>
             </div>
           </div>
           <div className="console-containerr w-full flex justify-center">
@@ -202,7 +243,7 @@ const CvMain = () => {
                 className="w-full console-underscoree bg-transparent"
                 id="console"
               >
-                &#95;
+                I
               </div>
             </div> 
           </div>

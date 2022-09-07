@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import AddMoveCash from "./components/myMoney/elements/AddMoveCash.jsx";
 //src/components/myMoney/elements/AddMoveCash.jsx
 import DetailsExpendsWeek from "./components/myMoney/elements/DetailsExpendsWeek";
@@ -30,6 +30,7 @@ export default function MainPage() {
   const [textLoading, settextLoading] = useState("Verificando...");
 
   let navigate = useNavigate();
+
   useEffect(() => {
     const userName = localStorage.getItem("token");
     if (context.endServerRes === true) {
@@ -39,7 +40,6 @@ export default function MainPage() {
         setloginValidation(userName);
       }
 
-      setendServerRes(true);
     }
     var d = new Date();
     var dayName = d.toString().split(" ")[0];
@@ -70,6 +70,9 @@ export default function MainPage() {
       return () => document.removeEventListener("load", () => frases());
     }
   }, [context.endServerRes]);
+  useLayoutEffect(() => {
+    setendServerRes(true);
+  }, [context.endServerRes])
   const frases = () => {
     var arr = Math.floor(Math.random() * phrases.es.length);
     setfrase(phrases.es[arr]);

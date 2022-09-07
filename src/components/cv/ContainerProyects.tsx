@@ -116,7 +116,7 @@ export default function ContainerProyects({
       </div>
       <div className="flex-col sm:flex-row w-full">
         <div className="w-full items-center flex justify-center p-2">
-          <img src={img} className="imageExamples" alt="" />
+          <img src={img} className="imageExamples " alt="" />
         </div>
         <div className="h-full flex flex-col justify-end">
           <p className="text-[17px]">{about}</p>
