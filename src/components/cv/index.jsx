@@ -221,11 +221,11 @@ const CvMain = () => {
                 <img className="fill-slate-200 pl-1" src={keyboardSvg} alt="" />
               </div>
             </div>
-            <div className="pt-6 pr-5 pl-1 w-full">
+            <div className="pt-6 w-full">
               <div className="flex w-full">
-                <div className="flex-col ml-[60px]">
+                <div className="flex-col ml-4 justify-left">
                 <SocialNetworks url={'https://www.instagram.com/jorgeandresyts/'} img={instagramSGV} classNamee={'ml-2'}></SocialNetworks>
-                <SocialNetworks url={'https://www.facebook.com/mateo.garrido.5268'}  img={facebookSVG} classNamee={'ml-[-10px]'}></SocialNetworks>
+                <SocialNetworks url={'https://www.facebook.com/mateo.garrido.5268'}  img={facebookSVG} classNamee={'ml-[-4px]'}></SocialNetworks>
                 <SocialNetworks url={'https://github.com/jorgeortega123'} img={githubSVG} classNamee={'ml-2'}></SocialNetworks>
                 </div>
                 <div className="cvImage"></div>
@@ -243,16 +243,16 @@ const CvMain = () => {
                 className="w-full console-underscoree bg-transparent"
                 id="console"
               >
-                I
+                |
               </div>
             </div> 
           </div>
           <div id="about" className="textWrote w-10/12 mx-auto">
             <div className="w-full flex flex-col space-y-5 mb-5">
+             
               <p className="titleText">{dataText.headers.about}</p>
-              <p className="normalText containerText">
-                {dataText.headers.aboutInfo}
-              </p>
+              <div className="normalText containerText" dangerouslySetInnerHTML={{__html:dataText.headers.aboutInfo}}></div>
+           
             </div>
             <div id="proyects">
               <p className="titleText mb-5 mt-1 ">Proyects</p>

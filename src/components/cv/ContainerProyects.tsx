@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 //@ts-ignore
 import newWindow from "../../assets/svg/newWindow.svg";
 export default function ContainerProyects({
@@ -93,13 +93,15 @@ export default function ContainerProyects({
 */
 
   //window.addEventListener('load', ()=> elemets())
+
+  
   return (
     <div className="w-full border pl-2 pr-2">
       <div className="items-center flex justify-center">
         <div className="w-max h-max flex rotate180 flex-col-reverse justify-right">
-          <span className="linesTitle oneTitle"></span>
-          <span className="linesTitle twoTitle"></span>
-          <span className="linesTitle thrTitle"></span>
+          <span className={`linesTitle oneTitle w-[${(index + 1 * 100 / 4)}px]`}></span>
+          <span className={`linesTitle twoTitle w-[${(index + 1  * 100 / 2)}px]`}></span>
+          <span className={`linesTitle thrTitle w-[${(index + 1  * 100 / 2)}px]`}></span>
         </div>
         <p>{title}</p>
         <img
@@ -115,7 +117,7 @@ export default function ContainerProyects({
         />
       </div>
       <div className="flex-col sm:flex-row w-full">
-        <div className="w-full items-center flex justify-center p-2">
+        <div className="w-full items-center flex justify-center p-2 proyects-container">
           <img src={img} className="imageExamples " alt="" />
         </div>
         <div className="h-full flex flex-col justify-end">

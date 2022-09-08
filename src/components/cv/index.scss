@@ -83,11 +83,17 @@ html {
 .cvImage { 
     width: 110px;
   height: 110px;
-  position: absolute;
- right: 8px;
+ position: absolute;
+ right: 0px;
+ margin-right: 15px;
   background-image: url('../../assets/image/cv/cv.jpg');
   background-size: cover;
-  border-radius: 100px;
+  border-radius: 300px;
+}
+.Social { 
+  position: relative;
+  width: 28px;
+  margin: 7px;
 }
 .tagsLanguajes { 
   width: min-content;
@@ -179,26 +185,29 @@ html {
 
   .oneTitle { 
     top: 5px;
-    width: 12px;
+ 
    
     }
     .twoTitle { 
       top: -2px;
-      width: 55px;
+ 
     }
     .thrTitle { 
       bottom: 2px;
-      width: 30px
+ 
     }
 .rotate180  { 
   transform: rotate(180deg);
 }
+.proyects-container {
+  min-width: 340px;
+}
 .imageExamples {
   background-image: url('../../src/assets/cv/proyects/myMoney.jpg');
   background-repeat: no-repeat;
-  min-width: 420px;
 }
-.Social { 
-  width: 32px;
-  margin: 7px;
+
+.text-bold{ 
+  font-weight: 800;
+  color: #02ff63;
 }
