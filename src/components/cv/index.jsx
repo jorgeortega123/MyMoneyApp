@@ -10,6 +10,7 @@ import langSvg from "./../../assets/svg/lang.svg";
 import instagramSGV from "./../../assets/svg/instagram.svg";
 import facebookSVG from "./../../assets/svg/facebook.svg";
 import githubSVG from "./../../assets/svg/github.svg";
+import { data } from "autoprefixer";
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
   const [showMenuTranslate, setshowMenuTranslate] = useState(false);
@@ -79,9 +80,33 @@ const CvMain = () => {
   }
   ///
  const downloadCv = () => { 
+  if (showDownload === false) {
+    setshowDownload(true);
+  } else {
+    setshowDownload(false);
+  }
   setTimeout(() => {
     setshowDownload(false)
-  }, 1500);
+  }, 1600);
+ }
+ const showMenuTranslateFunc = () => { 
+  if (showMenuTranslate === false) {
+    setshowMenuTranslate(true);
+  } else {
+    setshowMenuTranslate(false);
+  }
+ }
+ const ChangeLang = (langByUser) => {
+  setdataText(lang[langByUser]);
+  setdefaultLang(langByUser)
+  setshowMenuTranslate(false);
+ }
+ const SelectedLang = (e) => {
+  if (defaultLang===e) { 
+    return 'text-blue-500'
+  } else { 
+    return 'text-slate-100'
+  }
  }
   ///
   return (
@@ -113,11 +138,6 @@ const CvMain = () => {
             alt=""
             onClick={() => {
               downloadCv()
-              if (showDownload === false) {
-                setshowDownload(true);
-              } else {
-                setshowDownload(false);
-              }
             }}
           /> <AnimatePresence>
           {showDownload && (
@@ -141,43 +161,38 @@ const CvMain = () => {
               title={"Translate"}
               fill="red"
               stroke="green"
-              className="svgDefaultColor w-[30px] h-[30px] m-2"
+              className="svgDefaultColor w-[30px] h-[30px] m-2 z-[1]"
               alt=""
-              onClick={() => {
-                if (showMenuTranslate === false) {
-                  setshowMenuTranslate(true);
-                } else {
-                  setshowMenuTranslate(false);
-                }
+              onClick={() => { showMenuTranslateFunc()
+                
               }}
             />
             <AnimatePresence>
               {showMenuTranslate && (
                 <motion.div
-                  initial={{ opacity: 0, x: -50 }}
+                  initial={{ opacity: 0, x: 150 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
+                  exit={{ opacity: 0, x: 0 }}
                   transition={{ type: "tween" }}
-                  className="z-0 absolute pl-3 w-[60px] ml-3 text-slate-100 bg-cyan-900 blockAllSelect "
+                  className="z-[0] flex-col left-[67px] text-[12px] pt-[5px] absolute top-0 pl-3 w-[140px] ml-3 text-slate-100  blockAllSelect "
                 >
-                  <p
-                    className="pb-1 pt-1 hover:text-blue-400"
+                 
+                  <div
+                    className={`m-0 ${SelectedLang("en")}  hover:text-green-400`}
                     onClick={() => {
-                      setdataText(lang.es);
-                      setshowMenuTranslate(false);
+                      ChangeLang("en")
                     }}
                   >
-                    ES
-                  </p>
-                  <p
-                    className="pb-1 hover:text-blue-400"
+                    &raquo; English
+                    
+                  </div> <div
+                    className={`m-0 ${SelectedLang("es")}   hover:text-green-400 z-[0] `}
                     onClick={() => {
-                      setdataText(lang.en);
-                      setshowMenuTranslate(false);
+                      ChangeLang("es")
                     }}
                   >
-                    EN
-                  </p>
+                   &raquo; Spanish
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -192,28 +207,26 @@ const CvMain = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0 }}
               transition={{ type: "tween" }}
-              className="menu-items"
+              className="menu-items capitalize"
             >
               <li>
                 <a href="#home">Home</a>
               </li>
               <li>
-                <a href="#about">about</a>
+                <a href="#about">{dataText.headers.about}</a>
+              </li>
+            
+              <li>
+                <a href="#proyects">{dataText.headers.proyects}</a>
               </li>
               <li>
-                <a href="#blogs">blogs</a>
-              </li>
-              <li>
-                <a href="#proyects">proyects</a>
-              </li>
-              <li>
-                <a href="#contact">contact</a>
+                <a href="#contact">{dataText.headers.contact}</a>
               </li>
             </motion.div>
           )}
         </AnimatePresence>
         <div className="page-content w-[100%] md:w-[1000px]">
-          <div className="first-header">
+          <div className="first-header" id="home">
             <div className="flex-col pl-6 pt-6">
               <div className=" w-max h-max nameFontBold">Jorge Ortega</div>
               <div className="pt-[13px] pb-[13px] text-[27px] flex">
@@ -271,10 +284,19 @@ const CvMain = () => {
                 })}
               </div>
             </div>
-            <div id="contact" className="mb-[60px]">
-              <p className="titleText mt-5 mb-3">Contact</p>
+            <div id="contact" >
+              <p className="titleText mt-5 mb-3">{dataText.headers.contact}</p>
               <p>{dataText.contact.about} <span>{dataText.contact.number}</span></p>
                
+            </div>
+            <div id="bottomPage" className="mb-[0px] w-full flex bg-blue-200">
+              <div className="grow">
+                  gracias
+              </div> 
+              <div>
+                ola
+              </div>
+             
             </div>
           </div>
         </div>
