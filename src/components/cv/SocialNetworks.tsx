@@ -4,11 +4,13 @@ export default function SocialNetworks({
   img = "sad",
   url = "sddsa",
   classNamee = '',
+  intoImg = '',
   ...props
 }: {
   img: any;
   url: string;
-  classNamee:any
+  classNamee: any;
+  intoImg: any
 }) { 
     const goToUrl = (linkOpen:any) => { 
         var link = document.createElement("a");
@@ -20,7 +22,7 @@ export default function SocialNetworks({
     <div className={classNamee}>
     <img
       src={img}
-      className={"Social "}
+      className={`Social ${intoImg}`}
       onClick={() => {
         goToUrl(url)
       }}

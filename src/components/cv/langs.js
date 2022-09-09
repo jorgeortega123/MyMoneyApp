@@ -8,8 +8,9 @@ export const lang = {
             aboutInfo: "Hola, soy desarrollador <span class='text-bold'>frontend</span>, desde los 14 he estado en el mundo de la programacion conozco varios frameworks y tecnologias web. Como: <span class='text-bold'>ReactJs</span>, <span class='text-bold'>TailwindCss</span> (Tambien manejo Css nativo y Vanila JS).  a un nivel avanzado. Tambien manejo plataformas como Cloudfare, Azure y Google Cloud, He trabajado con <span class='text-bold'>Apis</span> de Google y telegram. "
         }, 
         contact: { 
-            about: "Si quiere contactarse conmigo puede mandar un sms o llamar al numero:",
-            number: '0962716235'
+            about: "Si quiere contactarse conmigo puede mandar enviar un mensaje a traves de:",
+            number: '+593962716235',
+            email: 'garridomateo74@gmail.com'
         },
         proyects: [ 
             {
@@ -26,7 +27,33 @@ export const lang = {
                 img:"https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
                 web: "https://www.llampukaq.com"
              }
-            ]
+            ], 
+            functions: { 
+                copy: { 
+                   number: "Numero copiado en portapapeles!",
+                    email: "Email copiado en portapapeles!"
+                }, 
+                download: "Decargando cv en español..."
+            },
+            extras: { 
+                footer: { 
+                    input: 'Escribe tu mensaje aqui'
+                }
+            },
+            social: [{ 
+                name: 'facebook',
+                url: 'https://www.facebook.com/mateo.garrido.5268'
+            },{ 
+                name: 'instagram',
+                url: 'https://www.instagram.com/jorgeandresyts/'
+            },{ 
+                name: 'linkedin',
+                url: 'https://www.facebook.com/mateo.garrido.5268'
+            },{ 
+                name: 'git hub',
+                url: 'https://github.com/jorgeortega123'
+            },
+        ]
     },
     en: {
         headers: { 
@@ -37,8 +64,9 @@ export const lang = {
             aboutInfo: 'Hello, I am a developer, since I was 14 I have been in the world of programming, I know several frameworks and web technologies. Like: , TailwindCss (I also handle native Css and Vanila JS). at an advanced level. I also manage platforms such as Cloudfare, Azure and Google Cloud. I have worked with Google Apis and Telegram.'
         },
         contact: { 
-            about: 'If you want to contact me, you can send an SMS or call the number:',
-            number: '0962716235'
+            about: 'If you want to contact me, you can send a message trought:',
+            number: '+593962716235',
+            email: 'garridomateo74@gmail.com'
         },
         proyects: [ 
             {
@@ -55,7 +83,33 @@ export const lang = {
                 img:"https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
                 web: "https://www.llampukaq.com"
              }
-            ]
+            ], 
+            functions: { 
+                copy: { 
+                   number: "Number copy to clipboard!",
+                    email: "Email copy to clipboard!"
+                },
+                download: "Downloading cv in english..."
+            },
+            extras: { 
+                footer: { 
+                    input: 'Let you message here'
+                }
+            },
+            social: [{ 
+                name: 'facebook',
+                url: 'https://www.facebook.com/mateo.garrido.5268'
+            },{ 
+                name: 'instagram',
+                url: 'https://www.instagram.com/jorgeandresyts/'
+            },{ 
+                name: 'linkedin',
+                url: 'https://www.facebook.com/mateo.garrido.5268'
+            },{ 
+                name: 'git hub',
+                url: 'https://github.com/jorgeortega123'
+            },
+        ]
         
   }
 }

@@ -97,15 +97,15 @@ export default function ContainerProyects({
   
   return (
     <div className="w-full border pl-2 pr-2">
-      <div className="items-center flex justify-center">
-        <div className="w-max h-max flex rotate180 flex-col-reverse justify-right ">
+      <div className="items-center flex justify-center pl-[20px]">
+        <div className="w-max h-max flex rotate180 flex-col-reverse justify-right mt-[4px]">
           <span className={`linesTitle oneTitle w-[${(index + 1 * 100 / 4)}px]`}></span>
-          <span className={`linesTitle twoTitle w-[${(index + 1  * 100 / 2)}px]`}></span>
-          <span className={`linesTitle thrTitle w-[${(index + 1  * 100 / 2)}px]`}></span>
+          <span className={`linesTitle twoTitle w-[${(index + 1.4  * 100 / 2)}px]`}></span>
+          <span className={`linesTitle thrTitle w-[${(index + 1.1  * 100 / 2)}px]`}></span>
         </div>
-        <p className="pb-[1px]">{title}</p>
+        <p className="pt-[1px] pb-[1px]">{title}</p>
         <img
-          className="w-7 h-7 ml-1 mt-[-2px]"
+          className=" w-7 h-7 ml-1 mt-[-2px]"
           src={newWindow}
           alt=""
           onClick={() => {

@@ -4,17 +4,25 @@ import { useEffect, useState } from "react";
 import { lang } from "./langs";
 import ContainerProyects from "./ContainerProyects";
 import SocialNetworks from "./SocialNetworks";
-import keyboardSvg from "./../../assets/svg/keyboard.svg";
-import downloadSvg from "./../../assets/svg/download.svg";
-import langSvg from "./../../assets/svg/lang.svg";
-import instagramSGV from "./../../assets/svg/instagram.svg";
-import facebookSVG from "./../../assets/svg/facebook.svg";
-import githubSVG from "./../../assets/svg/github.svg";
-import { data } from "autoprefixer";
+//import { ReactComponent as Logo } 
+import KeyboardSvg from "./../../assets/svg/keyboard.svg";
+import  DownloadSvg from "./../../assets/svg/download.svg";
+import  LangSvg from "./../../assets/svg/lang.svg";
+import  InstagramSGV from "./../../assets/svg/instagram_.svg";
+import  FacebookSVG from "./../../assets/svg/facebook_.svg";
+import  GithubSVG from "./../../assets/svg/github.svg";
+import MailSVG from "./../../assets/svg/mail.svg";
+import  CallSVG from "./../../assets/svg/call.svg";
+import   CopySGV from "./../../assets/svg/copy.svg";
+import SendSGV from "./../../assets/svg/send.svg";
+import LinkedinSGV from "./../../assets/svg/linkedin_.svg";
+
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
   const [showMenuTranslate, setshowMenuTranslate] = useState(false);
-  const [showDownload, setshowDownload] = useState(false)
+  const [showDownload, setshowDownload] = useState(false);
+  const [showTextOnNavbar, setshowTextOnNavbar] = useState(false);
+  const [textOnNavbar, settextOnNavbar] = useState("");
   const [dataText, setdataText] = useState(lang.en);
   const [defaultLang, setdefaultLang] = useState("en");
 
@@ -29,9 +37,6 @@ const CvMain = () => {
       );
     }, 1500);
   }, []);
-
-  ///
-  // function([string1, string2],target id,[color1,color2])
 
   function consoleText(words, id, colors) {
     if (colors === undefined) colors = ["#fff"];
@@ -79,35 +84,63 @@ const CvMain = () => {
     }, 400);
   }
   ///
- const downloadCv = () => { 
-  if (showDownload === false) {
-    setshowDownload(true);
-  } else {
-    setshowDownload(false);
-  }
-  setTimeout(() => {
-    setshowDownload(false)
-  }, 1600);
- }
- const showMenuTranslateFunc = () => { 
-  if (showMenuTranslate === false) {
-    setshowMenuTranslate(true);
-  } else {
+  const downloadCv = () => {
+    if (showDownload === false) {
+      setshowDownload(true);
+    } else {
+      setshowDownload(false);
+    }
+    setTimeout(() => {
+      setshowDownload(false);
+    }, 1600);
+  };
+  const showMenuTranslateFunc = () => {
+    if (showMenuTranslate === false) {
+      setshowMenuTranslate(true);
+    } else {
+      setshowMenuTranslate(false);
+    }
+  };
+  const ChangeLang = (langByUser) => {
+    setdataText(lang[langByUser]);
+    setdefaultLang(langByUser);
     setshowMenuTranslate(false);
-  }
- }
- const ChangeLang = (langByUser) => {
-  setdataText(lang[langByUser]);
-  setdefaultLang(langByUser)
-  setshowMenuTranslate(false);
- }
- const SelectedLang = (e) => {
-  if (defaultLang===e) { 
-    return 'text-blue-500'
-  } else { 
-    return 'text-slate-100'
-  }
- }
+  };
+  const SelectedLang = (e) => {
+    if (defaultLang === e) {
+      return "text-blue-500";
+    } else {
+      return "text-slate-100";
+    }
+  };
+  
+
+  const copyToClipBoard = (elements) => {
+    switch (elements) {
+      case "number":
+        navigator.clipboard.writeText(dataText.contact.number);
+        settextOnNavbar(dataText.functions.copy.number);
+        setshowTextOnNavbar(true);
+        setTimeout(() => {
+          setshowTextOnNavbar(false);
+        }, 1600);
+        break;
+      case "email":
+        navigator.clipboard.writeText(dataText.contact.email);
+        settextOnNavbar(dataText.functions.copy.email);
+        setshowTextOnNavbar(true);
+        setTimeout(() => {
+          setshowTextOnNavbar(false);
+        }, 1600);
+        break;
+    }
+  };
+  const goToUrl = (linkOpen) => { 
+    var link = document.createElement("a");
+    link.href = linkOpen;
+    link.target = "_blank";
+    link.click();
+}
   ///
   return (
     <div className="main-container">
@@ -128,43 +161,42 @@ const CvMain = () => {
         </div>
         <div className="flex blockAllSelect ">
           <div>
-          <img
-            src={downloadSvg}
-            title={"Download cv"}
-            style={{ fill: "#FFFFFF" }}
-            fill="red"
-            stroke="green"
-            className="svgDefaultColor w-[30px] h-[30px] m-2"
-            alt=""
-            onClick={() => {
-              downloadCv()
-            }}
-          /> <AnimatePresence>
-          {showDownload && (
-            <motion.div
-              initial={{ opacity: 0, }}
-              animate={{ opacity: 1, }}
-              exit={{ opacity: 0,  }}
-              transition={{ type: "tween" }}
-              className="z-0 absolute pl-0 w-[120px] ml-3 text-slate-100 blockAllSelect "
-            >
-              <p className="text-[12px]">
-               Downloading cv...
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <img
+              src={DownloadSvg}
+              title={"Download cv"}
+              style={{ fill: "#FFFFFF" }}
+              fill="#FFFFFF"
+              stroke="#FFFFFF"
+              className="svgDefaultColor w-[30px] h-[30px] m-2"
+              alt=""
+              onClick={() => {
+                downloadCv();
+              }}
+            />{" "}
+            <AnimatePresence>
+              {showDownload && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ type: "tween" }}
+                  className="z-0 absolute pl-0 w-[180px] ml-3 text-slate-100 blockAllSelect "
+                >
+                  <p className="text-[12px]">{dataText.functions.download}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
           <div>
             <img
-              src={langSvg}
+              src={LangSvg}
               title={"Translate"}
               fill="red"
               stroke="green"
               className="svgDefaultColor w-[30px] h-[30px] m-2 z-[1]"
               alt=""
-              onClick={() => { showMenuTranslateFunc()
-                
+              onClick={() => {
+                showMenuTranslateFunc();
               }}
             />
             <AnimatePresence>
@@ -176,27 +208,46 @@ const CvMain = () => {
                   transition={{ type: "tween" }}
                   className="z-[0] flex-col left-[67px] text-[12px] pt-[5px] absolute top-0 pl-3 w-[140px] ml-3 text-slate-100  blockAllSelect "
                 >
-                 
                   <div
-                    className={`m-0 ${SelectedLang("en")}  hover:text-green-400`}
+                    className={`m-0 ${SelectedLang(
+                      "en"
+                    )}  hover:text-green-400`}
                     onClick={() => {
-                      ChangeLang("en")
+                      ChangeLang("en");
                     }}
                   >
                     &raquo; English
-                    
-                  </div> <div
-                    className={`m-0 ${SelectedLang("es")}   hover:text-green-400 z-[0] `}
+                  </div>{" "}
+                  <div
+                    className={`m-0 ${SelectedLang(
+                      "es"
+                    )}   hover:text-green-400 z-[0] `}
                     onClick={() => {
-                      ChangeLang("es")
+                      ChangeLang("es");
                     }}
                   >
-                   &raquo; Spanish
+                    &raquo; Español
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
+          <AnimatePresence>
+            {showTextOnNavbar && (
+              <motion.div
+                initial={{ opacity: 0, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 0 }}
+                transition={{ type: "tween" }}
+                className="absolute right-[100px]"
+              >
+                {" "}
+                <p className=" text-green-400 pt-[14px] text-[12px] ">
+                  {textOnNavbar}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
       <div className="main-page mx-auto">
@@ -215,7 +266,7 @@ const CvMain = () => {
               <li>
                 <a href="#about">{dataText.headers.about}</a>
               </li>
-            
+
               <li>
                 <a href="#proyects">{dataText.headers.proyects}</a>
               </li>
@@ -231,18 +282,29 @@ const CvMain = () => {
               <div className=" w-max h-max nameFontBold">Jorge Ortega</div>
               <div className="pt-[13px] pb-[13px] text-[27px] flex">
                 <p className="pt-[3px] ">Developer</p>
-                <img className="fill-slate-200 pl-1" src={keyboardSvg} alt="" />
+                <img className="fill-slate-200 pl-1" src={KeyboardSvg} alt="" />
               </div>
             </div>
-            <div className="pt-6 w-full">
+            <div className=" w-full">
               <div className="flex w-full">
-                <div className="flex-col ml-4 justify-left">
-                <SocialNetworks url={'https://www.instagram.com/jorgeandresyts/'} img={instagramSGV} classNamee={'ml-2'}></SocialNetworks>
-                <SocialNetworks url={'https://www.facebook.com/mateo.garrido.5268'}  img={facebookSVG} classNamee={'ml-[-4px]'}></SocialNetworks>
-                <SocialNetworks url={'https://github.com/jorgeortega123'} img={githubSVG} classNamee={'ml-2'}></SocialNetworks>
+                <div className="flex-col ml-4 justify-left mt-[17px] ">
+                  <SocialNetworks
+                    url={"https://www.instagram.com/jorgeandresyts/"}
+                    img={InstagramSGV}
+                    classNamee={"ml-2"}
+                  ></SocialNetworks>
+                  <SocialNetworks
+                    url={"https://www.facebook.com/mateo.garrido.5268"}
+                    img={FacebookSVG}
+                    classNamee={"ml-[-4px]"}
+                  ></SocialNetworks>
+                  <SocialNetworks
+                    url={"https://github.com/jorgeortega123"}
+                    img={LinkedinSGV}
+                    classNamee={"ml-2"}
+                  ></SocialNetworks>
                 </div>
-                <div className="cvImage"></div>
-
+                <div className="cvImage mt-6"></div>
               </div>
             </div>
           </div>
@@ -258,14 +320,15 @@ const CvMain = () => {
               >
                 |
               </div>
-            </div> 
+            </div>
           </div>
           <div id="about" className="textWrote w-10/12 mx-auto">
             <div className="w-full flex flex-col space-y-5 mb-5">
-             
               <p className="titleText">{dataText.headers.about}</p>
-              <div className="normalText containerText" dangerouslySetInnerHTML={{__html:dataText.headers.aboutInfo}}></div>
-           
+              <div
+                className="normalText containerText"
+                dangerouslySetInnerHTML={{ __html: dataText.headers.aboutInfo }}
+              ></div>
             </div>
             <div id="proyects">
               <p className="titleText mb-5 mt-1 ">Proyects</p>
@@ -284,20 +347,73 @@ const CvMain = () => {
                 })}
               </div>
             </div>
-            <div id="contact" >
-              <p className="titleText mt-5 mb-3">{dataText.headers.contact}</p>
-              <p>{dataText.contact.about} <span>{dataText.contact.number}</span></p>
-               
-            </div>
-            <div id="bottomPage" className="mb-[0px] w-full flex bg-blue-200">
-              <div className="grow">
-                  gracias
-              </div> 
-              <div>
-                ola
+            <div id="contact" className="mb-[40px]">
+              <p className="titleText mt-5 mb-3 ">
+                {dataText.headers.contact}
+              </p>
+              <div className="m-2">
+                <p className="mb-3">{dataText.contact.about}</p>
+                <div className="flex" onClick={() => copyToClipBoard("number")}>
+                  <img className="w-[36px] h-[36px]" src={CallSVG} alt="" />
+                  <p className="text-[16px] pt-[5px]">
+                    {dataText.contact.number}
+                  </p>
+                  <img className="w-[22px] h-[22px]" src={CopySGV} alt="" />
+                </div>
+                <div className="flex" onClick={() => copyToClipBoard("email")}>
+                  <img className="w-[36px] h-[36px]" src={MailSVG} alt="" />
+                  <p className="text-[16px] pt-[5px]">
+                    {dataText.contact.email}
+                  </p>
+                  <img className="w-[22px] h-[22px]" src={CopySGV} alt="" />
+                </div>
               </div>
-             
+              <div className="w-full flex justify-center mt-3 ml-2">
+                <div className="w-full flex input-container ">
+                  <textarea
+                    id="textareOfFooter"
+                    placeholder={dataText.extras.footer.input}
+                    className="input-sender "
+                    type="text"
+                    name=""
+                  />
+
+                  <div>
+                    <img src={SendSGV} alt="" /> <p className="text-[13px]">Send</p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+        <div
+          id="bottomPage"
+          className=" text-[15px] w-full flex mt-[20px] mb-[20px]  "
+        >
+          <div className="w-[250px] mb-[40px]">
+            <p className="pb-3">Gracias por visitar el portafolio</p>
+            <p>
+              Si quieres dejar alguna recomendacion, critica o propuesta de
+              trabajo puedes mandar un{" "}
+              <span
+                onClick={() =>
+                  document.getElementById("textareOfFooter").focus()
+                }
+                className="underline"
+              >
+                mensaje aqui:
+              </span>{" "}
+            </p>
+          </div>
+          <div className="flex-col capitalize ">
+            <p className="mb-2">Redes sociales:</p>
+            {dataText.social.map((socialMedia, indexNum)=>{ 
+              return (
+                <p onClick={() => {
+                  goToUrl(socialMedia.url)
+                }} className="underline hover:text-green-400" key={'socialData' + indexNum}>{socialMedia.name}</p>
+              )
+            })}
           </div>
         </div>
       </div>
