@@ -4,7 +4,7 @@ import axios from "axios";
 //import useGlobalContext from "../../../../context/useGlobalContext";
 import useGlobalContext from "../../../../context/useGlobalContext";
 import ShowHistoryDebst from "./ShowHistoryDebst";
-
+import { useNavigate } from "react-router-dom";
 export default function TableFromDebts(lang) {
   const langg = lang.lang
   const { message } = useMessageContext();
@@ -19,6 +19,7 @@ export default function TableFromDebts(lang) {
   const [showMoreDetailDebts, setshowMoreDetailDebts] = useState(false);
   const [thereAccountsToShow, setthereAccountsToShow] = useState(true)
   const [showHistoryTable, setshowHistoryTable] = useState(null)
+  let navigate = useNavigate()
   useEffect(() => {
     const toAcredit = () => {
       var a = [];
@@ -159,11 +160,8 @@ export default function TableFromDebts(lang) {
             setshowMoreDetailDebts(true);
             setdicreaseOrIncrease("in");
             setTimeout(() => {
-              window.scrollTo({
-                top: document.documentElement.scrollHeight,
-                behavior: "smooth",
-              });
-            }, 100);
+              navigate("#moreDetails", {replace: true})
+            }, 300);
             
           }}
         >
@@ -174,20 +172,18 @@ export default function TableFromDebts(lang) {
           onClick={() => {
             setshowMoreDetailDebts(true);
             setdicreaseOrIncrease("de");
-            
             setTimeout(() => {
-              window.scrollTo({
-                top: document.documentElement.scrollHeight,
-                behavior: "smooth",
-              });
-            }, 100)
+              navigate("#moreDetails", {replace: true})
+            }, 300);
+           
+            
           }}
         >
          {lang.lang.buttons.decrease[0]}
         </button>
       </div>
       {showMoreDetailDebts === true ? (
-        <div className="flex-col">
+        <div id='moreDetails' className="flex-col">
           <div>
             <p className="pb-1">{lang.lang.components.debts.modify[0]}</p>
             <div className="mr-1  flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">

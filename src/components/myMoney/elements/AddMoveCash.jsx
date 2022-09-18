@@ -13,13 +13,7 @@ export default function AddMoveCash(lang) {
   const server = context.server;
   const langg = lang.lang;
   const { message } = useMessageContext();
-  useEffect(() => {
-    message({
-      type: "success",
-      title: "Bienvenido de nuevo " + context.data.name,
-      description: "Tus finanzas están actualizadas",
-    });
-  }, []);
+
 
   //console.log(context.update());
 

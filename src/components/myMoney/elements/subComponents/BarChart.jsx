@@ -15,6 +15,7 @@ export default function BarChart() {
   useEffect(() => {
     var totalLength = context.data.history.today.length;
     var arr = context.data.history.today;
+    console.log(arr)
     var newArray = [];
     var d = new Date();
     var monthDay = d.toString().split(" ")[1];
@@ -46,7 +47,7 @@ export default function BarChart() {
             //  jsonToShowuser.push({day: daysWeek[i] })
           }
         }
-        jsonToShowuser.push({costName:daysWeek[i],value: value })
+        jsonToShowuser.push({costName:[arr[i].day],value: value })
         console.log(jsonToShowuser)
        // jsonToShowuserFinal.push()
 

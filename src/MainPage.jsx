@@ -18,6 +18,7 @@ import AddIncomingCash from "./components/myMoney/elements/AddIncomingCash";
 import TableFromDebts from "./components/myMoney/elements/subComponents/TableFromDebts";
 import axios from "axios";
 import BarChart from "./components/myMoney/elements/subComponents/BarChart.jsx";
+import TextInitial from "./components/myMoney/elements/TextInitial/index";
 export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
@@ -50,6 +51,7 @@ export default function MainPage() {
 
     if (context.data != undefined) {
       if (context.endServerRes === true) {
+        setendServerRes(true);
         if (dayName === "Sun") {
           //console.log(context.data.isValueSunday)
           if (context.data.isValueSunday === false) {
@@ -70,9 +72,7 @@ export default function MainPage() {
       return () => document.removeEventListener("load", () => frases());
     }
   }, [context.endServerRes]);
-  useLayoutEffect(() => {
-    setendServerRes(true);
-  }, [context.endServerRes])
+ 
   const frases = () => {
     var arr = Math.floor(Math.random() * phrases.es.length);
     setfrase(phrases.es[arr]);
@@ -88,14 +88,14 @@ export default function MainPage() {
     }
   }*/
 
-  if (endServerRes === true) {
+  if (endServerRes) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
           <div className="blockAllSelect  h-full w-full absolute top-0   ">
             <div
               id="topMenu"
-              className="relative h-[40px]  flex  items-center border border-slate-600 dark:border-slate-900 bg-slate-100 dark:bg-slate-700 pb-2 justify-between overflow-hidden"
+              className="relative h-[40px]  flex  items-center border border-slate-600  bg-slate-100 pb-2 justify-between overflow-hidden"
             >
               <div
                 onClick={() => {
@@ -135,7 +135,9 @@ export default function MainPage() {
             )}
             {!onErrorServerOut ? (
               <div className="flex flex-col">
-                <div className="p-2 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
+          
+                <TextInitial></TextInitial>
+                <div className="p-2 pt-5 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
                   <div className="sm:w-[50%]">
                     <PieDiagramHome lang={finalLang} />
                     <motion.div

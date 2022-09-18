@@ -59,7 +59,7 @@ export const lang = {
         cashLeft: ["A pagar"],
         modify: ["Modificar deuda"], 
         pay: ["Pagar"],
-        aum: ["Aumentar"],
+        aum: ["Crecer"],
         inf: ["El dinero acredia, afectara a:"],
         destiny: ["Destinar a:"],
         everyone: ["A todos"]
