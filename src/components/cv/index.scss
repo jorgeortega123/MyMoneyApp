@@ -207,6 +207,7 @@ html {
 }
 .input-container {
   background: #00000042;
+  border: 1px dashed rgb(0, 0, 0); ;
   border-radius: 10px;
   &:hover {
     background: rgba(0, 0, 0, 0.43);
@@ -227,7 +228,7 @@ html {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   width: calc(100% - 20px);
-  height: 70px;
+  height: 74px;
   &:active {
     outline: none;
     resize: none;

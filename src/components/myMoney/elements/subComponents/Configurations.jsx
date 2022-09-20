@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import useGlobalContext from "../../../../context/useGlobalContext";
 import axios from "axios";
 import useMessageContext from "../../../../context/Modal/useMessageContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Configurations(data) {
   const [showSioNo, setshowSioNo] = useState(false);
   const { message } = useMessageContext();
   const { context } = useGlobalContext();
   const server = context.server;
+  let navigate = useNavigate();
   /*useEffect(() => {
     var a = context.showConfiguration();
     setshowSioNo(a);
@@ -95,6 +97,16 @@ export default function Configurations(data) {
                 onClick={() => securityCopy()}
               >
                 Hacer copia de seguridad de los datos
+              </button>
+              <button
+                className="mt-2 w-full h-max  px-5 mr-2 mb-2 sm:font-medium font-[10px] text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+                onClick={() =>   {
+                  context.showConfiguration(false)
+                  navigate("/app/myMoney/form", { replace: true })}
+                }
+                  
+              >
+                Forms
               </button>
             </div>
         

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./forms.scss";
 import useGlobalContext from "../../context/useGlobalContext";
+import { useNavigate } from "react-router-dom";
 export default function Form() {
   const [isLoadData, setisLoadData] = useState(false);
   const { context } = useGlobalContext();
+  let navigate = useNavigate();
   useEffect(() => {
     if (context.endServerRes === false) {
       setisLoadData(false);
@@ -22,7 +24,7 @@ export default function Form() {
         id="topMenu"
         className="relative h-[40px]  flex  text-center items-center border border-slate-600  bg-transparent pb-2 justify-between overflow-hidden"
       >
-        <div className="flex">
+        <div className="flex" onClick={()=> navigate('/app/myMoney')}>
           {" "}
           <p className="text-3xl font-bold underline pt-1">MyMoney</p>
           <p className="pt-[13px]">Forms</p>{" "}
@@ -54,17 +56,17 @@ export default function Form() {
             <div class="overflow-x-auto relative">
               <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-[10px] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                  <tr>
-                    <th scope="col" class="py-2 px-5">
+                  <tr >
+                    <th scope="col" class="py-2 w-[130px] ">
                       Product name
                     </th>
-                    <th scope="col" class="py-2 px-5">
+                    <th scope="col" class="py-2  w-[70px]  ">
                       Valor
                     </th>
-                    <th scope="col" class="py-2 px-5">
+                    <th scope="col" class="py-2 ">
                       Maximo
                     </th>
-                    <th scope="col" class="py-2 px-5">
+                    <th scope="col" class="py-2">
                       Color
                     </th>
                   </tr>
@@ -75,15 +77,15 @@ export default function Form() {
                       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th
                           scope="row"
-                          class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white capitalize"
+                          class="py-4 pr-2 font-medium text-gray-900 whitespace-nowrap dark:text-white capitalize"
                         >
-                          <input type="text" name="" id="" className="w-[30-px]" value={dataCost.title}/>
+                          <input type="text" name="" id="" className="w-[90px]" value={dataCost.title}/>
                          
                         </th>
-                        <td class="py-4 px-2 w-2"><input type="number" value={dataCost.value}/></td>
-                        <td class="py-4 px-2">{dataCost.max}</td>
-                        <td class="py-4 px-2 flex justify-between">
-                          <p id={"change" + number}>{dataCost.color}</p>
+                        <td class="py-4 pr-2 w-2"><input type="number" className="w-[50px]" value={dataCost.value}/></td>
+                        <td class="py-4 ">{dataCost.max}</td>
+                        <td class="py-4 flex left">
+                          <p id={"change" + number} className='w-[73px]'>{dataCost.color}</p>
 
                           <input
                             value={dataCost.color}

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from "react";
 import newWindow from "../../assets/svg/newWindow.svg";
 export default function ContainerProyects({
   title = "Semaforos ",
-  img = "IMG",
+  img = [],
   about = "Trata acerca de dos cosas que sulen sesr importante el uno del otro para convivir de mejor manera siuuuu",
   langs = ["Javascript", "Python"],
   web = "https://www.example.com",
@@ -11,11 +11,11 @@ export default function ContainerProyects({
   ...props
 }: {
   title: string;
-  img: string;
+  img: [];
   about: string;
   langs: string[];
   web: string;
-  index: number
+  index: number;
 }) {
   const colors = [
     {
@@ -74,7 +74,6 @@ export default function ContainerProyects({
     }
   }, []);
 
- 
   /*
       {langs.map((lan, index) => {
               console.log(index)
@@ -94,14 +93,19 @@ export default function ContainerProyects({
 
   //window.addEventListener('load', ()=> elemets())
 
-  
   return (
     <div className="w-full border pl-2 pr-2">
       <div className="items-center flex justify-center pl-[20px]">
         <div className="w-max h-max flex rotate180 flex-col-reverse justify-right mt-[4px]">
-          <span className={`linesTitle oneTitle w-[${(index + 1 * 100 / 4)}px]`}></span>
-          <span className={`linesTitle twoTitle w-[${(index + 1.4  * 100 / 2)}px]`}></span>
-          <span className={`linesTitle thrTitle w-[${(index + 1.1  * 100 / 2)}px]`}></span>
+          <span
+            className={`linesTitle oneTitle w-[${index + (1 * 100) / 4}px]`}
+          ></span>
+          <span
+            className={`linesTitle twoTitle w-[${index + (1.4 * 100) / 2}px]`}
+          ></span>
+          <span
+            className={`linesTitle thrTitle w-[${index + (1.1 * 100) / 2}px]`}
+          ></span>
         </div>
         <p className="pt-[1px] pb-[1px]">{title}</p>
         <img
@@ -118,11 +122,16 @@ export default function ContainerProyects({
       </div>
       <div className="flex-col sm:flex-row w-full">
         <div className="w-full items-center flex justify-center p-2 proyects-container">
-          <img src={img} className="imageExamples " alt="" />
+          {img.map((i: string) => {
+            return <img src={i} className="imageExamples " alt="" />;
+          })}
         </div>
         <div className="h-full flex flex-col justify-end">
           <p className="text-[17px]">{about}</p>
-          <div id={"appendp" + index } className="flex flex-wrap mt-2 mb-2"></div>
+          <div
+            id={"appendp" + index}
+            className="flex flex-wrap mt-2 mb-2"
+          ></div>
         </div>
       </div>
     </div>

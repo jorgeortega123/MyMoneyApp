@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 import { lang } from "./langs";
 import ContainerProyects from "./ContainerProyects";
 import SocialNetworks from "./SocialNetworks";
-//import { ReactComponent as Logo } 
+//import { ReactComponent as Logo }
 import KeyboardSvg from "./../../assets/svg/keyboard.svg";
-import  DownloadSvg from "./../../assets/svg/download.svg";
-import  LangSvg from "./../../assets/svg/lang.svg";
-import  InstagramSGV from "./../../assets/svg/instagram_.svg";
-import  FacebookSVG from "./../../assets/svg/facebook_.svg";
-import  GithubSVG from "./../../assets/svg/github.svg";
+import DownloadSvg from "./../../assets/svg/download.svg";
+import LangSvg from "./../../assets/svg/lang.svg";
+import InstagramSGV from "./../../assets/svg/instagram_.svg";
+import FacebookSVG from "./../../assets/svg/facebook_.svg";
+import GithubSVG from "./../../assets/svg/github.svg";
 import MailSVG from "./../../assets/svg/mail.svg";
-import  CallSVG from "./../../assets/svg/call.svg";
-import   CopySGV from "./../../assets/svg/copy.svg";
+import CallSVG from "./../../assets/svg/call.svg";
+import CopySGV from "./../../assets/svg/copy.svg";
 import SendSGV from "./../../assets/svg/send.svg";
 import LinkedinSGV from "./../../assets/svg/linkedin_.svg";
 
@@ -113,7 +113,6 @@ const CvMain = () => {
       return "text-slate-100";
     }
   };
-  
 
   const copyToClipBoard = (elements) => {
     switch (elements) {
@@ -135,12 +134,12 @@ const CvMain = () => {
         break;
     }
   };
-  const goToUrl = (linkOpen) => { 
+  const goToUrl = (linkOpen) => {
     var link = document.createElement("a");
     link.href = linkOpen;
     link.target = "_blank";
     link.click();
-}
+  };
   ///
   return (
     <div className="main-container">
@@ -180,9 +179,11 @@ const CvMain = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ type: "tween" }}
-                  className="z-0 absolute pl-0 w-[180px] ml-3 text-slate-100 blockAllSelect "
+                  className="z-0 absolute bg-black ml-[4px] mt-[-5px] w-[180px] h-[20px] text-slate-100 blockAllSelect "
                 >
-                  <p className="text-[12px]">{dataText.functions.download}</p>
+                  <p className="text-[12px] pl-[3px] pt-[2px] ">
+                    {dataText.functions.download}
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -279,7 +280,15 @@ const CvMain = () => {
         <div className="page-content w-[100%] md:w-[1000px]">
           <div className="first-header" id="home">
             <div className="flex-col pl-6 pt-6">
-              <div className=" w-max h-max nameFontBold">Jorge Ortega</div>
+              <motion.div
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "tween", duration: 1 }}
+                className=""
+              >
+                <div className=" w-max h-max nameFontBold">Jorge Ortega</div>
+              </motion.div>
+
               <div className="pt-[13px] pb-[13px] text-[27px] flex">
                 <p className="pt-[3px] ">Developer</p>
                 <img className="fill-slate-200 pl-1" src={KeyboardSvg} alt="" />
@@ -292,19 +301,30 @@ const CvMain = () => {
                     url={"https://www.instagram.com/jorgeandresyts/"}
                     img={InstagramSGV}
                     classNamee={"ml-2"}
+                    number={1}
                   ></SocialNetworks>
+
                   <SocialNetworks
                     url={"https://www.facebook.com/mateo.garrido.5268"}
                     img={FacebookSVG}
                     classNamee={"ml-[-4px]"}
+                    number={2}
                   ></SocialNetworks>
                   <SocialNetworks
                     url={"https://github.com/jorgeortega123"}
                     img={LinkedinSGV}
                     classNamee={"ml-2"}
+                    number={3}
                   ></SocialNetworks>
                 </div>
-                <div className="cvImage mt-6"></div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ type: "tween", duration: 2 }}
+                  className=""
+                >
+                  <div className="cvImage mt-6"></div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -348,9 +368,7 @@ const CvMain = () => {
               </div>
             </div>
             <div id="contact" className="mb-[40px]">
-              <p className="titleText mt-5 mb-3 ">
-                {dataText.headers.contact}
-              </p>
+              <p className="titleText mt-5 mb-3 ">{dataText.headers.contact}</p>
               <div className="m-2">
                 <p className="mb-3">{dataText.contact.about}</p>
                 <div className="flex" onClick={() => copyToClipBoard("number")}>
@@ -365,7 +383,10 @@ const CvMain = () => {
                   <p className="text-[16px] pt-[5px]">
                     {dataText.contact.email}
                   </p>
-                  <img className="w-[22px] h-[22px]" src={CopySGV} alt="" />
+                  <div className="w-[16px] h-[16px] fill-slate-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill='' height="48" width="48"><path d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z"/></svg>
+                  </div>
+                  
                 </div>
               </div>
               <div className="w-full flex justify-center mt-3 ml-2">
@@ -373,13 +394,17 @@ const CvMain = () => {
                   <textarea
                     id="textareOfFooter"
                     placeholder={dataText.extras.footer.input}
-                    className="input-sender "
+                    className="input-sender h-max "
                     type="text"
                     name=""
                   />
 
-                  <div>
-                    <img src={SendSGV} alt="" /> <p className="text-[13px]">Send</p>
+                  <div className="active:text-cyan-400">
+                    <div className="fill-cyan-400 active:fill-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill='' height="48" width="48"><path d="M8 37V11l30.85 13Zm1.55-2.4L34.85 24 9.55 13.3v8.4L19.3 24l-9.75 2.25Zm0 0V13.3v12.95Z"/></svg>
+                    </div>
+                    
+                    <p className="text-[16px] font-serif  pl-[7px]">Send</p>
                   </div>
                 </div>
               </div>
@@ -407,12 +432,18 @@ const CvMain = () => {
           </div>
           <div className="flex-col capitalize ">
             <p className="mb-2">Redes sociales:</p>
-            {dataText.social.map((socialMedia, indexNum)=>{ 
+            {dataText.social.map((socialMedia, indexNum) => {
               return (
-                <p onClick={() => {
-                  goToUrl(socialMedia.url)
-                }} className="underline hover:text-green-400" key={'socialData' + indexNum}>{socialMedia.name}</p>
-              )
+                <p
+                  onClick={() => {
+                    goToUrl(socialMedia.url);
+                  }}
+                  className="underline hover:text-green-400"
+                  key={"socialData" + indexNum}
+                >
+                  {socialMedia.name}
+                </p>
+              );
             })}
           </div>
         </div>
