@@ -19,6 +19,7 @@ import TableFromDebts from "./components/myMoney/elements/subComponents/TableFro
 import axios from "axios";
 import BarChart from "./components/myMoney/elements/subComponents/BarChart.jsx";
 import TextInitial from "./components/myMoney/elements/TextInitial/index";
+import StrictMode from "./components/myMoney/elements/StrictMode.jsx";
 export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
@@ -95,7 +96,7 @@ export default function MainPage() {
           <div className="blockAllSelect  h-full w-full absolute top-0   ">
             <div
               id="topMenu"
-              className="relative h-[40px]  flex  items-center border border-slate-600  bg-slate-100 pb-2 justify-between overflow-hidden"
+              className="relative h-[30px]  flex  items-center border border-slate-600  bg-slate-100 pb-2 justify-between overflow-hidden"
             >
               <div
                 onClick={() => {
@@ -109,20 +110,20 @@ export default function MainPage() {
                 }}
                 className=" text-xs pl-2 pt-2 "
               >
-                Lang: <a className="text-lime-600">{langByUser} </a>
+                <a className="text-cyan-600">{langByUser} </a>
               </div>
-              <div className="text-3xl font-bold underline">MyMoney</div>
+              <div className="text-[20px] font-bold underline">MyMoney</div>
 
               <div className=" text-xs pr-2 pt-2 flex ">
                 <div
                   onClick={() => context.showConfiguration(true)}
-                  className="border border-gray-50 rounded-full hover:border-gray-200 active:bg-slate-400 "
+                  className="border border-gray-50 rounded-full    "
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
-                    className="bi bi-three-dots fill-slate-800 active:fill-slate-50"
+                    className="bi bi-three-dots fill-slate-800 active:fill-blue-600"
                     viewBox="0 0 16 16"
                   >
                     <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />{" "}
@@ -138,6 +139,7 @@ export default function MainPage() {
           
                 <TextInitial></TextInitial>
                 <div className="p-2 pt-5 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
+                  <StrictMode />
                   <div className="sm:w-[50%]">
                     <PieDiagramHome lang={finalLang} />
                     <motion.div

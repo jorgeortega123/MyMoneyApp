@@ -60,7 +60,7 @@ export default function BarChart() {
   }, []);
   //
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full overflow-hidden">
       <LineChart width={400} height={200} data={dataArr}>
         <Line type="monotone" dataKey="value" stroke="#8884d8" />
         <XAxis dataKey="costName" />

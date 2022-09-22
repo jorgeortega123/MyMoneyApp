@@ -28,7 +28,7 @@ export function GlobalContextComponent({ children }) {
         //console.log(globalData)
       })
       .catch((err) => {
-        console.log("ERRIR EN EK SERVIDOR");
+        console.log(-'server error')
         console.log(err);
       });
   }, [reconnect, endServerRes]);
