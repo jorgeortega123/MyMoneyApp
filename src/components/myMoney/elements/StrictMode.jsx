@@ -12,6 +12,7 @@ export default function StrictMode() {
   const [divideWeek, setdivideWeek] = useState(5);
   const [totalMountOfFixedDebst, settotalMountOfFixedDebst] = useState(0);
   const [toweekCostToSpend, setweekCostToSpend] = useState(0);
+  const [onlyfixedDebst, setonlyfixedDebst] = useState(0);
   const [todayCostSpend, settodayCostSpend] = useState(0);
   const [showMessageAlert, setshowMessageAlert] = useState(false);
   const [toPayWeekly, settoPayWeekly] = useState(0);
@@ -24,60 +25,87 @@ export default function StrictMode() {
     var userSalarey = dataUser.perWeek * 4;
     var sumDebst = dataUser.fixed.reduce((accumulator, object) => {
       return accumulator + object.value;
-    }, 0)
-    var sumAllTotalFixedDebst = dataUser.fixedDebst.reduce((accumulator, object) => {
-      return accumulator + object.total;
-    }, 0)
-    var sumAllPaidFixedDebst = dataUser.fixedDebst.reduce((accumulator, object) => {
-      return accumulator + object.paid;
-    }, 0)
-   
-    var totalMountFixedDebst = sumAllTotalFixedDebst - sumAllPaidFixedDebst
-    var monthValueTotalMountFixedDebst = totalMountFixedDebst / 4
+    }, 0);
+    var sumAllTotalFixedDebst = dataUser.fixedDebst.reduce(
+      (accumulator, object) => {
+        return accumulator + object.total;
+      },
+      0
+    );
+    var sumAllPaidFixedDebst = dataUser.fixedDebst.reduce(
+      (accumulator, object) => {
+        return accumulator + object.paid;
+      },
+      0
+    );
+
+    var totalMountFixedDebst = sumAllTotalFixedDebst - sumAllPaidFixedDebst;
+    var monthValueTotalMountFixedDebst = totalMountFixedDebst / 4;
+    setonlyfixedDebst(sumDebst);
     settotalMountOfFixedDebst(sumDebst + totalMountFixedDebst);
     //var toPayWeekFixedDebst = (- sumDebst + userSalarey)
-    var dinner = []
-    dataUser.fixedDebst.map((data)=> { 
-      var presentWeek = data.week - data.timesWeek 
-      var toPay = data.total - data.paid
-      var remaining = toPay / presentWeek
-      dinner.push({value: remaining, name: data.name })
-    })
-    var sumaDeDeudasFijasPorPagarALaSemana = dinner.reduce((accumulator, object) => {
-      return accumulator + object.value;
-    }, 0)
-    settoPayWeekly(((sumDebst + monthValueTotalMountFixedDebst) / 4) + sumaDeDeudasFijasPorPagarALaSemana);
-    var initial = ((userSalarey - sumDebst) / 4) + sumaDeDeudasFijasPorPagarALaSemana;
-    setweekCostToSpend(initial);
-    settodayCostSpend(initial / 7);
+    var dinner = [];
+    dataUser.fixedDebst.map((data) => {
+      var presentWeek = data.week - data.timesWeek;
+      var toPay = data.total - data.paid;
+      var remaining = toPay / presentWeek;
+      dinner.push({ value: remaining, name: data.name });
+    });
+    var sumaDeDeudasFijasPorPagarALaSemana = dinner.reduce(
+      (accumulator, object) => {
+        return accumulator + object.value;
+      },
+      0
+    );
+    console.log(sumaDeDeudasFijasPorPagarALaSemana);
+    settoPayWeekly(
+      (sumDebst + monthValueTotalMountFixedDebst) / 4 +
+        sumaDeDeudasFijasPorPagarALaSemana
+    );
+    var initial =
+      (userSalarey - sumDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana;
+    console.log(initial);
+    setweekCostToSpend(dataUser.perWeek - initial);
+    settodayCostSpend((dataUser.perWeek - initial) / 7);
   }, [context.data]);
 
   const sendServer = () => {
-    if (totalMount === 0) {
-      message({
-        type: "error",
-        title: "Incompleto",
-        description: "Completa",
-      });
-      return;
-    }
-    if (nameFixedDebst === "") {
-      message({
-        type: "error",
-        title: "Incompleto",
-        description: "Completa",
-      });
-      return;
-    }
+    
     if (whatModal === "add") {
-      axios.post(server + "/fixed/debst", {
-        name: nameFixedDebst,
-        week: document.getElementById("weekValue").value | 0,
-        paid: 0,
-        total: totalMount,
-        action: whatModal,
-        user: "jorge593",
+      if (nameFixedDebst === "") {
+      message({
+        type: "error",
+        title: "Incompleto",
+        description: "Completa",
       });
+      return;
+    }
+      if (totalMount === 0) {
+        message({
+          type: "error",
+          title: "Incompleto",
+          description: "Completa",
+        });
+        return;
+      }
+      axios
+        .post(server + "/fixed/debst", {
+          name: nameFixedDebst,
+          week: document.getElementById("weekValue").value | 6,
+          paid: 0,
+          total: totalMount,
+          action: whatModal,
+          user: "jorge593",
+        })
+        .then((res) => {
+          message({
+            type: res.message,
+            title: res.data,
+            description: res.title,
+          });
+          return;
+        })
+        .catch((e) => console.log(e));
     } else if (whatModal === "edit") {
       axios.post(server + "/fixed/debst", {
         name: nameFixedDebst,
@@ -88,7 +116,6 @@ export default function StrictMode() {
     }
   };
 
-  console.log(context);
   return (
     <div className="p-2 text-[12px]  mb-[8px] flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 ">
       <div className="flex items-center justify-between w-full ">
@@ -104,12 +131,19 @@ export default function StrictMode() {
       <div className="flex justify-between h-[20px] w-full">
         <p>
           Por pagar:{" "}
-          <span className="text-violet-600">${totalMountOfFixedDebst.toFixed(2)}</span>
-          <span className="text-blue-600"> <span className="text-green-600">~</span> {(toPayWeekly * 4).toFixed(2)}</span>
+          <span className="text-violet-600">${onlyfixedDebst.toFixed(2)}</span>
+          <span className="text-blue-600">
+            {" "}
+            <span className="text-green-600">~</span>{" "}
+            {totalMountOfFixedDebst.toFixed(2)}
+          </span>
         </p>
         <button
           className="rounded-full bg-slate-200 px-1"
-          onClick={() => {setwhatModal("add"); setshowAddFixedDebst(true)}}
+          onClick={() => {
+            setwhatModal("add");
+            setshowAddFixedDebst(true);
+          }}
         >
           Agregar deuda fija
         </button>
@@ -122,7 +156,10 @@ export default function StrictMode() {
 
         <button
           className="rounded-full bg-slate-200 px-1 mt-[3px]"
-          onClick={() => {setwhatModal("edit"); setshowAddFixedDebst(true)}}
+          onClick={() => {
+            setwhatModal("edit");
+            setshowAddFixedDebst(true);
+          }}
         >
           Editar
         </button>
@@ -136,11 +173,11 @@ export default function StrictMode() {
         <div className="w-full bg-slate-200 rounded-md p-2 mt-5">
           {whatModal === "add" && (
             <>
-            <div className="flex ">
-              <p className="text-blue-800 font-light w-full text-center">
-                Agregar deuda fija
-              </p>
-              <p onClick={()=> setshowAddFixedDebst(false)}>X</p>
+              <div className="flex ">
+                <p className="text-blue-800 font-light w-full text-center">
+                  Agregar deuda fija
+                </p>
+                <p onClick={() => setshowAddFixedDebst(false)}>X</p>
               </div>
               <div className="flex-col">
                 <div className="w-full mr-1 mb-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
@@ -180,7 +217,10 @@ export default function StrictMode() {
                   </div>
                 </div>
 
-                <button onClick={()=>sendServer()}  className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border-2 border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    ">
+                <button
+                  onClick={() => sendServer()}
+                  className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border-2 border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+                >
                   Agregar
                 </button>
               </div>
@@ -188,21 +228,22 @@ export default function StrictMode() {
           )}
           {whatModal === "edit" && (
             <>
-            <div className="flex">
-              <p className="text-blue-800 font-light w-full text-center mb-2">
-                Editar deuda fija
-              </p>
-              <p onClick={()=> setshowAddFixedDebst(false)}>X</p></div>
+              <div className="flex">
+                <p className="text-blue-800 font-light w-full text-center mb-2">
+                  Editar deuda fija
+                </p>
+                <p onClick={() => setshowAddFixedDebst(false)}>X</p>
+              </div>
               <div className="flex">
                 <p>Deuda fija: </p>
                 <select className="grow outline-hidden capitalize border-[1px] removeOutlines rounded-lg border-slate-200">
-                  {context.data.fixedDebst.map((e, index)=>{ 
-                     <option key={"ASDASD" + index} >
-                    {e.name}
-                  </option>
-                  })
-
-                  }
+                  {context.data.fixedDebst.map((e, index) => {
+                    return (
+                      <option key={"ASDASD" + index} value={e.name}>
+                        {e.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div className="flex items-center">
@@ -217,11 +258,13 @@ export default function StrictMode() {
                     required
                   />
                 </div>
-                
               </div>
-              <button onClick={()=>sendServer()} className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border-2 border-gray-500 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    ">
-                  Agregar
-                </button>
+              <button
+                onClick={() => sendServer()}
+                className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border-2 border-gray-500 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+              >
+                Agregar
+              </button>
             </>
           )}
         </div>
@@ -239,7 +282,10 @@ export default function StrictMode() {
             esta semana para cubrir gastos y deudas
           </p>
           <div className="w-full flex items-center justify-end">
-            <button onClick={()=> setshowMessageAlert(false)} className="bg-red-400 p-1 rounded-full right-0 text-green-300 font-black">
+            <button
+              onClick={() => setshowMessageAlert(false)}
+              className="bg-red-400 p-1 rounded-full right-0 text-green-300 font-black"
+            >
               HECHO
             </button>
           </div>
