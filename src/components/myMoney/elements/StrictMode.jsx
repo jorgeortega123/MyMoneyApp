@@ -107,11 +107,12 @@ export default function StrictMode() {
         })
         .catch((e) => console.log(e));
     } else if (whatModal === "edit") {
-      axios.post(server + "/fixed/debst", {
+      console.log(server + "/fixedDebst")
+      axios.post(server + "/fixedDebst", {
         name: nameFixedDebst,
         action: whatModal,
         user: "jorge593",
-        mount: totalMount,
+        mount: payWeekly,
       });
     }
   };
@@ -252,7 +253,7 @@ export default function StrictMode() {
                   <p className="ml-1 text-green-600">$</p>
                   <input
                     type="number"
-                    onChange={(e) => settoPayValue(e.target.value)}
+                    onChange={(e) => setpayWeekly(e.target.value)}
                     className=" w-[40px] p-[2px] outline-none bg-transparent  "
                     id="inputToPutNumber"
                     required
