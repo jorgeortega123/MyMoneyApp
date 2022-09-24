@@ -96,7 +96,7 @@ export default function MainPage() {
           <div className="blockAllSelect  h-full w-full absolute top-0   ">
             <div
               id="topMenu"
-              className="relative h-[30px]  flex  items-center border border-slate-600  bg-slate-100 pb-2 justify-between overflow-hidden"
+              className="relative h-[30px]  flex  items-center border border-blue-400  bg-slate-100 pb-2  overflow-hidden"
             >
               <div
                 onClick={() => {
@@ -112,7 +112,7 @@ export default function MainPage() {
               >
                 <a className="text-cyan-600">{langByUser} </a>
               </div>
-              <div className="text-[20px] font-bold underline">MyMoney</div>
+              <div className="text-[20px] pt-1 font-bold underline w-full text-center">MyMoney</div>
 
               <div className=" text-xs pr-2 pt-2 flex ">
                 <div

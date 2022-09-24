@@ -16,8 +16,11 @@ export default function StrictMode() {
   const [todayCostSpend, settodayCostSpend] = useState(0);
   const [showMessageAlert, setshowMessageAlert] = useState(false);
   const [toPayWeekly, settoPayWeekly] = useState(0);
+  const [onlyUserFixedDebst, setonlyUserFixedDebst] = useState(0)
+  const [debstCount, setdebstCount] = useState(0)
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
+
   const server = context.server;
 
   useEffect(() => {
@@ -38,18 +41,26 @@ export default function StrictMode() {
       },
       0
     );
+    const sumDebst0 = context.data.debts.reduce((accumulator, object) => {
+      return accumulator + object.mount;
+    }, 0);
+    const paid0 = context.data.debts.reduce((accumulator, object) => {
+      return accumulator + object.paid;
+    }, 0);
 
+    setdebstCount(sumDebst0 - paid0);
     var totalMountFixedDebst = sumAllTotalFixedDebst - sumAllPaidFixedDebst;
     var monthValueTotalMountFixedDebst = totalMountFixedDebst / 4;
     setonlyfixedDebst(sumDebst);
     settotalMountOfFixedDebst(sumDebst + totalMountFixedDebst);
     //var toPayWeekFixedDebst = (- sumDebst + userSalarey)
     var dinner = [];
+
     dataUser.fixedDebst.map((data) => {
       var presentWeek = data.week - data.timesWeek;
       var toPay = data.total - data.paid;
       var remaining = toPay / presentWeek;
-      dinner.push({ value: remaining, name: data.name });
+      dinner.push({ value: remaining, name: data.name, extra: toPay });
     });
     var sumaDeDeudasFijasPorPagarALaSemana = dinner.reduce(
       (accumulator, object) => {
@@ -57,16 +68,23 @@ export default function StrictMode() {
       },
       0
     );
+    var sumaDeDeudasFijasAdquiridas = dinner.reduce(
+      (accumulator, object) => {
+        return accumulator + object.extra;
+      },
+      0
+    );
+    setonlyUserFixedDebst(sumaDeDeudasFijasAdquiridas)
     console.log(sumaDeDeudasFijasPorPagarALaSemana);
     settoPayWeekly(
       (sumDebst + monthValueTotalMountFixedDebst) / 4 +
         sumaDeDeudasFijasPorPagarALaSemana
     );
-    var initial =
-      (userSalarey - sumDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana;
-    console.log(initial);
-    setweekCostToSpend(dataUser.perWeek - initial);
-    settodayCostSpend((dataUser.perWeek - initial) / 7);
+        var initial =
+        (userSalarey - sumDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana;
+
+      setweekCostToSpend(dataUser.perWeek - initial);
+      settodayCostSpend((dataUser.perWeek - initial) / 7);
   }, [context.data]);
 
   const sendServer = () => {
@@ -118,7 +136,7 @@ export default function StrictMode() {
   };
 
   return (
-    <div className="p-2 text-[12px]  mb-[8px] flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 ">
+    <div className="p-2 text-[13px] mb-[8px] flex justify-left flex-col sm:justify-center items-start border border-slate-900 rounded-xl bg-slate-100 m-0 ">
       <div className="flex items-center justify-between w-full ">
         <p>
           Semana:{" "}
@@ -134,10 +152,10 @@ export default function StrictMode() {
           Por pagar:{" "}
           <span className="text-violet-600">${onlyfixedDebst.toFixed(2)}</span>
           <span className="text-blue-600">
-            {" "}
-            <span className="text-green-600">~</span>{" "}
-            {totalMountOfFixedDebst.toFixed(2)}
-          </span>
+            <span className="text-green-600"> ~ </span>
+            ${onlyUserFixedDebst.toFixed(2)} ~{" "}
+          </span><span className="text-violet-600">${debstCount.toFixed(2)}</span>
+          <span className="text-violet-600"> <span className="text-cyan-900"> = </span> ${(onlyfixedDebst + debstCount + onlyUserFixedDebst).toFixed(2)}</span>
         </p>
         <button
           className="rounded-full bg-slate-200 px-1"
@@ -167,7 +185,7 @@ export default function StrictMode() {
       </div>
       <div className="flex">
         <p className="w-[54px]">Weekly:</p>
-        <span className="text-green-600">${toweekCostToSpend}</span>
+        <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
       </div>
 
       {showAddFixedDebst && (
@@ -217,7 +235,7 @@ export default function StrictMode() {
                     />
                   </div>
                 </div>
-
+                <p className="mt-[10px]">Con estos datos, podras gastar al dia: {todayCostSpend.toFixed(2) - ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)} </p>
                 <button
                   onClick={() => sendServer()}
                   className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border-2 border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
