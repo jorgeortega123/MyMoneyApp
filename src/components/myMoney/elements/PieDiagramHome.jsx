@@ -4,6 +4,7 @@ import { PieChart } from "react-minimal-pie-chart";
 import PieDiagramTextInfo from "./PieDiagramTextInfo";
 import { AnimatePresence, motion } from "framer-motion";
 import useGlobalContext from "../../../context/useGlobalContext";
+import StrictMode from "./StrictMode";
 //import { data, serverRes } from "../dataSimulateServer";
 export const PieDiagramHome = (dataPie) => {
   const { context } = useGlobalContext();
@@ -48,7 +49,7 @@ export const PieDiagramHome = (dataPie) => {
         max: 4,
       });
       //console.log(sum - perWeek)
-      console.log(dataBasic)
+      console.log(dataBasic);
       setdataBasic(allArray);
     };
     model();
@@ -67,79 +68,86 @@ export const PieDiagramHome = (dataPie) => {
     exportEnabled: true,
     animationEnabled: true,
     title: {
-      text: "Website Traffic Sources"
+      text: "Website Traffic Sources",
     },
-    data: [{
-      type: "pie",
-      startAngle: 75,
-      toolTipContent: "<b>{title}</b>: {value}%",
-      showInLegend: "true",
-      legendText: "{title}",
-      indexLabelFontSize: 16,
-      indexLabel: "{title} - {value}%",
-      dataPoints: [
-        dataBasic
-        /*
+    data: [
+      {
+        type: "pie",
+        startAngle: 75,
+        toolTipContent: "<b>{title}</b>: {value}%",
+        showInLegend: "true",
+        legendText: "{title}",
+        indexLabelFontSize: 16,
+        indexLabel: "{title} - {value}%",
+        dataPoints: [
+          dataBasic,
+          /*
         { y: 18, label: "Direct" },
         { y: 49, label: "Organic Search" },
         { y: 9, label: "Paid Search" },
         { y: 5, label: "Referral" },
         { y: 19, label: "Social" }
       */
-      ]
-    }]
-  }
+        ],
+      },
+    ],
+  };
 
   return (
     <Fragment>
       <motion.div
-              initial={{ opacity: 0, rotate: 0 }}
-              animate={{opacity: 1, rotate: 0 }}
-              transition={{
-                duration: 1,
-              }}
-            >
-      <div className="p-2 shadow-md shadow-slate-300  mb-2 flex justify-evenly items-center border rounded-xl bg-slate-100   ">
-        <div className="relative flex justify-center items-center">
-          <div className="w-[150px] sm:w-[225px] lg:w-[400px] md:p-3  items-center">
-            <motion.div
-              initial={{ opacity: 0, rotate: 360 }}
-              animate={{opacity: 1, rotate: 0 }}
-              transition={{
-                duration: 2,
-              }}
-             
-            >
-              {followPage ? (
-                <PieChart
-                className="piechartToEdit  "
-                  animation={true}
-                  animationDuration={1500}
-                  animationEasing="ease-out"
-                  center={[50, 50]}
-                  data={dataBasic}
-                  labelPosition={90}
-                  lengthAngle={360}
-                  lineWidth={25}
-                  paddingAngle={0}
-                  labelStyle={{
-                    fontSize: "5px",
-                    underline: true,
-                    fill: "#000",
+        initial={{ opacity: 0, rotate: 0 }}
+        animate={{ opacity: 1, rotate: 0 }}
+        transition={{
+          duration: 1,
+        }}
+      >
+        <div className="p-2 shadow-md shadow-slate-300  mb-2 flex justify-end items-center border rounded-xl bg-slate-100   ">
+          <div className="flex justify-between w-full">
+            <div className="grow">
+              <StrictMode></StrictMode>
+            </div>
+            <div className="w-max flex justify-end items-end  ">
+          
+              <div className=" ">
+                <motion.div
+                  initial={{ opacity: 0, rotate: 360 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  transition={{
+                    duration: 2,
                   }}
-                  radius={50}
-                  rounded={0}
-                  startAngle={120}
-                  viewBoxSize={[100, 100]}
-                />
-              ) : (
-                <p>CARGANDO MONO QLIAO MONONEURONAL</p>
-              )}
-            </motion.div>
+                  className=' w-[160px] sm:w-[225px] lg:w-[400px] mr-[-30px] right-0 pl-4 '
+                >
+                  {followPage ? (
+                    <PieChart
+                      className="piechartToEdit  "
+                      animation={true}
+                      animationDuration={3500}
+                      animationEasing="ease-in"
+                      data={dataBasic}
+                      labelPosition={90}
+                      lineWidth={25}
+                      paddingAngle={0}
+                      labelStyle={{
+                        fontSize: "5px",
+                        underline: true,
+                        fill: "#000",
+                      }}
+              
+                
+                     
+                    
+                    />
+                  ) : (
+                    <p>CARGANDO MONO QLIAO MONONEURONAL</p>
+                  )}
+                </motion.div>
+                 <PieDiagramTextInfo dataToTransform={dataBasic} />
+              </div>
+             
+            </div>
           </div>
         </div>
-        <PieDiagramTextInfo dataToTransform={dataBasic} />
-      </div>
       </motion.div>
     </Fragment>
   );

@@ -17,7 +17,7 @@ export default function PieDiagramTextInfo(dataToTransform) {
                 duration: 1,
               }}
             >
-    <div className="ml-1 flex justify-center items-start flex-col h-full infoAndcolors list-inside mt-auto mb-auto ">
+    <div className="pt-2 overflow-auto ml-1 flex justify-end items-start  h-[220px]  infoAndcolors list-inside mt-auto mb-auto ">
       <div className="rounded">
         <div className="border-dashed rounded">
           <thead className="hidden text-xs text-gray-700 uppercase bg-gray-50 ">

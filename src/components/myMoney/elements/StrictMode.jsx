@@ -16,13 +16,11 @@ export default function StrictMode() {
   const [todayCostSpend, settodayCostSpend] = useState(0);
   const [showMessageAlert, setshowMessageAlert] = useState(false);
   const [toPayWeekly, settoPayWeekly] = useState(0);
-  const [onlyUserFixedDebst, setonlyUserFixedDebst] = useState(0)
-  const [debstCount, setdebstCount] = useState(0)
+  const [onlyUserFixedDebst, setonlyUserFixedDebst] = useState(0);
+  const [debstCount, setdebstCount] = useState(0);
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
-
   const server = context.server;
-
   useEffect(() => {
     var dataUser = context.data;
     var userSalarey = dataUser.perWeek * 4;
@@ -48,12 +46,12 @@ export default function StrictMode() {
       return accumulator + object.paid;
     }, 0);
 
-    setdebstCount(sumDebst0 - paid0);
+    setdebstCount(sumDebst0 - paid0); //total deudas - ya Se cuenta el valor de deudas bajo el nombre de la x persona|
     var totalMountFixedDebst = sumAllTotalFixedDebst - sumAllPaidFixedDebst;
     var monthValueTotalMountFixedDebst = totalMountFixedDebst / 4;
     setonlyfixedDebst(sumDebst);
     settotalMountOfFixedDebst(sumDebst + totalMountFixedDebst);
-    //var toPayWeekFixedDebst = (- sumDebst + userSalarey)
+
     var dinner = [];
 
     dataUser.fixedDebst.map((data) => {
@@ -68,36 +66,32 @@ export default function StrictMode() {
       },
       0
     );
-    var sumaDeDeudasFijasAdquiridas = dinner.reduce(
-      (accumulator, object) => {
-        return accumulator + object.extra;
-      },
-      0
-    );
-    setonlyUserFixedDebst(sumaDeDeudasFijasAdquiridas)
+    var sumaDeDeudasFijasAdquiridas = dinner.reduce((accumulator, object) => {
+      return accumulator + object.extra;
+    }, 0);
+    setonlyUserFixedDebst(sumaDeDeudasFijasAdquiridas);
     console.log(sumaDeDeudasFijasPorPagarALaSemana);
     settoPayWeekly(
       (sumDebst + monthValueTotalMountFixedDebst) / 4 +
         sumaDeDeudasFijasPorPagarALaSemana
     );
-        var initial =
-        (userSalarey - sumDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana;
+    var initial =
+      (userSalarey - sumDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana;
 
-      setweekCostToSpend(dataUser.perWeek - initial);
-      settodayCostSpend((dataUser.perWeek - initial) / 7);
+    setweekCostToSpend(dataUser.perWeek - initial);
+    settodayCostSpend((dataUser.perWeek - initial) / 7);
   }, [context.data]);
 
   const sendServer = () => {
-    
     if (whatModal === "add") {
       if (nameFixedDebst === "") {
-      message({
-        type: "error",
-        title: "Incompleto",
-        description: "Completa",
-      });
-      return;
-    }
+        message({
+          type: "error",
+          title: "Incompleto",
+          description: "Completa",
+        });
+        return;
+      }
       if (totalMount === 0) {
         message({
           type: "error",
@@ -125,7 +119,7 @@ export default function StrictMode() {
         })
         .catch((e) => console.log(e));
     } else if (whatModal === "edit") {
-      console.log(server + "/fixedDebst")
+      console.log(server + "/fixedDebst");
       axios.post(server + "/fixedDebst", {
         name: nameFixedDebst,
         action: whatModal,
@@ -136,29 +130,46 @@ export default function StrictMode() {
   };
 
   return (
-    <div className="p-2 text-[13px] mb-[8px] flex justify-left flex-col sm:justify-center items-start border border-slate-900 rounded-xl bg-slate-100 m-0 ">
+    <div className=" mr-0 text-[13px] mb-[8px] h-full flex justify-left flex-col sm:justify-center items-start  rounded-xl bg-slate-100 m-0 ">
       <div className="flex items-center justify-between w-full ">
         <p>
           Semana:{" "}
           <span className="text-green-600">${context.data.perWeek}</span>, Mes:{" "}
           <span className="text-green-600">${context.data.perWeek * 4} </span>
         </p>
-        <p className="bg-slate-50 rounded-xl px-1 text-red-700 mt-[-10px] mr-[-5px]  ">
-          Strict Mode Activate
+      </div>
+      <div className="flex-col w-full">
+        <div className="flex w-full justify-center">
+          <p className=" bg-slate-200 px-5 rounded-t-lg">Por pagar:</p>
+        </div>
+
+        <p className="text-violet-600 pt-[5px] text-center bg-slate-200 px-5 rounded-lg mb-2">
+          ${onlyfixedDebst.toFixed(2)}
+          <span className="text-blue-600">
+            <span className="text-green-600"> ~ </span>$
+            {onlyUserFixedDebst.toFixed(2)} ~{" "}
+          </span>
+          <span className="text-violet-600">${debstCount.toFixed(2)}</span>
+          <span className="text-violet-600">
+            {" "}
+            <span className="text-cyan-900"> = </span> $
+            {(onlyfixedDebst + debstCount + onlyUserFixedDebst).toFixed(2)}
+          </span>
         </p>
       </div>
-      <div className="flex justify-between h-[20px] w-full">
-        <p>
-          Por pagar:{" "}
-          <span className="text-violet-600">${onlyfixedDebst.toFixed(2)}</span>
-          <span className="text-blue-600">
-            <span className="text-green-600"> ~ </span>
-            ${onlyUserFixedDebst.toFixed(2)} ~{" "}
-          </span><span className="text-violet-600">${debstCount.toFixed(2)}</span>
-          <span className="text-violet-600"> <span className="text-cyan-900"> = </span> ${(onlyfixedDebst + debstCount + onlyUserFixedDebst).toFixed(2)}</span>
-        </p>
+        <div className="flex justify-between h-[20px] w-full">
+          <div className="flex bg-slate-200 rounded-md px-2 pt-[1px]">
+            <p className="w-[48px]">Daily:</p>{" "}
+            <p className="text-green-600"> ${todayCostSpend.toFixed(2)}</p>
+          </div>{" "}
+        </div>
+        <div className="flex">
+          <p className="w-[54px]">Weekly:</p>
+          <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
+        </div>
+      <div className="flex justify-end space-x-1 items-end bottom-0 b-0 sticky h-full ">
         <button
-          className="rounded-full bg-slate-200 px-1"
+          className="ml-1 rounded-full bg-slate-200 px-1"
           onClick={() => {
             setwhatModal("add");
             setshowAddFixedDebst(true);
@@ -166,13 +177,6 @@ export default function StrictMode() {
         >
           Agregar deuda fija
         </button>
-      </div>
-      <div className="flex justify-between h-[20px] w-full">
-        <div className="flex bg-slate-200 rounded-md px-2 pt-[1px]">
-          <p className="w-[48px]">Daily:</p>{" "}
-          <p className="text-green-600"> ${todayCostSpend.toFixed(2)}</p>
-        </div>
-
         <button
           className="rounded-full bg-slate-200 px-1 mt-[3px]"
           onClick={() => {
@@ -182,10 +186,6 @@ export default function StrictMode() {
         >
           Editar
         </button>
-      </div>
-      <div className="flex">
-        <p className="w-[54px]">Weekly:</p>
-        <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
       </div>
 
       {showAddFixedDebst && (
@@ -235,7 +235,11 @@ export default function StrictMode() {
                     />
                   </div>
                 </div>
-                <p className="mt-[10px]">Con estos datos, podras gastar al dia: {todayCostSpend.toFixed(2) - ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)} </p>
+                <p className="mt-[10px]">
+                  Con estos datos, podras gastar al dia:{" "}
+                  {todayCostSpend.toFixed(2) -
+                    ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)}{" "}
+                </p>
                 <button
                   onClick={() => sendServer()}
                   className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border-2 border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
