@@ -139,8 +139,7 @@ export default function MainPage() {
           
                 <TextInitial></TextInitial>
                 <div className="p-2 pt-5 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
-                  <StrictMode />
-                  <div className="sm:w-[50%]">
+                  <div className="">
                     <PieDiagramHome lang={finalLang} />
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}

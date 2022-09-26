@@ -10,6 +10,7 @@ export const PieDiagramHome = (dataPie) => {
   const { context } = useGlobalContext();
   const [followPage, setfollowPage] = useState(false);
   const [dataBasic, setdataBasic] = useState([]);
+  const [overDebst, setoverDebst] = useState('...')
 
   //console.log(context.update());
   useEffect(() => {
@@ -61,6 +62,9 @@ export const PieDiagramHome = (dataPie) => {
       return <p key={n.color}>{n.title}</p>;
     });
   };
+  const callOver = (e) => { 
+    setoverDebst(e)
+  }
   //PARA EL TEXTO EN EL PIECHART
   //label={({ dataEntry }) =>
   // `${dataEntry."title"} ${Math.round(dataEntry.percentage)}%`
@@ -105,20 +109,23 @@ export const PieDiagramHome = (dataPie) => {
         <div className="p-2 shadow-md shadow-slate-300  mb-2 flex justify-end items-center border rounded-xl bg-slate-100   ">
           <div className="flex justify-between w-full">
             <div className="grow">
-              <StrictMode></StrictMode>
+              <StrictMode fun={callOver}></StrictMode>
             </div>
-            <div className="w-max flex justify-end items-end  ">
+            <div className="w-max flex justify-end items-start  ">
           
               <div className=" ">
+                <div className="flex justify-center">
                 <motion.div
                   initial={{ opacity: 0, rotate: 360 }}
                   animate={{ opacity: 1, rotate: 0 }}
                   transition={{
                     duration: 2,
                   }}
-                  className=' w-[160px] sm:w-[225px] lg:w-[400px] mr-[-30px] right-0 pl-4 '
+                  className='relative w-[135px] sm:w-[225px] lg:w-[250px]    '
                 >
                   {followPage ? (
+                    <>
+                    <div className="absolute flex items-center justify-center w-full h-full ">{overDebst}</div>
                     <PieChart
                       className="piechartToEdit  "
                       animation={true}
@@ -137,11 +144,11 @@ export const PieDiagramHome = (dataPie) => {
                 
                      
                     
-                    />
+                    /></>
                   ) : (
                     <p>CARGANDO MONO QLIAO MONONEURONAL</p>
                   )}
-                </motion.div>
+                </motion.div></div>
                  <PieDiagramTextInfo dataToTransform={dataBasic} />
               </div>
              

@@ -167,40 +167,21 @@ export default function StrictMode() {
           <p className="w-[54px]">Weekly:</p>
           <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
         </div>
-      <div className="flex justify-end space-x-1 items-end bottom-0 b-0 sticky h-full ">
-        <button
-          className="ml-1 rounded-full bg-slate-200 px-1"
-          onClick={() => {
-            setwhatModal("add");
-            setshowAddFixedDebst(true);
-          }}
-        >
-          Agregar deuda fija
-        </button>
-        <button
-          className="rounded-full bg-slate-200 px-1 mt-[3px]"
-          onClick={() => {
-            setwhatModal("edit");
-            setshowAddFixedDebst(true);
-          }}
-        >
-          Editar
-        </button>
-      </div>
+    
 
       {showAddFixedDebst && (
-        <div className="w-full bg-slate-200 rounded-md p-2 mt-5">
+        <div className="w-full rounded-md p-2   ">
           {whatModal === "add" && (
             <>
               <div className="flex ">
-                <p className="text-blue-800 font-light w-full text-center">
+                <p className="text-blue-800 font-light w-full text-center mb-2">
                   Agregar deuda fija
                 </p>
                 <p onClick={() => setshowAddFixedDebst(false)}>X</p>
               </div>
               <div className="flex-col">
-                <div className="w-full mr-1 mb-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
-                  <p className="ml-1 text-slate-600">Nombre:</p>
+                <div className="w-full  mb-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
+                  <p className="ml-1 text-slate-600">Name:</p>
                   <input
                     onChange={(e) => setnameFixedDebst(e.target.value)}
                     type="text"
@@ -209,7 +190,7 @@ export default function StrictMode() {
                 </div>
                 <div>
                   <div className="w-full mr-1 mb-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
-                    <p className="ml-1 text-green-600">Valor total: $</p>
+                    <p className="ml-1 text-green-600">Total:</p>
                     <input
                       onChange={(e) => settotalMount(e.target.value)}
                       type="number"
@@ -218,7 +199,7 @@ export default function StrictMode() {
                   </div>
                   <div className="flex ">
                     <div className="w-[70%] mr-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
-                      <p className="ml-1 text-cyan-700">Pay per week: $</p>
+                      <p className="ml-1 text-cyan-700">Weekly:</p>
                       <input
                         value={(totalMount / divideWeek).toFixed(2)}
                         id="weekValue"
@@ -226,12 +207,12 @@ export default function StrictMode() {
                         className="w-[35%] p-[2px] outline-none bg-transparent "
                       />
                     </div>
-                    <p className="pt-1 h-max items-center">Semanas:</p>
+                    <p className="pt-1 h-max items-center">Weeks:</p>
                     <input
-                      placeholder="1 to 12"
+                      placeholder="1-12"
                       type="number"
                       onChange={(e) => setdivideWeek(e.target.value)}
-                      className="w-[65px] ml-2 pl-2 outline-none bg-transparent border-[1px] border-slate-500 rounded-full "
+                      className="w-[30px] ml-2 outline-none bg-transparent border-[1px] border-slate-500 rounded-lg "
                     />
                   </div>
                 </div>
@@ -292,6 +273,26 @@ export default function StrictMode() {
           )}
         </div>
       )}
+        <div className="flex justify-end space-x-1 items-end bottom-0 b-0 sticky h-full ">
+        <button
+          className="ml-1 rounded-full bg-slate-200 px-1"
+          onClick={() => {
+            setwhatModal("add");
+            setshowAddFixedDebst(true);
+          }}
+        >
+          Agregar deuda fija
+        </button>
+        <button
+          className="rounded-full bg-slate-200 px-1 mt-[3px]"
+          onClick={() => {
+            setwhatModal("edit");
+            setshowAddFixedDebst(true);
+          }}
+        >
+          Editar
+        </button>
+      </div>
       {showMessageAlert && (
         <div className="mt-2 py-5 px-2 w-full bg-red-500 rounded-xl">
           <p className="w-full text-center text-[22px] text-yellow-500">

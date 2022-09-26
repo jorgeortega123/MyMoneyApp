@@ -28,7 +28,7 @@ export default function PieDiagramTextInfo(dataToTransform) {
               <th scope="col" className="hidden sm:block px-1 py-1">
                 relationship
               </th>
-              <th scope="col" className="px-1 py-1">
+              <th scope="col" className="px-1 py-1 truncate w-[20px]">
                 mount to pay
               </th>
             </tr>
@@ -46,7 +46,7 @@ export default function PieDiagramTextInfo(dataToTransform) {
                     style={{ background: n.color }}
                   ></th>
                   <td className="px-1 py-1 text-[12px] sm:text-[15px]">${n.value.toFixed(2)}</td>
-                  <td className="px-0 sm:px-1 py-1 text-[12px] capitalize sm:text-[15px] ">{n.title}</td>
+                  <td className="px-0 sm:px-1 py-1 text-[12px] capitalize sm:text-[15px] text-clip w-[20px]">{n.title}</td>
                 </tr>
               );
             })}
