@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import useGlobalContext from "../../../context/useGlobalContext";
 import useMessageContext from "../../../context/Modal/useMessageContext";
+import dayjs from 'dayjs'
 export default function () {
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
@@ -12,19 +13,12 @@ export default function () {
   const [showCon, setshowCon] = useState(true);
 
   const server = context.server;
-  var d = new Date();
-  var dayName = d.toString().split(" ")[0];
-  var monthDay = d.toString().split(" ")[1];
-  var numberDay = d.toString().split(" ")[2];
-  var yearDay = d.toString().split(" ")[3];
-  var idOfCost = numberDay + yearDay + monthDay;
 
   useEffect(() => {
-    settoDayCosts([]);
-    setcashWasted(0);
-    //console.log("a");
+    var compare = dayjs().$d.toISOString()
     context.data.history.today.map((e) => {
-      if (e.day === dayName && e.id === idOfCost) {
+      alert(e.date)
+      if (e.date === compare.slice(0,10)) {
         console.log(e);
         settoDayCosts((toDayCosts) => [...toDayCosts, e]);
         setcashWasted((a) => a + e.value);

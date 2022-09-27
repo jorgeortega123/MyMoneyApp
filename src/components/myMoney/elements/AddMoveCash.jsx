@@ -6,7 +6,7 @@ import axios from "axios";
 import useGlobalContext from "../../../context/useGlobalContext";
 import AddOptionAboutCost from "./subComponents/AddOptionAboutCost";
 import useMessageContext from "../../../context/Modal/useMessageContext";
-
+import dayjs from 'dayjs'
 export default function AddMoveCash(lang) {
   const { context } = useGlobalContext();
   //console.log(context)
@@ -56,10 +56,6 @@ export default function AddMoveCash(lang) {
       return true;
     }
     var name = "jorge593";
-    var d = new Date();
-    var dayName = d.toString().split(" ")[0];
-    var monthDay = d.toString().split(" ")[1];
-    var numberDay = d.toString().split(" ")[2];
     ///
     axios
       .post(server + "/edit", {
@@ -68,9 +64,7 @@ export default function AddMoveCash(lang) {
           valueEdit: Number(valueEdit),
           typeCost: typeCost,
           nameEdit: nameEdit,
-          nameDay: dayName,
-          numberDay: numberDay,
-          monthDay: monthDay,
+          date: dayjs().$d
         },
       })
       .then((res) => {

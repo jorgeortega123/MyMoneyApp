@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
+import dayjs from "dayjs";
 import useMessageContext from "../../../context/Modal/useMessageContext";
 export default function StrictMode() {
   const [showAddFixedDebst, setshowAddFixedDebst] = useState(false);
@@ -22,6 +23,7 @@ export default function StrictMode() {
   const { message } = useMessageContext();
   const server = context.server;
   useEffect(() => {
+    var presentDay = dayjs().$d;
     var dataUser = context.data;
     var userSalarey = dataUser.perWeek * 4;
     var sumDebst = dataUser.fixed.reduce((accumulator, object) => {
@@ -78,8 +80,24 @@ export default function StrictMode() {
     var initial =
       (userSalarey - sumDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana;
 
-    setweekCostToSpend(dataUser.perWeek - initial);
-    settodayCostSpend((dataUser.perWeek - initial) / 7);
+    //new
+    var dayServer = dayjs(dataUser.history.rest.date);
+    //dayServer.diff(presentDay);
+    //alert(dayServer.diff(presentDay))
+    var valueTo = dataUser.perWeek - initial;
+    if (dayServer.diff(presentDay) > 2) {
+      if (dataUser.history.rest.value != 0) {
+        settodayCostSpend(((valueTo / 7) * dayServer.diff(presentDay) ) + dataUser.history.rest.value  );
+        setweekCostToSpend(valueTo);
+      } else {
+        settodayCostSpend(((valueTo / 7) * dayServer.diff(presentDay)));
+        setweekCostToSpend(valueTo);
+      }
+    } else { 
+      settodayCostSpend(valueTo / 7);
+      setweekCostToSpend(valueTo);
+    }
+    //new
   }, [context.data]);
 
   const sendServer = () => {
@@ -108,6 +126,7 @@ export default function StrictMode() {
           total: totalMount,
           action: whatModal,
           user: "jorge593",
+          date: dayjs().$d,
         })
         .then((res) => {
           message({
@@ -125,6 +144,7 @@ export default function StrictMode() {
         action: whatModal,
         user: "jorge593",
         mount: payWeekly,
+        date: dayjs().$d,
       });
     }
   };
@@ -157,17 +177,16 @@ export default function StrictMode() {
           </span>
         </p>
       </div>
-        <div className="flex justify-between h-[20px] w-full">
-          <div className="flex bg-slate-200 rounded-md px-2 pt-[1px]">
-            <p className="w-[48px]">Daily:</p>{" "}
-            <p className="text-green-600"> ${todayCostSpend.toFixed(2)}</p>
-          </div>{" "}
-        </div>
-        <div className="flex">
-          <p className="w-[54px]">Weekly:</p>
-          <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
-        </div>
-    
+      <div className="flex justify-between h-[20px] w-full">
+        <div className="flex bg-slate-200 rounded-md px-2 pt-[1px]">
+          <p className="w-[48px]">Daily:</p>{" "}
+          <p className="text-green-600"> ${todayCostSpend.toFixed(2)}</p>
+        </div>{" "}
+      </div>
+      <div className="flex">
+        <p className="w-[54px]">Weekly:</p>
+        <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
+      </div>
 
       {showAddFixedDebst && (
         <div className="w-full rounded-md p-2   ">
@@ -273,7 +292,7 @@ export default function StrictMode() {
           )}
         </div>
       )}
-        <div className="flex justify-end space-x-1 items-end bottom-0 b-0 sticky h-full ">
+      <div className="flex justify-end space-x-1 items-end bottom-0 b-0 sticky h-full ">
         <button
           className="ml-1 rounded-full bg-slate-200 px-1"
           onClick={() => {
