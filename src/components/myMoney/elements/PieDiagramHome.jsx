@@ -96,7 +96,11 @@ export const PieDiagramHome = (dataPie) => {
       },
     ],
   };
-
+  const func = (a, b) =>  { 
+    var sum =  (b * 100) / a
+    setoverDebst(sum.toFixed(0) + "%")
+  } 
+  
   return (
     <Fragment>
       <motion.div
@@ -109,14 +113,14 @@ export const PieDiagramHome = (dataPie) => {
         <div className="p-2 shadow-md shadow-slate-300  mb-2 flex justify-end items-center border rounded-xl bg-slate-100   ">
           <div className="flex justify-between w-full">
             <div className="grow">
-              <StrictMode fun={callOver}></StrictMode>
+              <StrictMode func={func}></StrictMode>
             </div>
             <div className="w-max flex justify-end items-start  ">
           
               <div className=" ">
                 <div className="flex justify-center">
                 <motion.div
-                  initial={{ opacity: 0, rotate: 360 }}
+                  initial={{ opacity: 0, rotate: 0 }}
                   animate={{ opacity: 1, rotate: 0 }}
                   transition={{
                     duration: 2,
@@ -125,7 +129,7 @@ export const PieDiagramHome = (dataPie) => {
                 >
                   {followPage ? (
                     <>
-                    <div className="absolute flex items-center justify-center w-full h-full ">{overDebst}</div>
+                    <div className="absolute flex items-center justify-center w-full h-full text-slate-900  "><p className="text-center w-full text-[21px] pl-1 pt-1">{overDebst}</p></div>
                     <PieChart
                       className="piechartToEdit  "
                       animation={true}

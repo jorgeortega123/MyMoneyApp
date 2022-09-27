@@ -7,6 +7,7 @@ export function GlobalContextComponent({ children }) {
   const [globalDataa, setglobalDataa] = useState();
   const [endServerRes, setendServerRes] = useState(false);
   const [reconnect, setreconnect] = useState(false);
+  const [addMoveCashTrans, setaddMoveCashTrans] = useState(0)
  const [ashowConfiguration, asetshowConfiguration] = useState(false)
   useEffect(() => {
     //localStorage.getItem("token")
@@ -33,6 +34,7 @@ export function GlobalContextComponent({ children }) {
       });
   }, [reconnect, endServerRes]);
   const update = () => {
+     setaddMoveCashTrans((e)=> e + 1)
     setreconnect(true);
   };
 const showConfiguration = (s:boolean) => { 
@@ -47,7 +49,7 @@ const showConfiguration = (s:boolean) => {
 }
   return (
     <GlobalContext.Provider
-      value={{ data: globalDataa, server, update, endServerRes, showConfiguration, ashowConfiguration  }}
+      value={{ data: globalDataa, server, update, endServerRes, showConfiguration, ashowConfiguration, addMoveCashTrans  }}
     >
       {children}
     </GlobalContext.Provider>

@@ -4,7 +4,8 @@ import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
 import dayjs from "dayjs";
 import useMessageContext from "../../../context/Modal/useMessageContext";
-export default function StrictMode() {
+export default function StrictMode({func}) {
+  
   const [showAddFixedDebst, setshowAddFixedDebst] = useState(false);
   const [whatModal, setwhatModal] = useState("edit");
   const [nameFixedDebst, setnameFixedDebst] = useState("");
@@ -22,6 +23,7 @@ export default function StrictMode() {
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
   const server = context.server;
+  const toDayString = dayjs().$d.toISOString()
   useEffect(() => {
     var presentDay = dayjs().$d;
     var dataUser = context.data;
@@ -82,19 +84,46 @@ export default function StrictMode() {
 
     //new
     var dayServer = dayjs(dataUser.history.rest.date);
+    var costThisDay = []
+   
+    dataUser.history.today.map((data) => {
+      if (data.date === undefined) return false
+      if (data.date.slice(0,10) === toDayString.slice(0,10)) {
+            costThisDay.push({ value: data.value, name: data.costName});  
+      }
+    });
+    var costosDeHoyDia = costThisDay.reduce(
+      (accumulator, object) => {
+        return accumulator + object.value;
+      },
+      0
+    );
     //dayServer.diff(presentDay);
     //alert(dayServer.diff(presentDay))
+    
     var valueTo = dataUser.perWeek - initial;
+    func((dataUser.perWeek - initial)/ 7, ((dataUser.perWeek - initial)/ 7) - costosDeHoyDia ) 
+    var valueToDay =  ((dataUser.perWeek - initial)/ 7) - costosDeHoyDia;
+    //new
+    if (Math.sign(valueToDay) === -1) {
+      axios
+      .post(server + "/overCost", {
+        name: nameFixedDebst,
+        value: valueToDay,
+        date: dayjs().$d,
+      })
+    }
+    //new
     if (dayServer.diff(presentDay) > 2) {
       if (dataUser.history.rest.value != 0) {
-        settodayCostSpend(((valueTo / 7) * dayServer.diff(presentDay) ) + dataUser.history.rest.value  );
+        settodayCostSpend(((valueToDay) * dayServer.diff(presentDay) ) + dataUser.history.rest.value  );
         setweekCostToSpend(valueTo);
       } else {
-        settodayCostSpend(((valueTo / 7) * dayServer.diff(presentDay)));
+        settodayCostSpend(((valueToDay) * dayServer.diff(presentDay)));
         setweekCostToSpend(valueTo);
       }
     } else { 
-      settodayCostSpend(valueTo / 7);
+      settodayCostSpend(valueToDay);
       setweekCostToSpend(valueTo);
     }
     //new

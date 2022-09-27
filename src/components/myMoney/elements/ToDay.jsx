@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import useGlobalContext from "../../../context/useGlobalContext";
 import useMessageContext from "../../../context/Modal/useMessageContext";
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 export default function () {
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
@@ -13,27 +13,43 @@ export default function () {
   const [showCon, setshowCon] = useState(true);
 
   const server = context.server;
-
+  const compare = dayjs().$d.toISOString();
+  const arr = [];
   useEffect(() => {
-    var compare = dayjs().$d.toISOString()
     context.data.history.today.map((e) => {
-      alert(e.date)
-      if (e.date === compare.slice(0,10)) {
-        console.log(e);
-        settoDayCosts((toDayCosts) => [...toDayCosts, e]);
-        setcashWasted((a) => a + e.value);
+      if (e.date === undefined) return false;
+      if (e.date.slice(0, 10) === compare.slice(0, 10)) {
+        if (arr.includes(e.date)) return;
+        arr.push(e);
       }
     });
+    //settoDayCosts((toDayCosts) => [...toDayCosts, e]);
+    settoDayCosts([...arr]);
+    setcashWasted(2);
+   // setcashWasted((a) => a + e.value);
     //setshowTable(true)
     //
-    console.log(toDayCosts)
+    var costosDeHoyDia = arr.reduce(
+      (accumulator, object) => {
+        return accumulator + object.value;
+      },
+      0
+    );
+    setcashWasted(costosDeHoyDia);
   }, [context.data]);
 
   if (cashWasted === 0) {
     return;
   }
   if (!showCon) {
-    return <p onClick={() => setshowCon(true)} className="absolute text-[14px] pl-4 pb-2">Mostrar datos</p>
+    return (
+      <p
+        onClick={() => setshowCon(true)}
+        className="absolute text-[14px] pl-4 pb-2"
+      >
+        Mostrar datos
+      </p>
+    );
   }
   return (
     <div className="p-3 pb-1 mb-[8px] flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 ">
@@ -82,40 +98,34 @@ export default function () {
               <th scope="col" className="px-3 py-1">
                 Después
               </th>
-              <th scope="col" className="px-3 py-1">
-                Día
-              </th>
+              
             </tr>
           </thead>
           <tbody>
             {toDayCosts.map((d, index) => {
-              if (d.id === idOfCost) {
-                return (
-                  <tr
-                    key={d.day + "key" + index}
-                    className="border-b   odd:bg-white even:bg-gray-50 "
+              return (
+                <tr
+                  key={d.day + "key" + index}
+                  className="border-b   odd:bg-white even:bg-gray-50 "
+                >
+                  <th
+                    scope="row"
+                    className="truncate capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
                   >
-                    <th
-                      scope="row"
-                      className="truncate capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
-                    >
-                      {d.costName}
-                    </th>
-                    <th
-                      scope="row"
-                      className="capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
-                    >
-                      {d.value.toFixed(2)}
-                    </th>
-                    <td className="px-2 py-1">{d.before.toFixed(2)}</td>
-                    <td className="px-2 py-1">{d.after.toFixed(2)}</td>
-                    <td className="px-2 py-1">{d.day}</td>
-                  </tr>
-                );
-                //   settableData([...tableData, e])
-              } else {
-                return <></>;
-              }
+                    {d.costName}
+                  </th>
+                  <th
+                    scope="row"
+                    className="capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
+                  >
+                    {d.value.toFixed(2)}
+                  </th>
+                  <td className="px-2 py-1">{d.before.toFixed(2)}</td>
+                  <td className="px-2 py-1">{d.after.toFixed(2)}</td>
+           
+                </tr>
+              );
+              //   settableData([...tableData, e])
             })}
           </tbody>
         </table>
