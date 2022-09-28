@@ -2,18 +2,58 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import useGlobalContext from "../../../../context/useGlobalContext";
-
-/* 
-formato para obtener que un gasto o costo se genero en un dia especifico:
- id: bodyReq.edit.numberDay + yearDay + bodyReq.edit.monthDay,
-
-*/
+import dayjs from "dayjs";
+const date = dayjs().$d.toString()
+const datee =date.split(' ')
+const [mes, dia, anio ] = [datee[1],datee[2],datee[3]]
+const toDayString = (mes + dia + anio)
 export default function BarChart() {
   const [dataArr, setdataArr] = useState([]);
   const { context } = useGlobalContext();
   const daysWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   useEffect(() => {
-    var totalLength = context.data.history.today.length;
+    /*
+      var data = context.data.history.today
+      var [day1, day2, day3, day4, day5, day6,day7] = [dayjs().subtract(1, 'day').$d.toString(), dayjs().subtract(2, 'day').$d.toString(), dayjs().subtract(3, 'day').$d.toString(), dayjs().subtract(4, 'day').$d.toString(), dayjs().subtract(5, 'day').$d.toString(), dayjs().subtract(6, 'day').$d.toString(), dayjs().subtract(7, 'day').$d.toString()  ]
+      data.map((e) => {
+        if (e.date === undefined) return false;
+      var dataManipulate = dayjs(e.date).$d.toString().split(' ')
+      var [mes0, dia0, anio0 ] = [dataManipulate[1],dataManipulate[2],dataManipulate[3]]
+      var idFecha = (mes0 + dia0 + anio0)
+      console.log(idFecha, hoyDiaEs)
+      if (idFecha === hoyDiaEs) {
+        if (arr.includes(e.date)) return;
+        arr.push(e);
+      }
+      })
+      ;
+    setdataArr(jsonToShowuser);*/
+  }, []);
+  //
+  return (
+    <div className="w-full h-full overflow-hidden">
+      <LineChart width={400} height={200} data={dataArr}>
+        <Line type="monotone" dataKey="value" stroke="#8884d8" />
+        <XAxis dataKey="costName" />
+        <YAxis dataKey="value" />
+      </LineChart>
+    </div>
+  );
+}
+/*
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}, ...];
+
+const renderLineChart = (
+  <LineChart width={600} height={300} data={data}>
+    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+    <CartesianGrid stroke="#ccc" />
+    <XAxis dataKey="name" />
+    <YAxis />
+  </LineChart>
+);
+//old
+   var totalLength = context.data.history.today.length;
     var arr = context.data.history.today;
     console.log(arr)
     var newArray = [];
@@ -54,30 +94,5 @@ export default function BarChart() {
       }
     }
 
-
-      ;
-    setdataArr(jsonToShowuser);
-  }, []);
-  //
-  return (
-    <div className="w-full h-full overflow-hidden">
-      <LineChart width={400} height={200} data={dataArr}>
-        <Line type="monotone" dataKey="value" stroke="#8884d8" />
-        <XAxis dataKey="costName" />
-        <YAxis dataKey="value" />
-      </LineChart>
-    </div>
-  );
-}
-/*
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
-const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}, ...];
-
-const renderLineChart = (
-  <LineChart width={600} height={300} data={data}>
-    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-    <CartesianGrid stroke="#ccc" />
-    <XAxis dataKey="name" />
-    <YAxis />
-  </LineChart>
-);*/
+//old
+*/

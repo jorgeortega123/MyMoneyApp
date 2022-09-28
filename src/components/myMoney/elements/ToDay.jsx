@@ -14,11 +14,20 @@ export default function () {
 
   const server = context.server;
   const compare = dayjs().$d.toISOString();
+  var date = dayjs().$d.toString()
+  var datee =date.split(' ')
+  var [mes, dia, anio ] = [datee[1],datee[2],datee[3]]
+  var hoyDiaEs = (mes + dia + anio)
+
   const arr = [];
   useEffect(() => {
     context.data.history.today.map((e) => {
       if (e.date === undefined) return false;
-      if (e.date.slice(0, 10) === compare.slice(0, 10)) {
+      var dataManipulate = dayjs(e.date).$d.toString().split(' ')
+      var [mes0, dia0, anio0 ] = [dataManipulate[1],dataManipulate[2],dataManipulate[3]]
+      var idFecha = (mes0 + dia0 + anio0)
+      console.log(idFecha, hoyDiaEs)
+      if (idFecha === hoyDiaEs) {
         if (arr.includes(e.date)) return;
         arr.push(e);
       }

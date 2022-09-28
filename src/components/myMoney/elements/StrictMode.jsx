@@ -4,8 +4,7 @@ import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
 import dayjs from "dayjs";
 import useMessageContext from "../../../context/Modal/useMessageContext";
-export default function StrictMode({func}) {
-  
+export default function StrictMode({ func }) {
   const [showAddFixedDebst, setshowAddFixedDebst] = useState(false);
   const [whatModal, setwhatModal] = useState("edit");
   const [nameFixedDebst, setnameFixedDebst] = useState("");
@@ -20,109 +19,156 @@ export default function StrictMode({func}) {
   const [toPayWeekly, settoPayWeekly] = useState(0);
   const [onlyUserFixedDebst, setonlyUserFixedDebst] = useState(0);
   const [debstCount, setdebstCount] = useState(0);
+  const [isChangeNegative, setisChangeNegative] = useState(false);
+  const [simuladorPayDaily, setsimuladorPayDaily] = useState(0)
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
   const server = context.server;
-  const toDayString = dayjs().$d.toISOString()
+  var date = dayjs().$d.toString()
+  var datee =date.split(' ')
+  var [mes, dia, anio ] = [datee[1],datee[2],datee[3]]
+  var toDayString = (mes + dia + anio)
   useEffect(() => {
     var presentDay = dayjs().$d;
     var dataUser = context.data;
     var userSalarey = dataUser.perWeek * 4;
+    //Suma las deudas fijas como ortodoncia, laptop, etc..
     var sumDebst = dataUser.fixed.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
+    // Suma las deudas fijas adquiridas que se pagan si o si en un plazo de tiempo
     var sumAllTotalFixedDebst = dataUser.fixedDebst.reduce(
       (accumulator, object) => {
         return accumulator + object.total;
       },
       0
     );
+    // Suma el total pagado de las deudas fijas adquiridas
     var sumAllPaidFixedDebst = dataUser.fixedDebst.reduce(
       (accumulator, object) => {
         return accumulator + object.paid;
       },
       0
     );
+    // Suma el monto inicial total de las deudas bajo un nombre
     const sumDebst0 = context.data.debts.reduce((accumulator, object) => {
       return accumulator + object.mount;
     }, 0);
+    // Suma el monto pagado total de las deudas bajo un nombre
     const paid0 = context.data.debts.reduce((accumulator, object) => {
       return accumulator + object.paid;
     }, 0);
-
-    setdebstCount(sumDebst0 - paid0); //total deudas - ya Se cuenta el valor de deudas bajo el nombre de la x persona|
+    //Calcula el valor a pagar total de las deudas bajo un nombre
+    setdebstCount(sumDebst0 - paid0);
+    //Calcula el valor a pagar de las deudas fijas adquiridas
     var totalMountFixedDebst = sumAllTotalFixedDebst - sumAllPaidFixedDebst;
+    //Divide el monto a pagar de las deudas fijas en 4 semanass
     var monthValueTotalMountFixedDebst = totalMountFixedDebst / 4;
     setonlyfixedDebst(sumDebst);
+    // Suma las deudas fijas con las deudas fijas adquiridas
     settotalMountOfFixedDebst(sumDebst + totalMountFixedDebst);
 
     var dinner = [];
-
+    // Anade al array el monto que falta pagar y lo divide de acuerdo a la semana del pago de las deudas fijas adquiridas
     dataUser.fixedDebst.map((data) => {
       var presentWeek = data.week - data.timesWeek;
       var toPay = data.total - data.paid;
       var remaining = toPay / presentWeek;
       dinner.push({ value: remaining, name: data.name, extra: toPay });
     });
+    //Devueleve el valor total a pagar de las deudas fijas adquiridas en base a la semana
     var sumaDeDeudasFijasPorPagarALaSemana = dinner.reduce(
       (accumulator, object) => {
         return accumulator + object.value;
       },
       0
     );
+    //Devuelve el valor a pagar sin filtrar la semana ni los dias de las deudas fijas adquiridas
     var sumaDeDeudasFijasAdquiridas = dinner.reduce((accumulator, object) => {
       return accumulator + object.extra;
     }, 0);
     setonlyUserFixedDebst(sumaDeDeudasFijasAdquiridas);
     console.log(sumaDeDeudasFijasPorPagarALaSemana);
-    settoPayWeekly(
-      (sumDebst + monthValueTotalMountFixedDebst) / 4 +
-        sumaDeDeudasFijasPorPagarALaSemana
-    );
-    var initial =
-      (userSalarey - sumDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana;
+    //
+    /*settoPayWeekly(
+      (sumDebst + monthValueTotalMountFixedDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana
+    );*/
 
     //new
     var dayServer = dayjs(dataUser.history.rest.date);
-    var costThisDay = []
-   
+    var costThisDay = [];
+    
     dataUser.history.today.map((data) => {
-      if (data.date === undefined) return false
-      if (data.date.slice(0,10) === toDayString.slice(0,10)) {
-            costThisDay.push({ value: data.value, name: data.costName});  
+      if (data.date === undefined) return false;
+      var dataManipulate = dayjs(data.date).$d.toString().split(' ')
+      var [mes0, dia0, anio0 ] = [dataManipulate[1],dataManipulate[2],dataManipulate[3]]
+      var idFecha = (mes0 + dia0 + anio0)
+      if (idFecha === toDayString) {
+        costThisDay.push({ value: data.value, name: data.costName });
       }
     });
-    var costosDeHoyDia = costThisDay.reduce(
-      (accumulator, object) => {
-        return accumulator + object.value;
-      },
-      0
-    );
+    var costosDeHoyDia = costThisDay.reduce((accumulator, object) => {
+      return accumulator + object.value;
+    }, 0);
     //dayServer.diff(presentDay);
     //alert(dayServer.diff(presentDay))
-    
-    var valueTo = dataUser.perWeek - initial;
-    func((dataUser.perWeek - initial)/ 7, ((dataUser.perWeek - initial)/ 7) - costosDeHoyDia ) 
-    var valueToDay =  ((dataUser.perWeek - initial)/ 7) - costosDeHoyDia;
+    console.log(sumaDeDeudasFijasPorPagarALaSemana)
+    console.log(userSalarey , sumDebst, (userSalarey - sumDebst), ((userSalarey - sumDebst) / 4 ))
+    var initial =  ((sumDebst) / 4 ) + sumaDeDeudasFijasPorPagarALaSemana + 0;
+    var valueTo =  dataUser.perWeek - initial  ;
+    console.log(initial, valueTo)
+    settoPayWeekly( initial)
+    console.log( valueTo)
+    func(
+      ( valueTo) / 7,
+      ( valueTo) / 7 - costosDeHoyDia
+    );
+    setsimuladorPayDaily(( valueTo ) / 7 )
+    var valueToDay = ( valueTo) / 7 - costosDeHoyDia;
+    console.log(costosDeHoyDia)
     //new
+    if (isChangeNegative) {
+      if (Math.sign(valueToDay) != -1) {
+        axios
+          .post(server + "/overCost", {
+            name: nameFixedDebst,
+            value: valueToDay,
+            date: dayjs().$d,
+            user: "jorge593",
+          })
+          .then((e) => console.log(e))
+          .catch((e) => console.log(e));
+      }
+      return;
+    }
     if (Math.sign(valueToDay) === -1) {
+      if (isChangeNegative) {
+        return;
+      }
+      setisChangeNegative(true);
       axios
-      .post(server + "/overCost", {
-        name: nameFixedDebst,
-        value: valueToDay,
-        date: dayjs().$d,
-      })
+        .post(server + "/overCost", {
+          name: nameFixedDebst,
+          value: valueToDay,
+          date: dayjs().$d,
+          user: "jorge593",
+        })
+        .then((e) => console.log(e))
+        .catch((e) => console.log(e));
     }
     //new
     if (dayServer.diff(presentDay) > 2) {
       if (dataUser.history.rest.value != 0) {
-        settodayCostSpend(((valueToDay) * dayServer.diff(presentDay) ) + dataUser.history.rest.value  );
+        settodayCostSpend(
+          valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
+        );
         setweekCostToSpend(valueTo);
       } else {
-        settodayCostSpend(((valueToDay) * dayServer.diff(presentDay)));
+        settodayCostSpend(valueToDay * dayServer.diff(presentDay));
         setweekCostToSpend(valueTo);
       }
-    } else { 
+    } else {
+
       settodayCostSpend(valueToDay);
       setweekCostToSpend(valueTo);
     }
@@ -193,16 +239,23 @@ export default function StrictMode({func}) {
         </div>
 
         <p className="text-violet-600 pt-[5px] text-center bg-slate-200 px-5 rounded-lg mb-2">
-          ${onlyfixedDebst.toFixed(2)}
+          <span title="Deudas fijas">${onlyfixedDebst.toFixed(2)}</span>
           <span className="text-blue-600">
-            <span className="text-green-600"> ~ </span>$
-            {onlyUserFixedDebst.toFixed(2)} ~{" "}
+            <span className="text-green-600"> ~ </span>
+            <span title="Deudas fijas adquiridas">
+              ${onlyUserFixedDebst.toFixed(2)}
+            </span>{" "}
+            ~{" "}
           </span>
-          <span className="text-violet-600">${debstCount.toFixed(2)}</span>
+          <span title="Deudas bajo un nombre" className="text-violet-600">
+            ${debstCount.toFixed(2)}
+          </span>
           <span className="text-violet-600">
             {" "}
-            <span className="text-cyan-900"> = </span> $
-            {(onlyfixedDebst + debstCount + onlyUserFixedDebst).toFixed(2)}
+            <span className="text-cyan-900"> = </span>
+            <span title="Valor total de todas las deudas">
+              ${(onlyfixedDebst + debstCount + onlyUserFixedDebst).toFixed(2)}
+            </span>
           </span>
         </p>
       </div>
@@ -266,8 +319,7 @@ export default function StrictMode({func}) {
                 </div>
                 <p className="mt-[10px]">
                   Con estos datos, podras gastar al dia:{" "}
-                  {todayCostSpend.toFixed(2) -
-                    ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)}{" "}
+                  {simuladorPayDaily.toFixed(2) - ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)}
                 </p>
                 <button
                   onClick={() => sendServer()}
@@ -341,7 +393,7 @@ export default function StrictMode({func}) {
           Editar
         </button>
       </div>
-      {showMessageAlert && (
+      {!showMessageAlert && (
         <div className="mt-2 py-5 px-2 w-full bg-red-500 rounded-xl">
           <p className="w-full text-center text-[22px] text-yellow-500">
             !ALERTA
