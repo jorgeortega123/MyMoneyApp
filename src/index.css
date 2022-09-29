@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -150,7 +150,7 @@
   }
 
   .init { 
-    font-family: 'Courgette', cursive;
+    font-family: 'Abyssinica SIL', serif;
 
   }
 .anim {

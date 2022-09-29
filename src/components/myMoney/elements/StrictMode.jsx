@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
 import dayjs from "dayjs";
+import KnowDay from "./knowDaysWeeks";
 import useMessageContext from "../../../context/Modal/useMessageContext";
 export default function StrictMode({ func }) {
   const [showAddFixedDebst, setshowAddFixedDebst] = useState(false);
@@ -19,17 +20,20 @@ export default function StrictMode({ func }) {
   const [toPayWeekly, settoPayWeekly] = useState(0);
   const [onlyUserFixedDebst, setonlyUserFixedDebst] = useState(0);
   const [debstCount, setdebstCount] = useState(0);
-  const [isChangeNegative, setisChangeNegative] = useState(false);
   const [simuladorPayDaily, setsimuladorPayDaily] = useState(0)
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
   const server = context.server;
+  const {data} = KnowDay()
   var date = dayjs().$d.toString()
   var datee =date.split(' ')
   var [mes, dia, anio ] = [datee[1],datee[2],datee[3]]
   var toDayString = (mes + dia + anio)
+
+
   useEffect(() => {
     var presentDay = dayjs().$d;
+    if (data) {setshowMessageAlert(true)}
     var dataUser = context.data;
     var userSalarey = dataUser.perWeek * 4;
     //Suma las deudas fijas como ortodoncia, laptop, etc..
@@ -127,25 +131,8 @@ export default function StrictMode({ func }) {
     var valueToDay = ( valueTo) / 7 - costosDeHoyDia;
     console.log(costosDeHoyDia)
     //new
-    if (isChangeNegative) {
-      if (Math.sign(valueToDay) != -1) {
-        axios
-          .post(server + "/overCost", {
-            name: nameFixedDebst,
-            value: valueToDay,
-            date: dayjs().$d,
-            user: "jorge593",
-          })
-          .then((e) => console.log(e))
-          .catch((e) => console.log(e));
-      }
-      return;
-    }
-    if (Math.sign(valueToDay) === -1) {
-      if (isChangeNegative) {
-        return;
-      }
-      setisChangeNegative(true);
+var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
+    if (dataUser.history.rest.value != ae ) {
       axios
         .post(server + "/overCost", {
           name: nameFixedDebst,
@@ -154,10 +141,14 @@ export default function StrictMode({ func }) {
           user: "jorge593",
         })
         .then((e) => console.log(e))
-        .catch((e) => console.log(e));
-    }
+        .catch((e) => alert(e));
+    } 
     //new
+    if (dataUser.history.rest.value === undefined) { 
+      dataUser.history.rest.value = 0
+    }
     if (dayServer.diff(presentDay) > 2) {
+    
       if (dataUser.history.rest.value != 0) {
         settodayCostSpend(
           valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
@@ -168,20 +159,19 @@ export default function StrictMode({ func }) {
         setweekCostToSpend(valueTo);
       }
     } else {
-
-      settodayCostSpend(valueToDay);
+      settodayCostSpend(valueToDay + dataUser.history.rest.value);
       setweekCostToSpend(valueTo);
     }
     //new
   }, [context.data]);
-
+  
   const sendServer = () => {
     if (whatModal === "add") {
       if (nameFixedDebst === "") {
         message({
           type: "error",
           title: "Incompleto",
-          description: "Completa",
+          description: "Completa el campo del nombre",
         });
         return;
       }
@@ -189,38 +179,59 @@ export default function StrictMode({ func }) {
         message({
           type: "error",
           title: "Incompleto",
-          description: "Completa",
+          description: "Escribe el monto",
         });
         return;
       }
-      axios
-        .post(server + "/fixed/debst", {
-          name: nameFixedDebst,
-          week: document.getElementById("weekValue").value | 6,
+      axios.post(server + "/fixedDebst", {
+          name: nameFixedDebst.toLowerCase(),
+          week: document.getElementById("weekValue").value,
           paid: 0,
           total: totalMount,
           action: whatModal,
           user: "jorge593",
           date: dayjs().$d,
-        })
-        .then((res) => {
+        }).then((res) => {
+          context.update();
           message({
-            type: res.message,
-            title: res.data,
-            description: res.title,
+            type: res.data.message,
+            title: res.data.data,
+            description: res.data.title,
+          });
+          return;
+        }).catch((error) => {
+          console.log(error)
+          message({
+            type: 'error',
+            title: 'error',
+            description: error.message,
           });
           return;
         })
-        .catch((e) => console.log(e));
     } else if (whatModal === "edit") {
-      console.log(server + "/fixedDebst");
       axios.post(server + "/fixedDebst", {
-        name: nameFixedDebst,
+        name: nameFixedDebst.toLowerCase(),
         action: whatModal,
         user: "jorge593",
         mount: payWeekly,
         date: dayjs().$d,
-      });
+      }).then((res) => {
+        context.update();
+        message({
+          type: res.data.message,
+          title: res.data.data,
+          description: res.data.title,
+        });
+        return;
+      }).catch((error) => {
+        message({
+          type: 'error',
+          title: 'error',
+          description: error.message,
+        });
+        return;
+      })
+
     }
   };
 
@@ -269,9 +280,31 @@ export default function StrictMode({ func }) {
         <p className="w-[54px]">Weekly:</p>
         <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
       </div>
-
+      {showMessageAlert && (
+        <div className="mt-2 py-5 px-2 w-full h-full bg-red-500 rounded-xl items-center">
+          <p className="w-full text-center text-[22px] text-yellow-500">
+            !ALERTA
+          </p>
+          <p>
+            Se necesita{" "}
+            <span className="text-green-400 font-bold text-[16px]">
+              ${toPayWeekly}
+            </span>{" "}
+            esta semana para cubrir gastos y deudas
+          </p>
+          <div className="w-full flex items-center justify-end">
+            <button
+              onClick={() => setshowMessageAlert(false)}
+              className="bg-red-400 p-1 rounded-full right-0 text-green-300 font-black"
+            >
+              HECHO
+            </button>
+          </div>
+        </div>
+      )}
       {showAddFixedDebst && (
         <div className="w-full rounded-md p-2   ">
+          
           {whatModal === "add" && (
             <>
               <div className="flex ">
@@ -308,12 +341,12 @@ export default function StrictMode({ func }) {
                         className="w-[35%] p-[2px] outline-none bg-transparent "
                       />
                     </div>
-                    <p className="pt-1 h-max items-center">Weeks:</p>
+                    <p className="pt-1  h-max items-center">Weeks:</p>
                     <input
-                      placeholder="1-12"
+                      placeholder="1-8"
                       type="number"
                       onChange={(e) => setdivideWeek(e.target.value)}
-                      className="w-[30px] ml-2 outline-none bg-transparent border-[1px] border-slate-500 rounded-lg "
+                      className="pl-[2px] w-[30px] ml-2 outline-none bg-transparent border-[1px] border-slate-500 rounded-lg "
                     />
                   </div>
                 </div>
@@ -328,8 +361,10 @@ export default function StrictMode({ func }) {
                   Agregar
                 </button>
               </div>
+              
             </>
           )}
+          
           {whatModal === "edit" && (
             <>
               <div className="flex">
@@ -393,28 +428,7 @@ export default function StrictMode({ func }) {
           Editar
         </button>
       </div>
-      {!showMessageAlert && (
-        <div className="mt-2 py-5 px-2 w-full bg-red-500 rounded-xl">
-          <p className="w-full text-center text-[22px] text-yellow-500">
-            !ALERTA
-          </p>
-          <p>
-            Se necesita{" "}
-            <span className="text-green-400 font-bold text-[16px]">
-              ${toPayWeekly}
-            </span>{" "}
-            esta semana para cubrir gastos y deudas
-          </p>
-          <div className="w-full flex items-center justify-end">
-            <button
-              onClick={() => setshowMessageAlert(false)}
-              className="bg-red-400 p-1 rounded-full right-0 text-green-300 font-black"
-            >
-              HECHO
-            </button>
-          </div>
-        </div>
-      )}
+      
     </div>
   );
 }
