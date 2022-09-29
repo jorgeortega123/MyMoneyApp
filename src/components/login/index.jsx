@@ -81,7 +81,14 @@ export default function Login() {
       }
         <div className="borderLogin p-3 rounded-xl bg-[#d65d5d1a]">
           <div className=" w-full max-w-md p-8 space-y-3 borderLogin2 rounded-xl  backdrop-blur-[1px] 	">
-            <h1 className="text-2xl font-bold text-center loginText">Login</h1>
+          <div className="relative pb-5 pt-5 flex-col items-center justify-center">
+          <div className="h-[50px] flex items-center justify-center">
+            <div className="w-[70px] h-[70px] border-[10px]  bg-transparent border-dashed animate-spin border-green-400 rounded-full"></div>
+            <p className="absolute pt-[37px] z-[1]  text-[60px] mb-[40px]">
+              M<span className="text-green-400"> $ </span>M
+            </p>
+          </div>
+        </div>
             <form
               onSubmit={(e) => {
                 e.preventDefault();

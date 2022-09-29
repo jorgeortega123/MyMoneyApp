@@ -41,7 +41,6 @@ export default function MainPage() {
       } else {
         setloginValidation(userName);
       }
-
     }
     var d = new Date();
     var dayName = d.toString().split(" ")[0];
@@ -73,7 +72,7 @@ export default function MainPage() {
       return () => document.removeEventListener("load", () => frases());
     }
   }, [context.endServerRes]);
- 
+
   const frases = () => {
     var arr = Math.floor(Math.random() * phrases.es.length);
     setfrase(phrases.es[arr]);
@@ -112,7 +111,9 @@ export default function MainPage() {
               >
                 <a className="text-cyan-600">{langByUser} </a>
               </div>
-              <div className="text-[20px] pt-1 font-bold underline w-full text-center">MyMoney</div>
+              <div className="text-[20px] pt-1 font-bold underline w-full text-center">
+                MyMoney
+              </div>
 
               <div className=" text-xs pr-2 pt-2 flex ">
                 <div
@@ -136,7 +137,6 @@ export default function MainPage() {
             )}
             {!onErrorServerOut ? (
               <div className="flex flex-col">
-          
                 <TextInitial></TextInitial>
                 <div className="p-2 pt-5 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
                   <div className="">
@@ -192,46 +192,18 @@ export default function MainPage() {
     }
   } else {
     return (
-      <div className="w-screen h-screen bg-blue-300 backGroundImage" id="image">
-        <div className="flex items-center justify-center">
-          <div className="pt-12 ">
-            <SpinnerInfinity
-              size={200}
-              thickness={60}
-              сolor={"#a384649a"}
-              secondaryColor="rgba(0,0,0,0.24)"
-              speed={190}
-              className="mr-auto ml-auto"
-            />
-            <div className="text-center">
-              <p className="pt-4 text-slate-600 text-slate-100 text-[20px] mb-[40px]">
-                {textLoading}
-              </p>
-              <div class="animate-pulse flex space-x-4 pt-3 w-[300px]">
-                <div class="flex-1 space-y-6 py-1">
-                  <div class="h-2 bg-slate-300 rounded"></div>
-                  <div class="space-y-3">
-                    <div class="grid grid-cols-3 gap-4">
-                      <div class="h-2 bg-slate-300 rounded col-span-2"></div>
-
-                      <div class="h-2 bg-slate-300 rounded col-span-1"></div>
-                      <div class="h-2 bg-slate-300 rounded col-span-1"></div>
-                      <div class="h-2 bg-slate-300 rounded col-span-2"></div>
-                    </div>
-                    <div class="h-2 bg-slate-300 rounded"></div>
-                    <div class="h-2 bg-slate-300 rounded"></div>
-                  </div>
-                </div>
-              </div>
-              <p
-                className="mt-[20px] w-[250px] text-slate-700 text-slate-200 text-center pt-4 text-[19px] mr-auto ml-auto"
-                onLoad={() => frases()}
-                onClick={() => frases()}
-              >
-                {frase}
-              </p>
-            </div>
+      <div className="w-screen h-screen bg-white init " id="image">
+        <div className="pt-[100px] pb-[100px] relative flex-col items-center justify-center">
+          <div className="h-[200px] flex items-center justify-center">
+            <div className="w-[170px] h-[170px] border-[10px]  bg-white anim rounded-full"></div>
+            <p className="absolute pt-[37px] z-[1]  text-[60px] mb-[40px]">
+              M<span className="text-green-400">$</span>M
+            </p>
           </div>
+        </div>
+        <div className="relative pl-2 mx-2  rounded-xl border-[1px] border-slate-200">
+          <div className="animate-pulse w-full h-max"></div>
+          <p>Llamando al servidor...</p>
         </div>
       </div>
     );

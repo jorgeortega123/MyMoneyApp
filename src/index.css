@@ -1,6 +1,8 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer utilities {
    input[type="number"]::-webkit-inner-spin-button,
    input[type="number"]::-webkit-outer-spin-button {
@@ -146,3 +148,38 @@
   align-items: center;
   background: rgba(249, 251, 255,0.6);  
   }
+
+  .init { 
+    font-family: 'Courgette', cursive;
+
+  }
+.anim {
+  border-style: dashed;
+  border-color: rgb(25, 119, 202);
+  animation: spin1 7s linear infinite;
+}
+  @keyframes spin1 {
+    0% { 
+      transform: rotate(300deg);
+      border-color: rgb(25, 119, 202);
+    }
+    10% { 
+      transform: rotate(250deg);
+      border-color: rgb(25, 119, 202);
+    }
+    20% { 
+      transform: rotate(250deg);
+      border-color: rgb(255, 21, 0);
+    }
+    40% { 
+      transform: rotate(150deg);
+      border-color: rgb(255, 247, 0);
+    }
+    60% { 
+      transform: rotate(-200deg);
+      border-color: rgb(0, 255, 30);
+    }
+    100% {
+        transform: rotate(200deg);
+    }
+}
