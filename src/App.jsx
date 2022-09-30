@@ -3,6 +3,7 @@ import "./index.css";
 //import { data, serverRes } from "./dataSimulateServer";
 import axios from "axios";
 import useGlobalContext from "./context/useGlobalContext";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { lang, phrases } from "./dataSimulateServer";
 import Login from "./components/login";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
@@ -49,19 +50,22 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/app/myMoney" element={<MainPage />} ></Route>
-        <Route path="/app/myMoney/form" element={<Form />} />
-        <Route path="/games" element={<Games />} />
-         {
-          //<Route path="/data/transitions/costs" element={<AllTransactions />} />
-         } 
-        
-        <Route path="/login" element={<Login />} />
-        <Route path="/event" element={<EventMain />} />
-        <Route path="/cv" element={<CvMain />} />
-      </Routes>
+      <GoogleOAuthProvider clientId="436338134454-tgnq51gda1j2o6klajijdecv8soc6nhr.apps.googleusercontent.com">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/app/myMoney" element={<MainPage />}></Route>
+          <Route path="/app/myMoney/form" element={<Form />} />
+          <Route path="/games" element={<Games />} />
+          {
+            //<Route path="/data/transitions/costs" element={<AllTransactions />} />
+          }
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/event" element={<EventMain />} />
+          <Route path="/cv" element={<CvMain />} />
+        </Routes>
+      </GoogleOAuthProvider>
+      ;
     </Router>
   );
 }

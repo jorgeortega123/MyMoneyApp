@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abyssinica+SIL&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@300&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -151,8 +154,12 @@
 
   .init { 
     font-family: 'Abyssinica SIL', serif;
+  }
+  .initLogo { 
+    font-family: 'Abyssinica SIL', serif;
 
   }
+
 .anim {
   border-style: dashed;
   border-color: rgb(25, 119, 202);
@@ -182,4 +189,7 @@
     100% {
         transform: rotate(200deg);
     }
+}
+.bodyLetter { 
+  font-family: 'Lato', sans-serif;
 }

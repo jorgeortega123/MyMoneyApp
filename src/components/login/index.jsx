@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import useGlobalContext from '../../context/useGlobalContext';
-import Wave from '../../UI/Wave';
+import useGlobalContext from "../../context/useGlobalContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import Wave from "../../UI/Wave";
+import { useGoogleOneTapLogin } from '@react-oauth/google';
 export default function Login() {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const [user, setuser] = useState();
   const [password, setpassword] = useState();
   const [textOfBotton, settextOfBotton] = useState("Log in");
@@ -14,11 +17,21 @@ export default function Login() {
   const [messageAboutLogin, setmessageAboutLogin] = useState();
   const [event, setEvent] = useState(false);
   const { context } = useGlobalContext();
+  
   //localStorage.removeItem("token")
   useEffect(() => {
-    if (localStorage.getItem("token")) {navigate("/app" + "/myMoney", { replace: true })}
-  }, [])
-  
+    if (localStorage.getItem("token")) {
+      navigate("/app" + "/myMoney", { replace: true });
+    }
+  }, []);
+  useGoogleOneTapLogin({
+    onSuccess: credentialResponse => {
+      console.log(credentialResponse);
+    },
+    onError: () => {
+      setmessageAboutLogin("Error in login 0auth");
+    },
+  });
   const sendData = () => {
     settextOfBotton("Sending data...");
     if (!user) {
@@ -32,7 +45,7 @@ export default function Login() {
       return true;
     }
     if (password === "812" && user === "Danna") {
-      navigate("/event" + "?name=Danna&id=812D301313", { replace: true })
+      navigate("/event" + "?name=Danna&id=812D301313", { replace: true });
     }
 
     axios
@@ -43,7 +56,10 @@ export default function Login() {
       .then((res) => {
         if (res.data.extra === 205) {
           localStorage.setItem("token", res.data.token);
-          navigate("/app" + "/myMoney", { replace: true })
+          setTimeout(() => {
+            navigate("/app" + "/myMoney", { replace: true });
+          }, 200);
+        
         }
         setmessageAboutLogin(res.data.data);
         settextOfBotton("Log in");
@@ -55,12 +71,11 @@ export default function Login() {
       });
   };
   if (event) {
-    return <MainEvent />;
+    return <MainEvent />
   }
   return (
     <>
       <div className="relative h-[40px] text-3xl font-bold underline flex justify-center items-center  border-blue-500 border-b-[2px] pb-2 space-x-4 overflow-hidden">
-      
         <div className="pt-0 mt-0"></div>
         <motion.p
           initial={{ x: "100vh", opacity: 0 }}
@@ -70,25 +85,25 @@ export default function Login() {
             type: "spring",
             duration: 2,
           }}
-          className="absolute blockAllSelect underline mt-0 pt-0"
+          className="absolute blockAllSelect underline mt-0 pt-[4px] text-slate-200"
         >
           MyMoney
         </motion.p>
       </div>
       <div className="bg-blue-300  backGroundImage h-screen flex mt-[-40px] justify-center items-center ">
-      {
-        //<Wave className="absolute w-[screen] bottom-0"  />
-      }
+        {
+          //<Wave className="absolute w-[screen] bottom-0"  />
+        }
         <div className="borderLogin p-3 rounded-xl bg-[#d65d5d1a]">
           <div className=" w-full max-w-md p-8 space-y-3 borderLogin2 rounded-xl  backdrop-blur-[1px] 	">
-          <div className="relative pb-5 pt-5 flex-col items-center justify-center">
-          <div className="h-[50px] flex items-center justify-center">
-            <div className="w-[70px] h-[70px] border-[10px]  bg-transparent border-dashed animate-spin border-green-400 rounded-full"></div>
-            <p className="absolute pt-[37px] z-[1]  text-[60px] mb-[40px]">
-              M<span className="text-green-400"> $ </span>M
-            </p>
-          </div>
-        </div>
+            <div className="relative pb-5 pt-5 flex-col items-center justify-center">
+              <div className="h-[50px] flex items-center justify-center">
+                <div className="w-[70px] h-[70px] border-[10px]  bg-transparent border-dashed animSlowly border-green-400 rounded-full"></div>
+                <p className="absolute pt-[37px] z-[1]  text-[60px] mb-[40px] initLogo">
+                  M<span className="text-green-400"> $ </span>M
+                </p>
+              </div>
+            </div>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -96,8 +111,8 @@ export default function Login() {
               }}
             >
               <div className=" space-y-1 text-sm px-2">
-                <label for="username" className="block ">
-                  Nombre de usuario
+                <label for="username" className="block text-slate-200 ">
+                  Nombre de usuario:
                 </label>
                 <input
                   onChange={(e) => setuser(e.target.value)}
@@ -109,8 +124,8 @@ export default function Login() {
                 />
               </div>
               <div className="space-y-1 text-sm px-2 pt-1">
-                <label for="password" className="block ">
-                 Contraseña
+                <label for="password" className="block  text-slate-200  ">
+                  Contraseña:
                 </label>
                 <input
                   onChange={(e) => setpassword(e.target.value)}
@@ -120,20 +135,31 @@ export default function Login() {
                   placeholder="Password"
                   className="inputLogin w-full px-4 py-3 removeOUTLINES  rounded-md border-[1px] border-slate-800 hover:border-slate-600 "
                 />
-                <div className="flex justify-end text-xs ">
-                  <a rel="noopener noreferrer">Olvidaste la contraseña?</a>
+                <div className="flex justify-end text-xs hover:underline ">
+                  <a rel="noopener noreferrer ">Olvidaste la contraseña?</a>
                 </div>
                 <div className="h-7">
-                  <p className=" text-red-200 p-0 m-0">{messageAboutLogin}</p>
+                  <p className=" text-slate-200 p-0 m-0 fontMessage">
+                    {messageAboutLogin}
+                  </p>
                 </div>
               </div>
-              
               <button
                 onClick={() => sendData()}
                 className="buttonLogin text-indigo-900 block w-full p-3 text-center  bg-slate-200 border border-slate-500  rounded-full"
               >
                 {textOfBotton}
               </button>
+              <div className="pt-3">
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              /></div>
+              
             </form>
             <div className="flex items-center pt-4 space-x-1">
               <div className="flex-1 h-px sm:w-16 "></div>
@@ -179,7 +205,7 @@ export default function Login() {
               </button>
             </div>
             <p className="text-slate-300 text-xs text-center sm:px-6 ">
-              No tienes un cuenta? {" "}
+              No tienes un cuenta?{" "}
               <a rel="noopener noreferrer" className="underline ">
                 Crear una
               </a>
@@ -188,5 +214,5 @@ export default function Login() {
         </div>
       </div>
     </>
-  );
+  )
 }

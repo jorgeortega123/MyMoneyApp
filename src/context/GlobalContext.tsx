@@ -36,6 +36,7 @@ export function GlobalContextComponent({ children }) {
   const update = () => {
      setaddMoveCashTrans((e)=> e + 1)
     setreconnect(true);
+    setendServerRes(false)
   };
 const showConfiguration = (s:boolean) => { 
   console.log(s)

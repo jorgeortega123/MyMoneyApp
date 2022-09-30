@@ -236,7 +236,7 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
   };
 
   return (
-    <div className=" mr-0 text-[13px] mb-[8px] h-full flex justify-left flex-col sm:justify-center items-start  rounded-xl bg-slate-100 m-0 ">
+    <div className="s mr-0 text-[14px] mb-[8px] h-full flex justify-left flex-col sm:justify-center items-start  rounded-xl bg-slate-100 m-0 ">
       <div className="flex items-center justify-between w-full ">
         <p>
           Semana:{" "}
@@ -326,6 +326,7 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
                   <div className="w-full mr-1 mb-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
                     <p className="ml-1 text-green-600">Total:</p>
                     <input
+               
                       onChange={(e) => settotalMount(e.target.value)}
                       type="number"
                       className="grow p-[2px] outline-none bg-transparent "
@@ -343,6 +344,7 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
                     </div>
                     <p className="pt-1  h-max items-center">Weeks:</p>
                     <input
+                    defaultValue={5}
                       placeholder="1-8"
                       type="number"
                       onChange={(e) => setdivideWeek(e.target.value)}

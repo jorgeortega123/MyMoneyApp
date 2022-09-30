@@ -24,7 +24,7 @@ export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
   const [onErrorServerOut, setonErrorServerOut] = useState(false);
-  const [endServerRes, setendServerRes] = useState(false);
+  const [endServerResNext, setendServerResNext] = useState(false);
   const [loginValidation, setloginValidation] = useState(false);
   const [finalLang, setfinalLang] = useState(lang.es);
   const [langByUser, setlangByUser] = useState("es");
@@ -42,57 +42,32 @@ export default function MainPage() {
         setloginValidation(userName);
       }
     }
-    var d = new Date();
-    var dayName = d.toString().split(" ")[0];
-    //var monthDay = d.toString().split(" ")[1];
-    //var numberDay = d.toString().split(" ")[2];
-    //var yearDay = d.toString().split(" ")[3];
-    console.log(context.data);
+    if (!context?.data?.cost) {
+      context.update();
+    }
 
-    if (context.data != undefined) {
-      if (context.endServerRes === true) {
-        setendServerRes(true);
-        if (dayName === "Sun") {
-          //console.log(context.data.isValueSunday)
-          if (context.data.isValueSunday === false) {
-            console.log("si x2");
-            axios.post(context.server + "/newContabilitie", {
-              name: localStorage.getItem("token"),
-              reset: true,
-            });
-          }
-        }
+    if (context.endServerRes === true) {
+      if (context.data.data != "No se econtro información del usuario") {
+        setTimeout(() => {
+          setendServerResNext(true)
+        }, 400);
+      } else {
+        setendServerResNext(false)
       }
     }
 
-    if (document.readyState === "complete") {
-      frases();
-    } else {
-      window.addEventListener("load", () => frases());
-      return () => document.removeEventListener("load", () => frases());
-    }
+    /*      if (document.readyState === "complete") {
+        frases();
+      } else {
+        window.addEventListener("load", () => frases());
+        return () => document.removeEventListener("load", () => frases());
+      }*/
   }, [context.endServerRes]);
-
-  const frases = () => {
-    var arr = Math.floor(Math.random() * phrases.es.length);
-    setfrase(phrases.es[arr]);
-  };
-
-  /*window.onwheel = e => {
-    if(e.deltaY >= 0){
-      // Scrolling Down with mouse
-      console.log('Scroll Down');
-    } else {
-      // Scrolling Up with mouse
-      console.log('Scroll Up');
-    }
-  }*/
-
-  if (endServerRes) {
+  if (endServerResNext) {
     if (loginValidation) {
       return (
         <MessageContextComponent>
-          <div className="blockAllSelect  h-full w-full absolute top-0   ">
+          <div className="blockAllSelect  h-full w-full absolute top-0 bodyLetter text-[14px]   ">
             <div
               id="topMenu"
               className="relative h-[30px]  flex  items-center border border-blue-400  bg-slate-100 pb-2  overflow-hidden"
@@ -111,8 +86,8 @@ export default function MainPage() {
               >
                 <a className="text-cyan-600">{langByUser} </a>
               </div>
-              <div className="text-[20px] pt-1 font-bold underline w-full text-center">
-                MyMoney
+              <div className="text-[25px] pt-1 font-bold underline w-full text-center init">
+                <span className="font-extralight text-green-400 text-[28px]">$</span>MyMoney
               </div>
 
               <div className=" text-xs pr-2 pt-2 flex ">
@@ -167,7 +142,7 @@ export default function MainPage() {
                         <AddIncomingCash lang={finalLang} />
                       </motion.div>
                       <div className="m-2 items-center md:pt-[30px]">
-                        {context.data.debts.length === 0 ? (
+                        {context.data?.debts?.length === 0 ? (
                           <></>
                         ) : (
                           <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
