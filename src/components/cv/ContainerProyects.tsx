@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 //@ts-ignore
 import newWindow from "../../assets/svg/newWindow.svg";
+import HeroMain from "./Carrousel";
 export default function ContainerProyects({
   title = "Semaforos ",
   img = [],
@@ -107,9 +108,14 @@ export default function ContainerProyects({
             className={`linesTitle thrTitle w-[${index + (1.1 * 100) / 2}px]`}
           ></span>
         </div>
-        <p className="pt-[1px] pb-[1px]">{title}</p>
+        <p className="pt-[1px] pb-[1px] cursor-pointer" onClick={() => {
+            var link = document.createElement("a");
+            link.href = web;
+            link.target = "_blank";
+            link.click();
+          }}>{title}</p>
         <img
-          className=" w-7 h-7 ml-1 mt-[-2px]"
+          className=" w-7 h-7 ml-1 mt-[-2px] cursor-pointer"
           src={newWindow}
           alt=""
           onClick={() => {
@@ -122,17 +128,14 @@ export default function ContainerProyects({
       </div>
       <div className="flex-col sm:flex-row w-full">
         <div className="w-full items-center flex justify-center p-2 proyects-container">
-          {img.map((i: string) => {
-            return <img src={i} className="imageExamples " alt="" />;
-          })}
+          <HeroMain images={img}></HeroMain>
         </div>
-        <div className="h-full flex flex-col justify-end">
-          <p className="text-[17px]">{about}</p>
-          <div
-            id={"appendp" + index}
-            className="flex flex-wrap mt-2 mb-2"
-          ></div>
-        </div>
+        <div
+          className="normalText text-[12px]"
+          dangerouslySetInnerHTML={{ __html: about }}
+        ></div>
+
+        <div id={"appendp" + index} className="flex flex-wrap mt-2 mb-2"></div>
       </div>
     </div>
   );

@@ -22,6 +22,7 @@ const CvMain = () => {
   const [showMenuTranslate, setshowMenuTranslate] = useState(false);
   const [showDownload, setshowDownload] = useState(false);
   const [showTextOnNavbar, setshowTextOnNavbar] = useState(false);
+  const [numberSplit, setnumberSplit] = useState("");
   const [textOnNavbar, settextOnNavbar] = useState("");
   const [dataText, setdataText] = useState(lang.en);
   const [defaultLang, setdefaultLang] = useState("en");
@@ -140,12 +141,38 @@ const CvMain = () => {
     link.target = "_blank";
     link.click();
   };
+  const split = (s) => {
+    var patron = [4, 4, 5];
+    var number = "";
+    var num = 0;
+    var le = 0
+    var arr = dataText.contact.number.split("");
+    console.log(arr);
+    for (let x = 0; x < patron.length; x++) {
+
+      for (let i = 0; i < patron[x]; i++) {
+        number = number + " ";
+        for (let a = num; a < patron[i]+le; a++) {
+          le = le+a
+          console.log(num)
+          number = number + arr[a];
+          console.log(number)
+          if (a > arr.length) return;
+          num = a ;
+          
+        }
+      }
+    }
+    console.log(number);
+    setnumberSplit(number);
+  };
+
   ///
   return (
-    <div className="main-container">
-      <div className="nav blockAllSelect">
+    <div className="main-container init relative">
+      <div className="nav sticky blockAllSelect">
         <div
-          className="absolute button-nav"
+          className=" button-nav"
           onClick={() => {
             if (showMenu === true) {
               setshowMenu(false);
@@ -371,22 +398,27 @@ const CvMain = () => {
               <p className="titleText mt-5 mb-3 ">{dataText.headers.contact}</p>
               <div className="m-2">
                 <p className="mb-3">{dataText.contact.about}</p>
-                <div className="flex" onClick={() => copyToClipBoard("number")}>
-                  <img className="w-[36px] h-[36px]" src={CallSVG} alt="" />
-                  <p className="text-[16px] pt-[5px]">
-                    {dataText.contact.number}
-                  </p>
-                  <img className="w-[22px] h-[22px]" src={CopySGV} alt="" />
+                <div className="flex cursor-pointer" onClick={() => copyToClipBoard("number")}>
+                  <div className="">
+                    <img className="w-[36px] h-[36px] " src={CallSVG} alt="" />
+                  </div>
+                  <p className="text-[16px] pt-[5px] pl-2">{'+593 9627  16235'}</p>
+                  <img
+                    className="w-[22px] h-[22px] mt-[2px]"
+                    src={CopySGV}
+                    alt=""
+                  />
                 </div>
-                <div className="flex" onClick={() => copyToClipBoard("email")}>
+                <div className="flex cursor-pointer" onClick={() => copyToClipBoard("email")}>
                   <img className="w-[36px] h-[36px]" src={MailSVG} alt="" />
-                  <p className="text-[16px] pt-[5px]">
+                  <p className="text-[16px] pt-[5px]  pl-2">
                     {dataText.contact.email}
                   </p>
-                  <div className="w-[16px] h-[16px] fill-slate-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill='' height="48" width="48"><path d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z"/></svg>
-                  </div>
-                  
+                  <img
+                    className="w-[22px] h-[22px]  mt-[2px]"
+                    src={CopySGV}
+                    alt=""
+                  />
                 </div>
               </div>
               <div className="w-full flex justify-center mt-3 ml-2">
@@ -401,9 +433,16 @@ const CvMain = () => {
 
                   <div className="active:text-cyan-400">
                     <div className="fill-cyan-400 active:fill-blue-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill='' height="48" width="48"><path d="M8 37V11l30.85 13Zm1.55-2.4L34.85 24 9.55 13.3v8.4L19.3 24l-9.75 2.25Zm0 0V13.3v12.95Z"/></svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill=""
+                        height="48"
+                        width="48"
+                      >
+                        <path d="M8 37V11l30.85 13Zm1.55-2.4L34.85 24 9.55 13.3v8.4L19.3 24l-9.75 2.25Zm0 0V13.3v12.95Z" />
+                      </svg>
                     </div>
-                    
+
                     <p className="text-[16px] font-serif  pl-[7px]">Send</p>
                   </div>
                 </div>
@@ -438,7 +477,7 @@ const CvMain = () => {
                   onClick={() => {
                     goToUrl(socialMedia.url);
                   }}
-                  className="underline hover:text-green-400"
+                  className="underline hover:text-green-400 cursor-pointer"
                   key={"socialData" + indexNum}
                 >
                   {socialMedia.name}
