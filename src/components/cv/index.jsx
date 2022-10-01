@@ -170,7 +170,7 @@ const CvMain = () => {
   ///
   return (
     <div className="main-container init relative">
-      <div className="nav sticky blockAllSelect">
+      <div className="nav sticky top-0 blockAllSelect">
         <div
           className=" button-nav"
           onClick={() => {
@@ -322,7 +322,7 @@ const CvMain = () => {
               </div>
             </div>
             <div className=" w-full">
-              <div className="flex w-full">
+              <div className="flex w-full justify-center">
                 <div className="flex-col ml-4 justify-left mt-[17px] ">
                   <SocialNetworks
                     url={"https://www.instagram.com/jorgeandresyts/"}
@@ -350,7 +350,7 @@ const CvMain = () => {
                   transition={{ type: "tween", duration: 2 }}
                   className=""
                 >
-                  <div className="cvImage mt-6"></div>
+                  <div className="cvImage mt-6"><div className=" w-[112px] border-[3px] border-dashed rounded-full animate-spin12 h-[112px]"></div></div>
                 </motion.div>
               </div>
             </div>

@@ -11,87 +11,56 @@ export default function EventMain() {
   const [event, setEvent] = useState(false);
   const [contenido, setcontenido] = useState("Connecting to server...");
   const [hostsms, sethostsms] = useState(null);
-  useEffect(() => {
-    console.log("hamksdlas")
-    var qs = (function (a) {
-      //Para que funcione el router, es necesario usar el formato:
-      // router/ruta?event=1234&token=kajsdn123&yeah=false
-      // el & se usa para dividir las rutas entre si
-      if (a === "") return {};
-      var b = {};
-      for (var i = 0; i < a.length; ++i) {
-        var p = a[i].split("=", 2);
-        if (p.length === 1) b[p[0]] = "";
-        else b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-      }
-      return b;
-    })(window.location.search.substr(1).split("&"));
-
-    axios
-      .post(server + "/event", {
-        data: {
-          name: qs.name,
-          id: qs.id,
-        },
-      })
-      .then((res) => {
-        if (res.data.isValid === false) {
-          setcontenido("X No encontrado X");
-          sethostsms("Lo que buscas, no existe o no estas autorizado");
-        } else {
-          setcontenido(`Ola Danna`);
-          sethostsms(`Recuerda que lo hice con amor ∞ `);
-           setTimeout(() => {
-            setEvent(true);
-         }, 4500); 
-        }
-      })
-      .catch(() => {
-        setcontenido("Error desconocido");
-        setTimeout(() => {
-          window.location = "/";
-        }, 2200);
-      });
-    console.log(qs.id);
-  }, []);
+  useEffect(() => {}, []);
 
   if (event) {
     return <MainEvent />;
   }
   return (
-    <div className="w-screen h-screen backGroundImage">
-      <div className="flex items-center justify-center">
-        <div className="pt-12 ">
-          <SpinnerInfinity
-            size={200}
-            thickness={60}
-            сolor={"#a384649a"}
-            secondaryColor="rgba(0,0,0,0.24)"
-            speed={190}
-            className="mr-auto ml-auto"
-          />
-          <div className="text-center">
-            <p className="pt-4 text-slate-600 text-slate-100 text-[20px] mb-[40px]">
-              {contenido}
+    <div className="w-screen h-screen bg-[#000000]">
+      <div className="flex items-center justify-center ">
+        <div className="pt-12 init text-white text-[18px] ">
+          <div className="alert w-[300px] hidden">
+            <p className="w-full flex justify-left px-2 bg-red-800 ">Hola</p>
+            <p className='w-full flex justify-left px-2 bg-yellow-800 rounded-t-none'>Danna recuerda que esto solo debes leerlo en caso de emergencia. No lo leas si nos encontramos bien</p>
+          </div>
+          <div className="cart px-3 w-[90%] flex-col justify-center mx-[8%]">
+            <p>Es raro escribir esto... Quiero en esta carta escribirte todo aquello que no te dije. No se el
+              motivo que te trajo aqui, pero supongo que no ha de ser bueno.
             </p>
-            <div className="animate-pulse flex space-x-4 pt-3 w-[300px]">
-              <div className="flex-1 space-y-6 py-1">
-                <div className="h-2 bg-slate-300 rounded"></div>
-                <div className="space-y-3">
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="h-2 bg-slate-300 rounded col-span-2"></div>
+            <p>Siempre tuve el presentimiento de que lo nuestro no esta hecho para durar, mas sin embargo 
+              siempre intente hacer que todo lo nuestro funcione y reirme de mi mismo por estar equivocado. 
+              Al final no se porque estas aqui, es confuso, a lo mejor terminamos o estare muerto xd, Si aun 
+              lees esta carta es porque... aun te amo, de manera fisica y mental tu huella aun sigue dentro de mi. 
 
-                    <div className="h-2 bg-slate-300 rounded col-span-1"></div>
-                    <div className="h-2 bg-slate-300 rounded col-span-1"></div>
-                    <div className="h-2 bg-slate-300 rounded col-span-2"></div>
-                  </div>
-                  <div className="h-2 bg-slate-300 rounded"></div>
-                  <div className="h-2 bg-slate-300 rounded"></div>
-                </div>
-              </div>
-            </div>
-            <p className="mt-[20px] w-[250px] text-slate-700 text-slate-200 text-center pt-4 text-[19px] mr-auto ml-auto">
-              {hostsms !== null && <p>{hostsms}</p> }
+            </p>
+            <p>Dentro de mis pensamientos siempre toque la idea de que no soy lo que quieres. 
+              Habia veces donde te salian palabras que las decias tan naturalmente que no podian interpretarse como una
+               broma; 
+              lo decias porque era un pensamiento valido y completamente al margen de lo que piensas.
+               podia notar el transfondo en el cual sutilmente decias 'podria merecer algo mejor'. 
+               Tengo en constancia que a lo mejor llegue ser aburrido muchas veces, los silencios eternos el no
+               saber que decir y no saber como tratarte de la mejor manera. Si al leer esta carta eres tu la que quiere
+               poner punto final a esta historia, toma esto como una senial de que lo hagas, eres una persona muy 
+               sociable que pierde ese brillo cuando estas conmigo. 
+            </p>
+            <p>Lamento profundamente no lograr ser todo lo que querias, pero te juro que yo si lo intente. 
+              Te ame, te amo y te amare siento que ya no existen palabras para darte a entender lo mucho
+              que te aprecio, lo mucho que te admiro por ser una gran persona y saber que a pesar de que yo no este ahi,
+              tu seguiras siendo la mejor version de ti. 
+            </p>
+            <p>No me arrepiento en lo absoluto de compartir momentos malos y buenos contigo. Al final siempre te considere
+              como un riesgo que vale la pena, ame todo de ti: tu cuerpo, tu sonrisa, tu ojos y sobre todo ver como te 
+              esforzabas por todo lo que una vez te pedi que hicieras, realmente ver como una persona hace cosas
+              para que te sientas bien y feliz, no tiene precio. Me diste literalmente todo lo que buscaba y perdon 
+              por no amarte bien, por no decirte mas 'te quiero' en su momento.
+               Admiro tu esfuerzo por las ganas que ponias, al final 
+              si fueron fingidas... lo hiciste muy bien. 
+            </p>
+            <p>Yo nunca quere tener un final contigo, pero si ya es algo inevitable que se puede hacer. 
+              Si aun existe el chance de los dos estar junto, abarcare con todas las ganas esa posibilidad
+              de ser tu y yo, claro si tu igual. 
+
             </p>
           </div>
         </div>

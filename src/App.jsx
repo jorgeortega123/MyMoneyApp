@@ -65,7 +65,7 @@ function App() {
           <Route path="/cv" element={<CvMain />} />
         </Routes>
       </GoogleOAuthProvider>
-      ;
+      
     </Router>
   );
 }
