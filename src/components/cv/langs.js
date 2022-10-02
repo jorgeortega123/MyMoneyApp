@@ -164,4 +164,7 @@ export const lang = {
       },
     ],
   },
+  static: { 
+    
+  }
 };

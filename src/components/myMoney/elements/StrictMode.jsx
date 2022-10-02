@@ -185,7 +185,7 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
       }
       axios.post(server + "/fixedDebst", {
           name: nameFixedDebst.toLowerCase(),
-          week: document.getElementById("weekValue").value,
+          week: divideWeek,
           paid: 0,
           total: totalMount,
           action: whatModal,
@@ -209,8 +209,9 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
           return;
         })
     } else if (whatModal === "edit") {
+
       axios.post(server + "/fixedDebst", {
-        name: nameFixedDebst.toLowerCase(),
+        name: document.getElementById('valueEditSelect').value,
         action: whatModal,
         user: "jorge593",
         mount: payWeekly,
@@ -342,9 +343,9 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
                         className="w-[35%] p-[2px] outline-none bg-transparent "
                       />
                     </div>
-                    <p className="pt-1  h-max items-center">Weeks:</p>
+                    <p className="pt-1  h-max items-center ">Weeks:</p>
                     <input
-                    defaultValue={5}
+                      defaultValue={5}
                       placeholder="1-8"
                       type="number"
                       onChange={(e) => setdivideWeek(e.target.value)}
@@ -377,10 +378,10 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
               </div>
               <div className="flex">
                 <p>Deuda fija: </p>
-                <select className="grow outline-hidden capitalize border-[1px] removeOutlines rounded-lg border-slate-200">
+                <select id="valueEditSelect" className="grow outline-hidden capitalize border-[1px] removeOutlines rounded-lg border-slate-200">
                   {context.data.fixedDebst.map((e, index) => {
                     return (
-                      <option key={"ASDASD" + index} value={e.name}>
+                      <option  key={"ASDASD" + index} value={e.name}>
                         {e.name}
                       </option>
                     );

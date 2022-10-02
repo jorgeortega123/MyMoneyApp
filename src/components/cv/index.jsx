@@ -29,6 +29,7 @@ const CvMain = () => {
 
   ///
   useEffect(() => {
+    var langUse = dataText 
     //setdataText(lang[defaultLang])
     setTimeout(() => {
       consoleText(
@@ -145,21 +146,19 @@ const CvMain = () => {
     var patron = [4, 4, 5];
     var number = "";
     var num = 0;
-    var le = 0
+    var le = 0;
     var arr = dataText.contact.number.split("");
     console.log(arr);
     for (let x = 0; x < patron.length; x++) {
-
       for (let i = 0; i < patron[x]; i++) {
         number = number + " ";
-        for (let a = num; a < patron[i]+le; a++) {
-          le = le+a
-          console.log(num)
+        for (let a = num; a < patron[i] + le; a++) {
+          le = le + a;
+          console.log(num);
           number = number + arr[a];
-          console.log(number)
+          console.log(number);
           if (a > arr.length) return;
-          num = a ;
-          
+          num = a;
         }
       }
     }
@@ -170,7 +169,7 @@ const CvMain = () => {
   ///
   return (
     <div className="main-container init relative">
-      <div className="nav sticky top-0 blockAllSelect">
+      <div className="nav fixed t-0 blockAllSelect">
         <div
           className=" button-nav"
           onClick={() => {
@@ -305,8 +304,8 @@ const CvMain = () => {
           )}
         </AnimatePresence>
         <div className="page-content w-[100%] md:w-[1000px]">
-          <div className="first-header" id="home">
-            <div className="flex-col pl-6 pt-6">
+          <div className=" flex justify-center items-center w-full" id="home">
+            <div className=" pt-4     ">
               <motion.div
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -321,38 +320,38 @@ const CvMain = () => {
                 <img className="fill-slate-200 pl-1" src={KeyboardSvg} alt="" />
               </div>
             </div>
-            <div className=" w-full">
-              <div className="flex w-full justify-center">
-                <div className="flex-col ml-4 justify-left mt-[17px] ">
-                  <SocialNetworks
-                    url={"https://www.instagram.com/jorgeandresyts/"}
-                    img={InstagramSGV}
-                    classNamee={"ml-2"}
-                    number={1}
-                  ></SocialNetworks>
+            <div className="flex">
+              <div className="flex flex-col ml-2 mt-[17px] ">
+                <SocialNetworks
+                  url={"https://www.instagram.com/jorgeandresyts/"}
+                  img={InstagramSGV}
+                  classNamee={"ml-2"}
+                  number={1}
+                ></SocialNetworks>
 
-                  <SocialNetworks
-                    url={"https://www.facebook.com/mateo.garrido.5268"}
-                    img={FacebookSVG}
-                    classNamee={"ml-[-4px]"}
-                    number={2}
-                  ></SocialNetworks>
-                  <SocialNetworks
-                    url={"https://github.com/jorgeortega123"}
-                    img={LinkedinSGV}
-                    classNamee={"ml-2"}
-                    number={3}
-                  ></SocialNetworks>
-                </div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ type: "tween", duration: 2 }}
-                  className=""
-                >
-                  <div className="cvImage mt-6"><div className=" w-[112px] border-[3px] border-dashed rounded-full animate-spin12 h-[112px]"></div></div>
-                </motion.div>
+                <SocialNetworks
+                  url={"https://www.facebook.com/mateo.garrido.5268"}
+                  img={FacebookSVG}
+                  classNamee={"ml-[-4px]"}
+                  number={2}
+                ></SocialNetworks>
+                <SocialNetworks
+                  url={"https://github.com/jorgeortega123"}
+                  img={LinkedinSGV}
+                  classNamee={"ml-2"}
+                  number={3}
+                ></SocialNetworks>
               </div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ type: "tween", duration: 2 }}
+                className="relative w-[112px]"
+              >
+                <div className="cvImage mt-6">
+                  <div className="  w-[109px] border-[3px] border-dashed  rounded-full   h-[109px]"></div>
+                </div>
+              </motion.div>
             </div>
           </div>
           <div className="console-containerr w-full flex justify-center">
@@ -398,18 +397,26 @@ const CvMain = () => {
               <p className="titleText mt-5 mb-3 ">{dataText.headers.contact}</p>
               <div className="m-2">
                 <p className="mb-3">{dataText.contact.about}</p>
-                <div className="flex cursor-pointer" onClick={() => copyToClipBoard("number")}>
+                <div
+                  className="flex cursor-pointer"
+                  onClick={() => copyToClipBoard("number")}
+                >
                   <div className="">
                     <img className="w-[36px] h-[36px] " src={CallSVG} alt="" />
                   </div>
-                  <p className="text-[16px] pt-[5px] pl-2">{'+593 9627  16235'}</p>
+                  <p className="text-[16px] pt-[5px] pl-2">
+                    {"+593 9627  16235"}
+                  </p>
                   <img
                     className="w-[22px] h-[22px] mt-[2px]"
                     src={CopySGV}
                     alt=""
                   />
                 </div>
-                <div className="flex cursor-pointer" onClick={() => copyToClipBoard("email")}>
+                <div
+                  className="flex cursor-pointer"
+                  onClick={() => copyToClipBoard("email")}
+                >
                   <img className="w-[36px] h-[36px]" src={MailSVG} alt="" />
                   <p className="text-[16px] pt-[5px]  pl-2">
                     {dataText.contact.email}

@@ -10,7 +10,7 @@ function Alert(props: any) {
         type: "spring",
         duration: 1,
       }}
-      className="fixed z-40 top-20 flex right-0 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
+      className="initM fixed z-40 top-20 flex right-0 w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800"
     >
       {" "}
       <div className="flex items-center justify-center w-12 bg-blue-500">

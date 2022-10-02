@@ -9,6 +9,7 @@ export default function ContainerProyects({
   langs = ["Javascript", "Python"],
   web = "https://www.example.com",
   index = 0,
+  inGroup = false,
   ...props
 }: {
   title: string;
@@ -17,6 +18,7 @@ export default function ContainerProyects({
   langs: string[];
   web: string;
   index: number;
+  inGroup: boolean
 }) {
   const colors = [
     {
@@ -127,7 +129,7 @@ export default function ContainerProyects({
         />
       </div>
       <div className="flex-col sm:flex-row w-full">
-        <div className="w-full items-center flex justify-center p-2 proyects-container">
+        <div className="w-full items-center flex justify-center px-2 proyects-container">
           <HeroMain images={img}></HeroMain>
         </div>
         <div

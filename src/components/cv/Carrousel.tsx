@@ -34,7 +34,7 @@ function HeroMain({
     };
   }, [index]);
   return (
-    <div className="max-w-[500px] w-full overflow-hidden mx-auto relative">
+    <div className="min-w-[300px] max-w-[430px] max-h-[300px] overflow-hidden mx-auto relative">
       <div
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
         className="whitespace-nowrap duration-1000"
@@ -80,7 +80,7 @@ function HeroMain({
               }}
               key={index}
               src={backgroundColor}
-              className="w-full h-[250px] sm:h-[500px] object-cover rounded-xl"
+              className="w-full h-[250px] object-cover rounded-xl"
             />
           </motion.div>
         ))}

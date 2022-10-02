@@ -11,7 +11,6 @@ html {
 }
 .main-page {
   max-width: 600px;
-
   position: relative;
   z-index: 0;
   font-family: "Montserrat", sans-serif;
@@ -46,11 +45,7 @@ html {
   height: 100%;
   margin-top: 45px;
 }
-.first-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 .nameFontBold {
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 35px;
@@ -80,8 +75,7 @@ html {
 .cvImage {
   width: 110px;
   height: 110px;
-  
-  position: sticky;
+  position: absolute;
   background-image: url("../../assets/image/cv/cv.jpg");
   background-size: cover;
   border-radius: 300px;
@@ -110,7 +104,6 @@ html {
   flex-direction: column;
   align-items: flex-start;
   z-index: 2;
-  position: fixed;
   .button-nav {
     display: flex;
     position: absolute;
