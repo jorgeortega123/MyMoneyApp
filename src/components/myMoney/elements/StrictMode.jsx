@@ -20,20 +20,22 @@ export default function StrictMode({ func }) {
   const [toPayWeekly, settoPayWeekly] = useState(0);
   const [onlyUserFixedDebst, setonlyUserFixedDebst] = useState(0);
   const [debstCount, setdebstCount] = useState(0);
-  const [simuladorPayDaily, setsimuladorPayDaily] = useState(0)
+  const [simuladorPayDaily, setsimuladorPayDaily] = useState(0);
+  const [tableFromFixedDebst, settableFromFixedDebst] = useState('')
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
   const server = context.server;
-  const {data} = KnowDay()
-  var date = dayjs().$d.toString()
-  var datee =date.split(' ')
-  var [mes, dia, anio ] = [datee[1],datee[2],datee[3]]
-  var toDayString = (mes + dia + anio)
-
+  const { data } = KnowDay();
+  var date = dayjs().$d.toString();
+  var datee = date.split(" ");
+  var [mes, dia, anio] = [datee[1], datee[2], datee[3]];
+  var toDayString = mes + dia + anio;
 
   useEffect(() => {
     var presentDay = dayjs().$d;
-    if (data) {setshowMessageAlert(true)}
+    if (data) {
+      setshowMessageAlert(true);
+    }
     var dataUser = context.data;
     var userSalarey = dataUser.perWeek * 4;
     //Suma las deudas fijas como ortodoncia, laptop, etc..
@@ -101,12 +103,16 @@ export default function StrictMode({ func }) {
     //new
     var dayServer = dayjs(dataUser.history.rest.date);
     var costThisDay = [];
-    
+
     dataUser.history.today.map((data) => {
       if (data.date === undefined) return false;
-      var dataManipulate = dayjs(data.date).$d.toString().split(' ')
-      var [mes0, dia0, anio0 ] = [dataManipulate[1],dataManipulate[2],dataManipulate[3]]
-      var idFecha = (mes0 + dia0 + anio0)
+      var dataManipulate = dayjs(data.date).$d.toString().split(" ");
+      var [mes0, dia0, anio0] = [
+        dataManipulate[1],
+        dataManipulate[2],
+        dataManipulate[3],
+      ];
+      var idFecha = mes0 + dia0 + anio0;
       if (idFecha === toDayString) {
         costThisDay.push({ value: data.value, name: data.costName });
       }
@@ -116,23 +122,26 @@ export default function StrictMode({ func }) {
     }, 0);
     //dayServer.diff(presentDay);
     //alert(dayServer.diff(presentDay))
-    console.log(sumaDeDeudasFijasPorPagarALaSemana)
-    console.log(userSalarey , sumDebst, (userSalarey - sumDebst), ((userSalarey - sumDebst) / 4 ))
-    var initial =  ((sumDebst) / 4 ) + sumaDeDeudasFijasPorPagarALaSemana + 0;
-    var valueTo =  dataUser.perWeek - initial  ;
-    console.log(initial, valueTo)
-    settoPayWeekly( initial)
-    console.log( valueTo)
-    func(
-      ( valueTo) / 7,
-      ( valueTo) / 7 - costosDeHoyDia
+    console.log(sumaDeDeudasFijasPorPagarALaSemana);
+    console.log(
+      userSalarey,
+      sumDebst,
+      userSalarey - sumDebst,
+      (userSalarey - sumDebst) / 4
     );
-    setsimuladorPayDaily(( valueTo ) / 7 )
-    var valueToDay = ( valueTo) / 7 - costosDeHoyDia;
-    console.log(costosDeHoyDia)
+    var initial = sumDebst / 4 + sumaDeDeudasFijasPorPagarALaSemana + 0;
+    var valueTo = dataUser.perWeek - initial;
+    console.log(initial, valueTo);
+    settoPayWeekly(initial);
+    console.log(valueTo);
+    func(valueTo / 7, valueTo / 7 - costosDeHoyDia);
+    setsimuladorPayDaily(valueTo / 7);
+    var valueToDay = valueTo / 7 - costosDeHoyDia;
+    console.log(costosDeHoyDia);
     //new
-var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
-    if (dataUser.history.rest.value != ae ) {
+    var ae =
+      valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value;
+    if (dataUser.history.rest.value != ae) {
       axios
         .post(server + "/overCost", {
           name: nameFixedDebst,
@@ -142,13 +151,12 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
         })
         .then((e) => console.log(e))
         .catch((e) => alert(e));
-    } 
+    }
     //new
-    if (dataUser.history.rest.value === undefined) { 
-      dataUser.history.rest.value = 0
+    if (dataUser.history.rest.value === undefined) {
+      dataUser.history.rest.value = 0;
     }
     if (dayServer.diff(presentDay) > 2) {
-    
       if (dataUser.history.rest.value != 0) {
         settodayCostSpend(
           valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
@@ -164,7 +172,7 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
     }
     //new
   }, [context.data]);
-  
+
   const sendServer = () => {
     if (whatModal === "add") {
       if (nameFixedDebst === "") {
@@ -183,7 +191,8 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
         });
         return;
       }
-      axios.post(server + "/fixedDebst", {
+      axios
+        .post(server + "/fixedDebst", {
           name: nameFixedDebst.toLowerCase(),
           week: divideWeek,
           paid: 0,
@@ -191,7 +200,8 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
           action: whatModal,
           user: "jorge593",
           date: dayjs().$d,
-        }).then((res) => {
+        })
+        .then((res) => {
           context.update();
           message({
             type: res.data.message,
@@ -199,40 +209,42 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
             description: res.data.title,
           });
           return;
-        }).catch((error) => {
-          console.log(error)
+        })
+        .catch((error) => {
+          console.log(error);
           message({
-            type: 'error',
-            title: 'error',
+            type: "error",
+            title: "error",
             description: error.message,
           });
           return;
-        })
+        });
     } else if (whatModal === "edit") {
-
-      axios.post(server + "/fixedDebst", {
-        name: document.getElementById('valueEditSelect').value,
-        action: whatModal,
-        user: "jorge593",
-        mount: payWeekly,
-        date: dayjs().$d,
-      }).then((res) => {
-        context.update();
-        message({
-          type: res.data.message,
-          title: res.data.data,
-          description: res.data.title,
+      axios
+        .post(server + "/fixedDebst", {
+          name: document.getElementById("valueEditSelect").value,
+          action: whatModal,
+          user: "jorge593",
+          mount: payWeekly,
+          date: dayjs().$d,
+        })
+        .then((res) => {
+          context.update();
+          message({
+            type: res.data.message,
+            title: res.data.data,
+            description: res.data.title,
+          });
+          return;
+        })
+        .catch((error) => {
+          message({
+            type: "error",
+            title: "error",
+            description: error.message,
+          });
+          return;
         });
-        return;
-      }).catch((error) => {
-        message({
-          type: 'error',
-          title: 'error',
-          description: error.message,
-        });
-        return;
-      })
-
     }
   };
 
@@ -281,7 +293,7 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
         <p className="w-[54px]">Weekly:</p>
         <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
       </div>
-      {showMessageAlert && (
+      {!showMessageAlert && (
         <div className="mt-2 py-5 px-2 w-full h-full bg-red-500 rounded-xl items-center">
           <p className="w-full text-center text-[22px] text-yellow-500">
             !ALERTA
@@ -305,7 +317,6 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
       )}
       {showAddFixedDebst && (
         <div className="w-full rounded-md p-2   ">
-          
           {whatModal === "add" && (
             <>
               <div className="flex ">
@@ -327,7 +338,6 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
                   <div className="w-full mr-1 mb-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
                     <p className="ml-1 text-green-600">Total:</p>
                     <input
-               
                       onChange={(e) => settotalMount(e.target.value)}
                       type="number"
                       className="grow p-[2px] outline-none bg-transparent "
@@ -355,7 +365,8 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
                 </div>
                 <p className="mt-[10px]">
                   Con estos datos, podras gastar al dia:{" "}
-                  {simuladorPayDaily.toFixed(2) - ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)}
+                  {simuladorPayDaily.toFixed(2) -
+                    ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)}
                 </p>
                 <button
                   onClick={() => sendServer()}
@@ -364,10 +375,9 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
                   Agregar
                 </button>
               </div>
-              
             </>
           )}
-          
+
           {whatModal === "edit" && (
             <>
               <div className="flex">
@@ -378,15 +388,68 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
               </div>
               <div className="flex">
                 <p>Deuda fija: </p>
-                <select id="valueEditSelect" className="grow outline-hidden capitalize border-[1px] removeOutlines rounded-lg border-slate-200">
+                <select
+                  id="valueEditSelect"
+                  className="grow outline-hidden capitalize border-[1px] removeOutlines rounded-lg border-slate-200"
+                  onChange={(e)=> settableFromFixedDebst(true)}
+                  onLoad={(e)=> settableFromFixedDebst(true)}
+                  onClick={(e)=> settableFromFixedDebst(true)}
+                >
                   {context.data.fixedDebst.map((e, index) => {
                     return (
-                      <option  key={"ASDASD" + index} value={e.name}>
+                      <option key={"ASDASD" + index} value={e.name}>
                         {e.name}
                       </option>
                     );
                   })}
                 </select>
+              </div>
+              <div className="mt-1">
+                <table className="w-full  rounded-xl">
+                <thead className="text-xs font-light text-gray-700 uppercase  bg-slate-200 ">
+                  <tr>
+                  <th scope="col" className=" px-1 py-1 ">
+                     Remaing:
+                    </th>
+                    <th scope="col" className=" px-1 py-1 ">
+                      Pay weekly:
+                    </th>
+                    <th scope="col" className=" px-1 py-1 ">
+                      Paid
+                    </th>
+                    <th scope="col" className="px-1 py-1 truncate w-[20px]">
+                      Total to pay
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="rounded">
+                  {document.getElementById("valueEditSelect")&& context.data.fixedDebst.map((e, index) => {
+                      if (e.name === document.getElementById("valueEditSelect")?.value ) { return (
+                      <tr
+                        key={e.color + "color"}
+                        className=" odd:bg-gray-50  even:bg-slate-200"
+                      >
+                        <td className="px-0 sm:px-1 py-1 ">
+                          {e.total - e.paid} 
+                        </td>
+                        <td
+                          scope="row"
+                          className="px-1 py-1  sm:h-[20px]  h-[12px]  text-gray-900 dark:text-white "
+                    
+                        >
+                          {e.total / e.week}
+                        </td>
+                        <td className="px-0 sm:px-1 py-1 ">
+                          {e.paid} 
+                        </td>
+                        <td className="px-0 sm:px-1 py-1  ">
+                          {e.total} 
+                        </td>
+                      </tr>
+                      )}
+                  })}
+                </tbody>
+                </table>
               </div>
               <div className="flex items-center">
                 <p className="pt-[2px] mr-2">Monto que vas a pagar: </p>
@@ -431,7 +494,6 @@ var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
           Editar
         </button>
       </div>
-      
     </div>
   );
 }

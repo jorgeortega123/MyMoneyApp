@@ -97,7 +97,8 @@ export const PieDiagramHome = (dataPie) => {
     ],
   };
   const func = (a, b) =>  { 
-    var sum =  (b * 100) / a
+    var summ =  (b * 100) / a
+    var sum = summ  
     setoverDebst(sum.toFixed(0) + "%")
   } 
   
@@ -129,7 +130,7 @@ export const PieDiagramHome = (dataPie) => {
                 >
                   {followPage ? (
                     <>
-                    <div className="absolute flex items-center justify-center w-full h-full text-slate-900  "><p className="text-center w-full text-[21px] pl-1 pt-1">{overDebst}</p></div>
+                    <div className="absolute  items-center justify-center w-full h-full text-slate-900 flex flex-col space-y-0  "><p className="pt-1">Wasted: </p><p className="text-center w-full text-[21px] pl-1 ">{overDebst}</p></div>
                     <PieChart
                       className="piechartToEdit  "
                       animation={true}
