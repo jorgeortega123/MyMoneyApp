@@ -4,34 +4,89 @@ import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useGlobalContext from "../../context/useGlobalContext";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+// import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
+import { hasGrantedAllScopesGoogle } from '@react-oauth/google';
 import Wave from "../../UI/Wave";
 import { useGoogleOneTapLogin } from '@react-oauth/google';
+import sendServer from "../server";
+
+import { isExpired, decodeToken } from "react-jwt";
 export default function Login() {
   let navigate = useNavigate();
   const [user, setuser] = useState();
+  const [token, settoken] = useState('')
   const [password, setpassword] = useState();
   const [textOfBotton, settextOfBotton] = useState("Log in");
   const [successLogin, setsuccessLogin] = useState(false);
   const [messageAboutLogin, setmessageAboutLogin] = useState();
   const [event, setEvent] = useState(false);
   const { context } = useGlobalContext();
-  
+  const clientId="436338134454-tgnq51gda1j2o6klajijdecv8soc6nhr.apps.googleusercontent.com"
+ 
   //localStorage.removeItem("token")
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      navigate("/app" + "/myMoney", { replace: true });
+   
+    // if (localStorage.getItem("token")) {
+    //   navigate("/app" + "/myMoney", { replace: true });
+    // } 
+    const followLogin = async(x) => { 
+      settoken(x)
+       var user = decodedToken
+       console.log(user)
+       if (user===null || user==='') { return;}
+       console.log(user)
+       var responsive = await sendServer(context.server, '/auth', { 
+        user
+       })
+       console.log(responsive)
+       if (responsive.error === false) { 
+        if (responsive.data.isNewUser===true) { 
+          localStorage.getItem('tokenInf', decodedToken)
+          navigate("/app" + "/myMoney/form", { replace: true });
+        } else { 
+          navigate("/app" + "/myMoney", { replace: true });
+        }
+       } else if (responsive.error === true) { 
+        alert (responsive.data)
+       }
     }
-  }, []);
+  
+  }, [token]);
+  
+  // console.log(decodedToken)
   useGoogleOneTapLogin({
     onSuccess: credentialResponse => {
-      console.log(credentialResponse);
-    },
+      followLogin(credentialResponse.credential)
+    }, 
     onError: () => {
       setmessageAboutLogin("Error in login 0auth");
     },
   });
+  const followLogin = async(x) => { 
+    var user = decodeToken(x)
+    console.log(user)
+    if (user===null || user==='') { return;}
+    console.log(user)
+    var responsive = await sendServer(context.server, '/auth', { 
+     user
+    })
+    console.log(responsive)
+    if (responsive.error === false) { 
+     if (responsive.data.isNewUser===true) { 
+       localStorage.setItem('tokenInf', JSON.stringify(user) )
+       navigate("/app" + "/myMoney/preRegister", { replace: true });
+     } else { 
+      localStorage.setItem('token', responsive.data.user )
+       navigate("/app" + "/myMoney", { replace: true });
+     }
+    } else if (responsive.error === true) { 
+     alert (responsive.data)
+    }
+ 
+    
+  }
+  
   const sendData = () => {
     settextOfBotton("Sending data...");
     if (!user) {
@@ -152,13 +207,15 @@ export default function Login() {
               </button>
               <div className="pt-3">
               <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  console.log(credentialResponse);
-                }}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-              /></div>
+          clientId={clientId}
+          buttonText="Sign in with Google"
+          onSuccess={(res)=> { settoken(res.credential);
+            followLogin(res.credential)
+          }}
+          onFailure={(res)=> console.log(res)}
+          cookiePolicy={'single_host_origin'}
+          isSignedIn={(e)=>console.log(e)}
+      /></div>
               
             </form>
             <div className="flex items-center pt-4 space-x-1">

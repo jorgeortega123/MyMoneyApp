@@ -2,11 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./forms.scss";
 import useGlobalContext from "../../context/useGlobalContext";
 import { useNavigate } from "react-router-dom";
+import { useJwt } from "react-jwt";
 export default function Form() {
   const [isLoadData, setisLoadData] = useState(false);
+  const [data, setdata] = useState('')
   const { context } = useGlobalContext();
+  const { decodedToken, isExpired } = useJwt(data);
   let navigate = useNavigate();
   useEffect(() => {
+    var dataUserLocal = localStorage.getItem('tokenInf')
+    if (!dataUserLocal) { 
+      navigate('/login')
+    }
+    setdata(dataUserLocal)
+    console.log(decodedToken)
     if (context.endServerRes === false) {
       setisLoadData(false);
     } else {
