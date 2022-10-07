@@ -49,10 +49,10 @@ export default function MainPage() {
     if (context.endServerRes === true) {
       if (context.data.data != "No se econtro información del usuario") {
         setTimeout(() => {
-          setendServerResNext(true)
+          setendServerResNext(true);
         }, 400);
       } else {
-        setendServerResNext(false)
+        setendServerResNext(false);
       }
     }
 
@@ -67,6 +67,19 @@ export default function MainPage() {
     if (loginValidation) {
       return (
         <MessageContextComponent>
+          <div className="absolute top-0 w-screen h-[3020px] bg-red-500 z-[1] init  ">
+            <div>
+              <p className="p-1">Something went wrong</p>
+            </div>
+            <div
+              className="w-full h-full flex flex-col items-center mt-[160px]
+            t"
+            >
+              <p className="text-[140px] relative mr-[-40px] "><span className="absolute ml-[-26px] mt-[-15px]">:</span>(</p>
+              <p>The math into code has caused an infinite loop. </p>
+              <p>Page have been disabled for avoid bugs.</p>
+            </div>
+          </div>
           <div className="blockAllSelect  h-full w-full absolute top-0 bodyLetter text-[14px]   ">
             <div
               id="topMenu"
@@ -87,7 +100,10 @@ export default function MainPage() {
                 <a className="text-cyan-600">{langByUser} </a>
               </div>
               <div className="text-[25px] pt-1 font-bold underline w-full text-center init">
-                <span className="font-extralight text-green-400 text-[28px]">$</span>MyMoney
+                <span className="font-extralight text-green-400 text-[28px]">
+                  $
+                </span>
+                MyMoney
               </div>
 
               <div className=" text-xs pr-2 pt-2 flex ">

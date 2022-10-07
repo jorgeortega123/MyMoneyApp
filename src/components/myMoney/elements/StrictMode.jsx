@@ -293,7 +293,7 @@ export default function StrictMode({ func }) {
         <p className="w-[54px]">Weekly:</p>
         <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
       </div>
-      {!showMessageAlert && (
+      {showMessageAlert && (
         <div className="mt-2 py-5 px-2 w-full h-full bg-red-500 rounded-xl items-center">
           <p className="w-full text-center text-[22px] text-yellow-500">
             !ALERTA
@@ -418,13 +418,16 @@ export default function StrictMode({ func }) {
                       Paid
                     </th>
                     <th scope="col" className="px-1 py-1 truncate w-[20px]">
-                      Total to pay
+                      Total
+                    </th>
+                    <th scope="col" className="px-1 py-1 truncate w-[20px]">
+                      N
                     </th>
                   </tr>
                 </thead>
                 <tbody className="rounded">
-                  {document.getElementById("valueEditSelect")&& context.data.fixedDebst.map((e, index) => {
-                      if (e.name === document.getElementById("valueEditSelect")?.value ) { return (
+                  {context.data.fixedDebst.map((e, index) => {
+                     return (
                       <tr
                         key={e.color + "color"}
                         className=" odd:bg-gray-50  even:bg-slate-200"
@@ -445,9 +448,12 @@ export default function StrictMode({ func }) {
                         <td className="px-0 sm:px-1 py-1  ">
                           {e.total} 
                         </td>
+                        <td className="px-0 sm:px-1 py-1 capitalize ">
+                          {e.name} 
+                        </td>
                       </tr>
-                      )}
-                  })}
+                      )})}
+            
                 </tbody>
                 </table>
               </div>
