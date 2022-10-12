@@ -20,6 +20,7 @@ import axios from "axios";
 import BarChart from "./components/myMoney/elements/subComponents/BarChart.jsx";
 import TextInitial from "./components/myMoney/elements/TextInitial/index";
 import StrictMode from "./components/myMoney/elements/StrictMode.jsx";
+import AllCost from "./components/myMoney/elements/AllCost.jsx";
 export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
@@ -67,7 +68,7 @@ export default function MainPage() {
     if (loginValidation) {
       return (
         <MessageContextComponent>
-          <div className="absolute top-0 w-screen h-[3020px] bg-red-500 z-[1] init  ">
+          <div className="hidden absolute top-0 w-screen h-[3020px] bg-red-500 z-[1] init  ">
             <div>
               <p className="p-1">Something went wrong</p>
             </div>
@@ -167,6 +168,7 @@ export default function MainPage() {
                         )}
                       </div>
                     </div>
+                    <AllCost />
                     <BarChart />
                   </div>
                 </div>

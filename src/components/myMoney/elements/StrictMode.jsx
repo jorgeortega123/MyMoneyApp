@@ -139,19 +139,18 @@ export default function StrictMode({ func }) {
     var valueToDay = valueTo / 7 - costosDeHoyDia;
     console.log(costosDeHoyDia);
     //new
-    var ae =
-      valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value;
-    if (dataUser.history.rest.value != ae) {
-      axios
-        .post(server + "/overCost", {
-          name: nameFixedDebst,
-          value: valueToDay,
-          date: dayjs().$d,
-          user: "jorge593",
-        })
-        .then((e) => console.log(e))
-        .catch((e) => alert(e));
-    }
+    // var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value;
+    // if (dataUser.history.rest.value != ae) {
+    //   axios
+    //     .post(server + "/overCost", {
+    //       name: nameFixedDebst,
+    //       value: valueToDay,
+    //       date: dayjs().$d,
+    //       user: "jorge593",
+    //     })
+    //     .then((e) => console.log(e))
+    //     .catch((e) => alert(e));
+    // }
     //new
     if (dataUser.history.rest.value === undefined) {
       dataUser.history.rest.value = 0;
@@ -225,7 +224,7 @@ export default function StrictMode({ func }) {
           name: document.getElementById("valueEditSelect").value,
           action: whatModal,
           user: "jorge593",
-          mount: payWeekly,
+          mount: document.getElementById('inputToPutNumber').value | 0,
           date: dayjs().$d,
         })
         .then((res) => {

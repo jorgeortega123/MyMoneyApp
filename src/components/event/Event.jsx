@@ -49,24 +49,27 @@ export default function EventMain() {
       <div className="flex items-center justify-center init text-white h-full  ">
         <div className="h-full cart px-3 w-[90%] flex flex-col justify-center mx-[8%]  items-center">
           {final && (
-            <>    <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 0 }}
-            transition={{ type: "tween", duration:5 }}
-            className=""
-          >
-              <p className="text-center">
-                Danna recuerda entrar aqui solo si lo nuestro se encuentra bajo
-                el riesgo de tener un fin o cualquier cosa que implique ya no
-                haber un 'nosotros'.
-                <button
-                  onClick={() => setfinal(false)}
-                  className="mt-5 bg-white text-black px-2 rounded-md active:text-white active:bg-black"
-                >
-                  Continuar
-                </button>
-              </p></motion.div>
+            <>
+              {" "}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 0 }}
+                transition={{ type: "tween", duration: 5 }}
+                className="flex flex-col justify-center items-center"
+              >
+                <p className="text-center">
+                  Danna recuerda entrar aqui solo si lo nuestro se encuentra
+                  bajo el riesgo de tener un fin o cualquier cosa que implique
+                  ya no haber un 'nosotros'.</p>
+                  <button
+                    onClick={() => setfinal(false)}
+                    className="w-[120px] mt-5 bg-white text-black px-2 rounded-md active:text-white active:bg-black"
+                  >
+                    Continuar
+                  </button>
+                
+              </motion.div>
             </>
           )}
           <AnimatePresence>
@@ -75,17 +78,17 @@ export default function EventMain() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -220 }}
-                transition={{ type: "tween", duration:3 }}
+                transition={{ type: "tween", duration: 3 }}
                 className=""
               >
                 <p className="  ">{contenido.text}</p>
                 <motion.div
-                initial={{ opacity: 0, x: -100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ type: "tween", duration:3 }}
-                className="h-screen  absolute bottom-[150px] right-[80px] flex flex-col justify-end items-end"
-              >
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ type: "tween", duration: 3 }}
+                  className="h-screen  absolute bottom-[150px] right-[80px] flex flex-col justify-end items-end"
+                >
                   <p className="pl-2">{numCart + "/" + (text.length - 1)}</p>
                   <button
                     className="bg-slate-100 text-black px-4 bottom-4 "
@@ -93,8 +96,6 @@ export default function EventMain() {
                   >
                     Siguiente
                   </button>
-                  
-               
                 </motion.div>
               </motion.div>
             )}
