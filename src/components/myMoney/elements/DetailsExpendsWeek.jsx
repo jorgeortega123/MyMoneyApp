@@ -70,7 +70,7 @@ export default function DetailsExpendsWeek(lang) {
   };
 
   return (
-    <div className="p-3 shadow-md mt-[2px] mb-0 flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 ">
+    <div className=" p-3 shadow-md mt-[2px] mb-0 flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 hidden ">
       <div className="font-sans p-0">
         <p className="">
           {

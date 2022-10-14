@@ -21,6 +21,7 @@ import BarChart from "./components/myMoney/elements/subComponents/BarChart.jsx";
 import TextInitial from "./components/myMoney/elements/TextInitial/index";
 import StrictMode from "./components/myMoney/elements/StrictMode.jsx";
 import AllCost from "./components/myMoney/elements/AllCost.jsx";
+import Modal from "./components/myMoney/elements/Modal/Modal.jsx";
 export default function MainPage() {
   const { context } = useGlobalContext();
   const [showConfigg, setshowConfigg] = useState(false);
@@ -129,6 +130,7 @@ export default function MainPage() {
             )}
             {!onErrorServerOut ? (
               <div className="flex flex-col">
+                <Modal><p>Hola</p></Modal>
                 <TextInitial></TextInitial>
                 <div className="p-2 pt-5 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
                   <div className="">

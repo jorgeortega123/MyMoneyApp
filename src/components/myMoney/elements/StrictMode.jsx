@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-
 import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
 import dayjs from "dayjs";
-import KnowDay from "./knowDaysWeeks";
+import {KnowDay, LeftMoney} from "./knowDaysWeeks";
+
+import useLangContext from "../../../context/subFunctions/useLangContext";
+// import useGlobalContext from "../../../context/useGlobalContext";
 import useMessageContext from "../../../context/Modal/useMessageContext";
 export default function StrictMode({ func }) {
   const [showAddFixedDebst, setshowAddFixedDebst] = useState(false);
@@ -21,8 +23,9 @@ export default function StrictMode({ func }) {
   const [onlyUserFixedDebst, setonlyUserFixedDebst] = useState(0);
   const [debstCount, setdebstCount] = useState(0);
   const [simuladorPayDaily, setsimuladorPayDaily] = useState(0);
-  const [tableFromFixedDebst, settableFromFixedDebst] = useState('')
+  const [tableFromFixedDebst, settableFromFixedDebst] = useState("");
   const { context } = useGlobalContext();
+  const { langs } = useLangContext();
   const { message } = useMessageContext();
   const server = context.server;
   const { data } = KnowDay();
@@ -38,42 +41,16 @@ export default function StrictMode({ func }) {
     }
     var dataUser = context.data;
     var userSalarey = dataUser.perWeek * 4;
-    //Suma las deudas fijas como ortodoncia, laptop, etc..
     var sumDebst = dataUser.fixed.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
-    // Suma las deudas fijas adquiridas que se pagan si o si en un plazo de tiempo
-    var sumAllTotalFixedDebst = dataUser.fixedDebst.reduce(
-      (accumulator, object) => {
-        return accumulator + object.total;
-      },
-      0
-    );
-    // Suma el total pagado de las deudas fijas adquiridas
-    var sumAllPaidFixedDebst = dataUser.fixedDebst.reduce(
-      (accumulator, object) => {
-        return accumulator + object.paid;
-      },
-      0
-    );
-    // Suma el monto inicial total de las deudas bajo un nombre
-    const sumDebst0 = context.data.debts.reduce((accumulator, object) => {
-      return accumulator + object.mount;
-    }, 0);
-    // Suma el monto pagado total de las deudas bajo un nombre
-    const paid0 = context.data.debts.reduce((accumulator, object) => {
-      return accumulator + object.paid;
-    }, 0);
-    //Calcula el valor a pagar total de las deudas bajo un nombre
-    setdebstCount(sumDebst0 - paid0);
-    //Calcula el valor a pagar de las deudas fijas adquiridas
-    var totalMountFixedDebst = sumAllTotalFixedDebst - sumAllPaidFixedDebst;
-    //Divide el monto a pagar de las deudas fijas en 4 semanass
-    var monthValueTotalMountFixedDebst = totalMountFixedDebst / 4;
-    setonlyfixedDebst(sumDebst);
-    // Suma las deudas fijas con las deudas fijas adquiridas
-    settotalMountOfFixedDebst(sumDebst + totalMountFixedDebst);
-
+    if (!langs.data) { 
+      return;
+    }
+    setdebstCount(langs.data.aPagarDeudas);
+    var totalMountFixedDebst = langs.data.aPagarDeudasFijas;
+    setonlyfixedDebst(langs.data.sumaFixedDebst);
+    settotalMountOfFixedDebst(langs.data.sumaFixedDebst + totalMountFixedDebst);
     var dinner = [];
     // Anade al array el monto que falta pagar y lo divide de acuerdo a la semana del pago de las deudas fijas adquiridas
     dataUser.fixedDebst.map((data) => {
@@ -95,15 +72,8 @@ export default function StrictMode({ func }) {
     }, 0);
     setonlyUserFixedDebst(sumaDeDeudasFijasAdquiridas);
     console.log(sumaDeDeudasFijasPorPagarALaSemana);
-    //
-    /*settoPayWeekly(
-      (sumDebst + monthValueTotalMountFixedDebst) / 4 + sumaDeDeudasFijasPorPagarALaSemana
-    );*/
-
-    //new
     var dayServer = dayjs(dataUser.history.rest.date);
     var costThisDay = [];
-
     dataUser.history.today.map((data) => {
       if (data.date === undefined) return false;
       var dataManipulate = dayjs(data.date).$d.toString().split(" ");
@@ -120,15 +90,13 @@ export default function StrictMode({ func }) {
     var costosDeHoyDia = costThisDay.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
-    //dayServer.diff(presentDay);
-    //alert(dayServer.diff(presentDay))
-    console.log(sumaDeDeudasFijasPorPagarALaSemana);
-    console.log(
-      userSalarey,
-      sumDebst,
-      userSalarey - sumDebst,
-      (userSalarey - sumDebst) / 4
-    );
+    // console.log(sumaDeDeudasFijasPorPagarALaSemana);
+    // console.log(
+    //   userSalarey,
+    //   sumDebst,
+    //   userSalarey - sumDebst,
+    //   (userSalarey - sumDebst) / 4
+    // );
     var initial = sumDebst / 4 + sumaDeDeudasFijasPorPagarALaSemana + 0;
     var valueTo = dataUser.perWeek - initial;
     console.log(initial, valueTo);
@@ -141,36 +109,32 @@ export default function StrictMode({ func }) {
     //new
     // var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value;
     // if (dataUser.history.rest.value != ae) {
-    //   axios
-    //     .post(server + "/overCost", {
-    //       name: nameFixedDebst,
-    //       value: valueToDay,
-    //       date: dayjs().$d,
-    //       user: "jorge593",
-    //     })
-    //     .then((e) => console.log(e))
-    //     .catch((e) => alert(e));
+    axios
+      .post(server + "/overCost", {
+        name: nameFixedDebst,
+        value: valueToDay,
+        date: dayjs().$d,
+        user: "jorge593",
+      })
+      .then((res) =>
+        message({
+            type: res.data.message,
+            title: res.data.data,
+            description: res.data.title,
+        })
+      )
+      .catch((e) => alert(e));
     // }
     //new
-    if (dataUser.history.rest.value === undefined) {
-      dataUser.history.rest.value = 0;
+    var restDay = parseInt(dataUser.history.rest[0].value)
+    var res = LeftMoney( context.data.history.rest[0].date, valueTo / 7, restDay, valueToDay)
+    settodayCostSpend((valueToDay + res));
+    if (dataUser.history.rest[0].value === undefined) {
+      settodayCostSpend(0.00);
     }
-    if (dayServer.diff(presentDay) > 2) {
-      if (dataUser.history.rest.value != 0) {
-        settodayCostSpend(
-          valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value
-        );
-        setweekCostToSpend(valueTo);
-      } else {
-        settodayCostSpend(valueToDay * dayServer.diff(presentDay));
-        setweekCostToSpend(valueTo);
-      }
-    } else {
-      settodayCostSpend(valueToDay + dataUser.history.rest.value);
-      setweekCostToSpend(valueTo);
-    }
-    //new
-  }, [context.data]);
+    // settodayCostSpend(valueToDay + dataUser.history.rest.value);
+    setweekCostToSpend(valueTo);
+  }, [context.data, langs.data]);
 
   const sendServer = () => {
     if (whatModal === "add") {
@@ -219,12 +183,23 @@ export default function StrictMode({ func }) {
           return;
         });
     } else if (whatModal === "edit") {
+      if (
+        !document.getElementById("inputToPutNumber")?.value ||
+        !document.getElementById("valueEditSelect")?.value
+      ) {
+        alert("no number");
+        return;
+      }
+      if (Number(document.getElementById("inputToPutNumber").value) === false) {
+        alert("no number");
+        return;
+      }
       axios
         .post(server + "/fixedDebst", {
           name: document.getElementById("valueEditSelect").value,
           action: whatModal,
           user: "jorge593",
-          mount: document.getElementById('inputToPutNumber').value | 0,
+          mount: document.getElementById("inputToPutNumber").value,
           date: dayjs().$d,
         })
         .then((res) => {
@@ -390,9 +365,9 @@ export default function StrictMode({ func }) {
                 <select
                   id="valueEditSelect"
                   className="grow outline-hidden capitalize border-[1px] removeOutlines rounded-lg border-slate-200"
-                  onChange={(e)=> settableFromFixedDebst(true)}
-                  onLoad={(e)=> settableFromFixedDebst(true)}
-                  onClick={(e)=> settableFromFixedDebst(true)}
+                  onChange={(e) => settableFromFixedDebst(true)}
+                  onLoad={(e) => settableFromFixedDebst(true)}
+                  onClick={(e) => settableFromFixedDebst(true)}
                 >
                   {context.data.fixedDebst.map((e, index) => {
                     return (
@@ -405,55 +380,50 @@ export default function StrictMode({ func }) {
               </div>
               <div className="mt-1">
                 <table className="w-full  rounded-xl">
-                <thead className="text-xs font-light text-gray-700 uppercase  bg-slate-200 ">
-                  <tr>
-                  <th scope="col" className=" px-1 py-1 ">
-                     Remaing:
-                    </th>
-                    <th scope="col" className=" px-1 py-1 ">
-                      Pay weekly:
-                    </th>
-                    <th scope="col" className=" px-1 py-1 ">
-                      Paid
-                    </th>
-                    <th scope="col" className="px-1 py-1 truncate w-[20px]">
-                      Total
-                    </th>
-                    <th scope="col" className="px-1 py-1 truncate w-[20px]">
-                      N
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="rounded">
-                  {context.data.fixedDebst.map((e, index) => {
-                     return (
-                      <tr
-                        key={e.color + "color"}
-                        className=" odd:bg-gray-50  even:bg-slate-200"
-                      >
-                        <td className="px-0 sm:px-1 py-1 ">
-                          {e.total - e.paid} 
-                        </td>
-                        <td
-                          scope="row"
-                          className="px-1 py-1  sm:h-[20px]  h-[12px]  text-gray-900 dark:text-white "
-                    
+                  <thead className="text-xs font-light text-gray-700 uppercase  bg-slate-200 ">
+                    <tr>
+                      <th scope="col" className=" px-1 py-1 ">
+                        Remaing:
+                      </th>
+                      <th scope="col" className=" px-1 py-1 ">
+                        Pay weekly:
+                      </th>
+                      <th scope="col" className=" px-1 py-1 ">
+                        Paid
+                      </th>
+                      <th scope="col" className="px-1 py-1 truncate w-[20px]">
+                        Total
+                      </th>
+                      <th scope="col" className="px-1 py-1 truncate w-[20px]">
+                        N
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="rounded">
+                    {context.data.fixedDebst.map((e, index) => {
+                      return (
+                        <tr
+                          key={e.color + "color"}
+                          className=" odd:bg-gray-50  even:bg-slate-200"
                         >
-                          {e.total / e.week}
-                        </td>
-                        <td className="px-0 sm:px-1 py-1 ">
-                          {e.paid} 
-                        </td>
-                        <td className="px-0 sm:px-1 py-1  ">
-                          {e.total} 
-                        </td>
-                        <td className="px-0 sm:px-1 py-1 capitalize ">
-                          {e.name} 
-                        </td>
-                      </tr>
-                      )})}
-            
-                </tbody>
+                          <td className="px-0 sm:px-1 py-1 ">
+                            {e.total - e.paid}
+                          </td>
+                          <td
+                            scope="row"
+                            className="px-1 py-1  sm:h-[20px]  h-[12px]  text-gray-900 dark:text-white "
+                          >
+                            {e.total / e.week}
+                          </td>
+                          <td className="px-0 sm:px-1 py-1 ">{e.paid}</td>
+                          <td className="px-0 sm:px-1 py-1  ">{e.total}</td>
+                          <td className="px-0 sm:px-1 py-1 capitalize ">
+                            {e.name}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
                 </table>
               </div>
               <div className="flex items-center">

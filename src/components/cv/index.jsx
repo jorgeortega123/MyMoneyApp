@@ -368,7 +368,7 @@ const CvMain = () => {
               </div>
             </div>
           </div>
-          <div id="about" className="textWrote w-10/12 mx-auto">
+          <div id="about" className="textWrote w-11/12 mx-auto">
             <div className="w-full flex flex-col space-y-5 mb-5">
               <p className="titleText">{dataText.headers.about}</p>
               <div
@@ -388,6 +388,7 @@ const CvMain = () => {
                       img={e.img}
                       web={e.web}
                       langs={e.tags}
+                      inGroup={e.onGroup}
                     />
                   );
                 })}

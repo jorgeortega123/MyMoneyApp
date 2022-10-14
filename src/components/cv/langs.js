@@ -32,6 +32,7 @@ export const lang = {
            "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085300/cld-sample-3.jpg"
         ],
         web: "https://mymoneyapp.pages.dev/app/myMoney",
+        onGroup: false
       },
       {
         title: "LLK",
@@ -49,6 +50,7 @@ export const lang = {
           "https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
         ],
         web: "https://www.llampukaq.com",
+        onGroup: true
       },
     ],
     functions: {
@@ -114,6 +116,7 @@ export const lang = {
             
           ],
         web: "https://mymoneyapp.pages.dev/app/myMoney",
+        onGroup: false
       },
       {
         title: "LLK",
@@ -131,6 +134,7 @@ export const lang = {
           "https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
         ],
         web: "https://www.llampukaq.com",
+        onGroup: true
       },
     ],
     functions: {

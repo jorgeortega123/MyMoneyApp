@@ -7,7 +7,7 @@ export function LangContextComponent({ children }) {
   const [data, setdata] = useState({});
   const [finish, setfinish] = useState(false)
   useEffect(() => {
-    if (!context.data) {
+    if (!context.data||!localStorage.getItem('token')||!context.data.fixed ) {
       return;
     }
     var dataUser = context.data;
@@ -59,9 +59,8 @@ export function LangContextComponent({ children }) {
     setdata(dataOfi);
     setfinish(true)
   }, [context.endServerRes]);
-
   return (
-    <LangContext.Provider value={{ lang: "en", data: data, onLoad: finish }}>
+    <LangContext.Provider value={{ lang: "en", data: data, onLoad: finish||false }}>
       {children}
     </LangContext.Provider>
   );

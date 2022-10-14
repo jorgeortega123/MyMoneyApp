@@ -147,9 +147,9 @@ export default function Login() {
       </div>
       <div className="bg-blue-300  backGroundImage h-screen flex mt-[-40px] justify-center items-center ">
         {
-          //<Wave className="absolute w-[screen] bottom-0"  />
+           <Wave className="absolute w-[screen] bottom-0"  />
         }
-        <div className="borderLogin p-3 rounded-xl bg-[#d65d5d1a]">
+        <div className="borderLogin p-3 rounded-xl bg-[#00000038]">
           <div className=" w-full max-w-md p-8 space-y-3 borderLogin2 rounded-xl  backdrop-blur-[1px] 	">
             <div className="relative pb-5 pt-5 flex-col items-center justify-center">
               <div className="h-[50px] flex items-center justify-center">

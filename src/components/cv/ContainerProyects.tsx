@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 //@ts-ignore
 import newWindow from "../../assets/svg/newWindow.svg";
+import inGroupSVG from "../../assets/svg/group.svg";
+import inSoloSVG from "../../assets/svg/person.svg";
 import HeroMain from "./Carrousel";
 export default function ContainerProyects({
   title = "Semaforos ",
@@ -18,7 +20,7 @@ export default function ContainerProyects({
   langs: string[];
   web: string;
   index: number;
-  inGroup: boolean
+  inGroup: boolean;
 }) {
   const colors = [
     {
@@ -58,6 +60,7 @@ export default function ContainerProyects({
       t: "#874C62",
     },
   ];
+  const [showGroup, setshowGroup] = useState(false);
   const elemets = () => {
     langs.map((lan, indexNumber) => {
       var elementCreate = document.createElement("p");
@@ -95,10 +98,29 @@ export default function ContainerProyects({
 */
 
   //window.addEventListener('load', ()=> elemets())
-
+  const changeHandle = () => { 
+    if (showGroup===true) { 
+      setshowGroup(false)
+    } else { 
+      setshowGroup(true)
+    }
+  }
   return (
     <div className="w-full border pl-2 pr-2">
-      <div className="items-center flex justify-center pl-[20px]">
+      <div className="items-center flex justify-center pl-[20px] relative">
+        <div onClick={()=> {changeHandle() }} className="absolute right-0 mt-1 w-[36px] fill-slate-50">
+          {inGroup ? <img src={inGroupSVG}></img> : <img src={inSoloSVG}></img>}
+          {showGroup && (
+            <>
+              <div className=" left-[-35px] top-[-20px] absolute bg-slate-100 text-[13px] text-slate-800 w-[110px]">
+                <p className="text-center">
+                  Diseniado{" "}
+                  {!inGroup ? <span>solo</span> : <span>en grupo</span>}
+                </p>{" "}
+              </div>
+            </>
+          )}
+        </div>
         <div className="w-max h-max flex rotate180 flex-col-reverse justify-right mt-[4px]">
           <span
             className={`linesTitle oneTitle w-[${index + (1 * 100) / 4}px]`}
@@ -110,12 +132,17 @@ export default function ContainerProyects({
             className={`linesTitle thrTitle w-[${index + (1.1 * 100) / 2}px]`}
           ></span>
         </div>
-        <p className="pt-[1px] pb-[1px] cursor-pointer" onClick={() => {
+        <p
+          className="pt-[1px] pb-[1px] cursor-pointer"
+          onClick={() => {
             var link = document.createElement("a");
             link.href = web;
             link.target = "_blank";
             link.click();
-          }}>{title}</p>
+          }}
+        >
+          {title}
+        </p>
         <img
           className=" w-7 h-7 ml-1 mt-[-2px] cursor-pointer"
           src={newWindow}

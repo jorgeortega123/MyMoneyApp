@@ -16,7 +16,7 @@ export default function AllCost() {
       setshowData(false);
       return;
     }
-    if (langs?.onLoad === false) {
+    if (!langs?.onLoad === false) {
       return;
     }
 
