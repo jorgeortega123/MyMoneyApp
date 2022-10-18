@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
 import dayjs from "dayjs";
-import {KnowDay, LeftMoney} from "./knowDaysWeeks";
+import { KnowDay, LeftMoney } from "./knowDaysWeeks";
 
 import useLangContext from "../../../context/subFunctions/useLangContext";
 // import useGlobalContext from "../../../context/useGlobalContext";
 import useMessageContext from "../../../context/Modal/useMessageContext";
+import Container1 from "./Container/Container";
+import Button from "./Modal/Button";
+import Button2 from "./Modal/Button2";
+import TextInitial from "./TextInitial";
 export default function StrictMode({ func }) {
   const [showAddFixedDebst, setshowAddFixedDebst] = useState(false);
   const [whatModal, setwhatModal] = useState("edit");
@@ -44,7 +48,7 @@ export default function StrictMode({ func }) {
     var sumDebst = dataUser.fixed.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
-    if (!langs.data) { 
+    if (!langs.data) {
       return;
     }
     setdebstCount(langs.data.aPagarDeudas);
@@ -90,7 +94,7 @@ export default function StrictMode({ func }) {
     var costosDeHoyDia = costThisDay.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
-    console.log(costThisDay)
+    console.log(costThisDay);
     // console.log(sumaDeDeudasFijasPorPagarALaSemana);
     // console.log(
     //   userSalarey,
@@ -98,14 +102,14 @@ export default function StrictMode({ func }) {
     //   userSalarey - sumDebst,
     //   (userSalarey - sumDebst) / 4
     // );
-    var initial = (sumDebst / 4) + sumaDeDeudasFijasPorPagarALaSemana + 0;
+    var initial = sumDebst / 4 + sumaDeDeudasFijasPorPagarALaSemana + 0;
     var valueTo = dataUser.perWeek - initial;
     console.log(initial, valueTo);
     settoPayWeekly(initial);
     console.log(valueTo);
-    func(valueTo / 7, (valueTo / 7 ) - costosDeHoyDia);
+    func(valueTo / 7, valueTo / 7 - costosDeHoyDia);
     setsimuladorPayDaily(valueTo / 7);
-    var valueToDay = (valueTo / 7) - costosDeHoyDia;
+    var valueToDay = valueTo / 7 - costosDeHoyDia;
     console.log(costosDeHoyDia, valueToDay);
     //new
     // var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value;
@@ -117,17 +121,20 @@ export default function StrictMode({ func }) {
         date: dayjs().$d,
         user: "jorge593",
       })
-      .then((res) =>
-       console.log(res.data)
-      )
+      .then((res) => console.log(res.data))
       .catch((e) => alert(e));
     // }
     //new
-    var restDay = parseInt(dataUser.history.rest[0].value)
-    var res = LeftMoney( context.data.history.rest[0].date, valueTo / 7, restDay, valueToDay)
-    settodayCostSpend((valueToDay + res));
+    var restDay = parseInt(dataUser.history.rest[0].value);
+    var res = LeftMoney(
+      context.data.history.rest[0].date,
+      valueTo / 7,
+      restDay,
+      valueToDay
+    );
+    settodayCostSpend(valueToDay + res);
     if (dataUser.history.rest[0].value === undefined) {
-      settodayCostSpend(0.00);
+      settodayCostSpend(0.0);
     }
     // settodayCostSpend(valueToDay + dataUser.history.rest.value);
     setweekCostToSpend(valueTo);
@@ -220,7 +227,7 @@ export default function StrictMode({ func }) {
   };
 
   return (
-    <div className="s mr-0 text-[14px] mb-[8px] h-full flex justify-left flex-col sm:justify-center items-start  rounded-xl bg-slate-100 m-0 ">
+    <div className=" mr-0 text-[14px] mb-[8px] h-full flex flex-col  justify-left sm:justify-center items-start bg-transparent m-0 ">
       <div className="flex items-center justify-between w-full ">
         <p>
           Semana:{" "}
@@ -286,6 +293,7 @@ export default function StrictMode({ func }) {
           </div>
         </div>
       )}
+      {!showAddFixedDebst && <TextInitial></TextInitial>}
       {showAddFixedDebst && (
         <div className="w-full rounded-md p-2   ">
           {whatModal === "add" && (
@@ -339,12 +347,11 @@ export default function StrictMode({ func }) {
                   {simuladorPayDaily.toFixed(2) -
                     ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)}
                 </p>
-                <button
+                <Button2
                   onClick={() => sendServer()}
-                  className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border-2 border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
                 >
                   Agregar
-                </button>
+                </Button2>
               </div>
             </>
           )}
@@ -436,35 +443,32 @@ export default function StrictMode({ func }) {
                   />
                 </div>
               </div>
-              <button
+              <Button2
                 onClick={() => sendServer()}
-                className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-transparent rounded-full border-2 border-gray-500 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
               >
                 Agregar
-              </button>
+              </Button2>
             </>
           )}
         </div>
       )}
-      <div className="flex justify-end space-x-1 items-end bottom-0 b-0 sticky h-full ">
-        <button
-          className="ml-1 rounded-full bg-slate-200 px-1"
+      <div className="flex justify-end items-end bottom-0 b-0 sticky h-full ">
+        <Button
           onClick={() => {
             setwhatModal("add");
             setshowAddFixedDebst(true);
           }}
         >
           Agregar deuda fija
-        </button>
-        <button
-          className="rounded-full bg-slate-200 px-1 mt-[3px]"
+        </Button>
+        <Button
           onClick={() => {
             setwhatModal("edit");
             setshowAddFixedDebst(true);
           }}
         >
           Editar
-        </button>
+        </Button>
       </div>
     </div>
   );

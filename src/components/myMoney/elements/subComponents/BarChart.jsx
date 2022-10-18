@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import useGlobalContext from "../../../../context/useGlobalContext";
 import dayjs from "dayjs";
+import Container1 from "../Container/Container";
 const init = dayjs().$d;
 const date = init.toString();
 const datee = date.split(" ");
@@ -67,13 +68,13 @@ export default function BarChart() {
   }, []);
   //
   return (
-    <div className="w-full h-full overflow-hidden">
+    <Container1>
       <LineChart width={400} height={200} data={dataArr}>
         <Line type="monotone" dataKey="value" stroke="#8884d8" />
         <XAxis dataKey="costName" />
         <YAxis dataKey="value" />
       </LineChart>
-    </div>
+      </Container1>
   );
 }
 /*

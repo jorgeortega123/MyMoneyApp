@@ -7,6 +7,7 @@ var [mes, dia, anio] = [datee[1], datee[2], datee[3]];
 var toDayString = mes + dia + anio;
 export function KnowDay() {
   dayjs.extend(weekday);
+
   var finDeSemana = dayjs().date();
   var toDay = dayjs().day();
   if (toDay < 1) {

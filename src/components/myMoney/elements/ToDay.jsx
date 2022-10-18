@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useGlobalContext from "../../../context/useGlobalContext";
 import useMessageContext from "../../../context/Modal/useMessageContext";
 import dayjs from "dayjs";
+import Container1 from "./Container/Container";
 export default function () {
   const { context } = useGlobalContext();
   const { message } = useMessageContext();
@@ -61,7 +62,8 @@ export default function () {
     );
   }
   return (
-    <div className="p-3 pb-1 mb-[8px] flex justify-left flex-col sm:justify-center items-start border rounded-xl bg-slate-100 m-0 ">
+    <Container1>
+    <div className=" flex justify-left flex-col sm:justify-center items-start  ">
       <div className="flex items-center justify-between w-full">
         <div className="">
           Dinero gastado hoy dia: <a>$ {cashWasted.toFixed(2)}</a>
@@ -141,6 +143,6 @@ export default function () {
       ) : (
         <>Nada que mostrar</>
       )}
-    </div>
+    </div></Container1>
   );
 }

@@ -77,7 +77,9 @@ export default function MainPage() {
               className="w-full h-full flex flex-col items-center mt-[160px]
             t"
             >
-              <p className="text-[140px] relative mr-[-40px] "><span className="absolute ml-[-26px] mt-[-15px]">:</span>(</p>
+              <p className="text-[140px] relative mr-[-40px] ">
+                <span className="absolute ml-[-26px] mt-[-15px]">:</span>(
+              </p>
               <p>The math into code has caused an infinite loop. </p>
               <p>Page have been disabled for avoid bugs.</p>
             </div>
@@ -130,9 +132,11 @@ export default function MainPage() {
             )}
             {!onErrorServerOut ? (
               <div className="flex flex-col">
-                <Modal><p>Hola</p></Modal>
-                <TextInitial></TextInitial>
-                <div className="p-2 pt-5 w-full h-auto flex flex-col sm:space-y-2 md:space-y-0 space-y-2 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
+                <Modal>
+                  <p>Hola</p>
+                </Modal>
+                
+                <div className="p-2 pt-3 w-full flex flex-col sm:space-y-2 md:space-y-0 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
                   <div className="">
                     <PieDiagramHome lang={finalLang} />
                     <motion.div
@@ -146,25 +150,17 @@ export default function MainPage() {
                       <DetailsExpendsWeek lang={finalLang} />
                     </motion.div>
                   </div>
-                  <div className="flex flex-col sm:flex-row space-y-2  space-x-2   justify-left sm:w-[50%] rounded  ">
-                    <div className="p-2 flex-row">
-                      <motion.div
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{
-                          duration: 2,
-                        }}
-                        className="flex-col space-y-2  "
-                      >
-                        <AddMoveCash lang={finalLang} />
+                  <div className="flex flex-col sm:flex-row">
+                    <div className="flex-row">
+                      <AddMoveCash lang={finalLang} />
 
-                        <AddIncomingCash lang={finalLang} />
-                      </motion.div>
-                      <div className="m-2 items-center md:pt-[30px]">
+                      <AddIncomingCash lang={finalLang} />
+
+                      <div className="items-center">
                         {context.data?.debts?.length === 0 ? (
                           <></>
                         ) : (
-                          <div className="col-span-1 p-3 md:col-span-1 border rounded-xl bg-slate-100 ">
+                          <div className="col-span-1 md:col-span-1 ">
                             <TableFromDebts lang={finalLang} />
                           </div>
                         )}

@@ -5,6 +5,7 @@ import PieDiagramTextInfo from "./PieDiagramTextInfo";
 import { AnimatePresence, motion } from "framer-motion";
 import useGlobalContext from "../../../context/useGlobalContext";
 import StrictMode from "./StrictMode";
+import Container1 from "./Container/Container";
 //import { data, serverRes } from "../dataSimulateServer";
 export const PieDiagramHome = (dataPie) => {
   const { context } = useGlobalContext();
@@ -103,7 +104,7 @@ export const PieDiagramHome = (dataPie) => {
   } 
   
   return (
-    <Fragment>
+   
       <motion.div
         initial={{ opacity: 0, rotate: 0 }}
         animate={{ opacity: 1, rotate: 0 }}
@@ -111,7 +112,8 @@ export const PieDiagramHome = (dataPie) => {
           duration: 1,
         }}
       >
-        <div className="p-2 shadow-md shadow-slate-300  mb-2 flex justify-end items-center border rounded-xl bg-slate-100   ">
+        <Container1>
+        <div className="shadow-slate-300  mb-2 flex justify-end items-center    ">
           <div className="flex justify-between w-full">
             <div className="grow">
               <StrictMode func={func}></StrictMode>
@@ -160,7 +162,8 @@ export const PieDiagramHome = (dataPie) => {
             </div>
           </div>
         </div>
+        </Container1>
       </motion.div>
-    </Fragment>
+    
   );
 };

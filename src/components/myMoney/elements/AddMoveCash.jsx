@@ -7,6 +7,8 @@ import useGlobalContext from "../../../context/useGlobalContext";
 import AddOptionAboutCost from "./subComponents/AddOptionAboutCost";
 import useMessageContext from "../../../context/Modal/useMessageContext";
 import dayjs from 'dayjs'
+import { Container } from "@mui/material";
+import Container1 from "./Container/Container";
 export default function AddMoveCash(lang) {
   const { context } = useGlobalContext();
   //console.log(context)
@@ -99,7 +101,7 @@ export default function AddMoveCash(lang) {
   };
 
   return (
-    <div className="p-3 shadow-md border rounded-xl bg-slate-100">
+    <Container1>
       <div className=" grid gap-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 ">
         <form onSubmit={(e) => addMove(e)}>
           <div>
@@ -165,6 +167,6 @@ export default function AddMoveCash(lang) {
       <div className="hidden">
         <AddOptionAboutCost />
       </div>
-    </div>
+      </Container1>
   );
 }

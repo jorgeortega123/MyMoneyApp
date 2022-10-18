@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import useMessageContext from "../../../context/Modal/useMessageContext";
 import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
+import Container1 from "./Container/Container";
 export default function AddIncomingCash(lang) {
   const { context } = useGlobalContext();
   const server = context.server;
@@ -28,43 +29,48 @@ export default function AddIncomingCash(lang) {
   const send = () => {
     var mount = numberMount;
     var account = document.getElementById("selectIncoming").value;
-    if (account==="ahorro") {account="savings"}
+    if (account === "ahorro") {
+      account = "savings";
+    }
     if (!mount) {
       message({
         type: "error",
-        title: "El casillero del monto esta vacio" ,
+        title: "El casillero del monto esta vacio",
         description: "Escribe una cifra adecuada para continuar",
       });
       return true;
     }
     var name = "jorge593";
-    axios.post(server + "/acredit", {
+    axios
+      .post(server + "/acredit", {
         name: name,
         value: Number(mount),
         account: account,
-    })
-    .then((res) => {
-      console.log(res)
-      context.update();
+      })
+      .then((res) => {
+        console.log(res);
+        context.update();
         message({
           type: "success",
           title: "somethig went well",
           description: res.data.data,
         });
-      setcontentOfBotton(lang.lang.buttons.add[0]);
-    }).catch((err) => {
-      message({
-        type: "error",
-        title: "Internal server error",
-        description: "Error: " +  err.request.status,
-      })});
+        setcontentOfBotton(lang.lang.buttons.add[0]);
+      })
+      .catch((err) => {
+        message({
+          type: "error",
+          title: "Internal server error",
+          description: "Error: " + err.request.status,
+        });
+      });
   };
 
   return (
-    <div className="p-3 shadow-md border rounded-xl bg-slate-100 ">
-     
+    <Container1>
+      <div className="">
         <p>{lang.lang.components.incomingCash.title[0]}</p>
-        <div className="flex items-center space-x-2 ">
+        <div className="flex items-center space-x-1 ">
           <div className="mr-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
             <p className="ml-1 text-green-600">$</p>
             <input
@@ -95,12 +101,13 @@ export default function AddIncomingCash(lang) {
           </select>
         </div>
 
-        <button 
-        onClick={()=> send()}
-        className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 ">
+        <button
+          onClick={() => send()}
+          className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 "
+        >
           {lang.lang.buttons.update[0]}
         </button>
-      
-    </div>
+      </div>
+    </Container1>
   );
 }

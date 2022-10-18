@@ -4,6 +4,7 @@ import { PieChart } from "react-minimal-pie-chart";
 
 import useLangContext from "../../../context/subFunctions/useLangContext";
 import useGlobalContext from "../../../context/useGlobalContext";
+import Container1 from "./Container/Container";
 
 export default function AllCost() {
   const { context } = useGlobalContext();
@@ -107,7 +108,8 @@ export default function AllCost() {
     );
   }
   return (
-    <div className="p-3 shadow-md border rounded-xl bg-slate-100">
+    <Container1>
+    <div className="">
       <div className=" grid gap-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 ">
         <p>Adittional data</p>
         {langs.lang}
@@ -161,6 +163,6 @@ export default function AllCost() {
           <p></p>
         </div>
       </div>
-    </div>
+    </div></Container1>
   );
 }

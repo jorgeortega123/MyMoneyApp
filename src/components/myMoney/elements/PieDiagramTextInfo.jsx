@@ -20,7 +20,7 @@ export default function PieDiagramTextInfo(dataToTransform) {
     <div className="pt-2 overflow-auto ml-1 flex justify-end items-start  h-[220px]  infoAndcolors list-inside mt-auto mb-auto ">
       <div className="rounded">
         <div className="border-dashed rounded">
-          <thead className="hidden text-xs text-gray-700 uppercase bg-gray-50 ">
+          <thead className="hidden text-xs text-gray-700 uppercase  ">
             <tr>
               <th scope="col" className=" px-1 py-1">
                 name
@@ -38,7 +38,7 @@ export default function PieDiagramTextInfo(dataToTransform) {
               return (
                 <tr
                   key={n.color + "color"}
-                  className=" odd:bg-gray-50  even:bg-slate-200"
+                  className=" odd:bg-transparent  even:bg-slate-100"
                 >
                   <th
                     scope="row"
