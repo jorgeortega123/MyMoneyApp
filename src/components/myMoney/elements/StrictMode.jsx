@@ -90,6 +90,7 @@ export default function StrictMode({ func }) {
     var costosDeHoyDia = costThisDay.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
+    console.log(costThisDay)
     // console.log(sumaDeDeudasFijasPorPagarALaSemana);
     // console.log(
     //   userSalarey,
@@ -97,15 +98,15 @@ export default function StrictMode({ func }) {
     //   userSalarey - sumDebst,
     //   (userSalarey - sumDebst) / 4
     // );
-    var initial = sumDebst / 4 + sumaDeDeudasFijasPorPagarALaSemana + 0;
+    var initial = (sumDebst / 4) + sumaDeDeudasFijasPorPagarALaSemana + 0;
     var valueTo = dataUser.perWeek - initial;
     console.log(initial, valueTo);
     settoPayWeekly(initial);
     console.log(valueTo);
-    func(valueTo / 7, valueTo / 7 - costosDeHoyDia);
+    func(valueTo / 7, (valueTo / 7 ) - costosDeHoyDia);
     setsimuladorPayDaily(valueTo / 7);
-    var valueToDay = valueTo / 7 - costosDeHoyDia;
-    console.log(costosDeHoyDia);
+    var valueToDay = (valueTo / 7) - costosDeHoyDia;
+    console.log(costosDeHoyDia, valueToDay);
     //new
     // var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value;
     // if (dataUser.history.rest.value != ae) {
@@ -117,11 +118,7 @@ export default function StrictMode({ func }) {
         user: "jorge593",
       })
       .then((res) =>
-        message({
-            type: res.data.message,
-            title: res.data.data,
-            description: res.data.title,
-        })
+       console.log(res.data)
       )
       .catch((e) => alert(e));
     // }

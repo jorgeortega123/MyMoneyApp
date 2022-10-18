@@ -99,7 +99,7 @@ export const PieDiagramHome = (dataPie) => {
   const func = (a, b) =>  { 
     var summ =  (b * 100) / a
     var sum = summ  
-    setoverDebst(sum.toFixed(0) + "%")
+    setoverDebst(((sum.toFixed(0) - 100) * -1 + "%"))
   } 
   
   return (

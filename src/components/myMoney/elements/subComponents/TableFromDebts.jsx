@@ -111,7 +111,7 @@ export default function TableFromDebts(lang) {
     return <></>
   }
   return (
-    <><p>{langg.components.debts.title[0]}</p>
+    <div className="hidden"><p>{langg.components.debts.title[0]}</p>
     <div className="p-2 relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-gray-500 ">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -290,6 +290,6 @@ export default function TableFromDebts(lang) {
       )}
       {showHistoryTable !=null && <ShowHistoryDebst nameUser={showHistoryTable}/>}
     </div>
-    </>
+    </div>
   );
 }

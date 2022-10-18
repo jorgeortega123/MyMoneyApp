@@ -28,7 +28,7 @@ export default function () {
       var idFecha = (mes0 + dia0 + anio0)
       console.log(idFecha, hoyDiaEs)
       if (idFecha === hoyDiaEs) {
-        if (arr.includes(e.date)) return;
+        if (arr.includes(e)) {return}
         arr.push(e);
       }
     });

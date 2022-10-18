@@ -12,13 +12,13 @@ export default function AllCost() {
   const [dataBasic, setdataBasic] = useState();
   const [pieCharAnalisis, setpieCharAnalisis] = useState()
   useEffect(() => {
-    if (!langs?.lang) {
+    if (!langs.lang) {
       setshowData(false);
       return;
     }
-    if (!langs?.onLoad === false) {
-      return;
-    }
+    // if (!langs.onLoad === false) {
+    //   return;
+    // }
 
     var [debst, fixDebst, other] = [
       langs.data.aPagarDeudas,
@@ -68,7 +68,7 @@ export default function AllCost() {
     
     setdataBasic(allArray);
     setshowData(true);
-  }, [langs.onLoad]);
+  }, [langs.onLoad, langs.lang]);
   const func = (a, b) => {
     var summ = (b * 100) / a;
     var sum = summ;
