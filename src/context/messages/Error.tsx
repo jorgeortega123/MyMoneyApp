@@ -30,7 +30,7 @@ function Error(props: any) {
             <span className="font-semibold text-red-500 dark:text-red-400">
               {props.title}
             </span>
-            <p className="text-sm text-gray-600 dark:text-gray-200">
+            <p className="text-sm text-black">
               {props.description}
             </p>
           </div>

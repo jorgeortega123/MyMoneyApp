@@ -192,6 +192,29 @@
         transform: rotate(200deg);
     }
 }
+
+.loadServer { 
+  animation: charging 1.5s linear infinite;
+  z-index: 0;
+}
 .bodyLetter { 
   font-family: 'Lato', sans-serif;
+}
+
+@keyframes charging {
+  0% { 
+
+    transform: translateX(96px);
+
+
+  }
+  50% {
+    transform: translateX(-26px);
+    
+   }
+   100% {
+   
+    transform: translateX(96px);
+   }
+  
 }

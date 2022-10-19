@@ -37,7 +37,7 @@ function HeroMain({
     };
   }, [index]);
   return (
-    <div className="min-w-[300px] max-w-[430px] max-h-[300px] overflow-hidden mx-auto relative">
+    <div className="min-w-[300px] max-w-[430px] max-h-[300px] overflow-hidden mx-auto relative rounded-xl">
       <div
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
         className="whitespace-nowrap duration-1000"
@@ -90,7 +90,7 @@ function HeroMain({
           </motion.div>
         ))}
       </div>
-      <div className=" text-center absolute bottom-2 left-0 right-0">
+      <div className=" text-center absolute bottom-2 left-0 right-0 ">
         {images?.map((_: any, idx: number) => (
           <div
             key={idx}

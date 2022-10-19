@@ -89,7 +89,7 @@ export default function MainPage() {
               id="topMenu"
               className=" h-[38px] flex justify-between items-center border-b-2 border-blue-700  bg-white pb-3  "
             >
-               <div
+              <div
                 onClick={() => {
                   if (langByUser === "en") {
                     setfinalLang(lang.es);
@@ -100,7 +100,7 @@ export default function MainPage() {
                   }
                 }}
                 className=" text-xs pl-2 pt-2 hidden "
-               >
+              >
                 <a className="text-cyan-600">{langByUser} </a>
               </div>
               <div className="text-[25px] pt-1 font-bold underline w-full text-center init">
@@ -184,17 +184,15 @@ export default function MainPage() {
   } else {
     return (
       <div className="w-screen h-screen bg-white init " id="image">
-        <div className="pt-[100px] pb-[100px] relative flex-col items-center justify-center">
-          <div className="h-[200px] flex items-center justify-center">
-            <div className="w-[170px] h-[170px] border-[10px]  bg-white anim rounded-full"></div>
-            <p className="absolute pt-[37px] z-[1]  text-[60px] mb-[40px]">
+        <div className="h-full flex flex-col items-center justify-center">
+          <div className="h-[500px] flex flex-col items-center ">
+            <div className=" pt-[37px] z-[1]  text-[60px] mb-[40px]">
               M<span className="text-green-400">$</span>M
-            </p>
+            </div>
+            <div className=" z-[1] overflow-x-hidden w-24 h-1 rounded-2xl bg-[#12312322]">
+              <div className="z-[0] loadServer w-5 h-1 bg-black rounded-2xl"></div>
+            </div>
           </div>
-        </div>
-        <div className="relative pl-2 mx-2  rounded-xl border-[1px] border-slate-200">
-          <div className="animate-pulse w-full h-max"></div>
-          <p>Llamando al servidor...</p>
         </div>
       </div>
     );

@@ -114,10 +114,10 @@ export default function ContainerProyects({
           {inGroup ? <img src={inGroupSVG}></img> : <img src={inSoloSVG}></img>}
           {showGroup && (
             <>
-              <div className=" left-[-35px] top-[-20px] absolute bg-slate-100 text-[13px] text-slate-800 w-[110px]">
-                <p className="text-center">
-                  Diseniado{" "}
-                  {!inGroup ? <span>solo</span> : <span>en grupo</span>}
+              <div className="rounded-t-[7px] left-[-65px] px-[2px] top-[-60px] absolute bg-[#408198]  text-[13px] text-slate-800 w-[110px]">
+                <p className="text-center text-green-400">
+                  App desarrollada {" "}
+                  {!inGroup ? <span>por mi</span> : <span>en grupo</span>}
                 </p>{" "}
               </div>
             </>
