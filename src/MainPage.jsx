@@ -189,8 +189,8 @@ export default function MainPage() {
             <div className=" pt-[37px] z-[1]  text-[60px] mb-[40px]">
               M<span className="text-green-400">$</span>M
             </div>
-            <div className=" z-[1] overflow-x-hidden w-24 h-1 rounded-2xl bg-[#12312322]">
-              <div className="z-[0] loadServer w-5 h-1 bg-black rounded-2xl"></div>
+            <div className="relative z-[1]  w-24 h-1 rounded-2xl bg-[#12312322]">
+              <div className=" absolute z-[0] loadServer w-5 h-1 bg-black rounded-2xl"></div>
             </div>
           </div>
         </div>

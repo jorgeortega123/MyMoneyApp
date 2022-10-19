@@ -26,7 +26,7 @@ export function GlobalContextComponent({ children }) {
       })
       .then((res) => {
         setglobalDataa(res.data);
-        setendServerRes(true);
+        setendServerRes(false);
         //console.log(globalData)
       })
       .catch((err) => {
