@@ -16,7 +16,7 @@ import CallSVG from "./../../assets/svg/call.svg";
 import CopySGV from "./../../assets/svg/copy.svg";
 import SendSGV from "./../../assets/svg/send.svg";
 import LinkedinSGV from "./../../assets/svg/linkedin_.svg";
-
+import PinchToZoom from "react-pinch-and-zoom";
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
   const [showMenuTranslate, setshowMenuTranslate] = useState(false);
@@ -26,10 +26,14 @@ const CvMain = () => {
   const [textOnNavbar, settextOnNavbar] = useState("");
   const [dataText, setdataText] = useState(lang.en);
   const [defaultLang, setdefaultLang] = useState("en");
+  const [showImg, setshowImg] = useState(false);
+  const [imgSrc, setimgSrc] = useState(
+    "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png"
+  );
 
   ///
   useEffect(() => {
-    var langUse = dataText 
+    var langUse = dataText;
     //setdataText(lang[defaultLang])
     setTimeout(() => {
       consoleText(
@@ -165,7 +169,10 @@ const CvMain = () => {
     console.log(number);
     setnumberSplit(number);
   };
-
+  const showImage = (src) => {
+    setshowImg(true);
+    setimgSrc(src);
+  };
   ///
   return (
     <div className="main-container init relative">
@@ -305,6 +312,16 @@ const CvMain = () => {
         </AnimatePresence>
         <div className="page-content w-[100%] md:w-[1000px]">
           <div className=" flex justify-center items-center w-full" id="home">
+            {showImg && (
+              <div className="fixed w-full h-full backdrop-blur-sm z-[4] bottom-0 top-[44px]  flex justify-center">
+                <div className="">
+                  <div onClick={()=>setshowImg(false)}>CLOSE</div>
+                  <PinchToZoom>
+                    <img className="w-screen" src={imgSrc} alt="" />
+                  </PinchToZoom>
+                </div>
+              </div>
+            )}
             <div className=" pt-4     ">
               <motion.div
                 initial={{ opacity: 0, x: 10 }}
@@ -389,6 +406,7 @@ const CvMain = () => {
                       web={e.web}
                       langs={e.tags}
                       inGroup={e.onGroup}
+                      showImage={showImage}
                     />
                   );
                 })}

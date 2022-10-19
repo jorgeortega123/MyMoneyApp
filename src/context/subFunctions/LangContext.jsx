@@ -39,6 +39,23 @@ export function LangContextComponent({ children }) {
     const paid0 = context.data.debts.reduce((accumulator, object) => {
       return accumulator + object.paid;
     }, 0);
+    var dinner = [];
+    context.data.fixedDebst.map((data) => {
+      var presentWeek = data.week - data.timesWeek;
+      var toPay = data.total - data.paid;
+      var remaining = toPay / presentWeek;
+      dinner.push({ value: remaining, name: data.name, extra: toPay });
+    });
+    //Devueleve el valor total a pagar de las deudas fijas adquiridas en base a la semana
+    var sumaDeDeudasFijasPorPagarALaSemana = dinner.reduce(
+      (accumulator, object) => {
+        return accumulator + object.value;
+      },
+      0
+    );
+  
+    var initial = sumDebst / 4 + sumaDeDeudasFijasPorPagarALaSemana + 0;
+    var valueTo = context.data.perWeek - initial;
     //Calcula el valor a pagar total de las deudas bajo un nombre
     var aPagarDeudas = sumDebst0 - paid0;
     //Calcula el valor a pagar de las deudas fijas adquiridas
@@ -53,7 +70,9 @@ export function LangContextComponent({ children }) {
       aPagarDeudas: aPagarDeudas , 
       sumaFixedDebstAcquired: sumAllTotalFixedDebst,
       sumaFixedDebst: sumDebst,
-      userSalarey: userSalarey
+      userSalarey: userSalarey, 
+      valueTo: valueTo, 
+      initial: initial
     }
     console.log(dataOfi)
     setdata(dataOfi);

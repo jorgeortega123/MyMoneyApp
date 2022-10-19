@@ -87,9 +87,9 @@ export default function MainPage() {
           <div className="blockAllSelect  h-full w-full absolute top-0 bodyLetter text-[14px]   ">
             <div
               id="topMenu"
-              className="relative h-[30px]  flex  items-center border border-blue-400  bg-slate-100 pb-2  overflow-hidden"
+              className=" h-[38px] flex justify-between items-center border-b-2 border-blue-700  bg-white pb-3  "
             >
-              <div
+               <div
                 onClick={() => {
                   if (langByUser === "en") {
                     setfinalLang(lang.es);
@@ -99,8 +99,8 @@ export default function MainPage() {
                     setlangByUser("en");
                   }
                 }}
-                className=" text-xs pl-2 pt-2 "
-              >
+                className=" text-xs pl-2 pt-2 hidden "
+               >
                 <a className="text-cyan-600">{langByUser} </a>
               </div>
               <div className="text-[25px] pt-1 font-bold underline w-full text-center init">
@@ -110,7 +110,7 @@ export default function MainPage() {
                 MyMoney
               </div>
 
-              <div className=" text-xs pr-2 pt-2 flex ">
+              <div className=" text-xs pr-2 pt-3 flex ">
                 <div
                   onClick={() => context.showConfiguration(true)}
                   className="border border-gray-50 rounded-full    "
@@ -135,8 +135,8 @@ export default function MainPage() {
                 <Modal>
                   <p>Hola</p>
                 </Modal>
-                
-                <div className="p-2 pt-3 w-full flex flex-col sm:space-y-2 md:space-y-0 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
+
+                <div className="pl-1 pr-2  w-full flex flex-col sm:space-y-2 md:space-y-0 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
                   <div className="">
                     <PieDiagramHome lang={finalLang} />
                     <motion.div

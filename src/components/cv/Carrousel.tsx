@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import React from "react";
+import PinchToZoom from 'react-pinch-and-zoom';
 function HeroMain({
   images,
   className,
+  showImage
 }: {
   images: string[] | undefined;
   className?: string;
+  showImage: (data: string)=>void;
 }) {
   const delay = 2500;
   const [index, setIndex] = React.useState(0);
@@ -60,6 +63,7 @@ function HeroMain({
               }
             }}
           >
+            
             <motion.img
               loading="lazy"
               drag="x"
@@ -81,6 +85,7 @@ function HeroMain({
               key={index}
               src={backgroundColor}
               className="w-full h-[250px] object-cover rounded-xl"
+              onClick={()=>showImage(backgroundColor)}
             />
           </motion.div>
         ))}
@@ -89,13 +94,13 @@ function HeroMain({
         {images?.map((_: any, idx: number) => (
           <div
             key={idx}
-            className={`mx-[3px] inline-block h-[15px] w-[20px] rounded-full  ${
-              index === idx ? "bg-slate-900 border-2 border-cyan-600" : "bg-white"
+            className={`mx-[3px] inline-block h-[16px] w-[20px] rounded-full  ${
+              index === idx ? "bg-slate-900 border-cyan-600 text-white" : "bg-[#cfb8b85c] text-black"
             }`}
             onClick={() => {
               setIndex(idx);
             }}
-          ></div>
+          ><p className={`text-[10px]  `}>{idx + 1}</p></div>
         ))}
       </div>
     </div>

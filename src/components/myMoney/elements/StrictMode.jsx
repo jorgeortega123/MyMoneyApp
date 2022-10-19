@@ -94,7 +94,7 @@ export default function StrictMode({ func }) {
     var costosDeHoyDia = costThisDay.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
-    console.log(costThisDay);
+   
     // console.log(sumaDeDeudasFijasPorPagarALaSemana);
     // console.log(
     //   userSalarey,
@@ -102,8 +102,8 @@ export default function StrictMode({ func }) {
     //   userSalarey - sumDebst,
     //   (userSalarey - sumDebst) / 4
     // );
-    var initial = sumDebst / 4 + sumaDeDeudasFijasPorPagarALaSemana + 0;
-    var valueTo = dataUser.perWeek - initial;
+    var initial = langs.data.initial
+    var valueTo = langs.data.valueTo
     console.log(initial, valueTo);
     settoPayWeekly(initial);
     console.log(valueTo);

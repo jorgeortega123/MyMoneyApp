@@ -12,6 +12,7 @@ export default function ContainerProyects({
   web = "https://www.example.com",
   index = 0,
   inGroup = false,
+  showImage,
   ...props
 }: {
   title: string;
@@ -21,6 +22,7 @@ export default function ContainerProyects({
   web: string;
   index: number;
   inGroup: boolean;
+  showImage:(data:string)=>void
 }) {
   const colors = [
     {
@@ -157,7 +159,7 @@ export default function ContainerProyects({
       </div>
       <div className="flex-col sm:flex-row w-full">
         <div className="w-full items-center flex justify-center px-2 proyects-container">
-          <HeroMain images={img}></HeroMain>
+          <HeroMain images={img} showImage={showImage} ></HeroMain>
         </div>
         <div
           className="normalText text-[12px]"
