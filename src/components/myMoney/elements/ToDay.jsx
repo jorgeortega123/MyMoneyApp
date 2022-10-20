@@ -63,6 +63,7 @@ export default function () {
   }
   return (
     <Container1>
+      <div className="absolute bg-[#63ff3ce5] w-1 h-full z-[0] left-0 top-0"></div>
     <div className=" flex justify-left flex-col sm:justify-center items-start  ">
       <div className="flex items-center justify-between w-full">
         <div className="">
