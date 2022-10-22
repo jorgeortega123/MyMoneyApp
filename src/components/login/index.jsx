@@ -223,7 +223,7 @@ export default function Login() {
               </div>
             </form>
             {showNav && (
-              <div className="absolute w-[500px] z-[0]  bg-slate-400 left-0 h-[3px] bottom-0 chargingLOGIN"></div>
+              <div className="absolute w-[500px] z-[0]  bg-slate-400 left-0 h-[3px] bottom-0 chargeLogin"></div>
             )}
           </div>
         </div>

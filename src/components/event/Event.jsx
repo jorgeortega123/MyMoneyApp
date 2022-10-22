@@ -5,6 +5,7 @@ import useGlobalContext from "../../context/useGlobalContext";
 import "./eventScreen.scss";
 import MainEvent from "./MainEvent";
 import { AnimatePresence, motion } from "framer-motion";
+import MainContainer from "./questions/MainContainer";
 export default function EventMain() {
   const { context } = useGlobalContext();
   const server = context.server;
@@ -41,8 +42,8 @@ export default function EventMain() {
     }
   }, [numCart]);
 
-  if (event) {
-    return <MainEvent />;
+  if (!event) {
+    return <MainContainer />;
   }
   return (
     <div className="w-screen h-screen bg-[#000000] ">

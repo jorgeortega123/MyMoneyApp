@@ -17,6 +17,9 @@ import CopySGV from "./../../assets/svg/copy.svg";
 import SendSGV from "./../../assets/svg/send.svg";
 import LinkedinSGV from "./../../assets/svg/linkedin_.svg";
 import PinchToZoom from "react-pinch-and-zoom";
+import Modals from "./Modals";
+import FileView from "./FileView";
+const staticInf = lang.static
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
   const [showMenuTranslate, setshowMenuTranslate] = useState(false);
@@ -96,9 +99,6 @@ const CvMain = () => {
     } else {
       setshowDownload(false);
     }
-    setTimeout(() => {
-      setshowDownload(false);
-    }, 1600);
   };
   const showMenuTranslateFunc = () => {
     if (showMenuTranslate === false) {
@@ -175,7 +175,11 @@ const CvMain = () => {
   };
   ///
   return (
-    <div className="main-container init relative">
+    <div className="main-container init relative ">
+      {showDownload && <Modals title="Descargar CV">
+        <FileView title={staticInf.name}>{staticInf.cv.en.text}</FileView>
+         <FileView title={staticInf.name}>{staticInf.cv.es.text}</FileView>
+  </Modals>}
       <div className="nav fixed t-0 blockAllSelect">
         <div
           className=" button-nav"
@@ -206,7 +210,7 @@ const CvMain = () => {
               }}
             />{" "}
             <AnimatePresence>
-              {showDownload && (
+              {/*showDownload && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -218,7 +222,7 @@ const CvMain = () => {
                     {dataText.functions.download}
                   </p>
                 </motion.div>
-              )}
+              )*/}
             </AnimatePresence>
           </div>
           <div>

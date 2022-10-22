@@ -169,6 +169,16 @@ export const lang = {
     ],
   },
   static: { 
-    
+    cv: { 
+      es: { 
+        text: 'Cv en espanol',
+        cv_pdf: 'https://drive.google.com/uc?id=1TDcETxzZjS9ofo7lknGcp51TXd0TuAHd&export=download'
+      },
+      en: { 
+        text: 'Cv english',
+        cv_pdf: 'https://drive.google.com/uc?id=1TDcETxzZjS9ofo7lknGcp51TXd0TuAHd&export=download'
+      }
+    },
+    name: "Jorge Ortega"
   }
 };
