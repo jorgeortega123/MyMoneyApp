@@ -177,8 +177,8 @@ const CvMain = () => {
   return (
     <div className="main-container init relative ">
       {showDownload && <Modals title="Descargar CV">
-        <FileView title={staticInf.name}>{staticInf.cv.en.text}</FileView>
-         <FileView title={staticInf.name}>{staticInf.cv.es.text}</FileView>
+        <FileView title={staticInf.name} cv={staticInf.cv.en.cv_pdf}>{staticInf.cv.en.text}</FileView>
+         <FileView title={staticInf.name} cv={staticInf.cv.es.cv_pdf}>{staticInf.cv.es.text}</FileView>
   </Modals>}
       <div className="nav fixed t-0 blockAllSelect">
         <div
@@ -288,7 +288,7 @@ const CvMain = () => {
           </AnimatePresence>
         </div>
       </div>
-      <div className="main-page mx-auto">
+      <div className="main-page mx-auto sm:w-[500px] md:w-[600px] lg:w-full ">
         <AnimatePresence>
           {showMenu && (
             <motion.div
@@ -315,7 +315,7 @@ const CvMain = () => {
           )}
         </AnimatePresence>
         <div className="page-content w-[100%] md:w-[1000px]">
-          <div className=" flex justify-center items-center w-full" id="home">
+          <div className="flex justify-center items-center lg:justify-start lg:px-8 lg:py-10 w-full" id="home">
             {showImg && (
               <div className="fixed w-full h-full backdrop-blur-sm z-[4] bottom-0 top-[44px]  flex justify-center">
                 <div className="">
@@ -326,18 +326,18 @@ const CvMain = () => {
                 </div>
               </div>
             )}
-            <div className=" pt-4     ">
+            <div className="pt-4     ">
               <motion.div
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "tween", duration: 1 }}
                 className=""
               >
-                <div className=" w-max h-max nameFontBold">Jorge Ortega</div>
+                <div className=" w-max h-max text-[34px] nameFontBold lg:text-[44px]">Jorge Ortega</div>
               </motion.div>
 
-              <div className="pt-[13px] pb-[13px] text-[27px] flex">
-                <p className="pt-[3px] ">Developer</p>
+              <div className="pt-[13px] pb-[13px] text-[24px] flex">
+                <p className="pt-[3px] lg:text-[28px] ">Developer</p>
                 <img className="fill-slate-200 pl-1" src={KeyboardSvg} alt="" />
               </div>
             </div>
@@ -367,15 +367,15 @@ const CvMain = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ type: "tween", duration: 2 }}
-                className="relative w-[112px]"
+                className="relative w-[110px] h-[110px] lg:w-[146px] lg:h-[146px] flex justify-center items-center"
               >
-                <div className="cvImage mt-6">
-                  <div className="  w-[109px] border-[3px] border-dashed  rounded-full   h-[109px]"></div>
+                <div className="cvImage mt-6 w-full h-full ">
+                  <div className="  w-full h-full border-[3px] border-dashed  rounded-full"></div>
                 </div>
               </motion.div>
             </div>
           </div>
-          <div className="console-containerr w-full flex justify-center">
+          <div className="lg:hidden console-containerr w-full flex justify-center">
             {
               //<span className="absolute rigth-[40px]">{">> "}</span>
             }{" "}
@@ -399,7 +399,7 @@ const CvMain = () => {
             </div>
             <div id="proyects">
               <p className="titleText mb-5 mt-1 ">Proyects</p>
-              <div className="flex-col space-y-4">
+              <div className="flex-col space-y-4 lg:space-y-7">
                 {dataText.proyects.map((e, n) => {
                   return (
                     <ContainerProyects

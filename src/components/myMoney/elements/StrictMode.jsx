@@ -114,15 +114,15 @@ export default function StrictMode({ func }) {
     //new
     // var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value;
     // if (dataUser.history.rest.value != ae) {
-    axios
-      .post(server + "/overCost", {
-        name: nameFixedDebst,
-        value: valueToDay,
-        date: dayjs().$d,
-        user: "jorge593",
-      })
-      .then((res) => console.log(res.data))
-      .catch((e) => alert(e));
+    // axios
+    //   .post(server + "/overCost", {
+    //     name: nameFixedDebst,
+    //     value: valueToDay,
+    //     date: dayjs().$d,
+    //     user: "jorge593",
+    //   })
+    //   .then((res) => console.log(res.data))
+    //   .catch((e) => alert(e));
     // }
     //new
     var restDay = parseInt(dataUser.history.rest[0].value);
@@ -132,6 +132,17 @@ export default function StrictMode({ func }) {
       restDay,
       valueToDay
     );
+    if (res) { 
+      axios
+      .post(server + "/overCost", {
+        name: nameFixedDebst,
+        value: valueToDay,
+        date: dayjs().$d,
+        user: "jorge593",
+      })
+      .then((res) => console.log(res.data))
+      .catch((e) => alert(e));
+    }
     settodayCostSpend(valueToDay + res);
     if (dataUser.history.rest[0].value === undefined) {
       settodayCostSpend(0.0);

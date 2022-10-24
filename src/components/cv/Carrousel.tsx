@@ -37,7 +37,7 @@ function HeroMain({
     };
   }, [index]);
   return (
-    <div className="min-w-[300px] max-w-[430px] max-h-[300px] overflow-hidden mx-auto relative rounded-xl">
+    <div className="min-w-[300px] max-w-full max-h-full overflow-hidden mx-auto relative rounded-xl">
       <div
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
         className="whitespace-nowrap duration-1000"
@@ -84,7 +84,7 @@ function HeroMain({
               }}
               key={index}
               src={backgroundColor}
-              className="w-full h-[250px] object-cover rounded-xl"
+              className="w-full h-full object-cover rounded-xl"
               onClick={()=>showImage(backgroundColor)}
             />
           </motion.div>

@@ -22,7 +22,7 @@ export default function ContainerProyects({
   web: string;
   index: number;
   inGroup: boolean;
-  showImage:(data:string)=>void
+  showImage: (data: string) => void;
 }) {
   const colors = [
     {
@@ -100,23 +100,28 @@ export default function ContainerProyects({
 */
 
   //window.addEventListener('load', ()=> elemets())
-  const changeHandle = () => { 
-    if (showGroup===true) { 
-      setshowGroup(false)
-    } else { 
-      setshowGroup(true)
+  const changeHandle = () => {
+    if (showGroup === true) {
+      setshowGroup(false);
+    } else {
+      setshowGroup(true);
     }
-  }
+  };
   return (
-    <div className="w-full border pl-2 pr-2">
+    <div className="w-full border lg:border-0 pl-2 pr-2">
       <div className="items-center flex justify-center pl-[20px] relative">
-        <div onClick={()=> {changeHandle() }} className="absolute right-0 mt-1 w-[36px] fill-slate-50">
+        <div
+          onClick={() => {
+            changeHandle();
+          }}
+          className="absolute right-0 mt-1 w-[36px] fill-slate-50"
+        >
           {inGroup ? <img src={inGroupSVG}></img> : <img src={inSoloSVG}></img>}
           {showGroup && (
             <>
               <div className="rounded-t-[7px] left-[-65px] px-[2px] top-[-60px] absolute bg-[#408198]  text-[13px] text-slate-800 w-[110px]">
                 <p className="text-center text-green-400">
-                  App desarrollada {" "}
+                  App desarrollada{" "}
                   {!inGroup ? <span>por mi</span> : <span>en grupo</span>}
                 </p>{" "}
               </div>
@@ -135,7 +140,7 @@ export default function ContainerProyects({
           ></span>
         </div>
         <p
-          className="pt-[1px] pb-[1px] cursor-pointer"
+          className="pt-[1px] pb-[1px] cursor-pointer lg:text-[32px] lg:my-4"
           onClick={() => {
             var link = document.createElement("a");
             link.href = web;
@@ -157,16 +162,20 @@ export default function ContainerProyects({
           }}
         />
       </div>
-      <div className="flex-col sm:flex-row w-full">
-        <div className="w-full items-center flex justify-center px-2 proyects-container">
-          <HeroMain images={img} showImage={showImage} ></HeroMain>
+      <div className="flex-col sm:flex-row w-full lg:flex">
+        <div className="lg:h-[500px] lg:min-w-[390px] lg:w-5/12 items-center flex justify-center px-2">
+          <HeroMain images={img} showImage={showImage}></HeroMain>
         </div>
-        <div
-          className="normalText text-[12px]"
-          dangerouslySetInnerHTML={{ __html: about }}
-        ></div>
-
-        <div id={"appendp" + index} className="flex flex-wrap mt-2 mb-2"></div>
+        <div className="normalText text-[12px] h-full lg:p-10 lg:w-8/12 flex flex-col lg:text-left lg:items-center lg:justify-center">
+          <div
+            className="normalText text-[12px]"
+            dangerouslySetInnerHTML={{ __html: about }}
+          ></div>
+          <div
+            id={"appendp" + index}
+            className="flex flex-wrap mt-2 mb-2"
+          ></div>
+        </div>
       </div>
     </div>
   );
