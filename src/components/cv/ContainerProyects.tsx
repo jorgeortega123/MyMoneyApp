@@ -163,7 +163,7 @@ export default function ContainerProyects({
         />
       </div>
       <div className="flex-col sm:flex-row w-full lg:flex lg:items-center">
-        <div className="lg:h-[500px] lg:min-w-[390px] lg:w-5/12 items-center flex justify-center px-2">
+        <div className="w-12/12 lg:h-[500px] lg:min-w-[390px] lg:w-5/12  items-center flex justify-center px-2">
           <HeroMain images={img} showImage={showImage}></HeroMain>
         </div>
         <div className="normalText text-[12px] h-full lg:p-10 lg:w-8/12 flex flex-col lg:text-left lg:items-center lg:justify-center">
@@ -179,7 +179,7 @@ export default function ContainerProyects({
         
       </div>
       <div className="invisible lg:visible lg:flex lg:flex-col w-full items-center justify-center">
-        <div className=" w-[520px] h-[1px] bg-slate-300"></div>
+        <div className=" lg:w-[520px] h-[1px] bg-slate-300"></div>
       </div>
     </div>
   );

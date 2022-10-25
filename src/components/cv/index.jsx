@@ -19,6 +19,7 @@ import LinkedinSGV from "./../../assets/svg/linkedin_.svg";
 import PinchToZoom from "react-pinch-and-zoom";
 import Modals from "./Modals";
 import FileView from "./FileView";
+import axios from "axios";
 const staticInf = lang.static
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
@@ -27,6 +28,7 @@ const CvMain = () => {
   const [showTextOnNavbar, setshowTextOnNavbar] = useState(false);
   const [numberSplit, setnumberSplit] = useState("");
   const [textOnNavbar, settextOnNavbar] = useState("");
+  const [userTextWrote, setuserTextWrote] = useState("")
   const [dataText, setdataText] = useState(lang.en);
   const [defaultLang, setdefaultLang] = useState("en");
   const [showImg, setshowImg] = useState(false);
@@ -173,9 +175,17 @@ const CvMain = () => {
     setshowImg(true);
     setimgSrc(src);
   };
+  const sendText = () => { 
+    axios.post("https://mymone.azurewebsites.net"+ "/telegramCV", {
+     text: userTextWrote
+    }).then((e)=> console.log(e.data)).catch((err)=>{console.log(err)})
+    setuserTextWrote('')
+  }
   ///
   return (
     <div className="main-container init relative ">
+      <div className="continuous-1 sticky z-[5] w-full h-[3px] top-0">
+      </div>
       {showDownload && <Modals title="Descargar CV">
         <FileView title={staticInf.name} cv={staticInf.cv.en.cv_pdf}>{staticInf.cv.en.text}</FileView>
          <FileView title={staticInf.name} cv={staticInf.cv.es.cv_pdf}>{staticInf.cv.es.text}</FileView>
@@ -399,7 +409,7 @@ const CvMain = () => {
             </div>
             <div id="proyects">
               <p className="titleText mb-5 mt-1 ">Proyects</p>
-              <div className="flex-col space-y-4 lg:space-y-7">
+              <div className="flex-col space-y-4 lg:space-y-7 w-full">
                 {dataText.proyects.map((e, n) => {
                   return (
                     <ContainerProyects
@@ -420,6 +430,7 @@ const CvMain = () => {
               <p className="titleText mt-5 mb-3 ">{dataText.headers.contact}</p>
               <div className="m-2">
                 <p className="mb-3">{dataText.contact.about}</p>
+                <div className="w-full items-center flex flex-col justify-center">
                 <div
                   className="flex cursor-pointer"
                   onClick={() => copyToClipBoard("number")}
@@ -427,7 +438,7 @@ const CvMain = () => {
                   <div className="">
                     <img className="w-[36px] h-[36px] " src={CallSVG} alt="" />
                   </div>
-                  <p className="text-[16px] pt-[5px] pl-2">
+                  <p className="text-[16px] pt-[5px] pl-2 w-[238px] text-center hover:text-green-400">
                     {"+593 9627  16235"}
                   </p>
                   <img
@@ -441,7 +452,7 @@ const CvMain = () => {
                   onClick={() => copyToClipBoard("email")}
                 >
                   <img className="w-[36px] h-[36px]" src={MailSVG} alt="" />
-                  <p className="text-[16px] pt-[5px]  pl-2">
+                  <p className="text-[16px] pt-[5px]  w-[238px]  pl-2 underline hover:text-green-400">
                     {dataText.contact.email}
                   </p>
                   <img
@@ -450,19 +461,22 @@ const CvMain = () => {
                     alt=""
                   />
                 </div>
+                </div>
               </div>
               <div className="w-full flex justify-center mt-3 ml-2">
-                <div className="w-full flex input-container ">
+                <div className="w-full flex ">
+                  
                   <textarea
                     id="textareOfFooter"
                     placeholder={dataText.extras.footer.input}
-                    className="input-sender h-max "
+                    value={userTextWrote}
+                    className="input-sender h-max  border-[1px] rounded-[6px] "
                     type="text"
                     name=""
+                    onChange={(e)=> {setuserTextWrote(e.target.value)}}
                   />
-
-                  <div className="active:text-cyan-400">
-                    <div className="fill-cyan-400 active:fill-blue-700">
+                  <div className="active:text-blue-700">
+                    <div onClick={()=>sendText()}   className="fill-cyan-400 active:fill-blue-700 text-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill=""
@@ -471,10 +485,10 @@ const CvMain = () => {
                       >
                         <path d="M8 37V11l30.85 13Zm1.55-2.4L34.85 24 9.55 13.3v8.4L19.3 24l-9.75 2.25Zm0 0V13.3v12.95Z" />
                       </svg>
+                      <p className="text-[16px] font-serif  cursor-pointer">Send</p>
                     </div>
-
-                    <p className="text-[16px] font-serif  pl-[7px]">Send</p>
                   </div>
+               
                 </div>
               </div>
             </div>
@@ -482,7 +496,7 @@ const CvMain = () => {
         </div>
         <div
           id="bottomPage"
-          className=" text-[15px] w-full flex mt-[20px] mb-[20px]  "
+          className="px-1 text-[15px] w-full flex mt-[20px] mb-[20px] bg-[#03224a] justify-between "
         >
           <div className="w-[250px] mb-[40px]">
             <p className="pb-3">Gracias por visitar el portafolio</p>
