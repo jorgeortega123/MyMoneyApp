@@ -315,10 +315,10 @@ const CvMain = () => {
           )}
         </AnimatePresence>
         <div className="page-content w-[100%] md:w-[1000px]">
-          <div className="flex justify-center items-center lg:justify-start lg:px-8 lg:py-10 w-full" id="home">
+          <div className="flex justify-center items-center lg:justify-start lg:px-[56px] lg:py-10 w-full" id="home">
             {showImg && (
-              <div className="fixed w-full h-full backdrop-blur-sm z-[4] bottom-0 top-[44px]  flex justify-center">
-                <div className="">
+              <div className="fixed w-full overflow-auto h-full backdrop-blur-sm z-[4] bottom-0 top-[44px]  flex justify-center">
+                <div className=" w-10/12">
                   <div onClick={()=>setshowImg(false)}>CLOSE</div>
                   <PinchToZoom>
                     <img className="w-screen" src={imgSrc} alt="" />
@@ -341,7 +341,7 @@ const CvMain = () => {
                 <img className="fill-slate-200 pl-1" src={KeyboardSvg} alt="" />
               </div>
             </div>
-            <div className="flex">
+            <div className="flex items-center">
               <div className="flex flex-col ml-2 mt-[17px] ">
                 <SocialNetworks
                   url={"https://www.instagram.com/jorgeandresyts/"}
@@ -369,8 +369,8 @@ const CvMain = () => {
                 transition={{ type: "tween", duration: 2 }}
                 className="relative w-[110px] h-[110px] lg:w-[146px] lg:h-[146px] flex justify-center items-center"
               >
-                <div className="cvImage mt-6 w-full h-full ">
-                  <div className="  w-full h-full border-[3px] border-dashed  rounded-full"></div>
+                <div className="cvImage mt-4  w-full h-full ">
+                  <div className=" w-full h-full border-[3px] border-dashed  rounded-full"></div>
                 </div>
               </motion.div>
             </div>

@@ -128,7 +128,7 @@ export const PieDiagramHome = (dataPie) => {
                   transition={{
                     duration: 2,
                   }}
-                  className='relative w-[135px] sm:w-[225px] lg:w-[250px]    '
+                  className='relative w-[135px] sm:w-[225px] lg:w-[150px]    '
                 >
                   {followPage ? (
                     <>

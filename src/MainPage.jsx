@@ -103,8 +103,8 @@ export default function MainPage() {
               >
                 <a className="text-cyan-600">{langByUser} </a>
               </div>
-              <div className="text-[25px] pt-1 font-bold underline w-full text-center init">
-                <span className="font-extralight text-green-400 text-[28px]">
+              <div className="text-[25px] lg:text-[33px] pt-[10px] font-bold underline w-full text-center init">
+                <span className="font-extralight text-green-400 ">
                   $
                 </span>
                 MyMoney
@@ -136,7 +136,7 @@ export default function MainPage() {
                   <p>Hola</p>
                 </Modal>
 
-                <div className="pl-1 pr-2  w-full flex flex-col sm:space-y-2 md:space-y-0 justify-center space-x-0 sm:space-x-0 md:space-x-2 sm:flex-col  lg:flex-row ">
+                <div className="pl-1 pr-2  w-full flex flex-col md:space-y-2 justify-center space-x-0 md:space-x-2 sm:flex-col  lg:flex-col ">
                   <div className="">
                     <PieDiagramHome lang={finalLang} />
                     <motion.div
