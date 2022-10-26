@@ -3,7 +3,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import newWindow from "../../assets/svg/newWindow.svg";
 import inGroupSVG from "../../assets/svg/group.svg";
 import inSoloSVG from "../../assets/svg/person.svg";
+import { lang } from "./langs";
 import HeroMain from "./Carrousel";
+const imagesFrom = lang.static.images
 export default function ContainerProyects({
   title = "Semaforos ",
   img = [],
@@ -108,7 +110,7 @@ export default function ContainerProyects({
     }
   };
   return (
-    <div className="w-full border lg:border-0 pl-2 pr-2">
+    <div className="w-full border shadow-xl lg:border-0 pl-2 pr-2 lg:shadow-2xl">
       <div className="items-center flex justify-center pl-[20px] relative">
         <div
           onClick={() => {
@@ -116,13 +118,33 @@ export default function ContainerProyects({
           }}
           className="absolute right-0 mt-1 w-[36px] fill-slate-50"
         >
-          {inGroup ? <img src={inGroupSVG}></img> : <img src={inSoloSVG}></img>}
+          {inGroup ? (
+            <img
+              onMouseLeave={() => {
+                changeHandle();
+              }}
+              onMouseEnter={() => {
+                changeHandle();
+              }}
+              src={inGroupSVG}
+            ></img>
+          ) : (
+            <img
+              onMouseEnter={() => {
+                changeHandle();
+              }}
+              onMouseLeave={() => {
+                changeHandle();
+              }}
+              src={inSoloSVG}
+            ></img>
+          )}
           {showGroup && (
             <>
-              <div className="rounded-t-[7px] left-[-65px] px-[2px] top-[-60px] absolute bg-[#408198]  text-[13px] text-slate-800 w-[110px]">
-                <p className="text-center text-green-400">
-                  App desarrollada{" "}
-                  {!inGroup ? <span>por mi</span> : <span>en grupo</span>}
+              <div className=" flex items-center justify-center rounded-t-[7px] left-[-115px] lg:left-[-115px] lg:top-[-22px] lg:h-[90px]  px-[2px] top-[-50px] absolute bg-[#408198] lg:bg-transparent lg:rounded-sm lg:border-l-[1px] lg:border-yellow-300 lg:backdrop-blur-3xl  text-[14px] text-slate-800 w-[110px]">
+                <p className="text-center text-yellow-200">
+                  App desarrollada de manera{" "}
+                  {!inGroup ? <span>individual</span> : <span>grupal</span>}
                 </p>{" "}
               </div>
             </>
@@ -130,17 +152,17 @@ export default function ContainerProyects({
         </div>
         <div className="w-max h-max flex rotate180 flex-col-reverse justify-right mt-[4px]">
           <span
-            className={`linesTitle oneTitle w-[${index + (1 * 100) / 4}px]`}
+            className={`linesTitle oneTitle w-[${index * 2 + 0.4 * 100}px]`}
           ></span>
           <span
-            className={`linesTitle twoTitle w-[${index + (1.4 * 100) / 2}px]`}
+            className={`linesTitle twoTitle w-[${index * 2.7 + 0.6 * 100}px]`}
           ></span>
           <span
-            className={`linesTitle thrTitle w-[${index + (1.1 * 100) / 2}px]`}
+            className={`linesTitle thrTitle w-[${index * 4.7 + 0.2 * 100}px]`}
           ></span>
         </div>
         <p
-          className="pt-[1px] pb-[1px] cursor-pointer lg:text-[32px] lg:my-4"
+          className="pt-[1px] hover:text-yellow-300 pb-[1px] cursor-pointer lg:text-[42px] lg:my-4 container-proyects"
           onClick={() => {
             var link = document.createElement("a");
             link.href = web;
@@ -163,12 +185,12 @@ export default function ContainerProyects({
         />
       </div>
       <div className="flex-col sm:flex-row w-full lg:flex lg:items-center">
-        <div className="w-12/12 lg:h-[500px] lg:min-w-[390px] lg:w-5/12  items-center flex justify-center px-2">
-          <HeroMain images={img} showImage={showImage}></HeroMain>
+        <div className="w-12/12 lg:h-[500px] lg:min-w-[390px] lg:w-7/12  items-center flex justify-center px-2">
+          <HeroMain images={imagesFrom[index].all} showImage={showImage}></HeroMain>
         </div>
         <div className="normalText text-[12px] h-full lg:p-10 lg:w-8/12 flex flex-col lg:text-left lg:items-center lg:justify-center">
           <div
-            className="normalText text-[12px]"
+            className="normalText text-[18px] lg:text-[24px]"
             dangerouslySetInnerHTML={{ __html: about }}
           ></div>
           <div
@@ -176,10 +198,9 @@ export default function ContainerProyects({
             className="flex flex-wrap mt-2 mb-2"
           ></div>
         </div>
-        
       </div>
       <div className="invisible lg:visible lg:flex lg:flex-col w-full items-center justify-center">
-        <div className=" lg:w-[520px] h-[1px] bg-slate-300"></div>
+        <div className=" lg:w-[520px] h-[1px] bg-green-500"></div>
       </div>
     </div>
   );

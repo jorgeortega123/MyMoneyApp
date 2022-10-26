@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { lang } from "./langs";
 import ContainerProyects from "./ContainerProyects";
 import SocialNetworks from "./SocialNetworks";
-//import { ReactComponent as Logo }
+//import { ReactComponent as Logo }i
 import KeyboardSvg from "./../../assets/svg/keyboard.svg";
 import DownloadSvg from "./../../assets/svg/download.svg";
 import LangSvg from "./../../assets/svg/lang.svg";
@@ -20,7 +20,7 @@ import PinchToZoom from "react-pinch-and-zoom";
 import Modals from "./Modals";
 import FileView from "./FileView";
 import axios from "axios";
-const staticInf = lang.static
+const staticInf = lang.static;
 const CvMain = () => {
   const [showMenu, setshowMenu] = useState(false);
   const [showMenuTranslate, setshowMenuTranslate] = useState(false);
@@ -28,7 +28,7 @@ const CvMain = () => {
   const [showTextOnNavbar, setshowTextOnNavbar] = useState(false);
   const [numberSplit, setnumberSplit] = useState("");
   const [textOnNavbar, settextOnNavbar] = useState("");
-  const [userTextWrote, setuserTextWrote] = useState("")
+  const [userTextWrote, setuserTextWrote] = useState("");
   const [dataText, setdataText] = useState(lang.en);
   const [defaultLang, setdefaultLang] = useState("en");
   const [showImg, setshowImg] = useState(false);
@@ -175,24 +175,34 @@ const CvMain = () => {
     setshowImg(true);
     setimgSrc(src);
   };
-  const sendText = () => { 
-    axios.post("https://mymone.azurewebsites.net"+ "/telegramCV", {
-     text: userTextWrote
-    }).then((e)=> console.log(e.data)).catch((err)=>{console.log(err)})
-    setuserTextWrote('')
-  }
+  const sendText = () => {
+    axios
+      .post("https://mymone.azurewebsites.net" + "/telegramCV", {
+        text: userTextWrote,
+      })
+      .then((e) => console.log(e.data))
+      .catch((err) => {
+        console.log(err);
+      });
+    setuserTextWrote("");
+  };
   ///
   return (
     <div className="main-container init relative ">
-      <div className="continuous-1 sticky z-[5] w-full h-[3px] top-0">
-      </div>
-      {showDownload && <Modals title="Descargar CV">
-        <FileView title={staticInf.name} cv={staticInf.cv.en.cv_pdf}>{staticInf.cv.en.text}</FileView>
-         <FileView title={staticInf.name} cv={staticInf.cv.es.cv_pdf}>{staticInf.cv.es.text}</FileView>
-  </Modals>}
+      <div className="continuous-1 sticky z-[5] w-full h-[3px] top-0"></div>
+      {showDownload && (
+        <Modals title="Indica el idioma del CV">
+          <FileView title={"" +staticInf.name + "_cv.pdf"} cv={staticInf.cv.en.cv_pdf}>
+            {staticInf.cv.en.text}
+          </FileView>
+          <FileView title={staticInf.name + "_cv.pdf"} cv={staticInf.cv.es.cv_pdf}>
+            {staticInf.cv.es.text}
+          </FileView>
+        </Modals>
+      )}
       <div className="nav fixed t-0 blockAllSelect">
         <div
-          className=" button-nav"
+          className=" button-nav visible lg:invisible"
           onClick={() => {
             if (showMenu === true) {
               setshowMenu(false);
@@ -289,13 +299,35 @@ const CvMain = () => {
                 transition={{ type: "tween" }}
                 className="absolute right-[100px]"
               >
-                {" "}
                 <p className=" text-green-400 pt-[14px] text-[12px] ">
                   {textOnNavbar}
                 </p>
               </motion.div>
             )}
           </AnimatePresence>
+        </div>
+        <div className="invisible h-full pr-5 flex justify-center items-center lg:visible absolute text-slate-100 right-0 ">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: "tween" }}
+            className="capitalize flex space-x-5 text-[18px]"
+          >
+            <li className="hover:text-cyan-300">
+              <a href="#home">Home</a>
+            </li>
+            <li className="hover:text-cyan-300">
+              <a href="#about">{dataText.headers.about}</a>
+            </li>
+
+            <li className="hover:text-cyan-300">
+              <a href="#proyects">{dataText.headers.proyects}</a>
+            </li>
+            <li className="hover:text-cyan-300">
+              <a href="#contact">{dataText.headers.contact}</a>
+            </li>
+          </motion.div>
         </div>
       </div>
       <div className="main-page mx-auto sm:w-[500px] md:w-[600px] lg:w-full ">
@@ -306,7 +338,7 @@ const CvMain = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0 }}
               transition={{ type: "tween" }}
-              className="menu-items capitalize"
+              className="menu-items capitalize top-0"
             >
               <li>
                 <a href="#home">Home</a>
@@ -324,12 +356,15 @@ const CvMain = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        <div className="page-content w-[100%] md:w-[1000px]">
-          <div className="flex justify-center items-center lg:justify-start lg:px-[56px] lg:py-10 w-full" id="home">
+        <div className="page-content w-[100%] md:w-[1000px] lg:w-full">
+          <div
+            className="w-full flex justify-center items-center  lg:px-[56px] lg:py-10"
+            id="home"
+          >
             {showImg && (
               <div className="fixed w-full overflow-auto h-full backdrop-blur-sm z-[4] bottom-0 top-[44px]  flex justify-center">
                 <div className=" w-10/12">
-                  <div onClick={()=>setshowImg(false)}>CLOSE</div>
+                  <div onClick={() => setshowImg(false)}>CLOSE</div>
                   <PinchToZoom>
                     <img className="w-screen" src={imgSrc} alt="" />
                   </PinchToZoom>
@@ -343,7 +378,11 @@ const CvMain = () => {
                 transition={{ type: "tween", duration: 1 }}
                 className=""
               >
-                <div className=" w-max h-max text-[34px] nameFontBold lg:text-[44px]">Jorge Ortega</div>
+                <div className=" w-max h-max nameFontBold  ">
+                  <h1 className="title-name-cv text-[34px] lg:text-[54px] lg:font-bold">
+                    Jorge Ortega
+                  </h1>{" "}
+                </div>
               </motion.div>
 
               <div className="pt-[13px] pb-[13px] text-[24px] flex">
@@ -377,9 +416,10 @@ const CvMain = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ type: "tween", duration: 2 }}
-                className="relative w-[110px] h-[110px] lg:w-[146px] lg:h-[146px] flex justify-center items-center"
+                className="mt-[18px] relative w-[110px] h-[110px] lg:w-[148px] lg:h-[148px] flex flex-col justify-center items-center"
               >
-                <div className="cvImage mt-4  w-full h-full ">
+                <div className="cvImage  w-full h-full flex flex-col items-center ">
+                  <div className="hidden absolute z-[0] animated-text"></div>
                   <div className=" w-full h-full border-[3px] border-dashed  rounded-full"></div>
                 </div>
               </motion.div>
@@ -399,13 +439,17 @@ const CvMain = () => {
               </div>
             </div>
           </div>
-          <div id="about" className="textWrote w-11/12 mx-auto">
-            <div className="w-full flex flex-col space-y-5 mb-5">
-              <p className="titleText">{dataText.headers.about}</p>
-              <div
-                className="normalText containerText"
-                dangerouslySetInnerHTML={{ __html: dataText.headers.aboutInfo }}
-              ></div>
+          <div id="about" className="textWrote w-11/12 lg:full mx-auto ">
+            <div className="w-full flex flex-col  justify-center items-center">
+              <div className="relative flex flex-col space-y-5 mb-5 w-full lg:lg:w-5/12">
+                <p className="titleText">{dataText.headers.about}</p>
+                <div
+                  className="normalText containerText"
+                  dangerouslySetInnerHTML={{
+                    __html: dataText.headers.aboutInfo,
+                  }}
+                ></div>
+              </div>
             </div>
             <div id="proyects">
               <p className="titleText mb-5 mt-1 ">Proyects</p>
@@ -431,41 +475,46 @@ const CvMain = () => {
               <div className="m-2">
                 <p className="mb-3">{dataText.contact.about}</p>
                 <div className="w-full items-center flex flex-col justify-center">
-                <div
-                  className="flex cursor-pointer"
-                  onClick={() => copyToClipBoard("number")}
-                >
-                  <div className="">
-                    <img className="w-[36px] h-[36px] " src={CallSVG} alt="" />
+                  <div
+                    className="flex cursor-pointer"
+                    onClick={() => copyToClipBoard("number")}
+                  >
+                    <div className="">
+                      <img
+                        className="w-[36px] h-[36px] "
+                        src={CallSVG}
+                        alt=""
+                      />
+                    </div>
+                    <p className="text-[16px] pt-[5px] pl-2 w-[238px] text-center hover:text-green-400">
+                      {"+593 9627  16235"}
+                    </p>
+                    <img
+                      className="w-[22px] h-[22px] mt-[2px]"
+                      src={CopySGV}
+                      alt=""
+                    />
                   </div>
-                  <p className="text-[16px] pt-[5px] pl-2 w-[238px] text-center hover:text-green-400">
-                    {"+593 9627  16235"}
-                  </p>
-                  <img
-                    className="w-[22px] h-[22px] mt-[2px]"
-                    src={CopySGV}
-                    alt=""
-                  />
-                </div>
-                <div
-                  className="flex cursor-pointer"
-                  onClick={() => copyToClipBoard("email")}
-                >
-                  <img className="w-[36px] h-[36px]" src={MailSVG} alt="" />
-                  <p className="text-[16px] pt-[5px]  w-[238px]  pl-2 underline hover:text-green-400">
-                    {dataText.contact.email}
-                  </p>
-                  <img
-                    className="w-[22px] h-[22px]  mt-[2px]"
-                    src={CopySGV}
-                    alt=""
-                  />
-                </div>
+                  <div
+                    className="flex cursor-pointer"
+                    onClick={() => copyToClipBoard("email")}
+                  >
+                    <img className="w-[36px] h-[36px]" src={MailSVG} alt="" />
+                    <p className="text-[16px] pt-[5px]  w-[238px]  pl-2 underline hover:text-green-400">
+                      {dataText.contact.email}
+                    </p>
+                    <div className="w-[22px] h-[22px]  mt-[2px] fill:[#21319203]">
+                      <img
+                        className="w-[22px] h-[22px] mt-[2px]"
+                        src={CopySGV}
+                        alt=""
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="w-full flex justify-center mt-3 ml-2">
                 <div className="w-full flex ">
-                  
                   <textarea
                     id="textareOfFooter"
                     placeholder={dataText.extras.footer.input}
@@ -473,10 +522,15 @@ const CvMain = () => {
                     className="input-sender h-max  border-[1px] rounded-[6px] "
                     type="text"
                     name=""
-                    onChange={(e)=> {setuserTextWrote(e.target.value)}}
+                    onChange={(e) => {
+                      setuserTextWrote(e.target.value);
+                    }}
                   />
                   <div className="active:text-blue-700">
-                    <div onClick={()=>sendText()}   className="fill-cyan-400 active:fill-blue-700 text-center">
+                    <div
+                      onClick={() => sendText()}
+                      className="fill-cyan-400 active:fill-blue-700 text-center"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill=""
@@ -485,10 +539,11 @@ const CvMain = () => {
                       >
                         <path d="M8 37V11l30.85 13Zm1.55-2.4L34.85 24 9.55 13.3v8.4L19.3 24l-9.75 2.25Zm0 0V13.3v12.95Z" />
                       </svg>
-                      <p className="text-[16px] font-serif  cursor-pointer">Send</p>
+                      <p className="text-[16px] font-serif  cursor-pointer">
+                        Send
+                      </p>
                     </div>
                   </div>
-               
                 </div>
               </div>
             </div>

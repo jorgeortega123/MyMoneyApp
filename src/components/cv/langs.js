@@ -29,10 +29,10 @@ export const lang = {
         ],
         img: [
           "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png",
-           "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085300/cld-sample-3.jpg"
+          "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085300/cld-sample-3.jpg",
         ],
         web: "https://mymoneyapp.pages.dev/app/myMoney",
-        onGroup: false
+        onGroup: false,
       },
       {
         title: "LLK",
@@ -50,7 +50,7 @@ export const lang = {
           "https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
         ],
         web: "https://www.llampukaq.com",
-        onGroup: true
+        onGroup: true,
       },
     ],
     functions: {
@@ -76,7 +76,7 @@ export const lang = {
       },
       {
         name: "linkedin",
-        url: "https://www.facebook.com/mateo.garrido.5268",
+        url: "https://www.linkedin.com/in/jorge-ortega-b87442254/",
       },
       {
         name: "git hub",
@@ -112,11 +112,10 @@ export const lang = {
           "GoogleApi",
         ],
         img: [
-            "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png",
-            
-          ],
+          "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png",
+        ],
         web: "https://mymoneyapp.pages.dev/app/myMoney",
-        onGroup: false
+        onGroup: false,
       },
       {
         title: "LLK",
@@ -134,7 +133,7 @@ export const lang = {
           "https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
         ],
         web: "https://www.llampukaq.com",
-        onGroup: true
+        onGroup: true,
       },
     ],
     functions: {
@@ -168,17 +167,56 @@ export const lang = {
       },
     ],
   },
-  static: { 
-    cv: { 
-      es: { 
-        text: 'Cv en espanol',
-        cv_pdf: 'https://drive.google.com/uc?id=1TDcETxzZjS9ofo7lknGcp51TXd0TuAHd&export=download'
+  static: {
+    cv: {
+      es: {
+        text: "Cv en espanol",
+        cv_pdf:
+          "https://drive.google.com/uc?id=1TDcETxzZjS9ofo7lknGcp51TXd0TuAHd&export=download",
       },
-      en: { 
-        text: 'Cv english',
-        cv_pdf: 'https://drive.google.com/uc?id=1TDcETxzZjS9ofo7lknGcp51TXd0TuAHd&export=download'
-      }
+      en: {
+        text: "Cv english",
+        cv_pdf:
+          "https://drive.google.com/uc?id=1TDcETxzZjS9ofo7lknGcp51TXd0TuAHd&export=download",
+      },
     },
-    name: "Jorge Ortega"
-  }
+    name: "Jorge_Ortega",
+    social: [
+      {
+        name: "facebook",
+        url: "https://www.facebook.com/mateo.garrido.5268",
+        svg: "",
+      },
+      {
+        name: "instagram",
+        url: "https://www.instagram.com/jorgeandresyts/",
+        svg: "",
+      },
+      {
+        name: "linkedin",
+        url: "https://www.linkedin.com/in/jorge-ortega-b87442254/",
+        svg: "",
+      },
+      {
+        name: "git hub",
+        url: "https://github.com/jorgeortega123",
+        svg: "",
+      },
+    ],
+    images: [
+      {
+        title: "My money",
+        all: ["https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png",
+        "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085300/cld-sample-3.jpg"
+      ],
+      },
+      {
+        title: "LLK",
+        all: [
+          "https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
+
+        ],
+      },
+    ],
+  },
 };
