@@ -185,22 +185,22 @@ export const lang = {
       {
         name: "facebook",
         url: "https://www.facebook.com/mateo.garrido.5268",
-        svg: "",
+        svg: "./../../assets/svg/facebook.svg",
       },
       {
         name: "instagram",
         url: "https://www.instagram.com/jorgeandresyts/",
-        svg: "",
+        svg: "./../../assets/svg/instagram",
       },
       {
         name: "linkedin",
         url: "https://www.linkedin.com/in/jorge-ortega-b87442254/",
-        svg: "",
+        svg: "./../../assets/svg/linkedin",
       },
       {
         name: "git hub",
         url: "https://github.com/jorgeortega123",
-        svg: "",
+        svg: "./../../assets/svg/github.svg",
       },
     ],
     images: [

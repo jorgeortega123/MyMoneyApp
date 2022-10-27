@@ -37,14 +37,18 @@ function HeroMain({
     };
   }, [index]);
   return (
-    <div className="min-w-[300px] max-w-full max-h-full overflow-hidden mx-auto relative rounded-xl">
-      <div
+    <div className="min-w-[300px] max-w-full max-h-full overflow-hidden mx-auto relative rounded-xl overflow-y-hidden">
+       <div onClick={()=>{if (index===0) {return;}  setIndex(index - 1)}}  className="cursor-pointer z-[5] absolute flex justify-center left-0 items-center w-12 carrousel-pilar bg-[#69696920] hover:bg-[#69696949] hover:text-green-300 ">{"<"}</div>
+       
+       <div onClick={()=>{if (index >= images?.length) {return;} setIndex(index + 1)}} className="cursor-pointer z-[5] absolute flex justify-center right-0 items-center w-12 carrousel-pilar2 bg-[#69696920] hover:bg-[#69696949] hover:text-green-300  ">{"<"}</div>
+       <div
         style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
         className="whitespace-nowrap duration-1000"
       >
+        
         {images?.map((backgroundColor: any, index: number) => (
           <motion.div
-            className={`inline-block w-full ${className} rounded-sm`}
+            className={`relative inline-block w-full ${className} rounded-sm`}
             key={index}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -63,7 +67,7 @@ function HeroMain({
               }
             }}
           >
-            
+           
             <motion.img
               loading="lazy"
               drag="x"
@@ -94,7 +98,7 @@ function HeroMain({
         {images?.map((_: any, idx: number) => (
           <div
             key={idx}
-            className={`mx-[3px] inline-block h-[16px] w-[20px] rounded-full  ${
+            className={`cursor-pointer mx-[3px] inline-block h-[16px] w-[20px] rounded-full  ${
               index === idx ? "bg-slate-900 border-cyan-600 text-white" : "bg-[#cfb8b85c] text-black"
             }`}
             onClick={() => {

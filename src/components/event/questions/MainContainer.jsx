@@ -41,9 +41,10 @@ export default function MainContainer() {
   if (showNormal) {
     return (
       <div className="Principal h-screen w-screen bg-[#000000] flex justify-center items-center ">
+        <a href="/" className="text-white absolute bottom-0 left-0 text-[10px]">Back Main Domain</a>
         <div className="text-white flex flex-col items-center h-[300px]">
           <p className="text-[35px] font-semibold">Hola</p>
-          <p>Digita tu numero de cedula</p>
+       
           <input
             onChange={(e) => {
               setnumberFromInput(e.target.value);
@@ -54,7 +55,7 @@ export default function MainContainer() {
           />
           <button
             onClick={() => verifyNumber()}
-            className="text-green-500 px-2 rounded-lg border-[1px] border-green-500"
+            className="text-green-500 hover:text-black hover:bg-green-500 px-2 rounded-lg border-[1px] border-green-500"
           >
             Confirmar
           </button>

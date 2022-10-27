@@ -32,6 +32,9 @@ const CvMain = () => {
   const [dataText, setdataText] = useState(lang.en);
   const [defaultLang, setdefaultLang] = useState("en");
   const [showImg, setshowImg] = useState(false);
+  const [showLineFromDownload, setshowLineFromDownload] = useState(false);
+  const [showLineFromTextarea, setshowLineFromTextarea] = useState(false);
+  const [onFocusTextarea, setonFocusTextarea] = useState(false);
   const [imgSrc, setimgSrc] = useState(
     "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png"
   );
@@ -173,18 +176,26 @@ const CvMain = () => {
   };
   const showImage = (src) => {
     setshowImg(true);
+    document.body.style.overflow = "hidden";
     setimgSrc(src);
   };
   const sendText = () => {
+    setshowLineFromTextarea(true);
     axios
       .post("https://mymone.azurewebsites.net" + "/telegramCV", {
         text: userTextWrote,
       })
-      .then((e) => console.log(e.data))
+      .then((e) => {
+        console.log(e.data);
+      })
       .catch((err) => {
         console.log(err);
       });
+
     setuserTextWrote("");
+    setTimeout(() => {
+      setshowLineFromTextarea(false);
+    }, 3500);
   };
   ///
   return (
@@ -192,10 +203,16 @@ const CvMain = () => {
       <div className="continuous-1 sticky z-[5] w-full h-[3px] top-0"></div>
       {showDownload && (
         <Modals title="Indica el idioma del CV">
-          <FileView title={"" +staticInf.name + "_cv.pdf"} cv={staticInf.cv.en.cv_pdf}>
+          <FileView
+            title={"" + staticInf.name + "_cv.pdf"}
+            cv={staticInf.cv.en.cv_pdf}
+          >
             {staticInf.cv.en.text}
           </FileView>
-          <FileView title={staticInf.name + "_cv.pdf"} cv={staticInf.cv.es.cv_pdf}>
+          <FileView
+            title={staticInf.name + "_cv.pdf"}
+            cv={staticInf.cv.es.cv_pdf}
+          >
             {staticInf.cv.es.text}
           </FileView>
         </Modals>
@@ -362,12 +379,23 @@ const CvMain = () => {
             id="home"
           >
             {showImg && (
-              <div className="fixed w-full overflow-auto h-full backdrop-blur-sm z-[4] bottom-0 top-[44px]  flex justify-center">
-                <div className=" w-10/12">
-                  <div onClick={() => setshowImg(false)}>CLOSE</div>
-                  <PinchToZoom>
-                    <img className="w-screen" src={imgSrc} alt="" />
-                  </PinchToZoom>
+              <div className="z-[6] fixed w-full overflow-auto h-full backdrop-blur-sm  bottom-0 top-[44px]  flex justify-center">
+                <div className=" w-11/12 flex flex-col items-center justify-center">
+                  <div className="relative">
+                  
+                    <div
+                      className="right-0 top-[-28px] absolute cursor-pointer hover:text-black backdrop-blur-2xl px-2 text-[19px] rounded-[5px] font-bold bg-[#fe0000db] "
+                      onClick={() => {
+                        document.body.style.overflow = "auto";
+                        setshowImg(false);
+                      }}
+                    >
+                      CLOSE
+                    </div>
+                    <PinchToZoom>
+                      <img className="w-screen" src={imgSrc} alt="" />
+                    </PinchToZoom>
+                  </div>
                 </div>
               </div>
             )}
@@ -470,11 +498,11 @@ const CvMain = () => {
                 })}
               </div>
             </div>
-            <div id="contact" className="mb-[40px]">
+            <div id="contact" className="mb-[40px] lg:w-[600px]">
               <p className="titleText mt-5 mb-3 ">{dataText.headers.contact}</p>
-              <div className="m-2">
+              <div className="m-2 ">
                 <p className="mb-3">{dataText.contact.about}</p>
-                <div className="w-full items-center flex flex-col justify-center">
+                <div className="bg-[#3672ffe9] rounded-[15px] w-full items-center flex flex-col justify-center">
                   <div
                     className="flex cursor-pointer"
                     onClick={() => copyToClipBoard("number")}
@@ -513,15 +541,31 @@ const CvMain = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-full flex justify-center mt-3 ml-2">
-                <div className="w-full flex ">
+              <div className="relative w-full flex justify-center mt-3 ml-2">
+                {onFocusTextarea && (
+                  <div className="indent-9 absolute bottom-[-50px] rounded-md z-[4]  text-[12px] text-black bg-[#ffd000] rectangule">
+                    Todo lo que escribas aqui sera enviado de{" "}
+                    <span className="font-bold">manera anonima</span> . A no ser
+                    que especifiques tu nombre o alguna manera de indentificarte
+                  </div>
+                )}
+                <div className="w-full flex relative overflow-x-hidden overflow-y-auto ">
+                  {showLineFromTextarea && (
+                    <div className="transition continuous-2 absolute z-[5] w-full h-[1px] bottom-0 right-[48px]"></div>
+                  )}
                   <textarea
                     id="textareOfFooter"
                     placeholder={dataText.extras.footer.input}
                     value={userTextWrote}
-                    className="input-sender h-max  border-[1px] rounded-[6px] "
+                    className="focus:border-cyan-500 input-sender hover:border-cyan-600 active:border-cyan-600 h-max  border-[1px] rounded-t-[6px] "
                     type="text"
                     name=""
+                    onFocus={() => {
+                      setonFocusTextarea(true);
+                    }}
+                    onBlur={() => {
+                      setonFocusTextarea(false);
+                    }}
                     onChange={(e) => {
                       setuserTextWrote(e.target.value);
                     }}
@@ -540,7 +584,7 @@ const CvMain = () => {
                         <path d="M8 37V11l30.85 13Zm1.55-2.4L34.85 24 9.55 13.3v8.4L19.3 24l-9.75 2.25Zm0 0V13.3v12.95Z" />
                       </svg>
                       <p className="text-[16px] font-serif  cursor-pointer">
-                        Send
+                        {!showLineFromTextarea ? "Send" : "..."}
                       </p>
                     </div>
                   </div>
@@ -549,41 +593,40 @@ const CvMain = () => {
             </div>
           </div>
         </div>
-        <div
-          id="bottomPage"
-          className="px-1 text-[15px] w-full flex mt-[20px] mb-[20px] bg-[#03224a] justify-between "
-        >
-          <div className="w-[250px] mb-[40px]">
-            <p className="pb-3">Gracias por visitar el portafolio</p>
-            <p>
-              Si quieres dejar alguna recomendacion, critica o propuesta de
-              trabajo puedes mandar un{" "}
-              <span
-                onClick={() =>
-                  document.getElementById("textareOfFooter").focus()
-                }
-                className="underline"
+      </div>
+      <div
+        id="bottomPage"
+        className="text-slate-50 px-1 text-[12px] lg:text-[13px] flex mt-[20px] mb-[20px] bg-[#03224a] justify-around "
+      >
+        <div className="w-[250px] mb-[40px]">
+          <p className="pb-3">Gracias por visitar el portafolio</p>
+          <p>
+            Si quieres dejar alguna recomendacion, critica o propuesta de
+            trabajo puedes mandar un{" "}
+            <span
+              onClick={() => document.getElementById("textareOfFooter").focus()}
+              className="underline cursor-pointer"
+            >
+              mensaje aqui:
+            </span>{" "}
+          </p>
+        </div>
+        <div className="flex-col capitalize ">
+          <p className="mb-2">Redes sociales:</p>
+          {staticInf.social.map((socialMedia, indexNum) => {
+            return (
+              <div
+                onClick={() => {
+                  goToUrl(socialMedia.url);
+                }}
+                className="underline hover:text-green-400 cursor-pointer"
+                key={"socialData" + indexNum}
               >
-                mensaje aqui:
-              </span>{" "}
-            </p>
-          </div>
-          <div className="flex-col capitalize ">
-            <p className="mb-2">Redes sociales:</p>
-            {dataText.social.map((socialMedia, indexNum) => {
-              return (
-                <p
-                  onClick={() => {
-                    goToUrl(socialMedia.url);
-                  }}
-                  className="underline hover:text-green-400 cursor-pointer"
-                  key={"socialData" + indexNum}
-                >
-                  {socialMedia.name}
-                </p>
-              );
-            })}
-          </div>
+                {socialMedia.name}
+                <img src={socialMedia.svg} alt="" />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

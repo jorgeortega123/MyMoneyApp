@@ -17,9 +17,9 @@ export default function FileView({
   }
  
   return (
-    <div className="text-white w-full my-2 rounded-[3px] p-1 flex border-[1px] border-cyan-400 justify-center items-center">
+    <div className="cursor-pointer text-white w-full hover:border-green-400 hover:bg-slate-700 my-2 rounded-[3px] p-1 flex border-[1px] border-cyan-400 justify-center items-center">
       <div className="grow flex flex-col">
-        <a href={cv} download="Asadasd.pdf" className="font-normal hover:text-slate-300 ">
+        <a href={cv} download="Asadasd.pdf" className="font-normal  ">
           {title}
         </a>
         <p className="font-[Montserrat] text-[13px] ">{children}</p>

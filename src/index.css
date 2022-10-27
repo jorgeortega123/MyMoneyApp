@@ -194,27 +194,21 @@
 }
 
 .loadServer { 
-  animation: charging 1.5s linear infinite;
+  position: absolute;
   z-index: 0;
+  width: 20%;
+  left: 0;
+  animation: charging 0.6s linear infinite;
 }
 .bodyLetter { 
   font-family: 'Lato', sans-serif;
 }
 
 @keyframes charging {
-  0% { 
-
-    transform: translateX(96px);
-
+  50% { 
+  left: 100%;
+   transform: translateX(calc(-100% - 3px));
 
   }
-  50% {
-    transform: translateX(0px);
-    
-   }
-   100% {
-   
-    transform: translateX(96px);
-   }
-  
+
 }
