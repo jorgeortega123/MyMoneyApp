@@ -206,15 +206,15 @@ export const lang = {
     images: [
       {
         title: "My money",
-        all: ["https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png",
-        "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085300/cld-sample-3.jpg"
-      ],
+        all: [
+          "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png",
+          "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1666831069/Untitled_qqutoc.png",
+        ],
       },
       {
         title: "LLK",
         all: [
           "https://res.cloudinary.com/luisgarrido/image/upload/v1662252280/Screenshot_55_uiu6he.png",
-
         ],
       },
     ],

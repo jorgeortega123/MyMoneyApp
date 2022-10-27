@@ -379,12 +379,12 @@ const CvMain = () => {
             id="home"
           >
             {showImg && (
-              <div className="z-[6] fixed w-full overflow-auto h-full backdrop-blur-sm  bottom-0 top-[44px]  flex justify-center">
+              <div className="z-[7] fixed w-full overflow-auto h-full backdrop-blur-sm  bottom-0 top-[44px]  flex justify-center">
                 <div className=" w-11/12 flex flex-col items-center justify-center">
                   <div className="relative">
                   
                     <div
-                      className="right-0 top-[-28px] absolute cursor-pointer hover:text-black backdrop-blur-2xl px-2 text-[19px] rounded-[5px] font-bold bg-[#fe0000db] "
+                      className="right-0 top-[-28px] lg:top-[140px] z-[8] absolute cursor-pointer hover:text-black backdrop-blur-2xl px-2 text-[19px] rounded-[5px] font-bold bg-[#fe0000db] "
                       onClick={() => {
                         document.body.style.overflow = "auto";
                         setshowImg(false);
@@ -543,7 +543,7 @@ const CvMain = () => {
               </div>
               <div className="relative w-full flex justify-center mt-3 ml-2">
                 {onFocusTextarea && (
-                  <div className="indent-9 absolute bottom-[-50px] rounded-md z-[4]  text-[12px] text-black bg-[#ffd000] rectangule">
+                  <div className="px-2 indent-9 absolute bottom-[-50px] rounded-md z-[4]  text-[12px] text-black bg-[#ffd000] rectangule">
                     Todo lo que escribas aqui sera enviado de{" "}
                     <span className="font-bold">manera anonima</span> . A no ser
                     que especifiques tu nombre o alguna manera de indentificarte
@@ -557,7 +557,7 @@ const CvMain = () => {
                     id="textareOfFooter"
                     placeholder={dataText.extras.footer.input}
                     value={userTextWrote}
-                    className="focus:border-cyan-500 input-sender hover:border-cyan-600 active:border-cyan-600 h-max  border-[1px] rounded-t-[6px] "
+                    className="focus:border-cyan-500 px-2 input-sender hover:border-cyan-600 active:border-cyan-600 h-max  border-[1px] rounded-t-[6px] "
                     type="text"
                     name=""
                     onFocus={() => {
