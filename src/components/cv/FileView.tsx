@@ -4,12 +4,16 @@ export default function FileView({
   title = "as",
   children = "",
   cv,
+  handlerChangeByDownload
 }: {
   title: string;
   children: any;
   cv: string
+  handlerChangeByDownload: ()=>void
 }) {
+  ///function = {handlerChangeByDownload}
  const download =(a)=>{
+  handlerChangeByDownload()
     var link = document.createElement("a");
     link.href = a;
     link.download = a

@@ -35,6 +35,8 @@ const CvMain = () => {
   const [showLineFromDownload, setshowLineFromDownload] = useState(false);
   const [showLineFromTextarea, setshowLineFromTextarea] = useState(false);
   const [onFocusTextarea, setonFocusTextarea] = useState(false);
+  const [isLoadedBody, setisLoadedBody] = useState(false);
+  const [showLineWhenFileIsDownloading, setshowLineWhenFileIsDownloading] = useState(false)
   const [imgSrc, setimgSrc] = useState(
     "https://res.cloudinary.com/ddcoxtm2v/image/upload/v1662085373/myMoney_rqopx1.png"
   );
@@ -50,6 +52,7 @@ const CvMain = () => {
         ["tomato", "rebeccapurple", "lightblue", "rebeccapurple", "cadetblue"]
       );
     }, 1500);
+    document.body.style.overflow = "hidden"
   }, []);
 
   function consoleText(words, id, colors) {
@@ -198,20 +201,39 @@ const CvMain = () => {
     }, 3500);
   };
   ///
+  const changeHandlerBodyLoaded = () => { 
+    setTimeout(() => {
+      setisLoadedBody(true);
+      document.body.style.overflow = "auto";
+    }, 1500);  
+    
+
+  }
+  const handlerChangeByDownload = () => { 
+    alert("ASD")
+    setshowLineWhenFileIsDownloading(true)
+    setshowDownload(false)
+    setTimeout(() => {
+      setshowLineWhenFileIsDownloading(false)
+    }, 3500);
+  }
   return (
     <div className="main-container init relative ">
-      <div className="continuous-1 sticky z-[5] w-full h-[3px] top-0"></div>
+      {showLineWhenFileIsDownloading &&  <div className="continuous-1 sticky z-[5] w-full h-[3px] top-0"></div> }
+     
       {showDownload && (
         <Modals title="Indica el idioma del CV">
           <FileView
             title={"" + staticInf.name + "_cv.pdf"}
             cv={staticInf.cv.en.cv_pdf}
+            handlerChangeByDownload = {handlerChangeByDownload}
           >
             {staticInf.cv.en.text}
           </FileView>
           <FileView
             title={staticInf.name + "_cv.pdf"}
             cv={staticInf.cv.es.cv_pdf}
+            handlerChangeByDownload = {handlerChangeByDownload}
           >
             {staticInf.cv.es.text}
           </FileView>
@@ -347,7 +369,26 @@ const CvMain = () => {
           </motion.div>
         </div>
       </div>
-      <div className="main-page mx-auto sm:w-[500px] md:w-[600px] lg:w-full ">
+      <AnimatePresence>
+        {!isLoadedBody && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: "tween" }}
+          >
+            <div className=" z-[7] absolute w-full h-screen bg-black text-[54px] flex justify-center items-center">
+              <span className="bg-white"></span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div
+        onLoad={() => {
+          changeHandlerBodyLoaded()
+        }}
+        className="main-page mx-auto sm:w-[500px] md:w-[600px] lg:w-full "
+      >
         <AnimatePresence>
           {showMenu && (
             <motion.div
@@ -382,7 +423,6 @@ const CvMain = () => {
               <div className="z-[7] fixed w-full overflow-auto h-full backdrop-blur-sm  bottom-0 top-[44px]  flex justify-center">
                 <div className=" w-11/12 flex flex-col items-center justify-center">
                   <div className="relative">
-                  
                     <div
                       className="right-0 top-[-28px] lg:top-[140px] z-[8] absolute cursor-pointer hover:text-black backdrop-blur-2xl px-2 text-[19px] rounded-[5px] font-bold bg-[#fe0000db] "
                       onClick={() => {
