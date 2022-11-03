@@ -135,22 +135,6 @@ export default function Login() {
   }
   return (
     <>
-      <div className="relative h-[40px] text-3xl font-bold underline flex justify-center items-center  border-blue-500 border-b-[2px] pb-2 space-x-4 overflow-hidden">
-        <div className="pt-0 mt-0"></div>
-     
-        <motion.p
-          initial={{ x: "100vh", opacity: 0 }}
-          animate={{ x: 0, opacity: 5 }}
-          exit={{ x: "-100vw", opacity: 0 }}
-          transition={{
-            type: "spring",
-            duration: 2,
-          }}
-          className="absolute blockAllSelect underline mt-0 pt-[4px] text-black"
-        >
-          MyMoney
-        </motion.p>
-      </div>
       <div className="loginBack absolute  w-screen h-screen z-[0] ">
           <div class="purple"></div>
           <div class="medium-blue"></div>
@@ -165,7 +149,7 @@ export default function Login() {
           <div class="lightish-red"></div>
           <div class="pink"></div>
         </div>
-      <div className=" backGroundImage h-screen flex mt-[-40px] justify-center items-center ">
+      <div className=" backGroundImage h-screen flex justify-center items-center ">
        
         {
           // <Wave className="absolute w-[screen] h-auto bottom-0"  />
