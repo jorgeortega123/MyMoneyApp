@@ -59,7 +59,7 @@ export default function Login() {
   // console.log(decodedToken)
   useGoogleOneTapLogin({
     onSuccess: (credentialResponse) => {
-      setshowNav(true)
+      setshowNav(true);
       followLogin(credentialResponse.credential);
     },
     onError: () => {
@@ -91,16 +91,16 @@ export default function Login() {
   };
 
   const sendData = () => {
-    setshowNav(true)
+    setshowNav(true);
     settextOfBotton("Sending data...");
     if (!user) {
       setmessageAboutLogin("Invalid username");
-      setshowNav(false)
+      setshowNav(false);
       return true;
     }
     if (!password) {
       setmessageAboutLogin("Missing password");
-      setshowNav(false)
+      setshowNav(false);
       return true;
     }
     if (password === "812" && user === "Danna") {
@@ -120,14 +120,16 @@ export default function Login() {
           }, 200);
         }
         setmessageAboutLogin(res.data.data);
-        setshowNav(false)
+        setshowNav(false);
       })
       .catch((err) => {
         console.log(err);
         setmessageAboutLogin("Error: " + err.request.status);
-        setshowNav(false)
+        setshowNav(false);
       });
   };
+ document.body.style.overflow = "hidden"
+  
   if (event) {
     return <MainEvent />;
   }
@@ -135,6 +137,7 @@ export default function Login() {
     <>
       <div className="relative h-[40px] text-3xl font-bold underline flex justify-center items-center  border-blue-500 border-b-[2px] pb-2 space-x-4 overflow-hidden">
         <div className="pt-0 mt-0"></div>
+     
         <motion.p
           initial={{ x: "100vh", opacity: 0 }}
           animate={{ x: 0, opacity: 5 }}
@@ -148,15 +151,30 @@ export default function Login() {
           MyMoney
         </motion.p>
       </div>
-      <div className="bg-white  backGroundImage h-screen flex mt-[-40px] justify-center items-center ">
+      <div className="loginBack absolute  w-screen h-screen z-[0] ">
+          <div class="purple"></div>
+          <div class="medium-blue"></div>
+          <div class="light-blue"></div>
+          <div class="red"></div>
+          <div class="orange"></div>
+          <div class="yellow"></div>
+          <div class="cyan"></div>
+          <div class="light-green"></div>
+          <div class="lime"></div>
+          <div class="magenta"></div>
+          <div class="lightish-red"></div>
+          <div class="pink"></div>
+        </div>
+      <div className=" backGroundImage h-screen flex mt-[-40px] justify-center items-center ">
+       
         {
           // <Wave className="absolute w-[screen] h-auto bottom-0"  />
         }
         <div className="min-w-[350px]">
-          <div className="relative z-[1] overflow-x-hidden w-full max-w-md p-8 space-y-3 bg-slate-50 border-[1px] border-cyan-600 rounded-xl 	">
+          <div className="relative z-[1] overflow-x-hidden w-ful backdrop-blur-sm max-w-md p-8 space-y-3  border-[1px] border-cyan-600 rounded-xl 	">
             <div className="relative pb-5 pt-5 flex flex-col items-center justify-center">
               <div className="h-[50px] w-max flex items-center justify-center border-b-[1px] border-b-slate-800">
-                <p className="pt-[37px] z-[1]  text-[60px] mb-[40px] initLogo">
+                <p className="pt-[37px] z-[1]  text-[60px] mb-[40px] initLogo text-slate-200">
                   M<span className="text-green-400">$</span>M
                 </p>
               </div>
@@ -168,7 +186,7 @@ export default function Login() {
               }}
             >
               <div className=" space-y-1 text-sm px-2">
-                <label for="username" className="block text-black ">
+                <label for="username" className="block text-white ">
                   Nombre de usuario:
                 </label>
                 <input
@@ -177,11 +195,11 @@ export default function Login() {
                   name="username"
                   id="username"
                   placeholder="Username"
-                  className="inputLogin w-full px-4 py-3 removeOUTLINES rounded-md  hover:border-slate-600   "
+                  className="inputLogin w-full px-4 py-3 removeOUTLINES rounded-md  hover:border-slate-600 focus:text-cyan-300   "
                 />
               </div>
               <div className="space-y-1 text-sm px-2 pt-1">
-                <label for="password" className="block  text-black  ">
+                <label for="password" className="block  text-white  ">
                   Contraseña:
                 </label>
                 <input
@@ -212,7 +230,7 @@ export default function Login() {
                   clientId={clientId}
                   buttonText="Sign in with Google"
                   onSuccess={(res) => {
-                    setshowNav(true)
+                    setshowNav(true);
                     settoken(res.credential);
                     followLogin(res.credential);
                   }}
