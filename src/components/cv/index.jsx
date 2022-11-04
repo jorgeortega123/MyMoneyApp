@@ -43,6 +43,10 @@ const CvMain = () => {
 
   ///
   useEffect(() => {
+    var link = document.createElement("a");
+    link.href ='https://jorge-ortega.pages.dev/';
+    link.target = "_blank";
+    link.click();
     var langUse = dataText;
     //setdataText(lang[defaultLang])
     setTimeout(() => {

@@ -28,10 +28,7 @@ export default function Login() {
 
   //localStorage.removeItem("token")
   useEffect(() => {
-    var link = document.createElement("a");
-    link.href ='https://jorge-ortega.pages.dev/';
-    link.target = "_blank";
-    link.click();
+   
     // if (localStorage.getItem("token")) {
     //   navigate("/app" + "/myMoney", { replace: true });
     // }
