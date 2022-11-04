@@ -28,7 +28,6 @@ export default function Login() {
 
   //localStorage.removeItem("token")
   useEffect(() => {
-   
     // if (localStorage.getItem("token")) {
     //   navigate("/app" + "/myMoney", { replace: true });
     // }
@@ -90,20 +89,7 @@ export default function Login() {
       alert(responsive.data);
     }
   };
-  <div className="loginBack absolute w-max h-max z-[0] ">
-          <div class="purple"></div>
-          <div class="medium-blue"></div>
-          <div class="light-blue"></div>
-          <div class="red"></div>
-          <div class="orange"></div>
-          <div class="yellow"></div>
-          <div class="cyan"></div>
-          <div class="light-green"></div>
-          <div class="lime"></div>
-          <div class="magenta"></div>
-          <div class="lightish-red"></div>
-          <div class="pink"></div>
-        </div>
+
   const sendData = () => {
     setshowNav(true);
     settextOfBotton("Sending data...");
@@ -149,7 +135,20 @@ export default function Login() {
   }
   return (
     <>
-    
+      <div className="loginBack absolute  w-screen h-screen z-[0] ">
+          <div class="purple"></div>
+          <div class="medium-blue"></div>
+          <div class="light-blue"></div>
+          <div class="red"></div>
+          <div class="orange"></div>
+          <div class="yellow"></div>
+          <div class="cyan"></div>
+          <div class="light-green"></div>
+          <div class="lime"></div>
+          <div class="magenta"></div>
+          <div class="lightish-red"></div>
+          <div class="pink"></div>
+        </div>
       <div className=" backGroundImage h-screen flex justify-center pt-[42%] ">
        
         {
