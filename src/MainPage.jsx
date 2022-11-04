@@ -51,6 +51,7 @@ export default function MainPage() {
     if (context.endServerRes === true) {
       if (context.data.data != "No se econtro información del usuario") {
         setTimeout(() => {
+          document.body.style.overflow = "auto"
           setendServerResNext(true);
         }, 400);
       } else {
