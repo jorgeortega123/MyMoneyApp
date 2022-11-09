@@ -9,6 +9,7 @@ import useMessageContext from "../../../context/Modal/useMessageContext";
 import dayjs from 'dayjs'
 import { Container } from "@mui/material";
 import Container1 from "./Container/Container";
+import Button2 from "./Modal/Button2";
 export default function AddMoveCash(lang) {
   const { context } = useGlobalContext();
   //console.log(context)
@@ -155,12 +156,12 @@ export default function AddMoveCash(lang) {
                 </button>
               </div>
             </div>
-            <button
+            <Button2
               className="mt-2 w-full h-9  px-5 mr-2 mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
               onClick={(e) => addMove(e)}
             >
               {contentOfBotton}
-            </button>
+            </Button2>
           </div>
         </form>
       </div>

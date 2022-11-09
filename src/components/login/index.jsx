@@ -149,7 +149,7 @@ export default function Login() {
           <div class="lightish-red"></div>
           <div class="pink"></div>
         </div>
-      <div className=" backGroundImage h-screen flex justify-center pt-[42%] ">
+      <div className="h-screen flex items-center justify-center ">
        
         {
           // <Wave className="absolute w-[screen] h-auto bottom-0"  />

@@ -11,6 +11,7 @@ import {
 import useGlobalContext from "../../../../context/useGlobalContext";
 import dayjs from "dayjs";
 import Container1 from "../Container/Container";
+import useLangContext from "../../../../context/subFunctions/useLangContext";
 const init = dayjs(dayjs().endOf("week").$d);
 const date = init.toString();
 const datee = date.split(" ");
@@ -23,8 +24,8 @@ export default function BarChart() {
   const { context } = useGlobalContext();
   const [weeklyWaste, setweeklyWaste] = useState(0);
   const [follow, setFollow] = useState(false);
-  const daysWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
+  const daysWeek = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado"];
+  const { langs } = useLangContext();
   useEffect(() => {
     var arr = [];
     var arr_other = { w0: [], w1: [], w2: [], w3: [], w4: [], w5: [], w6: [] };
@@ -75,7 +76,7 @@ export default function BarChart() {
         //subarr.push(a.data[i])
       }
 
-      arr2.push({ costName: daysWeek[ind], value: sum, date: a.local });
+      arr2.push({ costName: daysWeek[ind ], value: sum, date: a.local });
     });
     setdataArr(arr2);
     console.log(arr2);
@@ -83,6 +84,7 @@ export default function BarChart() {
       return accumulator + object.value;
     }, 0);
     setweeklyWaste(gastadoSemanalmente);
+    langs.weeklySet(gastadoSemanalmente)
     setFollow(true);
   }, [context.data]);
   //

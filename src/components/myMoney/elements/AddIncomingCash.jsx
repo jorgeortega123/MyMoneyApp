@@ -5,6 +5,7 @@ import useMessageContext from "../../../context/Modal/useMessageContext";
 import useGlobalContext from "../../../context/useGlobalContext";
 import axios from "axios";
 import Container1 from "./Container/Container";
+import Button2 from "./Modal/Button2";
 export default function AddIncomingCash(lang) {
   const { context } = useGlobalContext();
   const server = context.server;
@@ -101,12 +102,12 @@ export default function AddIncomingCash(lang) {
           </select>
         </div>
 
-        <button
+        <Button2
           onClick={() => send()}
           className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 "
         >
           {lang.lang.buttons.update[0]}
-        </button>
+        </Button2>
       </div>
     </Container1>
   );

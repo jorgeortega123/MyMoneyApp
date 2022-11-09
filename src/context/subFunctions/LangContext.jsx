@@ -6,6 +6,7 @@ export function LangContextComponent({ children }) {
   const { context } = useGlobalContext();
   const [data, setdata] = useState({});
   const [finish, setfinish] = useState(false)
+  const [weeklySpent, setweeklySpent] = useState(0)
   useEffect(() => {
     if (!context.data||!localStorage.getItem('token')||!context.data.fixed ) {
       return;
@@ -78,8 +79,11 @@ export function LangContextComponent({ children }) {
     setdata(dataOfi);
     setfinish(true)
   }, [context.endServerRes]);
+  const weeklySet = (val) => {
+setweeklySpent((Number(val).toFixed(2)))
+  }
   return (
-    <LangContext.Provider value={{ lang: "en", data: data, onLoad: finish||false }}>
+    <LangContext.Provider value={{ lang: "en", data: data, onLoad: finish||false, weekly: weeklySpent,  weeklySet }}>
       {children}
     </LangContext.Provider>
   );

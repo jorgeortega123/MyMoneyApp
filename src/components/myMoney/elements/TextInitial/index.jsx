@@ -69,6 +69,22 @@ export default function TextInitial() {
           <p>{langs.data.valueTo}</p>
         </div>
       )}
+       <div className="flex">
+          <svg
+            class="w-3 m-[3px] "
+            role="presentation"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M14.485 4.347l-8.324 8.625-4.648-4.877.724-.69 3.929 4.123 7.6-7.875.72.694z"
+            ></path>
+          </svg>
+          <p>Restante para la semana: <span className="underline text-blue-500"> {(Number(langs.data.valueTo - langs.weekly).toFixed(2))}</span></p>
+        </div>
     </div>
   );
 }
