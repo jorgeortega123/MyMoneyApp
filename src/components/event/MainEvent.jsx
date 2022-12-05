@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./style.css";
 import "./hearth.css";
 import { AnimatePresence, motion } from "framer-motion";
-import Neon from "./neonhearth/Neon";
 import Card from "./card/Card";
 import EarthPlanet from "./earth/EarthPlanet";
 import axios from "axios";

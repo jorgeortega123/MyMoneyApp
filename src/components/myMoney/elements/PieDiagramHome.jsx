@@ -50,8 +50,6 @@ export const PieDiagramHome = (dataPie) => {
         cost: 3,
         max: 4,
       });
-      //console.log(sum - perWeek)
-      console.log(dataBasic);
       setdataBasic(allArray);
     };
     model();
@@ -86,13 +84,7 @@ export const PieDiagramHome = (dataPie) => {
         indexLabel: "{title} - {value}%",
         dataPoints: [
           dataBasic,
-          /*
-        { y: 18, label: "Direct" },
-        { y: 49, label: "Organic Search" },
-        { y: 9, label: "Paid Search" },
-        { y: 5, label: "Referral" },
-        { y: 19, label: "Social" }
-      */
+    
         ],
       },
     ],

@@ -15,7 +15,7 @@ function Sucess(props: { show: boolean; title: string; description: string }) {
         >
           <div className="flex items-center justify-center w-12 bg-emerald-500">
             <svg
-              className="w-6 h-6 text-white fill-current"
+              className="w-6 h-6 fill-white"
               viewBox="0 0 40 40"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -27,7 +27,7 @@ function Sucess(props: { show: boolean; title: string; description: string }) {
               <span className="font-semibold text-emerald-500 dark:text-emerald-400">
                 {props.title}
               </span>
-              <p className="text-sm text-gray-600 dark:text-gray-200">
+              <p className="text-sm text-black">
                 {props.description}
               </p>
             </div>

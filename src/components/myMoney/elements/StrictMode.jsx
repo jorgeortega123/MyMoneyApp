@@ -75,7 +75,7 @@ export default function StrictMode({ func }) {
       return accumulator + object.extra;
     }, 0);
     setonlyUserFixedDebst(sumaDeDeudasFijasAdquiridas);
-    console.log(sumaDeDeudasFijasPorPagarALaSemana);
+
     var dayServer = dayjs(dataUser.history.rest.date);
     var costThisDay = [];
     dataUser.history.today.map((data) => {
@@ -104,27 +104,13 @@ export default function StrictMode({ func }) {
     // );
     var initial = langs.data.initial
     var valueTo = langs.data.valueTo
-    console.log(initial, valueTo);
+
     settoPayWeekly(initial);
-    console.log(valueTo);
+ 
     func(valueTo / 7, valueTo / 7 - costosDeHoyDia);
     setsimuladorPayDaily(valueTo / 7);
     var valueToDay = valueTo / 7 - costosDeHoyDia;
-    console.log(costosDeHoyDia, valueToDay);
-    //new
-    // var ae = valueToDay * dayServer.diff(presentDay) + dataUser.history.rest.value;
-    // if (dataUser.history.rest.value != ae) {
-    // axios
-    //   .post(server + "/overCost", {
-    //     name: nameFixedDebst,
-    //     value: valueToDay,
-    //     date: dayjs().$d,
-    //     user: "jorge593",
-    //   })
-    //   .then((res) => console.log(res.data))
-    //   .catch((e) => alert(e));
-    // }
-    //new
+
     var restDay = parseInt(dataUser.history.rest[0].value);
     var res = LeftMoney(
       context.data.history.rest[0].date,

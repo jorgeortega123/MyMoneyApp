@@ -22,8 +22,6 @@ export function LeftMoney(day, money, restMoney, todayWaste) {
   var use_datee = use_date.split(" ");
   var [use_mes, use_dia, use_anio] = [use_datee[1], use_datee[2], use_datee[3]];
   var use_toDayString = use_mes + use_dia + use_anio;
-
-  console.log(use_toDayString, toDayString);
   if (use_toDayString === toDayString) {
     return 0;
   } else {

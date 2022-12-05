@@ -27,7 +27,6 @@ export default function () {
       var dataManipulate = dayjs(e.date).$d.toString().split(' ')
       var [mes0, dia0, anio0 ] = [dataManipulate[1],dataManipulate[2],dataManipulate[3]]
       var idFecha = (mes0 + dia0 + anio0)
-      console.log(idFecha, hoyDiaEs)
       if (idFecha === hoyDiaEs) {
         if (arr.includes(e)) {return}
         arr.push(e);

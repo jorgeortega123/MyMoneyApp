@@ -29,14 +29,7 @@ export default function BarChart() {
   useEffect(() => {
     var arr = [];
     var arr_other = { w0: [], w1: [], w2: [], w3: [], w4: [], w5: [], w6: [] };
-    // var [w0w, w1w, w2w, w3w, w4w, w5w, w6w] = [0, 0, 0, 0, 0, 0, 0];
-    // w0w = dayjs(init).subtract(0, "day");
-    // w1w = dayjs(init).subtract(1, "day");
-    // w2w = dayjs(init).subtract(2, "day");
-    // w3w = dayjs(init).subtract(3, "day");
-    // w4w = dayjs(init).subtract(4, "day");
-    // w5w = dayjs(init).subtract(5, "day");
-    // w6w = dayjs(init).subtract(6, "day");
+
     for (let index = 0; index < 7; index++) {
       var newWest = dayjs(init).subtract((6 - index), "day");
       var date = dayjs(newWest).$d.toString();
@@ -45,7 +38,7 @@ export default function BarChart() {
       var hoyDiaEs = mes + dia + anio;
       arr.push({ day: newWest, n: index, local: hoyDiaEs, data: [] });
     }
-    console.log(arr);
+
     for (let i = 0; i < 6; i++) {
       var dataCompare = arr[i].local;
       context.data.history.today.map((e, index) => {
@@ -54,15 +47,15 @@ export default function BarChart() {
         var datee1 = dataCompareE.toString().split(" ");
         var [me1s, di1a, ani1o] = [datee1[1], datee1[2], datee1[3]];
         var hoyDiaEs = di1a + me1s + ani1o;
-        console.log(hoyDiaEs, dataCompare);
+  
         if (hoyDiaEs === dataCompare) {
-          console.log(e);
+
           var s = dayjs(dayjs(e.date)).day();
           arr[s].data.push(e);
         }
       });
     }
-    console.log(arr);
+  
     const arr2 = [];
     arr.map((a, ind) => {
       var subarr = [];
@@ -79,7 +72,6 @@ export default function BarChart() {
       arr2.push({ costName: daysWeek[ind ], value: sum, date: a.local });
     });
     setdataArr(arr2);
-    console.log(arr2);
     var gastadoSemanalmente = arr2.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
@@ -128,7 +120,7 @@ export default function BarChart() {
             return (
               <>
             
-                <tr className="border-b   odd:bg-white even:bg-gray-50 ">
+                <tr key={`table-from-bar ${num}`} className="border-b   odd:bg-white even:bg-gray-50 ">
                   <th
                     scope="row"
                     className={`capitalize px-3 py-2 font-medium text-gray-900 ${dayNumber===num && 'text-red-900 bg-slate-200'} whitespace-nowrap`}

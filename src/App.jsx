@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
 import "./index.css";
-//import { data, serverRes } from "./dataSimulateServer";
-import axios from "axios";
 import useGlobalContext from "./context/useGlobalContext";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { lang, phrases } from "./dataSimulateServer";
 import Login from "./components/login";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-//import Event from "./components/subComponents/event/Event";
 import MainPage from "./MainPage";
-//import AllTransactions from "./components/myMoney/subComponents/AllTransactions";
 import CvMain from "./components/cv";
 import EventMain from "./components/event/Event";
 import Form from "./components/myMoney/Form";
 import Games from "./components/games";
 import PreRegister from "./components/myMoney/elements/PreRegister";
-//import useGlobalContext from "../context/useGlobalContext";
 const server = "https://mymone.azurewebsites.net";
-
 function App() {
   const { context } = useGlobalContext();
   const [onErrorServerOut, setonErrorServerOut] = useState(false);
@@ -26,12 +20,7 @@ function App() {
   const [textLoading, settextLoading] = useState("Verificando...");
   const [finalLang, setfinalLang] = useState(lang.es);
   const [langByUser, setlangByUser] = useState("es");
-  const [falsetrue, setfalsetrue] = useState(false);
-  const [langFromBotton, setlangFromBotton] = useState(lang.en);
-  const [loginValidation, setloginValidation] = useState(false);
-  const [showConfigg, setshowConfigg] = useState(false);
-  const [frase, setfrase] = useState("...");
-  ///////
+
   useEffect(() => {
     if (langByUser === "en") {
       setfinalLang(lang.es);
@@ -57,12 +46,7 @@ function App() {
           <Route path="/app/myMoney" element={<MainPage />}></Route>
           <Route path="/app/myMoney/form" element={<Form />} />
           <Route path="/app/myMoney/preRegister" element={<PreRegister />} />
-    
           <Route path="/games" element={<Games />} />
-          {
-            //<Route path="/data/transitions/costs" element={<AllTransactions />} />
-          }
-
           <Route path="/login" element={<Login />} />
           <Route path="/event" element={<EventMain />} />
           <Route path="/cv" element={<CvMain />} />
@@ -73,18 +57,5 @@ function App() {
   );
 }
 
-/*    <Route path="/" element={<App />}>
-      <Route index element={<Home />} />
-      <Route path="teams" element={<Teams />}>
-        <Route path=":teamId" element={<Team />} />
-        <Route path="new" element={<NewTeamForm />} />
-        <Route index element={<LeagueStandings />} />
-      </Route>
-    </Route>
-  </Routes>*/
-/*
-
-
-*/
 
 export default App;
