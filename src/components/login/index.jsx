@@ -128,29 +128,28 @@ export default function Login() {
         setshowNav(false);
       });
   };
- document.body.style.overflow = "hidden"
-  
+  document.body.style.overflow = "hidden";
+
   if (event) {
     return <MainEvent />;
   }
   return (
     <>
       <div className="loginBack absolute  w-screen h-screen z-[0] ">
-          <div class="purple"></div>
-          <div class="medium-blue"></div>
-          <div class="light-blue"></div>
-          <div class="red"></div>
-          <div class="orange"></div>
-          <div class="yellow"></div>
-          <div class="cyan"></div>
-          <div class="light-green"></div>
-          <div class="lime"></div>
-          <div class="magenta"></div>
-          <div class="lightish-red"></div>
-          <div class="pink"></div>
-        </div>
+        <div class="purple"></div>
+        <div class="medium-blue"></div>
+        <div class="light-blue"></div>
+        <div class="red"></div>
+        <div class="orange"></div>
+        <div class="yellow"></div>
+        <div class="cyan"></div>
+        <div class="light-green"></div>
+        <div class="lime"></div>
+        <div class="magenta"></div>
+        <div class="lightish-red"></div>
+        <div class="pink"></div>
+      </div>
       <div className="h-screen flex items-center justify-center ">
-       
         {
           // <Wave className="absolute w-[screen] h-auto bottom-0"  />
         }
@@ -175,6 +174,7 @@ export default function Login() {
                 </label>
                 <input
                   onChange={(e) => setuser(e.target.value)}
+                  defaultValue="demo123"
                   type="text"
                   name="username"
                   id="username"
@@ -187,6 +187,7 @@ export default function Login() {
                   Contraseña:
                 </label>
                 <input
+                  value="1234"
                   onChange={(e) => setpassword(e.target.value)}
                   type="password"
                   name="password"

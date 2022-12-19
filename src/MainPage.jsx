@@ -28,7 +28,7 @@ export default function MainPage() {
   const [onErrorServerOut, setonErrorServerOut] = useState(false);
   const [endServerResNext, setendServerResNext] = useState(false);
   const [loginValidation, setloginValidation] = useState(false);
-  const [finalLang, setfinalLang] = useState(lang.es);
+  const [finalLang, setfinalLang] = useState(lang.en);
   const [langByUser, setlangByUser] = useState("es");
   const [frase, setfrase] = useState("...");
   const [textLoading, settextLoading] = useState("Verificando...");

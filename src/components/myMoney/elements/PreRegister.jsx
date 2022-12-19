@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PreRegister() {
   const [onError, setonError] = useState(false);
   const [main, setmain] = useState({});
+  let navigate = useNavigate();
   useEffect(() => {
     var data = localStorage.getItem("tokenInf");
     if (data) {
@@ -10,6 +12,10 @@ export default function PreRegister() {
     } else {
       setonError(true);
     }
+    setTimeout(() => {
+      localStorage.setItem("token", "demo123")
+      navigate("/", { replace: true });
+    }, 5500);
   }, []);
 
   if (onError) {
@@ -27,25 +33,26 @@ export default function PreRegister() {
 
       <div className="pt-[40px]">
         <div className="w-full bg-slate-200 px-4 border-[1px] border-slate-700 rounded-xl">
-          <p className="text-center text-[30px]">Pre-Registro </p>
+          <p className="text-center text-[30px]">Demo account</p>
         </div>
         <div className=" w-full items-center justify-center flex pt-6">
           <img src={main.picture} className="w-12 h-auto rounded-full" alt="" />
         </div>
-        <div className="pt-1 w-[250px] items-center flex flex-col justify-center text-center">
-          <p>
-            Hola{" "}
+        <div className="pt-1 w-[250px] flex flex-col text-left">
+          <p className="text-center">
+            Hi{" "}
             <span className="text-blue-400 font-bold">{main.given_name}</span>
           </p>
-          <p>Muchas gracias por ingresar.</p>
+          <p></p>
           <p className="py-4">
-            Actualmente estamos trabajando en pequenios detalles para que todo
-            funcione.
+            Currently the form to complete user data is not finished yet. 
           </p>
 
           <p className="py-3">
-            Cuando este todo listo te enviaremos una invitacion a:{" "}
-            <span className="underline">{main.email}</span>{" "}
+            So, you going to Log in as Demo account{" "}
+          </p>
+          <p className="py-3 text-center">
+            In 5 seconds we will direct you to <span className="underline text-blue-600">MyMoneyApp</span> 
           </p>
         </div>
       </div>
