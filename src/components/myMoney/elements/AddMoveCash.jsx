@@ -58,7 +58,7 @@ export default function AddMoveCash(lang) {
       setcontentOfBotton(langg.buttons.add[0]);
       return true;
     }
-    var name = "jorge593";
+    var name = localStorage.getItem("token");
     ///
     axios
       .post(server + "/edit", {

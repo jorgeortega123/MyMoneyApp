@@ -83,7 +83,7 @@ export default function Login() {
         navigate("/app" + "/myMoney/preRegister", { replace: true });
       } else {
         localStorage.setItem("token", responsive.data.user);
-        navigate("/app" + "/myMoney", { replace: true });
+        navigate("/");
       }
     } else if (responsive.error === true) {
       alert(responsive.data);
@@ -93,20 +93,17 @@ export default function Login() {
   const sendData = () => {
     setshowNav(true);
     settextOfBotton("Sending data...");
-    if (!user) {
+    if (user==="demo123" || document.getElementById('username').value==="demo123") {localStorage.setItem("token", "demo123");  navigate("/app" + "/myMoney", { replace: true }); return}
+    if (!user && document.getElementById('username').value) {
       setmessageAboutLogin("Invalid username");
       setshowNav(false);
       return true;
     }
-    if (!password) {
+    if (!password && document.getElementById('password').value) {
       setmessageAboutLogin("Missing password");
       setshowNav(false);
       return true;
     }
-    if (password === "812" && user === "Danna") {
-      navigate("/event" + "?name=Danna&id=812D301313", { replace: true });
-    }
-
     axios
       .post(context.server + "/login", {
         user: user,
@@ -116,7 +113,7 @@ export default function Login() {
         if (res.data.extra === 205) {
           localStorage.setItem("token", res.data.token);
           setTimeout(() => {
-            navigate("/app" + "/myMoney", { replace: true });
+            navigate("/");
           }, 200);
         }
         setmessageAboutLogin(res.data.data);
@@ -187,9 +184,9 @@ export default function Login() {
                   Contraseña:
                 </label>
                 <input
+                onChange={(e) => setpassword(e.target.value)}
                   value="1234"
-                  onChange={(e) => setpassword(e.target.value)}
-                  type="password"
+                  type={"password"}
                   name="password"
                   id="password"
                   placeholder="Password"

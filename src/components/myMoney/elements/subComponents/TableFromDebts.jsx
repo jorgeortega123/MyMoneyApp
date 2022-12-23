@@ -50,7 +50,7 @@ export default function TableFromDebts(lang) {
       destinyAccount || document.getElementById("destinatario").value;
 
     ///////
-    var name = "jorge593";
+    var name =  localStorage.getItem("token");;
     ///
     if (!affect) {
       message({

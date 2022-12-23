@@ -41,7 +41,7 @@ export default function AddIncomingCash(lang) {
       });
       return true;
     }
-    var name = "jorge593";
+    var name = localStorage.getItem("token");
     axios
       .post(server + "/acredit", {
         name: name,
@@ -72,7 +72,7 @@ export default function AddIncomingCash(lang) {
       <div className="">
         <p>{lang.lang.components.incomingCash.title[0]}</p>
         <div className="flex items-center space-x-1 ">
-          <div className="mr-1 flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
+          <div className="mr-1 flex items-center border rounded-lg border-[#13131328] focus:ring-1 focus:ring ">
             <p className="ml-1 text-green-600">$</p>
             <input
               type="number"
@@ -104,7 +104,7 @@ export default function AddIncomingCash(lang) {
 
         <Button2
           onClick={() => send()}
-          className="mt-2 w-full h-9  px-5  mb-2 font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900 "
+       
         >
           {lang.lang.buttons.update[0]}
         </Button2>

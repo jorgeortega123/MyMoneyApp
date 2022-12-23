@@ -44,6 +44,9 @@ export default function StrictMode({ func }) {
       setshowMessageAlert(true);
     }
     var dataUser = context.data;
+    if (!dataUser?.fixed==="" ||!dataUser?.fixed===undefined ) { 
+      return;
+    }
     var userSalarey = dataUser.perWeek * 4;
     var sumDebst = dataUser.fixed.reduce((accumulator, object) => {
       return accumulator + object.value;
@@ -124,7 +127,7 @@ export default function StrictMode({ func }) {
         name: nameFixedDebst,
         value: valueToDay,
         date: dayjs().$d,
-        user: "jorge593",
+        user:  localStorage.getItem("token"),
       })
       .then((res) => console.log(res.data))
       .catch((e) => alert(e));
@@ -162,7 +165,7 @@ export default function StrictMode({ func }) {
           paid: 0,
           total: totalMount,
           action: whatModal,
-          user: "jorge593",
+          user:  localStorage.getItem("token"),
           date: dayjs().$d,
         })
         .then((res) => {
@@ -199,7 +202,7 @@ export default function StrictMode({ func }) {
         .post(server + "/fixedDebst", {
           name: document.getElementById("valueEditSelect").value,
           action: whatModal,
-          user: "jorge593",
+          user:  localStorage.getItem("token"),
           mount: document.getElementById("inputToPutNumber").value,
           date: dayjs().$d,
         })

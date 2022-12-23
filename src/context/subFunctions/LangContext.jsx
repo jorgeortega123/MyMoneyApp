@@ -1,17 +1,24 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useGlobalContext from "../useGlobalContext";
 //@ts-ignore
 export const LangContext = createContext();
 export function LangContextComponent({ children }) {
   const { context } = useGlobalContext();
   const [data, setdata] = useState({});
+  const [reload, setreload] = useState(false)
   const [finish, setfinish] = useState(false)
   const [weeklySpent, setweeklySpent] = useState(0)
   useEffect(() => {
     if (!context.data||!localStorage.getItem('token')||!context.data.fixed ) {
+      setreload(true)
       return;
     }
+
     var dataUser = context.data;
+    if (!dataUser.fixed==="" ||!dataUser.fixed===undefined ) { 
+      return;
+    }
     var userSalarey = dataUser.perWeek * 4;
     var globalData = new Map();
     //Suma las deudas fijas como ortodoncia, laptop, etc..

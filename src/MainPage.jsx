@@ -51,7 +51,7 @@ export default function MainPage() {
     if (context.endServerRes === true) {
       if (context.data.data != "No se econtro información del usuario") {
         setTimeout(() => {
-          document.body.style.overflow = "auto"
+          document.body.style.overflow = "auto";
           setendServerResNext(true);
         }, 400);
       } else {
@@ -85,6 +85,7 @@ export default function MainPage() {
               <p>Page have been disabled for avoid bugs.</p>
             </div>
           </div>
+
           <div className="blockAllSelect  h-full w-full absolute top-0 bodyLetter text-[14px]   ">
             <div
               id="topMenu"
@@ -105,9 +106,7 @@ export default function MainPage() {
                 <a className="text-cyan-600">{langByUser} </a>
               </div>
               <div className="text-[25px] lg:text-[33px] pt-[10px] font-bold underline w-full text-center init">
-                <span className="font-extralight text-green-400 ">
-                  $
-                </span>
+                <span className="font-extralight text-green-400 ">$</span>
                 MyMoney
               </div>
 
@@ -128,54 +127,56 @@ export default function MainPage() {
                 </div>
               </div>
             </div>
-            {context.ashowConfiguration && (
-              <Configurations data={showConfigg} />
-            )}
-            {!onErrorServerOut ? (
-              <div className="flex flex-col">
-                <Modal>
-                  <p>Hola</p>
-                </Modal>
+            <div className="max-w-[600px] mx-auto">
+              {context.ashowConfiguration && (
+                <Configurations data={showConfigg} />
+              )}
+              {!onErrorServerOut ? (
+                <div className="flex flex-col">
+                  <Modal>
+                    <p>Hola</p>
+                  </Modal>
 
-                <div className="pl-1 pr-2  w-full flex flex-col md:space-y-2 justify-center space-x-0 md:space-x-2 sm:flex-col  lg:flex-col ">
-                  <div className="">
-                    <PieDiagramHome lang={finalLang} />
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 1,
-                      }}
-                    >
-                      <ToDay />
-                      <DetailsExpendsWeek lang={finalLang} />
-                    </motion.div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row">
-                    <div className="flex-row">
-                      <AddMoveCash lang={finalLang} />
-
-                      <AddIncomingCash lang={finalLang} />
-
-                      <div className="items-center">
-                        {context.data?.debts?.length === 0 ? (
-                          <></>
-                        ) : (
-                          <div className="col-span-1 md:col-span-1 ">
-                            <TableFromDebts lang={finalLang} />
-                          </div>
-                        )}
-                      </div>
+                  <div className="pl-1 pr-2  w-full flex flex-col md:space-y-2 justify-center space-x-0 md:space-x-2 sm:flex-col  lg:flex-col ">
+                    <div className="">
+                      <PieDiagramHome lang={finalLang} />
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 1,
+                        }}
+                      >
+                        <ToDay />
+                        <DetailsExpendsWeek lang={finalLang} />
+                      </motion.div>
                     </div>
-                    <AllCost />
-                    <BarChart />
+                    <div className="flex flex-col ">
+                      <div className="flex-row">
+                        <AddMoveCash lang={finalLang} />
+
+                        <AddIncomingCash lang={finalLang} />
+
+                        <div className="items-center">
+                          {context.data?.debts?.length === 0 ? (
+                            <></>
+                          ) : (
+                            <div className="col-span-1 md:col-span-1 ">
+                              <TableFromDebts lang={finalLang} />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <AllCost />
+                      <BarChart />
+                    </div>
                   </div>
+                  <div></div>
                 </div>
-                <div></div>
-              </div>
-            ) : (
-              <ServerOut />
-            )}
+              ) : (
+                <ServerOut />
+              )}
+            </div>
           </div>
         </MessageContextComponent>
       );
