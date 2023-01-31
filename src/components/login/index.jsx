@@ -46,16 +46,23 @@ export default function Login() {
       if (responsive.error === false) {
         if (responsive.data.isNewUser === true) {
           localStorage.getItem("tokenInf", decodedToken);
-          navigate("/app" + "/myMoney/form", { replace: true });
+          // navigate("/app" + "/myMoney/form", { replace: true });
+          navigate_s();
         } else {
-          navigate("/app" + "/myMoney", { replace: true });
+          // await navigate("/app" + "/myMoney", { replace: true });
+          navigate_s();
         }
       } else if (responsive.error === true) {
         alert(responsive.data);
       }
     };
   }, [token]);
+  const navigate_s = () => {
 
+    setTimeout(() => {
+      navigate("/");
+    }, 600);
+  };
   // console.log(decodedToken)
   useGoogleOneTapLogin({
     onSuccess: (credentialResponse) => {
@@ -80,26 +87,34 @@ export default function Login() {
     if (responsive.error === false) {
       if (responsive.data.isNewUser === true) {
         localStorage.setItem("tokenInf", JSON.stringify(user));
-        navigate("/app" + "/myMoney/preRegister", { replace: true });
+        navigate_s();
       } else {
         localStorage.setItem("token", responsive.data.user);
-        navigate("/");
+        navigate_s();
       }
     } else if (responsive.error === true) {
       alert(responsive.data);
     }
   };
 
-  const sendData = () => {
+  const sendData = async() => {
     setshowNav(true);
     settextOfBotton("Sending data...");
-    if (user==="demo123" || document.getElementById('username').value==="demo123") {localStorage.setItem("token", "demo123");  navigate("/app" + "/myMoney", { replace: true }); return}
-    if (!user && document.getElementById('username').value) {
+    if (
+      user === "demo123" ||
+      document.getElementById("username").value === "demo123"
+    ) {
+      await localStorage.setItem("token", "demo123");
+      // navigate("/app" + "/myMoney", { replace: true });
+      navigate_s();
+      return;
+    }
+    if (!user && document.getElementById("username").value) {
       setmessageAboutLogin("Invalid username");
       setshowNav(false);
       return true;
     }
-    if (!password && document.getElementById('password').value) {
+    if (!password && document.getElementById("password").value) {
       setmessageAboutLogin("Missing password");
       setshowNav(false);
       return true;
@@ -109,12 +124,10 @@ export default function Login() {
         user: user,
         pass: password,
       })
-      .then((res) => {
+      .then(async (res) => {
         if (res.data.extra === 205) {
-          localStorage.setItem("token", res.data.token);
-          setTimeout(() => {
-            navigate("/");
-          }, 200);
+          await localStorage.setItem("token", res.data.token);
+          navigate_s();
         }
         setmessageAboutLogin(res.data.data);
         setshowNav(false);
@@ -159,69 +172,64 @@ export default function Login() {
                 </p>
               </div>
             </div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                sendData();
-              }}
-            >
-              <div className=" space-y-1 text-sm px-2">
-                <label for="username" className="block text-white ">
-                  Nombre de usuario:
-                </label>
-                <input
-                  onChange={(e) => setuser(e.target.value)}
-                  defaultValue="demo123"
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="Username"
-                  className="inputLogin w-full px-4 py-3 removeOUTLINES rounded-md  hover:border-slate-600 focus:text-cyan-300   "
-                />
-              </div>
-              <div className="space-y-1 text-sm px-2 pt-1">
-                <label for="password" className="block  text-white  ">
-                  Contraseña:
-                </label>
-                <input
+
+            <div className=" space-y-1 text-sm px-2">
+              <label for="username" className="block text-white ">
+                Nombre de usuario:
+              </label>
+              <input
+                onChange={(e) => setuser(e.target.value)}
+                defaultValue="demo123"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+                className="inputLogin w-full px-4 py-3 removeOUTLINES rounded-md  hover:border-slate-600 focus:text-cyan-300   "
+              />
+            </div>
+            <div className="space-y-1 text-sm px-2 pt-1">
+              <label for="password" className="block  text-white  ">
+                Contraseña:
+              </label>
+              <input
                 onChange={(e) => setpassword(e.target.value)}
-                  value="1234"
-                  type={"password"}
-                  name="password"
-                  id="password"
-                  placeholder="Password"
-                  className="inputLogin w-full px-4 py-3 removeOUTLINES  rounded-md hover:border-slate-600 "
-                />
-                <div className="flex justify-end text-xs hover:underline ">
-                  <a rel="noopener noreferrer ">Olvidaste la contraseña?</a>
-                </div>
-                <div className="h-7">
-                  <p className=" text-blue-700 p-0 m-0 fontMessage">
-                    {messageAboutLogin}
-                  </p>
-                </div>
+                value="1234"
+                type={"password"}
+                name="password"
+                id="password"
+                placeholder="Password"
+                className="inputLogin w-full px-4 py-3 removeOUTLINES  rounded-md hover:border-slate-600 "
+              />
+              <div className="flex justify-end text-xs hover:underline ">
+                <a rel="noopener noreferrer ">Olvidaste la contraseña?</a>
               </div>
-              <button
-                onClick={() => sendData()}
-                className="text-black w-full p-3 text-center  bg-cyan-200 border border-blue-900  rounded-full"
-              >
-                Log In
-              </button>
-              <div className="pt-3 ">
-                <GoogleLogin
-                  clientId={clientId}
-                  buttonText="Sign in with Google"
-                  onSuccess={(res) => {
-                    setshowNav(true);
-                    settoken(res.credential);
-                    followLogin(res.credential);
-                  }}
-                  onFailure={(res) => console.log(res)}
-                  cookiePolicy={"single_host_origin"}
-                  isSignedIn={(e) => console.log(e)}
-                />
+              <div className="h-7">
+                <p className=" text-blue-700 p-0 m-0 fontMessage">
+                  {messageAboutLogin}
+                </p>
               </div>
-            </form>
+            </div>
+            <button
+              onClick={() => sendData()}
+              className="text-black w-full p-3 text-center  bg-cyan-200 border border-blue-900  rounded-full"
+            >
+              Log In
+            </button>
+            <div className="pt-3 ">
+              <GoogleLogin
+                clientId={clientId}
+                buttonText="Sign in with Google"
+                onSuccess={(res) => {
+                  setshowNav(true);
+                  settoken(res.credential);
+                  followLogin(res.credential);
+                }}
+                onFailure={(res) => console.log(res)}
+                cookiePolicy={"single_host_origin"}
+                isSignedIn={(e) => console.log(e)}
+              />
+            </div>
+
             {showNav && (
               <div className="absolute w-[500px] z-[0]  bg-slate-400 left-0 h-[3px] bottom-0 chargeLogin"></div>
             )}

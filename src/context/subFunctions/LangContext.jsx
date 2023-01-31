@@ -14,7 +14,10 @@ export function LangContextComponent({ children }) {
       setreload(true)
       return;
     }
-
+    if (typeof context.data != "object" ) { 
+      window.location.href="/"
+      return
+    }
     var dataUser = context.data;
     if (!dataUser.fixed==="" ||!dataUser.fixed===undefined ) { 
       return;

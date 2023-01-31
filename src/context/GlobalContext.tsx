@@ -12,8 +12,6 @@ export function GlobalContextComponent({ children }) {
  const [ashowConfiguration, asetshowConfiguration] = useState(false)
   useEffect(() => {
     //localStorage.getItem("token")
-
-    
     //
     var d = new Date();
     var dayName = d.toString().split(" ")[0];
