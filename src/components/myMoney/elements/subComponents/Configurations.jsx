@@ -5,19 +5,19 @@ import useMessageContext from "../../../../context/Modal/useMessageContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Configurations(data) {
+  useEffect(() => {
+    document.body.style.overflowY = "hidden"
+  }, [])
+  
   const [showSioNo, setshowSioNo] = useState(false);
   const { message } = useMessageContext();
   const { context } = useGlobalContext();
   const server = context.server;
   let navigate = useNavigate();
-  /*useEffect(() => {
-    var a = context.showConfiguration();
-    setshowSioNo(a);
-  }, [context.ashowConfiguration]);
-
-  //showConfiguration
-*/
-  //if (showSioNo) {
+    const closeModeal = () => { 
+      context.showConfiguration(false)
+      document.body.style.overflowY = "scroll"
+    }
   var securityCopy = () => {
     console.log(context);
     axios
@@ -41,7 +41,7 @@ export default function Configurations(data) {
       });
   };
   return (
-    <div className="fixed w-screen h-screen bg-[#241f1f7a]  flex justify-center z-[39] py-14 top-0 ">
+    <div className="absolute left-0 w-screen h-screen bg-[#241f1f7a]  flex justify-center z-[39] py-14 top-0 ">
       <div className="overflow-auto shadow-2xl bg-slate-200 shadow-slate-500 flex justify-center p-4 sm:w-[320px] w-[300px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
         <div className="flex flex-col">
           <div className="flex justify-between ">
@@ -52,7 +52,7 @@ export default function Configurations(data) {
               className="ml-auto -mx-1.5 -my-1.5 bg-red-200 text-red-500 rounded-lg focus:ring-1 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 "
               data-dismiss-target="#alert-1"
               aria-label="Close"
-              onClick={()=>context.showConfiguration(false)}
+              onClick={()=>closeModeal()}
             >
               <span class="sr-only">Close</span>
               <svg

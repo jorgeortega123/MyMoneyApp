@@ -117,6 +117,13 @@ export default function TableFromDebts(lang) {
     <Container1>
       <div className="">
         <p>{langg.components.debts.title[0]}</p>
+        <div className="px-2 border border-[#1213122a] rounded-[5px] my-2">
+          <p>Explaining</p>
+          <div>
+            <p>Deudas fijas: </p>
+            
+          </div>
+        </div>
         <div className=" relative">
           <table className="w-full text-sm text-left text-gray-500 ">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">

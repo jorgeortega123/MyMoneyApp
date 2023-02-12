@@ -85,7 +85,7 @@ export default function BarChart() {
   }
   return (
     <Container1>
-      <div className="ml-[-44px] z-[0] overflow-x-auto">
+      <div className=" ml-[-44px] z-[0] flex flex-col items-center justify-center">
         <LineChart width={400} height={200} data={dataArr}>
           <Line type="monotone" dataKey="value" stroke="#8884d8" />
           <Tooltip />
@@ -98,20 +98,26 @@ export default function BarChart() {
         Total gastado esta semana:{" "}
         <span className="text-cyan-600">{weeklyWaste.toFixed(2)}</span>{" "}
       </p>
-      <table className="w-full text-sm text-left text-gray-500 ">
-        <thead className="text-xs text-gray-700 uppercase bg-white ">
-          <tr>
+      <table className="w-full text-sm text-left text-gray-500  border border-[#1d1d1d2f] ">
+        <thead className="text-[.8rem]  rounded-md text-gray-700 uppercase bg-white ">
+          <tr className="bg-[#1b1b1b25]">
             <th
               scope="row"
-              className="w-[100px] capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
+              className="w-[100px] capitalize font-medium px-3 py-2 text-gray-900  whitespace-nowrap"
             >
-              Dia
+              Day
             </th>
             <th
               scope="row"
               className="capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
             >
-              Valor
+              Wasted
+            </th>
+            <th
+              scope="row"
+              className="capitalize px-3 py-2 font-medium text-gray-900  whitespace-nowrap"
+            >
+              Dates
             </th>
           </tr>
         </thead>

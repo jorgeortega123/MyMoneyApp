@@ -110,9 +110,12 @@ export default function AllCost() {
   return (
     <Container1>
     <div className="">
-      <div className=" grid gap-2 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 ">
-        <p>Adittional data</p>
-        {langs.lang}
+      <div className="flex flex-col space-y-3">
+        <p>Deudas y el pcrcentaje que implican en tu salario</p> 
+       {
+       context.data.fixed.map((e, ind)=>(
+          <div className="flex w-full border"><p className="w-6/12 capitalize text-right px-2">{e.name}</p><p className="text-green-500" >${e.value}</p></div>
+       ))}
         <div>
           <div>
             <table className="w-full text-sm text-left text-gray-500 ">
