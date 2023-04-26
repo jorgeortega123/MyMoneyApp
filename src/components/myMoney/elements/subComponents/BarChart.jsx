@@ -24,14 +24,14 @@ export default function BarChart() {
   const { context } = useGlobalContext();
   const [weeklyWaste, setweeklyWaste] = useState(0);
   const [follow, setFollow] = useState(false);
-  const daysWeek = [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado"];
+  const daysWeek = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado","Domingo"];
   const { langs } = useLangContext();
   useEffect(() => {
     var arr = [];
     var arr_other = { w0: [], w1: [], w2: [], w3: [], w4: [], w5: [], w6: [] };
 
     for (let index = 0; index < 7; index++) {
-      var newWest = dayjs(init).subtract((6 - index), "day");
+      var newWest = dayjs(init).subtract((5 - index), "day");
       var date = dayjs(newWest).$d.toString();
       var datee = date.split(" ");
       var [mes, dia, anio] = [datee[1], datee[2], datee[3]];
@@ -47,9 +47,7 @@ export default function BarChart() {
         var datee1 = dataCompareE.toString().split(" ");
         var [me1s, di1a, ani1o] = [datee1[1], datee1[2], datee1[3]];
         var hoyDiaEs = di1a + me1s + ani1o;
-  
         if (hoyDiaEs === dataCompare) {
-
           var s = dayjs(dayjs(e.date)).day();
           arr[s].data.push(e);
         }
@@ -149,6 +147,7 @@ export default function BarChart() {
           })}
         </tbody>
       </table>
+      <p>Ultimas 3 semanas: </p>
     </Container1>
   );
 }

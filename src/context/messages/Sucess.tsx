@@ -11,7 +11,7 @@ function Sucess(props: { show: boolean; title: string; description: string }) {
             type: "spring",
             duration: 1,
           }}
-          className="initM fixed z-40 top-20 flex right-0 w-full max-w-sm mx-auto overflow-hidden rounded-lg shadow-md  backdrop-blur-md"
+          className="initM fixed z-40 top-20 flex right-0 w-full max-w-sm mx-auto overflow-hidden rounded-lg shadow-md   bg-slate-100  border-[1px] border-[black]"
         >
           <div className="flex items-center justify-center w-12 bg-emerald-500">
             <svg

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import useGlobalContext from "../../../context/useGlobalContext";
-import { AnimatePresence, motion } from "framer-motion";
 //import { data } from "../dataSimulateServer";
 export default function PieDiagramTextInfo(dataToTransform) {
   //const { context } = useGlobalContext();
@@ -10,16 +9,11 @@ export default function PieDiagramTextInfo(dataToTransform) {
   ///NO MODIFICAR ESTO PILAAAA
 
   return (
-    <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{opacity: 1, x: 0 }}
-              transition={{
-                duration: 1,
-              }}
-            >
+
     <div className="pt-2 overflow-auto ml-1 flex justify-end items-start  h-[220px]  infoAndcolors list-inside mt-auto mb-auto ">
       <div className="rounded">
         <div className="border-dashed rounded">
+          <table>
           <thead className="hidden text-xs text-gray-700 uppercase  ">
             <tr>
               <th scope="col" className=" px-1 py-1">
@@ -28,7 +22,7 @@ export default function PieDiagramTextInfo(dataToTransform) {
               <th scope="col" className="hidden sm:block px-1 py-1">
                 relationship
               </th>
-              <th scope="col" className="px-1 py-1 truncate w-[20px]">
+              <th scope="col" className="px-1 py-1 truncate w-max">
                 mount to pay
               </th>
             </tr>
@@ -50,9 +44,9 @@ export default function PieDiagramTextInfo(dataToTransform) {
                 </tr>
               );
             })}
-          </tbody>
+          </tbody></table>
         </div>
       </div>
-    </div></motion.div>
+    </div>
   );
 }

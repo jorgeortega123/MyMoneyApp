@@ -96,14 +96,7 @@ export const PieDiagramHome = (dataPie) => {
   } 
   
   return (
-   
-      <motion.div
-        initial={{ opacity: 0, rotate: 0 }}
-        animate={{ opacity: 1, rotate: 0 }}
-        transition={{
-          duration: 1,
-        }}
-      >
+ 
         <Container1>
         <div className="shadow-slate-300  mb-2 flex justify-end items-center    ">
           <div className="flex justify-between w-full">
@@ -114,12 +107,8 @@ export const PieDiagramHome = (dataPie) => {
           
               <div className=" ">
                 <div className="flex justify-center">
-                <motion.div
-                  initial={{ opacity: 0, rotate: 0 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  transition={{
-                    duration: 2,
-                  }}
+                <div
+                  
                   className='relative w-[135px] sm:w-[225px] lg:w-[150px]    '
                 >
                   {followPage ? (
@@ -127,9 +116,6 @@ export const PieDiagramHome = (dataPie) => {
                     <div className="absolute  items-center justify-center w-full h-full text-slate-900 flex flex-col space-y-0  "><p className="pt-1">Wasted: </p><p className="text-center w-full text-[21px] pl-1 ">{overDebst}</p></div>
                     <PieChart
                       className="piechartToEdit  "
-                      animation={true}
-                      animationDuration={3500}
-                      animationEasing="ease-in"
                       data={dataBasic}
                       labelPosition={90}
                       lineWidth={25}
@@ -147,7 +133,7 @@ export const PieDiagramHome = (dataPie) => {
                   ) : (
                     <p>CARGANDO MONO QLIAO MONONEURONAL</p>
                   )}
-                </motion.div></div>
+                </div></div>
                  <PieDiagramTextInfo dataToTransform={dataBasic} />
               </div>
              
@@ -155,7 +141,7 @@ export const PieDiagramHome = (dataPie) => {
           </div>
         </div>
         </Container1>
-      </motion.div>
+  
     
   );
 };

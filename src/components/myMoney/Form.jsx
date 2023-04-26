@@ -12,9 +12,9 @@ export default function Form() {
   let navigate = useNavigate();
   useEffect(() => {
     var dataUserLocal = localStorage.getItem("tokenInf");
-    if (!dataUserLocal) {
-      navigate("/login");
-    }
+    // if (!dataUserLocal) {
+    //   navigate("/login");
+    // }
     setdata(JSON.parse(dataUserLocal));
     console.log(dataUserLocal);
     if (context.endServerRes === false) {

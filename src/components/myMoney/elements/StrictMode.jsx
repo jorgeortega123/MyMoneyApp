@@ -44,7 +44,7 @@ export default function StrictMode({ func }) {
       setshowMessageAlert(true);
     }
     var dataUser = context.data;
-    if (!dataUser?.fixed==="" ||!dataUser?.fixed===undefined ) { 
+    if (!dataUser?.fixed === "" || !dataUser?.fixed === undefined) {
       return;
     }
     var userSalarey = dataUser.perWeek * 4;
@@ -97,7 +97,7 @@ export default function StrictMode({ func }) {
     var costosDeHoyDia = costThisDay.reduce((accumulator, object) => {
       return accumulator + object.value;
     }, 0);
-   
+
     // console.log(sumaDeDeudasFijasPorPagarALaSemana);
     // console.log(
     //   userSalarey,
@@ -105,11 +105,11 @@ export default function StrictMode({ func }) {
     //   userSalarey - sumDebst,
     //   (userSalarey - sumDebst) / 4
     // );
-    var initial = langs.data.initial
-    var valueTo = langs.data.valueTo
+    var initial = langs.data.initial;
+    var valueTo = langs.data.valueTo;
 
     settoPayWeekly(initial);
- 
+
     func(valueTo / 7, valueTo / 7 - costosDeHoyDia);
     setsimuladorPayDaily(valueTo / 7);
     var valueToDay = valueTo / 7 - costosDeHoyDia;
@@ -121,16 +121,16 @@ export default function StrictMode({ func }) {
       restDay,
       valueToDay
     );
-    if (res) { 
+    if (res) {
       axios
-      .post(server + "/overCost", {
-        name: nameFixedDebst,
-        value: valueToDay,
-        date: dayjs().$d,
-        user:  localStorage.getItem("token"),
-      })
-      .then((res) => console.log(res.data))
-      .catch((e) => alert(e));
+        .post(server + "/overCost", {
+          name: nameFixedDebst,
+          value: valueToDay,
+          date: dayjs().$d,
+          user: localStorage.getItem("token"),
+        })
+        .then((res) => console.log(res.data))
+        .catch((e) => alert(e));
     }
     settodayCostSpend(valueToDay + res);
     if (dataUser.history.rest[0].value === undefined) {
@@ -165,7 +165,7 @@ export default function StrictMode({ func }) {
           paid: 0,
           total: totalMount,
           action: whatModal,
-          user:  localStorage.getItem("token"),
+          user: localStorage.getItem("token"),
           date: dayjs().$d,
         })
         .then((res) => {
@@ -202,7 +202,7 @@ export default function StrictMode({ func }) {
         .post(server + "/fixedDebst", {
           name: document.getElementById("valueEditSelect").value,
           action: whatModal,
-          user:  localStorage.getItem("token"),
+          user: localStorage.getItem("token"),
           mount: document.getElementById("inputToPutNumber").value,
           date: dayjs().$d,
         })
@@ -226,50 +226,78 @@ export default function StrictMode({ func }) {
     }
   };
 
+  const resumenDeDeudas = [
+    { title: "Articulos", value: onlyUserFixedDebst },
+    {
+      title: "Debiendo",
+      value: debstCount,
+    },
+    {
+      title: "Total a pagar",
+      id: "si",
+      value: onlyfixedDebst + debstCount + onlyUserFixedDebst,
+    },
+  ];
+
   return (
-    <div className=" mr-0 text-[14px] mb-[8px] h-full flex flex-col  justify-left sm:justify-center items-start bg-transparent m-0 ">
+    <div className=" mr-0 text-[12px] mb-[8px] h-full flex flex-col  justify-left sm:justify-center items-start bg-transparent m-0 ">
       <div className="flex items-center justify-between w-full ">
         <p>
-          Semana:{" "}
-          <span className="text-green-600">${context.data.perWeek}</span>, Mes:{" "}
-          <span className="text-green-600">${context.data.perWeek * 4} </span>
+          Ingresos estimados:
+          <span className="text-green-600 pl-1">
+            ${(context.data.perWeek * 4).toFixed(2)}{" "}
+          </span>
         </p>
       </div>
-      <div className="flex-col w-full">
+      <div className="flex-col w-full rounded-[6px] my-1 p-1 bg-[#f1f5f9]">
         <div className="flex w-full justify-center">
-          <p className=" bg-slate-200 px-5 rounded-t-lg">Por pagar:</p>
+          <p className="">Deudas:</p>
         </div>
-
-        <p className="text-violet-600 pt-[5px] text-center bg-slate-200 px-5 rounded-lg mb-2">
-          <span title="Deudas fijas">${onlyfixedDebst.toFixed(2)}</span>
-          <span className="text-blue-600">
-            <span className="text-green-600"> ~ </span>
-            <span title="Deudas fijas adquiridas">
-              ${onlyUserFixedDebst.toFixed(2)}
-            </span>{" "}
-            ~{" "}
-          </span>
-          <span title="Deudas bajo un nombre" className="text-violet-600">
-            ${debstCount.toFixed(2)}
-          </span>
-          <span className="text-violet-600">
-            {" "}
-            <span className="text-cyan-900"> = </span>
-            <span title="Valor total de todas las deudas">
-              ${(onlyfixedDebst + debstCount + onlyUserFixedDebst).toFixed(2)}
+        <table className="w-full">
+          <thead className=" text-xs text-gray-700 uppercase ">
+            <tr>
+              {resumenDeDeudas.map((data) => (
+                <td
+                  scope="col"
+                  className="p-[1px] text-[11px] tracking-tighter"
+                >
+                  {data.title}
+                </td>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="">
+            <tr className=" odd:bg-transparent  even:bg-slate-100">
+              {resumenDeDeudas.map((n) => {
+                return (
+                  <td
+                    className={`px-[1px] py-[1px] text-[12px] sm:text-[15px] ${
+                      n.id ? "text-[red]" : ""
+                    }`}
+                  >
+                    ${n.value.toFixed(2)}
+                  </td>
+                );
+              })}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="flex my-1 gap-2">
+        <div className="flex justify-between  w-full">
+          <div className="flex bg-slate-200 rounded-md px-2 pt-[1px]">
+            <p className="">Diario:</p>
+            <p className="text-green-600 px-2"> ${todayCostSpend.toFixed(2)}</p>
+          </div>
+        </div>
+        <div className="flex">
+          <p className="flex gap-1">
+            Mensual:{" "}
+            <span className="text-green-600">
+              ${(toweekCostToSpend * 4).toFixed(2)}
             </span>
-          </span>
-        </p>
-      </div>
-      <div className="flex justify-between h-[20px] w-full">
-        <div className="flex bg-slate-200 rounded-md px-2 pt-[1px]">
-          <p className="w-[48px]">Daily:</p>{" "}
-          <p className="text-green-600"> ${todayCostSpend.toFixed(2)}</p>
-        </div>{" "}
-      </div>
-      <div className="flex">
-        <p className="w-[54px]">Weekly:</p>
-        <span className="text-green-600">${toweekCostToSpend.toFixed(2)}</span>
+          </p>
+        </div>
       </div>
       {showMessageAlert && (
         <div className="mt-2 py-5 px-2 w-full h-full bg-red-500 rounded-xl items-center">
@@ -347,107 +375,114 @@ export default function StrictMode({ func }) {
                   {simuladorPayDaily.toFixed(2) -
                     ((totalMount / divideWeek).toFixed(2) / 7).toFixed(2)}
                 </p>
-                <Button2
-                  onClick={() => sendServer()}
-                >
-                  Agregar
-                </Button2>
+                <Button2 onClick={() => sendServer()}>Agregar</Button2>
               </div>
             </>
           )}
 
           {whatModal === "edit" && (
             <>
-              <div className="flex">
-                <p className="text-blue-800 font-light w-full text-center mb-2">
-                  Editar deuda fija
-                </p>
-                <p onClick={() => setshowAddFixedDebst(false)}>X</p>
-              </div>
-              <div className="flex">
-                <p>Deuda fija: </p>
-                <select
-                  id="valueEditSelect"
-                  className="grow outline-hidden capitalize border-[1px] removeOutlines rounded-lg border-slate-200"
-                  onChange={(e) => settableFromFixedDebst(true)}
-                  onLoad={(e) => settableFromFixedDebst(true)}
-                  onClick={(e) => settableFromFixedDebst(true)}
-                >
-                  {context.data.fixedDebst.map((e, index) => {
-                    return (
-                      <option key={"ASDASD" + index} value={e.name}>
-                        {e.name}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              <div className="mt-1">
-                <table className="w-full  rounded-xl">
-                  <thead className="text-xs font-light text-gray-700 uppercase  bg-slate-200 ">
-                    <tr>
-                      <th scope="col" className=" px-1 py-1 ">
-                        Remaing:
-                      </th>
-                      <th scope="col" className=" px-1 py-1 ">
-                        Pay weekly:
-                      </th>
-                      <th scope="col" className=" px-1 py-1 ">
-                        Paid
-                      </th>
-                      <th scope="col" className="px-1 py-1 truncate w-[20px]">
-                        Total
-                      </th>
-                      <th scope="col" className="px-1 py-1 truncate w-[20px]">
-                        N
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="rounded">
-                    {context.data.fixedDebst.map((e, index) => {
-                      return (
-                        <tr
-                          key={e.color + "color"}
-                          className=" odd:bg-gray-50  even:bg-slate-200"
-                        >
-                          <td className="px-0 sm:px-1 py-1 ">
-                            {e.total - e.paid}
-                          </td>
-                          <td
-                            scope="row"
-                            className="px-1 py-1  sm:h-[20px]  h-[12px]  text-gray-900 dark:text-white "
-                          >
-                            {e.total / e.week}
-                          </td>
-                          <td className="px-0 sm:px-1 py-1 ">{e.paid}</td>
-                          <td className="px-0 sm:px-1 py-1  ">{e.total}</td>
-                          <td className="px-0 sm:px-1 py-1 capitalize ">
+              {context.data.fixedDebst.lenght =! 0 ? (
+                <div>
+                  {" "}
+                  <div className="flex">
+                    <p className="text-blue-800 font-light w-full text-center mb-2">
+                      Editar deuda fija
+                    </p>
+                    <p onClick={() => setshowAddFixedDebst(false)}>X</p>
+                  </div>
+                  <div className="flex">
+                    <p>Deuda fija: </p>
+                    <select
+                      id="valueEditSelect"
+                      className="grow outline-hidden capitalize border-[1px] removeOutlines rounded-lg border-slate-200"
+                      onChange={(e) => settableFromFixedDebst(true)}
+                      onLoad={(e) => settableFromFixedDebst(true)}
+                      onClick={(e) => settableFromFixedDebst(true)}
+                    >
+                      {context.data.fixedDebst.map((e, index) => {
+                        return (
+                          <option key={"ASDASD" + index} value={e.name}>
                             {e.name}
-                          </td>
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  <div className="mt-1">
+                    <table className="w-full  rounded-xl">
+                      <thead className="text-xs font-light text-gray-700 uppercase  bg-slate-200 ">
+                        <tr>
+                          <th scope="col" className=" px-1 py-1 ">
+                            Remaing:
+                          </th>
+                          <th scope="col" className=" px-1 py-1 ">
+                            Pay weekly:
+                          </th>
+                          <th scope="col" className=" px-1 py-1 ">
+                            Paid
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-1 py-1 truncate w-[20px]"
+                          >
+                            Total
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-1 py-1 truncate w-[20px]"
+                          >
+                            N
+                          </th>
                         </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <div className="flex items-center">
-                <p className="pt-[2px] mr-2">Monto que vas a pagar: </p>
-                <div className="mr-1 mt-1 w-[60px] flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
-                  <p className="ml-1 text-green-600">$</p>
-                  <input
-                    type="number"
-                    onChange={(e) => setpayWeekly(e.target.value)}
-                    className=" w-[40px] p-[2px] outline-none bg-transparent  "
-                    id="inputToPutNumber"
-                    required
-                  />
+                      </thead>
+                      <tbody className="rounded">
+                        {context.data.fixedDebst.map((e, index) => {
+                          return (
+                            <tr
+                              key={e.color + "color"}
+                              className=" odd:bg-gray-50  even:bg-slate-200"
+                            >
+                              <td className="px-0 sm:px-1 py-1 ">
+                                {e.total - e.paid}
+                              </td>
+                              <td
+                                scope="row"
+                                className="px-1 py-1  sm:h-[20px]  h-[12px]  text-gray-900 dark:text-white "
+                              >
+                                {e.total / e.week}
+                              </td>
+                              <td className="px-0 sm:px-1 py-1 ">{e.paid}</td>
+                              <td className="px-0 sm:px-1 py-1  ">{e.total}</td>
+                              <td className="px-0 sm:px-1 py-1 capitalize ">
+                                {e.name}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="flex items-center">
+                    <p className="pt-[2px] mr-2">Monto que vas a pagar: </p>
+                    <div className="mr-1 mt-1 w-[60px] flex items-center border rounded-lg border-slate-400 focus:ring-1 focus:ring-v ">
+                      <p className="ml-1 text-green-600">$</p>
+                      <input
+                        type="number"
+                        onChange={(e) => setpayWeekly(e.target.value)}
+                        className=" w-[40px] p-[2px] outline-none bg-transparent  "
+                        id="inputToPutNumber"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <Button2 onClick={() => sendServer()}>Agregar</Button2>
                 </div>
-              </div>
-              <Button2
-                onClick={() => sendServer()}
-              >
-                Agregar
-              </Button2>
+              ) : (
+                <p className="w-full text-center">
+                  No tienes niguna deuda registrada :)
+                </p>
+              )}
             </>
           )}
         </div>

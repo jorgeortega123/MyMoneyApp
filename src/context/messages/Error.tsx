@@ -14,7 +14,7 @@ function Error(props: any) {
           type: "spring",
           duration: 1,
         }}
-        className="initM fixed  z-40 top-20 flex left-2 w-full max-w-sm mx-auto overflow-hidden border rounded-xl backdrop-blur-md shadow-lg"
+        className="initM fixed  z-40 top-20 flex left-2 w-full max-w-sm mx-auto overflow-hidden  bg-slate-100  border-[1px] border-[black] rounded-xl  shadow-lg"
       >
         <div className="flex items-center justify-center w-12 bg-red-500">
           <svg
@@ -38,7 +38,7 @@ function Error(props: any) {
         <div className="pt-[20px] pr-2">
         <button
             type="button"
-            className="ml-auto -mx-1.5 -my-1.5 bg-red-200 text-red-500 rounded-lg focus:ring-1 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 "
+            className="ml-auto -mx-1.5 mr-[2px] -my-1.5 bg-red-200 text-red-500 rounded-lg focus:ring-1 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 "
             data-dismiss-target="#alert-1"
             aria-label="Close"
             onClick={() => setshow(false)}

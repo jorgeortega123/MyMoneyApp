@@ -18,6 +18,27 @@ export default function Configurations(data) {
       context.showConfiguration(false)
       document.body.style.overflowY = "scroll"
     }
+    const relaodDataCost =()=> { 
+      axios
+      .post(server + "/newContabilitie", {
+        user: context.data.user,
+      })
+      .then((res) => {
+        message({
+          type: res.data.message,
+          title: res.data.title,
+          description: res.data.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        message({
+          type: "error",
+          title: "Error desconocido",
+          description:  err.message,
+        });
+      });
+    }
   var securityCopy = () => {
     console.log(context);
     axios
@@ -42,7 +63,7 @@ export default function Configurations(data) {
   };
   return (
     <div className="absolute left-0 w-screen h-screen bg-[#241f1f7a]  flex justify-center z-[39] py-14 top-0 ">
-      <div className="overflow-auto shadow-2xl bg-slate-200 shadow-slate-500 flex justify-center p-4 sm:w-[320px] w-[300px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
+      <div className="overflow-auto h-[92%] shadow-2xl bg-slate-200 shadow-slate-500 flex justify-center p-4 sm:w-[320px] w-[300px]  border border-slate-400 rounded-xl bg-tranparent backdrop-blur-xl ">
         <div className="flex flex-col">
           <div className="flex justify-between ">
             <p className="text-[15px]">Configuración</p>
@@ -81,7 +102,7 @@ export default function Configurations(data) {
               >
                 {"Cerrar sesión"}
               </button>
-              <textarea className="scrollSmall h-[100px] removeOUTLINES border-y-[1px] border-slate-300 " name="" id="" cols="30" rows="10" spellCheck={false}>
+              <textarea className="scrollSmall h-[360px] removeOUTLINES border-y-[1px] border-slate-300 " name="" id="" cols="30" rows="10" spellCheck={false}>
                 {JSON.stringify(context.data)}
               </textarea>
               <button
@@ -93,10 +114,10 @@ export default function Configurations(data) {
                 {"Copiar mis datos"}
               </button>
               <button
-                className="mt-2 w-full h-max  px-5 mr-2 mb-2 sm:font-medium font-[10px] text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+                className="mt-2 w-full h-max  p- mr-2 mb-2 sm:font-medium font-[10px] text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
                 onClick={() => securityCopy()}
               >
-                Hacer copia de seguridad de los datos
+                Hacer copia de seguridad
               </button>
               <button
                 className="mt-2 w-full h-max  px-5 mr-2 mb-2 sm:font-medium font-[10px] text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
@@ -106,7 +127,13 @@ export default function Configurations(data) {
                 }
                   
               >
-                Forms
+                Editar datos
+              </button>
+              <button
+                className="mt-2 w-full h-max  px-5 mr-2 mb-2 sm:font-medium font-[10px] text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
+                
+              >
+                Resetar costos y gastos
               </button>
             </div>
         

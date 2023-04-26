@@ -140,16 +140,10 @@ export default function MainPage() {
                   <div className="pl-1 pr-2  w-full flex flex-col md:space-y-2 justify-center space-x-0 md:space-x-2 sm:flex-col  lg:flex-col ">
                     <div className="">
                       <PieDiagramHome lang={finalLang} />
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 1,
-                        }}
-                      >
+            
                         <ToDay />
                         <DetailsExpendsWeek lang={finalLang} />
-                      </motion.div>
+                  
                     </div>
                     <div className="flex flex-col ">
                       <div className="flex-row">
