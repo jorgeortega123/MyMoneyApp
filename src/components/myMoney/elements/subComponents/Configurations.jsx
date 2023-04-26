@@ -131,7 +131,7 @@ export default function Configurations(data) {
               </button>
               <button
                 className="mt-2 w-full h-max  px-5 mr-2 mb-2 sm:font-medium font-[10px] text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-200 hover:text-blue-800 focus:z-10 focus:ring-1 focus:ring-gray-900    "
-                
+                onClick={()=>relaodDataCost()}
               >
                 Resetar costos y gastos
               </button>
