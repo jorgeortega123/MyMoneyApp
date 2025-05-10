@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import AddIncomingCash from "./AddIncomingCash";
-import TableFromDebts from "./subComponents/TableFromDebts";
 import axios from "axios";
 import useGlobalContext from "../../../context/useGlobalContext";
 import AddOptionAboutCost from "./subComponents/AddOptionAboutCost";
 import useMessageContext from "../../../context/Modal/useMessageContext";
 import dayjs from 'dayjs'
-import { Container } from "@mui/material";
+
 import Container1 from "./Container/Container";
 import Button2 from "./Modal/Button2";
 export default function AddMoveCash(lang) {

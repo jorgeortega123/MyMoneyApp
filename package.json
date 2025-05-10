@@ -8,10 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@devexpress/dx-react-chart-material-ui": "^3.0.5",
-    "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
-    "@mui/material": "^5.10.1",
+
     "@react-oauth/google": "^0.2.8",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
@@ -21,13 +18,9 @@
     "npm": "^8.13.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
-    "react-dom": "^18.0.0",
     "react-gapi": "^1.0.2",
     "react-jwt": "^1.1.7",
-    "react-loading-skeleton": "^3.1.0",
     "react-minimal-pie-chart": "^8.3.0",
-    "react-pinch-and-zoom": "^1.2.5",
-    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.3.0",
     "recharts": "^2.1.13",
     "sass": "^1.54.0",

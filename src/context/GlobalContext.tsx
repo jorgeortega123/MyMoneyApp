@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-const server = "https://mymone.azurewebsites.net";
-const serverr = 'http://127.0.0.1:4000'
+const server = "https://que-pasa-tronco.koyeb.app";
+const serve = 'http://127.0.0.1:5000'
 //@ts-ignore
 export const GlobalContext = createContext();
 export function GlobalContextComponent({ children }) {

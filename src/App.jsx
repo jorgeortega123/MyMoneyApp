@@ -11,6 +11,8 @@ import EventMain from "./components/event/Event";
 import Form from "./components/myMoney/Form";
 import Games from "./components/games";
 import PreRegister from "./components/myMoney/elements/PreRegister";
+import Dedos from "./components/cv/Dedos";
+import FetchComponent from "./components/cv/Dedos";
 const server = "https://mymone.azurewebsites.net";
 function App() {
   const { context } = useGlobalContext();
@@ -50,6 +52,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/event" element={<EventMain />} />
           <Route path="/cv" element={<CvMain />} />
+          <Route path="/dedos" element={<FetchComponent />} />
         </Routes>
       </GoogleOAuthProvider>
       
