@@ -13,7 +13,7 @@ import Games from "./components/games";
 import PreRegister from "./components/myMoney/elements/PreRegister";
 import Dedos from "./components/cv/Dedos";
 import FetchComponent from "./components/cv/Dedos";
-const server = "https://mymone.azurewebsites.net";
+const server = "https://que-pasa-tronco.koyeb.app";
 function App() {
   const { context } = useGlobalContext();
   const [onErrorServerOut, setonErrorServerOut] = useState(false);
